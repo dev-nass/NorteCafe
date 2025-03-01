@@ -1,6 +1,23 @@
 #brand {
-    color: var(--clr-dark);
+    color: var(--clr-darkest);
     text-decoration: none;
+}
+
+.logo-text-2 {
+    color: var(--clr-choco);
+    transition: ease all .5s;
+}
+
+#brand:hover {
+    .logo-text-1 {
+        color: var(--clr-choco);
+        transition: ease all .3s;
+    }
+
+    .logo-text-2 {
+        color: var(--clr-darkest);
+        transition: ease all .3s;
+    }
 }
 
 #brand>h1 {
@@ -18,7 +35,7 @@
     left: 0;
     right: 0;
     z-index: 11;
-    background: var(--clr-white);
+    background: transparent;
     /* transition: 0.3s background; */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
@@ -37,17 +54,37 @@
     padding: 5px 10px;
 }
 
-.main-header .navbar-nav>li>.nav-link {
+.main-header .navbar-nav > li > .nav-link {
     padding: 0 5px;
     line-height: 35px;
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.8rem;
-    color: var(--clr-dark);
+    color: var(--clr-darkest);
+    letter-spacing: 2px;
     position: relative;
+    transition: ease all .3s;
 }
 
-.main-header .navbar #div-search {
+.main-header .navbar-nav > li > .nav-link:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: auto;
+    width: 0;
+    height: 2px;
+    background-color: var(--clr-choco);
+    transition: ease all 0.3s;
+}
+
+.main-header .navbar-nav > li > .nav-link:hover:after {
+    left: 0;
+    right: auto;
+    width: 100%;
+}
+
+/* .main-header .navbar #div-search {
     margin: 5px auto 10px auto;
 }
 
@@ -77,7 +114,7 @@
 #button-search:active.focus,
 #button-search.active.focus {
     outline: none;
-}
+} */
 
 @media(max-width: 991px) {
 
@@ -85,15 +122,24 @@
     .main-header .navbar-collapse {
         border-bottom: 1px solid var(--clr-dark);
         border-top: 1px solid var(--clr-dark);
-        background-color: var(--clr-white);
+        background-color: transparent;
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
+        padding: 2.5rem 0 3rem 0;
     }
 
-    .main-header .navbar-nav>li {
+    .main-header .navbar-nav > li {
         text-align: center;
+    }
+
+    .main-header .navbar-nav > li > .nav-link:hover {
+        color: var(--clr-choco);
+    }
+
+    .main-header .navbar-nav > li > .nav-link:after {
+        display: none;
     }
 
     .main-header .navbar-toggler {
