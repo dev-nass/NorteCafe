@@ -1,0 +1,17 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Anton%7CBaskervville%7CRaleway&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+:root {
+    --clr-white: #f7f4ef;
+    --clr-beige: #e8dacd;
+    --clr-pale-white: #e1cdbc;
+    --clr-dark: #543a35;
+    --clr-choco: #8f6b61;
+    --clr-darkest: #29190e;
+}
+
+.section-header {
+    color: var(--clr-dark);
+}
