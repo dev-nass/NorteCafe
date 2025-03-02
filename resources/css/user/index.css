@@ -1,0 +1,49 @@
+
+.hero-header {
+    font-family: "Alegreya", sans-serif;
+    font-size: 2rem;
+    line-height: 50px;
+    width: 18ch;
+}
+
+.square {
+    border: 1px solid var(--clr-darkest);
+    border-radius: 5px;
+    padding: 0 .7rem;
+}
+
+.square-icon {
+    vertical-align: -14px;
+}
+
+/* md */
+@media (min-width: 768px) {
+    .hero-blob {
+        height: 300px;
+        width: 320px;
+    }
+
+    .hero-header {
+        font-size: 2.5rem;
+    }
+}
+
+/* Lg */
+@media (min-width: 1024px) {
+    .hero-blob {
+        height: 320px;
+        width: 340px;
+    }
+
+    .hero-header {
+        font-size: 3rem;
+    }
+}
+
+/* xL */
+@media (min-width: 1280px) {
+}
+
+/* 2xL */
+@media (min-width: 1536px) {
+}
