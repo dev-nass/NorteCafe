@@ -1,4 +1,8 @@
 
+.hero-blob {
+    filter: drop-shadow(1px 1px 20px orange);
+}
+
 .hero-header {
     font-family: "Alegreya", sans-serif;
     font-size: 2rem;
@@ -6,6 +10,7 @@
     width: 18ch;
 }
 
+/* 4 square at the HERO section */
 .square {
     border: 1px solid var(--clr-darkest);
     border-radius: 5px;
@@ -14,6 +19,21 @@
 
 .square-icon {
     vertical-align: -14px;
+}
+
+
+/* SECTION 3 */
+.delivery-header {
+    width: 13ch;
+}
+
+.delivery-logo {
+    height: 300px;
+}
+
+.our-story-img {
+    box-shadow: 0 0 10px var(--clr-darkest);
+    height: 380px;
 }
 
 /* md */

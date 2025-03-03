@@ -122,7 +122,7 @@
     .main-header .navbar-collapse {
         border-bottom: 1px solid var(--clr-dark);
         border-top: 1px solid var(--clr-dark);
-        background-color: transparent;
+        background-color: var(--clr-white);
         position: absolute;
         top: 100%;
         left: 0;
