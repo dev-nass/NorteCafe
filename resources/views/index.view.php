@@ -7,11 +7,11 @@
     <div class="container py-5">
         <div class="row">
 
-            <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-6 d-flex justify-content-center align-items-center hero-left">
                 <img src="../../storage/user/img/hero-icon-white.png" class="hero-grid" />
             </div>
 
-            <div class="col-12 col-md-6 py-4">
+            <div class="col-12 col-md-6 py-4 hero-right">
                 <div>
                     <h3 class="hero-header">
                         Discover the drinks and desserts that set you in the right mood.
@@ -62,11 +62,11 @@
 <section class="section-container">
     <div class="container">
         <div>
-            <h1 class="section-header text-center">Explore Our Menu</h1>
+            <h1 class="section-header text-center top-slide">Explore Our Menu</h1>
         </div>
 
         <div class="row">
-            <div class="col-12 col-lg-6 d-flex justify-content-center">
+            <div class="col-12 col-lg-6 d-flex justify-content-center container-interval-slide">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-4">
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6 d-flex justify-content-center">
+            <div class="col-12 col-lg-6 d-flex justify-content-center container-interval-slide">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-8 choco-bg">
@@ -101,7 +101,7 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-lg-6 d-flex justify-content-center">
+            <div class="col-12 col-lg-6 d-flex justify-content-center container-interval-slide">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-4">
@@ -117,7 +117,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6 d-flex justify-content-center">
+            <div class="col-12 col-lg-6 d-flex justify-content-center container-interval-slide">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-8 dark-bg">
@@ -141,12 +141,12 @@
 <section class="section-container white-bg py-5">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 left-slide">
                 <h1 class="section-header delivery-header">Delivery Your Cravings at ⤦ Your Doorstep</h1>
                 <p class="mt-3">Satisfy your cravings with fast, fresh, and hassle-free online delivery. Enjoy delicious meals, snacks, and drinks brought straight to your doorstep with just a few clicks!</p>
                 <a href="#" class="choco-btn mt-4">Learn More</a>
             </div>
-            <div class="col-12 col-md-6 mt-sm-5 mt-md-4 d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-6 mt-sm-5 mt-md-4 d-flex justify-content-center align-items-center right-slide">
                 <div>
                     <img src="../../storage/user/img/delivery-logo.png" class="delivery-logo" />
                 </div>
@@ -158,9 +158,9 @@
 <!-- SECTION 4 (We Value) -->
 <section class="section-container">
     <div class="container">
-        <h1 class="section-header text-center">We Value</h1>
+        <h1 class="section-header text-center top-slide">We Value</h1>
         <div class="row border mt-4">
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-3 container-interval-slide">
                 <div class="d-flex justify-content-between align-items-center flex-row flex-lg-column text-sm-start text-lg-center">
                     <div>
                         <div class="cirlce-container me-2 me-sm-3 mb-lg-3">
@@ -173,7 +173,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-3 container-interval-slide">
                 <div class="d-flex justify-content-between align-items-center flex-row flex-lg-column text-sm-start text-lg-center">
                     <div>
                         <div class="cirlce-container me-2 me-sm-3 mb-lg-3">
@@ -186,7 +186,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-3 container-interval-slide">
                 <div class="d-flex justify-content-between align-items-center flex-row flex-lg-column text-sm-start text-lg-center">
                     <div>
                         <div class="cirlce-container me-2 me-sm-3 mb-lg-3">
@@ -199,7 +199,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-3 container-interval-slide">
                 <div class="d-flex justify-content-between align-items-center flex-row flex-lg-column text-sm-start text-lg-center">
                     <div>
                         <div class="cirlce-container me-2 me-sm-3 mb-lg-3">
@@ -221,12 +221,11 @@
 <section class="section-container white-bg">
     <div class="container py-5">
         <div class="row">
-
-            <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-6 d-flex justify-content-center align-items-center left-slide">
                 <img src="../../storage/user/img/our-story.jpg" class="our-story-img w-sm-50" />
             </div>
 
-            <div class="col-12 col-md-6 py-4">
+            <div class="col-12 col-md-6 py-4 right-slide">
                 <div>
                     <h1 class="section-header">
                         Story behind Norte Cafe by Cafe Buny

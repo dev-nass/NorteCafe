@@ -1,2 +1,2 @@
 
-import ('scrollReveal.min.js');
+import '../js/scrollReveal.min.js';
