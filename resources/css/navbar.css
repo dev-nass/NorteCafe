@@ -35,7 +35,7 @@
     left: 0;
     right: 0;
     z-index: 11;
-    background: var(--clr-white);
+    background: #fff;
     /* transition: 0.3s background; */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }

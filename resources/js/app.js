@@ -1,0 +1,2 @@
+
+import ('scrollReveal.min.js');

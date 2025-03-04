@@ -1,13 +1,17 @@
 
+/* SECTION 1 */
+.hero-grid {
+    height: 420px;
+}
+
 .hero-blob {
     filter: drop-shadow(1px 1px 20px orange);
 }
 
 .hero-header {
     font-family: "Alegreya", sans-serif;
-    font-size: 2rem;
-    line-height: 50px;
-    width: 18ch;
+    font-size: 2.4rem;
+    line-height: 40px;
 }
 
 /* 4 square at the HERO section */
@@ -19,6 +23,10 @@
 
 .square-icon {
     vertical-align: -14px;
+}
+
+.explore-menu-img {
+    height: 250px;
 }
 
 
@@ -50,6 +58,11 @@
 
 /* Lg */
 @media (min-width: 1024px) {
+    .hero-header {
+        font-size: 3rem;
+        width: 18ch;
+    }
+
     .hero-blob {
         height: 320px;
         width: 340px;
