@@ -127,6 +127,11 @@ body {
     color: var(--clr-white);
 }
 
+.darkest-bg {
+    background-color: var(--clr-darkest) !important;
+    color: var(--clr-white) !important;
+}
+
 .white-bg {
     background-color: #fff;
 }

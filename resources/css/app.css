@@ -1,7 +1,10 @@
 
+/* User side */
 @import url('reset.css');
 @import url('util.css');
 @import url('navbar.css');
 
 @import url('user/index.css');
 
+/* Admin Side */
+@import url('bootstrap.css');
