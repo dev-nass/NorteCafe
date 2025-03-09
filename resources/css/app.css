@@ -5,3 +5,6 @@
 
 @import url('user/index.css');
 
+/* Auth / Form Page (Martin) */
+@import url('registeration.css');
+@import url('login.css');
