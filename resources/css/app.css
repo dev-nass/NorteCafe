@@ -4,7 +4,11 @@
 @import url('navbar.css');
 
 @import url('user/index.css');
+@import url('user/aboutUsStore.css');
+@import url('user/aboutUsStudents.css');
 
 /* Auth / Form Page (Martin) */
 @import url('registeration.css');
 @import url('login.css');
+@import url('forgot-pass.css');
+@import url('change-pass.css');

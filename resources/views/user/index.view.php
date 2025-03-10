@@ -1,5 +1,5 @@
-<?php require '../views/components/head.php' ?>
-<?php require '../views/components/navbar.php' ?>
+<?php require '../components/head.php' ?>
+<?php require '../components/navbar.php' ?>
 
 
 <!-- SECTION 1 (Hero Section) -->
@@ -8,7 +8,7 @@
         <div class="row">
 
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center hero-left">
-                <img src="../../storage/user/img/hero-icon-white.png" class="hero-grid" />
+                <img src="../../../storage/frontend/user/img/index/hero-icon-white.png" class="hero-grid" />
             </div>
 
             <div class="col-12 col-md-6 py-4 hero-right">
@@ -24,7 +24,7 @@
                     <a href="#" class="choco-btn">
                         Order Now
                     </a>
-                    <a href="#" class="btn text-primary ms-2">Contact Us</a>
+                    <a href="contactUs.view.php" class="btn text-primary ms-2">Contact Us</a>
                 </div>
                 <div class="row">
                     <div class="col-6 mt-2">
@@ -70,7 +70,7 @@
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-4">
-                            <img src="../../storage/user/img/croffle.jpg" class="img-fluid rounded-start h-100" alt="...">
+                            <img src="../../../storage/frontend/user/img/index/croffle.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
                         <div class="col-8 choco-bg">
                             <div class="card-body">
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            <img src="../../storage/user/img/sandwhich-nachos.jpg" class="img-fluid rounded-start h-100" alt="...">
+                            <img src="../../../storage/frontend/user/img/index/sandwhich-nachos.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-4">
-                            <img src="../../storage/user/img/coffee.jpg" class="img-fluid rounded-start h-100" alt="...">
+                            <img src="../../../storage/frontend/user/img/index/coffee.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
                         <div class="col-8 dark-bg">
                             <div class="card-body">
@@ -128,7 +128,7 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            <img src="../../storage/user/img/milktea.jpg" class="img-fluid rounded-start h-100" alt="...">
+                            <img src="../../../storage/frontend/user/img/index/milktea.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
                     </div>
                 </div>
@@ -139,16 +139,16 @@
 
 <!-- SECTION 3 (Delivery Info) -->
 <section class="section-container white-bg py-5">
-    <div class="container">
+    <div class="container pt-4 pb-5">
         <div class="row">
             <div class="col-12 col-md-6 left-slide">
-                <h1 class="section-header delivery-header">Delivery Your Cravings at ⤦ Your Doorstep</h1>
-                <p class="mt-3">Satisfy your cravings with fast, fresh, and hassle-free online delivery. Enjoy delicious meals, snacks, and drinks brought straight to your doorstep with just a few clicks!</p>
+                <h1 class="section-header delivery-header">Deliver Your Cravings at ⤦ Your Doorstep</h1>
+                <p class="mt-3 mb-4">Satisfy your cravings with fast, fresh, and hassle-free online delivery. Enjoy delicious meals, snacks, and drinks brought straight to your doorstep with just a few clicks!</p>
                 <a href="#" class="choco-btn mt-4">Learn More</a>
             </div>
             <div class="col-12 col-md-6 mt-sm-5 mt-md-4 d-flex justify-content-center align-items-center right-slide">
                 <div>
-                    <img src="../../storage/user/img/delivery-logo.png" class="delivery-logo" />
+                    <img src="../../../storage/frontend/user/img/index/delivery-logo.png" class="delivery-logo" />
                 </div>
             </div>
         </div>
@@ -222,7 +222,7 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center left-slide">
-                <img src="../../storage/user/img/our-story.jpg" class="our-story-img w-sm-50" />
+                <img src="../../../storage/frontend/user/img/index/our-story.jpg" class="our-story-img w-sm-50" />
             </div>
 
             <div class="col-12 col-md-6 py-4 right-slide">
@@ -231,11 +231,11 @@
                         Story behind Norte Cafe by Cafe Buny
                     </h1>
                 </div>
-                <div>
+                <div class="mt-3 mb-4">
                     <p>Founded by two kindred hearts, our coffee shop is a tale of love, warmth, and shared dreams—brewing passion into every cup for you to enjoy. What started as a simple dream became a cozy haven where every sip tells a story, inviting you to experience comfort, connection, and heartfelt flavors.</p>
                 </div>
                 <div class="mt-3 mb-4">
-                    <a href="#" class="choco-btn">
+                    <a href="aboutUsStore.view.php" class="choco-btn">
                         Learn More
                     </a>
                 </div>
@@ -245,4 +245,4 @@
     </div>
 </section>
 
-<?php require '../views/components/foot.php' ?>
+<?php require '../components/foot.php' ?>

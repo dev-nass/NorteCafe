@@ -10,17 +10,17 @@
                         <div class="card-body p-0">
                             <div class="row g-0 h-100">
                                 <!-- info section -->
-                                <div class="col-md-5 text-center info-section-bg text-white p-3">
+                                <div class="col-md-5 text-center info-section-bg text-white p-3 d-flex flex-column justify-content-center">
                                     <div class="p-4 pt-md-5 pb-md-7">
                                         <!-- pa link nalang sa homepage -->
-                                        <a href="#" class="no-underline"><h2 class="link-light fw-bolder">Norte Cafe'</h2></a>
+                                        <a href="../../views/user/index.view.php" class="no-underline"><h2 class="link-light fw-bolder">Norte Cafe'</h2></a>
                                         <p>
                                              Enjoy the perfect blend of Tea and Milk tea at Norte Café! Crafted with quality ingredients and a passion for great flavors, every sip is a treat. Log in to place your order or sign up to explore our menu!                               
                                         </p>
                                     </div>
                                     <div class="mt-3 mb-4 mt-md-4 mb-md-5">
-                                        <p>Already have an account? <a class="text-decoration-underline text-white" href="login.php">Log In!</a></p>
-                                        <p class="mb-0 mt-4 mt-md-5 fs--1">Read our <a class="text-decoration-underline text-white" href="terms&condition.php">Terms & Conditions</a></p>
+                                        <p>Already have an account? <a class="text-decoration-underline text-white" href="../../views/auth/login.view.php">Log In!</a></p>
+                                        <p class="mb-0 mt-4 mt-md-5 fs--1">Read our <a class="text-decoration-underline text-white" href="../../views/auth/terms&condition.view.php">Terms & Conditions</a></p>
                                         <!-- <p class="mb-0 mt-4 mt-md-5 fs--1">Need Help? Go to our <a class="text-decoration-underline text-white" href="#">F A Q S</a></p> -->
                                     </div>
                                 </div>

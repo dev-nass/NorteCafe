@@ -1,0 +1,47 @@
+#about-section,
+#mission-section,
+#ourstory-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+/* ABOUT SECTION */
+
+#logo-square-container {
+    height: 350px;
+
+}
+
+#logo-square-container img {
+    height: 100%;
+    width: 100%;
+}
+
+
+/* MISSION SECTION */
+
+#milktea-img {
+    width: 500px;
+    height: 350px;
+    object-fit: cover;
+}
+
+/* OUR STORY SECTION */
+
+#story-img {
+    width: 500px;
+    height: 350px;
+    object-fit: cover;
+}
+
+/* DESCRIPTIONS */
+
+#headings {
+    margin-bottom: 20px;
+}
+
+#description {
+    text-align: justify;
+    line-height: 1.8;
+    font-weight: 400
+}

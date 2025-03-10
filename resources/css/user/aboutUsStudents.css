@@ -1,0 +1,46 @@
+/* WHY WE CREATE THIS SECTION */
+#whyWeCreateThis {
+  background-color: #8f6b61;
+  color: white;
+  padding: 5rem 0;
+}
+
+#logo-description-container {
+  font-size: 1.2rem;
+  /* padding: 1rem; */
+  text-align: justify;
+}
+
+#logo-square-container {
+  height: 350px;
+}
+
+#logo-square-container img {
+  height: 100%;
+  width: 100%;
+}
+
+
+
+/* TEAM SECTION */
+#membersSection {
+  padding: 5rem 0;
+  background-color: #f7f4ef;
+}
+
+.member-bg {
+  height: 250px;
+}
+
+.member {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  position: absolute;
+  top: 230px;
+
+  /* Move element halfway down */
+  left: 50%;
+  /* Move element halfway across */
+  transform: translate(-50%, -50%);
+}

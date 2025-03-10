@@ -1,0 +1,34 @@
+/* specifics */
+
+.container-fluid-gradient {
+    background: linear-gradient(to bottom, #F7EBDF, #c0ac98);
+}
+
+.form-section-bg {
+    background: linear-gradient(to top, #e2d3c5, #b3a08d);
+}
+
+.Cpass-btn {
+    background-color: #674831; 
+    color: white; 
+    padding: 0.5rem 1rem; 
+    border: none; 
+    border-radius: 0.25rem; 
+    font-size: 1rem; 
+    font-weight: 600; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease-in-out;
+}
+
+.Cpass-btn:hover {
+    background-color: #8f610b; 
+}
+
+.no-underline {
+    text-decoration: none; 
+}
+
+.no-underline:hover {
+    text-decoration: underline; 
+    text-decoration-color:  white;
+}
