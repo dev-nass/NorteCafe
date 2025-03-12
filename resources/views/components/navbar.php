@@ -22,8 +22,8 @@
                                 ABOUT
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="../../views/user/aboutUsStore.view.php">Store</a></li>
-                                <li><a class="dropdown-item" href="../../views/user/aboutUsStudents.view.php">Students</a></li>
+                                <li><a class="dropdown-item" href="../../views/user/aboutUsStore.view.php">Norte Cafe</a></li>
+                                <li><a class="dropdown-item" href="../../views/user/aboutUsStudents.view.php">Developers</a></li>
                             </ul>
                         </div>
                     </li>
