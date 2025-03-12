@@ -54,10 +54,16 @@
             <!-- Profile (Large scren) -->
             <div class="ms-auto d-none d-lg-flex align-items-center">
                 <div class="profile">
-                    <a href="registration" class="choco-btn">
-                        Sign Up
-                        <!-- <i class="fa-solid fa-user m-3"></i> -->
-                    </a>
+                    <?php if (isset($_SESSION['user'])) : ?>
+                        <a href="registration" class="choco-btn">
+                            <?= $_SESSION['user']['email'] ?>
+                        </a>
+                    <?php else : ?>
+                        <a href="registration" class="choco-btn">
+                            Sign Up
+                        </a>
+                    <?php endif; ?>
+
                 </div>
             </div>
 

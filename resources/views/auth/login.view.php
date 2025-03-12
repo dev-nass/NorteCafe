@@ -1,4 +1,4 @@
-<?php require '../../views/components/head.php' ?>
+<?php require base_path('resources/views/components/head.php')?>
 
 <main class="container-fluid-gradient container-fluid">
     <div class="container">
@@ -19,7 +19,7 @@
                                     </p>
                                 </div>
                                 <div class="mt-3 mb-4 mt-md-4 mb-md-5">
-                                    <p>Don't have an account? <a class="text-decoration-underline text-white" href="../../views/auth/registeration.view.php">Register Now!</a></p>
+                                    <p>Don't have an account? <a class="text-decoration-underline text-white" href="registration">Register Now!</a></p>
                                     <p class="mb-0 mt-4 mt-md-5 fs--1">Read our <a class="text-decoration-underline text-white" href="../../views/auth/terms&condition.view.php">Terms & Conditions</a></p>
                                 </div>
 
@@ -28,7 +28,7 @@
                             <div class="col-md-7 form-section-bg d-flex align-items-center justify-content-center">
                                 <div class="p-4 p-md-5 w-100">
                                     <h1 class="fs-3">Account Login</h1>
-                                    <form action="#" method="post" novalidate>
+                                    <form action="login" method="post" novalidate>
                                         <div class="mb-3">
                                             <label class="form-label" for="email">Username or E-Mail</label>
                                             <div class="form-floating">
@@ -36,6 +36,9 @@
                                                 <label for="email">Username or E-Mail...</label>
                                                 <div class="invalid-feedback">Missing Username or E-Mail...</div>
                                             </div>
+                                            <?php if(isset($errors['email'])) : ?>
+                                                    <div class="text-danger"><?= $errors['email'] ?></div>
+                                            <?php endif; ?>
                                         </div>
                                         <div class="mb-3">
                                             <div class="d-flex justify-content-between">
@@ -77,4 +80,4 @@
     });
 </script>
 
-<?php require '../../views/components/foot.php' ?>
+<?php require base_path('resources/views/components/foot.php')?>

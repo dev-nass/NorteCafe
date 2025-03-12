@@ -14,3 +14,5 @@ $router->get('faqs', 'UserController', 'faqs');
 */
 $router->get('registration', 'RegistrationController', 'create');
 $router->post('registration', 'RegistrationController', 'store');
+$router->get('login', 'LoginController', 'create');
+$router->post('login', 'LoginController', 'store');

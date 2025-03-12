@@ -5,6 +5,8 @@
 [ ] Terms and Conditions should be checkbox
 [ ] Terms and conditions should contains delivery details such as no pick up from delivery orders.
 
+[ ] Create the Model first, and then change some codes within your LoginController.php. This will set the stage for the development of the ordering.
+
 # Understanding Routes Logic
 ### Full OOP Approach
 - With this approach the controllers are now enclosed within their own classes.

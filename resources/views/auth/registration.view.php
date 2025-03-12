@@ -18,7 +18,7 @@
                                         </p>
                                     </div>
                                     <div class="mt-3 mb-4 mt-md-4 mb-md-5">
-                                        <p>Already have an account? <a class="text-decoration-underline text-white" href="../../views/auth/login.view.php">Log In!</a></p>
+                                        <p>Already have an account? <a class="text-decoration-underline text-white" href="login">Log In!</a></p>
                                         <p class="mb-0 mt-4 mt-md-5 fs--1">Read our <a class="text-decoration-underline text-white" href="../../views/auth/terms&condition.view.php">Terms & Conditions</a></p>
                                         <!-- <p class="mb-0 mt-4 mt-md-5 fs--1">Need Help? Go to our <a class="text-decoration-underline text-white" href="#">F A Q S</a></p> -->
                                     </div>

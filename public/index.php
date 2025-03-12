@@ -1,5 +1,9 @@
 <?php
 
+use Core\Session;
+
+session_start();
+
 const BASE_PATH = __DIR__ . '/../';
 const BASE_URL = 'http:localhost/PHP 2025/Norte Caffee/index.php/';
 
@@ -35,3 +39,5 @@ try {
 } catch (PDOException $e) {
     "Error within public/index.php {$e}";
 }
+
+Session::unflash();
