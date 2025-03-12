@@ -1,7 +1,6 @@
 <?php require '../components/head.php' ?>
 <?php require '../components/navbar.php' ?>
 
-
 <!-- SECTION 1 (Hero Section) -->
 <section class="section-container white-bg">
     <div class="container py-5">
@@ -144,7 +143,7 @@
             <div class="col-12 col-md-6 left-slide">
                 <h1 class="section-header delivery-header">Deliver Your Cravings at ⤦ Your Doorstep</h1>
                 <p class="mt-3 mb-4">Satisfy your cravings with fast, fresh, and hassle-free online delivery. Enjoy delicious meals, snacks, and drinks brought straight to your doorstep with just a few clicks!</p>
-                <a href="#" class="choco-btn mt-4">Learn More</a>
+                <a href="../../views/user/faq.view.php" class="choco-btn mt-4">Learn More</a>
             </div>
             <div class="col-12 col-md-6 mt-sm-5 mt-md-4 d-flex justify-content-center align-items-center right-slide">
                 <div>
@@ -216,9 +215,8 @@
     </div>
 </section>
 
-
 <!-- SECTION 5 (Our Story) -->
-<section class="section-container white-bg">
+<section class="pt-5 pb-2 white-bg">
     <div class="container py-5">
         <div class="row">
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center left-slide">
