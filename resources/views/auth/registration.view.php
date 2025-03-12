@@ -1,5 +1,4 @@
-
-<?php require '../../views/components/head.php' ?>
+<?php require base_path('resources/views/components/head.php')?>
 
 
     <main class="container-fluid-gradient container-fuild">
@@ -30,7 +29,7 @@
                                     <div class="p-4 p-md-5 w-100">
                                         <h1 class="fs-3">Register Account</h1>
                                         <!-- may validation -->
-                                        <form action="#" method="post" novalidate>
+                                        <form action="registration" method="POST" novalidate>
                                             <div class="mb-3">
                                                 <label class="form-label" for="username">Username</label>
                                                 <div class="form-floating">
@@ -38,6 +37,9 @@
                                                     <label for="username">Enter Username...</label>
                                                     <div class="invalid-feedback">Missing Username...</div>
                                                 </div>
+                                                <?php if(isset($errors['username'])) : ?>
+                                                    <div class="text-danger"><?= $errors['username'] ?></div>
+                                                <?php endif; ?>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="email">E-Mail</label>
@@ -46,6 +48,9 @@
                                                     <label for="email">Enter E-Mail...</label>
                                                     <div class="invalid-feedback">Invalid E-Mail...</div>
                                                 </div>
+                                                <?php if(isset($errors['email'])) : ?>
+                                                    <div class="text-danger"><?= $errors['email'] ?></div>
+                                                <?php endif; ?>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="password">Password</label>
@@ -54,6 +59,9 @@
                                                     <label for="password">Enter Password...</label>
                                                     <div class="invalid-feedback">Missing Password...</div>
                                                 </div>
+                                                <?php if(isset($errors['password'])) : ?>
+                                                    <div class="text-danger"><?= $errors['password'] ?></div>
+                                                <?php endif; ?>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="confirm-password">Re-Enter Password</label>
@@ -95,4 +103,4 @@
 
 </script>
 
-<?php include('../../views/components/foot.php') ?>
+<?php require base_path('resources/views/components/foot.php')?>

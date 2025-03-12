@@ -39,7 +39,7 @@
                 <!-- Profile (Small screen) -->
                 <div class="ms-auto d-flex d-lg-none flex-column align-items-center justify-content-center mt-3">
                     <div class="profile">
-                        <a href="../../views/auth/registeration.view.php" class="choco-btn">
+                        <a href="registration" class="choco-btn">
                             Sign Up
                             <!-- <i class="fa-solid fa-user m-3"></i> -->
                         </a>
@@ -54,7 +54,7 @@
             <!-- Profile (Large scren) -->
             <div class="ms-auto d-none d-lg-flex align-items-center">
                 <div class="profile">
-                    <a href="../../views/auth/registeration.view.php" class="choco-btn">
+                    <a href="registration" class="choco-btn">
                         Sign Up
                         <!-- <i class="fa-solid fa-user m-3"></i> -->
                     </a>
