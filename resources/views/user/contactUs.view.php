@@ -1,5 +1,5 @@
-<?php require '../components/head.php' ?>
-<?php require '../components/navbar.php' ?>
+<?php require base_path('resources/views/components/head.php')?>
+<?php require base_path('resources/views/components/navbar.php')?>
 
 <section class="vh-100 d-flex justify-content-center align-items-center mt-4">
     <div class="container white-bg p-5">
@@ -63,4 +63,4 @@
 </section>
 
 
-<?php require '../components/foot.php' ?>
+<?php require base_path('resources/views/components/foot.php')?>

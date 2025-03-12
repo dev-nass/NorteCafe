@@ -3,7 +3,7 @@
         <div class="container">
 
             <!-- Brand Name/logo -->
-            <a id="brand" href="index.php">
+            <a id="brand" href="index">
                 <h4 class="mb-0"><span class="logo-text-1">Norte</span> <span class="logo-text-2">Cafe</span></h4>
             </a>
 
@@ -11,7 +11,7 @@
             <div id="navbar-collapse-toggle" class="collapse navbar-collapse justify-content-end">
                 <ul class="navbar-nav mx-auto">
                     <li>
-                        <a href="../../views/user/index.view.php" class="nav-link">Home</a>
+                        <a href="index" class="nav-link">Home</a>
                     </li>
                     <li>
                         <a href="php/itemList.php" class="nav-link">Menu</a>
@@ -22,8 +22,8 @@
                                 ABOUT
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="../../views/user/aboutUsStore.view.php">Norte Cafe</a></li>
-                                <li><a class="dropdown-item" href="../../views/user/aboutUsStudents.view.php">Developers</a></li>
+                                <li><a class="dropdown-item" href="aboutUsNorteCafe">Norte Cafe</a></li>
+                                <li><a class="dropdown-item" href="aboutUsDevelopers">Developers</a></li>
                             </ul>
                         </div>
                     </li>

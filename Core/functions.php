@@ -1,7 +1,10 @@
 <?php
 
-const BASE_PATH = __DIR__ . '/';
-const BASE_URL = 'http:localhost/PHP 2025/Norte Caffee/index.php/';
+function dump($value) {
+    echo "<pre>";
+        var_dump($value);
+    echo "</pre>";
+}
 
 function dd($value) {
     echo "<pre>";

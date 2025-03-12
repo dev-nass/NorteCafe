@@ -1,5 +1,6 @@
-<?php require '../components/head.php' ?>
-<?php require '../components/navbar.php' ?>
+<?php require base_path('resources/views/components/head.php')?>
+<?php require base_path('resources/views/components/navbar.php')?>
+
 
 <!-- SECTION 1 (Hero Section) -->
 <section class="section-container white-bg">
@@ -7,7 +8,7 @@
         <div class="row">
 
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center hero-left">
-                <img src="../../../storage/frontend/user/img/index/hero-icon-white.png" class="hero-grid" />
+                <img src="../../storage/frontend/user/img/index/hero-icon-white.png" class="hero-grid" />
             </div>
 
             <div class="col-12 col-md-6 py-4 hero-right">
@@ -69,7 +70,7 @@
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-4">
-                            <img src="../../../storage/frontend/user/img/index/croffle.jpg" class="img-fluid rounded-start h-100" alt="...">
+                            <img src="../../storage/frontend/user/img/index/croffle.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
                         <div class="col-8 choco-bg">
                             <div class="card-body">
@@ -92,7 +93,7 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            <img src="../../../storage/frontend/user/img/index/sandwhich-nachos.jpg" class="img-fluid rounded-start h-100" alt="...">
+                            <img src="../../storage/frontend/user/img/index/sandwhich-nachos.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
                     </div>
                 </div>
@@ -104,7 +105,7 @@
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-4">
-                            <img src="../../../storage/frontend/user/img/index/coffee.jpg" class="img-fluid rounded-start h-100" alt="...">
+                            <img src="../../storage/frontend/user/img/index/coffee.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
                         <div class="col-8 dark-bg">
                             <div class="card-body">
@@ -127,7 +128,7 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            <img src="../../../storage/frontend/user/img/index/milktea.jpg" class="img-fluid rounded-start h-100" alt="...">
+                            <img src="../../storage/frontend/user/img/index/milktea.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
                     </div>
                 </div>
@@ -143,11 +144,11 @@
             <div class="col-12 col-md-6 left-slide">
                 <h1 class="section-header delivery-header">Deliver Your Cravings at ⤦ Your Doorstep</h1>
                 <p class="mt-3 mb-4">Satisfy your cravings with fast, fresh, and hassle-free online delivery. Enjoy delicious meals, snacks, and drinks brought straight to your doorstep with just a few clicks!</p>
-                <a href="../../views/user/faq.view.php" class="choco-btn mt-4">Learn More</a>
+                <a href="faqs" class="choco-btn mt-4">Learn More</a>
             </div>
             <div class="col-12 col-md-6 mt-sm-5 mt-md-4 d-flex justify-content-center align-items-center right-slide">
                 <div>
-                    <img src="../../../storage/frontend/user/img/index/delivery-logo.png" class="delivery-logo" />
+                    <img src="../../storage/frontend/user/img/index/delivery-logo.png" class="delivery-logo" />
                 </div>
             </div>
         </div>
@@ -220,7 +221,7 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center left-slide">
-                <img src="../../../storage/frontend/user/img/index/our-story.jpg" class="our-story-img w-sm-50" />
+                <img src="../../storage/frontend/user/img/index/our-story.jpg" class="our-story-img w-sm-50" />
             </div>
 
             <div class="col-12 col-md-6 py-4 right-slide">
@@ -243,4 +244,4 @@
     </div>
 </section>
 
-<?php require '../components/foot.php' ?>
+<?php require base_path('resources/views/components/foot.php')?>

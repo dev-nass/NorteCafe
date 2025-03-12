@@ -1,5 +1,5 @@
-<?php require '../components/head.php' ?>
-<?php require '../components/navbar.php' ?>
+<?php require base_path('resources/views/components/head.php')?>
+<?php require base_path('resources/views/components/navbar.php')?>
 
 
 <!--About US section-->
@@ -19,7 +19,7 @@
 
             <div id="logo-square-container" class="col-md-6 d-flex justify-content-center">
                 <div class="card" style="width: 23rem;">
-                    <img src="../../../storage/frontend/user/img/aboutUs/logo.jpg" alt="logo">
+                    <img src="../../storage/frontend/user/img/aboutUs/logo.jpg" alt="logo">
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
     <section class="container py-5">
         <div class="row align-items-center">
             <div class="col-md-5 text-center">
-                <img src="../../../storage/frontend/user/img/aboutUs/milktea.jpg" alt="Our Mission" class="img-fluid" id="milktea-img">
+                <img src="../../storage/frontend/user/img/aboutUs/milktea.jpg" alt="Our Mission" class="img-fluid" id="milktea-img">
             </div>
 
             <div class="col-md-1"></div>
@@ -66,11 +66,11 @@
             <div class="col-md-1"></div>
 
             <div class="col-md-6 text-center">
-                <img src="../../../storage/frontend/user/img/aboutUs/background.jpg" alt="Our story" class="img-fluid" id="story-img">
+                <img src="../../storage/frontend/user/img/aboutUs/background.jpg" alt="Our story" class="img-fluid" id="story-img">
             </div>
         </div>
     </section>
 </div>
 
 
-<?php require '../components/foot.php' ?>
+<?php require base_path('resources/views/components/foot.php')?>

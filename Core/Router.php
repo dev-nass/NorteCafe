@@ -9,9 +9,9 @@ class Router {
     public $routes = [];
 
     public function add($method, $uri, $controllerClass, $controllerMethod) {
-        $this->routes = [
+        $this->routes[] = [
             'method' => $method,
-            'uri' => "/PHP 2025/Norte Caffee/public/index.php/{$uri}",
+            'uri' => "/PHP%202025/Norte%20Caffee/public/index.php/{$uri}",
             'controller_class' => $controllerClass,
             'controller_method' => $controllerMethod,
         ];
@@ -47,10 +47,10 @@ class Router {
      * Iterates to every element of the 'public $routes = []' and create an instance of that
      * controller class.
     */
-    public function routes($uri, $method) {
+    public function route($uri, $method) {
         foreach($this->routes as $route) {
-            if($route['uri'] === $uri && $route['controller_method'] === $method) {
 
+            if($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
                 $controllerClass = 'app\Http\Controllers\\' . $route['controller_class'];
                 $controllerInstance = new $controllerClass();
                 $controllerMethods = get_class_methods($controllerInstance);
