@@ -60,33 +60,68 @@
                                                         <div class="bg-danger bg-opacity-10 p-2">
                                                             <h5>Variation</h5>
                                                             <p>Sizes: </p>
+                                                            <?php $first = true; // Flag to track the first iteration ?>
                                                             <?php foreach ($menu_item_sizes as $size) : ?>
                                                                 <?php if ($size['menu_item_id'] === $item['id']) : ?>
-                                                                    <input 
-                                                                        class="d-none" 
-                                                                        name="menu_item_id" 
-                                                                        value="<?= $item['id'] ?>" 
+                                                                    <input
+                                                                        class="d-none"
+                                                                        name="menu_item_id"
+                                                                        value="<?= $item['id'] ?>"
                                                                         type="text">
                                                                     <div class="d-flex justify-content-between">
                                                                         <div>
-                                                                            <input 
-                                                                                type="radio" 
-                                                                                class="btn-check" 
-                                                                                name="menu_item_size_id" 
-                                                                                value="<?= $size['id'] ?>" 
-                                                                                id="vbtn-radio-id<?= $item['id'] . '-' . $size['size'] ?>" 
-                                                                                autocomplete="off" 
-                                                                                required>
-                                                                            <label class="btn btn-outline-dark" for="vbtn-radio-id<?= $item['id'] . '-' . $size['size'] ?>"><?= $size['size'] ?></label>
+                                                                            <input
+                                                                                type="radio"
+                                                                                class="btn-check"
+                                                                                name="menu_item_size_id"
+                                                                                value="<?= $size['id'] ?>"
+                                                                                id="vbtn-radio-id<?= $item['id'] . '-' . $size['size'] ?>"
+                                                                                autocomplete="off"
+                                                                                required
+                                                                                <?= $first ? 'checked' : '' ?>>
+                                                                            <label
+                                                                                class="btn btn-outline-dark"
+                                                                                for="vbtn-radio-id<?= $item['id'] . '-' . $size['size'] ?>"><?= $size['size'] ?></label>
                                                                         </div>
                                                                         <div>
-                                                                            <p><?= $size['price'] ?></p>
+                                                                            <p>₱<?= $size['price'] ?></p>
                                                                         </div>
                                                                     </div>
+                                                                    <?php $first = false; ?>
                                                                 <?php endif; ?>
                                                             <?php endforeach; ?>
                                                         </div>
-                                                        <button class="choco-btn w-100 mt-4">Add to Cart</button>
+                                                        <div class="bg-success bg-opacity-10 p-2 mt-2">
+                                                            <h5>Add Ons</h5>
+                                                            <p>Choose One: </p>
+                                                            <?php foreach ($add_ons as $add_on) : ?>
+                                                                <input
+                                                                    type="radio"
+                                                                    class="btn-check"
+                                                                    name="add_ons_id"
+                                                                    value="<?= $add_on['id'] ?>"
+                                                                    id="vbtn-radio-id<?= $item['id'] . '-' . $add_on['id'] ?>"
+                                                                    autocomplete="off">
+                                                                <label
+                                                                    class="btn btn-outline-dark my-1"
+                                                                    for="vbtn-radio-id<?= $item['id'] . '-' . $add_on['id'] ?>"><?= $add_on['name'] ?> ₱<?= $add_on['price'] ?></label>
+                                                            <?php endforeach; ?>
+                                                        </div>
+
+                                                        <!-- Quantity -->
+                                                        <div class="d-flex justify-content-between align-items-center mt-2">
+                                                            <div class="d-flex flex-row quantity-container mt-4">
+                                                                <span class="square square-minus" style="cursor: pointer;">-</span>
+                                                                    <input 
+                                                                        class="input-quantity text-center w-25" 
+                                                                        name="quantity"
+                                                                        value="1" 
+                                                                        type="text" 
+                                                                        readonly>
+                                                                <span class="square square-add"  style="cursor: pointer;">+</span>
+                                                            </div>
+                                                            <button class="choco-btn w-100 mt-4">Add to Cart</button>
+                                                        </div>
                                                     </form>
                                                 </div>
                                             </div>
@@ -103,8 +138,6 @@
         </div>
     </div>
 </section>
-
-
 
 
 

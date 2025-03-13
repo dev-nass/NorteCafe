@@ -19,10 +19,12 @@ class MenuController {
                 INNER JOIN menu_item_sizes as size ON menu_item.id = size.menu_item_id"
             )->get();
 
+        $add_ons = $db->query("SELECT * FROM add_ons")->get();
         
         view('user/menu/index.view.php', [
             'menu_items' => $menu_items,
             'menu_item_sizes' => $menu_item_sizes,
+            'add_ons' => $add_ons,
         ]);
     }
 }

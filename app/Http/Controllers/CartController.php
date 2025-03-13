@@ -39,12 +39,16 @@ class CartController {
             $currentUser = Session::get('__currentUser', 'credentials')['id'];
             $menu_item_id = $_POST['menu_item_id'];
             $menu_item_size_id = $_POST['menu_item_size_id'];
+            $add_ons_id = $_POST['add_ons_id'] ?? NULL;
+            $quantity = $_POST['quantity'];
             
             $newCartEntry = $db
-                ->query("INSERT INTO carts (user_id, menu_item_id, menu_item_size_id) VALUES (:user_id, :menu_id, :size_id)",[
+                ->query("INSERT INTO carts (user_id, menu_item_id, menu_item_size_id, add_ons_id, quantity) VALUES (:user_id, :menu_id, :size_id, :add_ons_id, :quantity)",[
                     "user_id" => $currentUser,
                     "menu_id" => $menu_item_id,
                     "size_id" => $menu_item_size_id,
+                    "add_ons_id" => $add_ons_id,
+                    "quantity" => $quantity,
                 ]);
             
             if($newCartEntry) {

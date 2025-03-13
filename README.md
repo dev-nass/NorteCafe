@@ -9,9 +9,11 @@
 [x] Fix the modal content; Include image of selected item and search online for others <br>
 [x] Start creating the menu_item_sizes and start incorporating it to the menu <br>
 [x] Submission of the selected item should be added to the cart <br>
-[ ] Inlcude quantity for both adding cart offcanvas and the actual cart <br>
-[ ] Integrate the logic for add-ons similar to sizes <br>
+[x] Integrate the logic for add-ons similar to sizes <br>
+[x] Inlcude quantity for both adding cart offcanvas and the actual cart <br>
 [ ] Only show these sizes on beverages not on foods <br>
+[ ] Enable editing for added item on cart <br>
+[ ] Enable remove for added item on cart <br>
 
 # Understanding Routes Logic
 ### Full OOP Approach
