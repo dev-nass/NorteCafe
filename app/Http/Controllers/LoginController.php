@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Core\Authenticator;
 use Core\Session;
+use App\Models\User;
 
 class LoginController {
 
@@ -24,6 +25,12 @@ class LoginController {
             
             // the login process is happening inside attempt() function
             if($auth->attempt($email, $password)) {
+
+                $userModel = new User;
+                $userModel->setUser($email);
+                $authUser = $userModel->getUser();
+                Session::set('__currentUser', 'credentials', $authUser);
+
 
                 redirect('index');
             }

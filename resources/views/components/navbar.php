@@ -14,7 +14,7 @@
                         <a href="index" class="nav-link">Home</a>
                     </li>
                     <li>
-                        <a href="php/itemList.php" class="nav-link">Menu</a>
+                        <a href="menu" class="nav-link">Menu</a>
                     </li>
                     <li>
                         <div class="dropdown">
@@ -38,32 +38,34 @@
                     </div> -->
                 <!-- Profile (Small screen) -->
                 <div class="ms-auto d-flex d-lg-none flex-column align-items-center justify-content-center mt-3">
+                    <a href="cart" class="text-dark"><i class="fa-solid fa-cart-shopping mb-4"></i></a>
                     <div class="profile">
-                        <a href="registration" class="choco-btn">
-                            Sign Up
-                            <!-- <i class="fa-solid fa-user m-3"></i> -->
-                        </a>
+                        <?php if (isset($_SESSION['__currentUser'])) : ?>
+                            <a href="#" class="choco-btn">
+                                <?= $_SESSION['__currentUser']['credentials']['username'] ?>
+                            </a>
+                        <?php else : ?>
+                            <a href="registration" class="choco-btn">
+                                Sign Up
+                            </a>
+                        <?php endif; ?>
                     </div>
                 </div>
-
-
-
-
             </div>
 
             <!-- Profile (Large scren) -->
             <div class="ms-auto d-none d-lg-flex align-items-center">
+                <a href="cart" class="text-dark"><i class="fa-solid fa-cart-shopping me-3"></i></a>
                 <div class="profile">
-                    <?php if (isset($_SESSION['user'])) : ?>
-                        <a href="registration" class="choco-btn">
-                            <?= $_SESSION['user']['email'] ?>
+                    <?php if (isset($_SESSION['__currentUser'])) : ?>
+                        <a href="#" class="choco-btn">
+                            <?= $_SESSION['__currentUser']['credentials']['username'] ?>
                         </a>
                     <?php else : ?>
                         <a href="registration" class="choco-btn">
                             Sign Up
                         </a>
                     <?php endif; ?>
-
                 </div>
             </div>
 

@@ -16,3 +16,10 @@ $router->get('registration', 'RegistrationController', 'create');
 $router->post('registration', 'RegistrationController', 'store');
 $router->get('login', 'LoginController', 'create');
 $router->post('login', 'LoginController', 'store');
+
+/**
+ * Specific Web Pages
+*/
+$router->get('menu', 'MenuController', 'index');
+$router->get('cart', 'CartController', 'index');
+$router->post('cart-store', 'CartController', 'store');

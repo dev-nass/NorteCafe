@@ -1,11 +1,17 @@
 # To-DO 
-[ ] Registration is only checking if a certain email is existing on users table this should also check the employee in the future.
-[ ] Require users to finish setting their account first before allowing them to place an order. This is for `NULL` default columns in user table.
-
-[ ] Terms and Conditions should be checkbox
-[ ] Terms and conditions should contains delivery details such as no pick up from delivery orders.
-
-[ ] Create the Model first, and then change some codes within your LoginController.php. This will set the stage for the development of the ordering.
+[ ] Registration is only checking if a certain email is existing on users table this should also check the employee in the future. <br>
+[ ] Require users to finish setting their account first before allowing them to place an order. This is for `NULL` default columns in user table. <br>
+[ ] Terms and Conditions should be checkbox <br>
+[ ] Terms and conditions should contains delivery details such as no pick up from delivery orders. <br>
+[ ] Contact Us should contain their social logo <br>
+[ ] FAQs should contain image on side <br>
+[x] Create the Model first, and then change some codes within your LoginController.php. This will set the stage for the development of the ordering. <br>
+[x] Fix the modal content; Include image of selected item and search online for others <br>
+[x] Start creating the menu_item_sizes and start incorporating it to the menu <br>
+[x] Submission of the selected item should be added to the cart <br>
+[ ] Inlcude quantity for both adding cart offcanvas and the actual cart <br>
+[ ] Integrate the logic for add-ons similar to sizes <br>
+[ ] Only show these sizes on beverages not on foods <br>
 
 # Understanding Routes Logic
 ### Full OOP Approach
