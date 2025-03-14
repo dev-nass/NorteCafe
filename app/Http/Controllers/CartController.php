@@ -38,7 +38,6 @@ class CartController
             ->query("SELECT * FROM add_ons")
             ->get();
 
-
         view('user/cart/index.view.php', [
             'cartMenuItems' => $cartMenuItems,
             'menu_item_sizes' => $menu_item_sizes,

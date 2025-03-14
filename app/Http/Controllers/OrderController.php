@@ -29,12 +29,13 @@ class OrderController
 
             // Insert new order
             if ($lastInsertedRecord) {
-                foreach ($_POST['cart_item'] as $cart_id) {
+                foreach ($_POST['cart_item'] as $index => $cart_id) {
+                    $total_price = $_POST['total_price'][$index]; // Get corresponding total price
 
                     $db->query("INSERT INTO orders (transaction_id, cart_id, total_price) VALUES (:transaction_id, :cart_id, :total_price)", [
                         "transaction_id" => $lastInsertedRecord['id'],
                         "cart_id" => $cart_id,
-                        "total_price" => 1,
+                        "total_price" => $total_price,
                     ]);
 
                     $db->query("UPDATE carts SET order_placed = true WHERE id = :cart_id", [

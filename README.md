@@ -12,13 +12,26 @@
 [x] Integrate the logic for add-ons similar to sizes <br>
 [x] Inlcude quantity for both adding cart offcanvas and the actual cart <br>
 [ ] Only show these sizes on beverages not on foods <br>
-[ ] Enable editing for added item on cart <br>
-[ ] Enable remove for added item on cart <br>
+[x] Enable editing for added item on cart <br>
+[x] Enable remove for added item on cart <br>
+[ ] Add a QUEUE table <br>
+[ ] The insertion into `order` table should take place into the employee side 
 [ ] Handle placing order <br>
 [ ] Handle transaction placing, review the logic <br>
 [ ] You can add `[]` on the name attribute of an input element to let it store multiple instances. Used for storing cart items on orders table <br>
 [ ] Check the tables with `NULL` default and use it as guiade to finish the user side <br>
 [ ] Each column that corresponds to money should be in float <br>
+
+```
+Future Plan
+Payment Method Handling:
+	If COD:
+		- Riders can have access to input the payment given by the customers this process
+		if for the `amount tendered`.
+		- The `change` however, should it have an autocompute function??? based on the 
+		`amount tendered` given.
+```
+
 
 # Understanding Routes Logic
 ### Full OOP Approach

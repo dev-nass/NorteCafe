@@ -38,7 +38,13 @@
                                             <!-- Quantity & Add Ons -->
                                             <div class="d-flex justify-content-between">
                                                 <div>
-                                                    <p>Add Ons: <span class="square"><?= $item['add_on_name'] ?> ₱<?= $item['add_on_price'] ?></span></p>
+                                                    <p>Add Ons: 
+                                                        <?php if($item['add_on_name']) : ?>
+                                                            <span class="square"><?= $item['add_on_name'] ?> ₱<?= $item['add_on_price'] ?></span>
+                                                        <?php else : ?>
+                                                            <span class="square">None</span>
+                                                        <?php endif ; ?>
+                                                    </p>
                                                 </div>
                                                 <div>
                                                     <p>x<?= $item['quantity'] ?></p>
@@ -68,7 +74,7 @@
                                                             </div>
                                                             <hr>
                                                             <!-- Form -->
-                                                            <form action="cart-update" method="POST">
+                                                            <form id="cart-id<?= $item['menu_item_id'] ?>" action="cart-update" method="POST">
                                                                 <input 
                                                                     class="d-none" 
                                                                     name="__method" 
@@ -137,7 +143,7 @@
                                                                             readonly>
                                                                         <span class="square square-add" style="cursor: pointer;">+</span>
                                                                     </div>
-                                                                    <button class="btn btn-success w-100 mt-4">Update Item</button>
+                                                                    <button form="cart-id<?= $item['menu_item_id'] ?>" class="btn btn-success w-100 mt-4">Update Item</button>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -172,8 +178,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Total:
-                            <?php $total = 0.00; ?>
-                            <?php $delivery_fee = 50.00 ?>
+                            <?php $total = 0.00;  $delivery_fee = 50.00; ?>
                             <?php foreach ($cartMenuItems as $item) : ?>
                                 <?php $total += floatval($item['price']) * $item['quantity'] ?>
                             <?php endforeach; ?>
@@ -201,7 +206,7 @@
                                     <input
                                         class="d-none"
                                         name="total_price[]"
-                                        value="<?= number_format($item['price'], 2, '.', '') ?>"
+                                        value="<?= number_format($item['price'] * $item['quantity'], 2, '.', '') ?>"
                                         type="text">
                                     <!-- This is for the transactions table -->
                                     <input
