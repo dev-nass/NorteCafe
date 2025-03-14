@@ -23,3 +23,7 @@ $router->post('login', 'LoginController', 'store');
 $router->get('menu', 'MenuController', 'index');
 $router->get('cart', 'CartController', 'index');
 $router->post('cart-store', 'CartController', 'store');
+$router->patch('cart-update', 'CartController', 'update');
+$router->delete('cart-delete', 'CartController', 'destroy');
+
+$router->post('order-store', 'OrderController', 'store');

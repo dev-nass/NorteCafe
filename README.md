@@ -14,6 +14,11 @@
 [ ] Only show these sizes on beverages not on foods <br>
 [ ] Enable editing for added item on cart <br>
 [ ] Enable remove for added item on cart <br>
+[ ] Handle placing order <br>
+[ ] Handle transaction placing, review the logic <br>
+[ ] You can add `[]` on the name attribute of an input element to let it store multiple instances. Used for storing cart items on orders table <br>
+[ ] Check the tables with `NULL` default and use it as guiade to finish the user side <br>
+[ ] Each column that corresponds to money should be in float <br>
 
 # Understanding Routes Logic
 ### Full OOP Approach
