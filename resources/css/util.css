@@ -47,15 +47,15 @@ body {
 }
 
 .section-headerv3 {
-    font-size: 2rem;
+    font-size: 1.3rem;
     font-weight: 800;
 }
 
 .footer-header {
     color: var(--clr-white) !important;
-    font-size: 2.5rem;
-    font-weight: 800;
-    line-height: 35px;
+    letter-spacing: 3px;
+    font-size: 1rem;
+    text-transform: uppercase;
 }
 
 .footer-a {

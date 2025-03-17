@@ -24,7 +24,7 @@
                     <a href="#" class="choco-btn">
                         Order Now
                     </a>
-                    <a href="contactUs.view.php" class="btn ms-2">Contact Us</a>
+                    <a href="contactUs" class="btn ms-2">Contact Us</a>
                 </div>
                 <div class="row">
                     <div class="col-6 mt-2">

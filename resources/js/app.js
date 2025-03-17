@@ -1,6 +1,9 @@
 
-
 import '../js/scrollReveal.min.js';
+
+// Registration
+import '../js/registration.js';
+
 
 // User Side
 import '../js/menu/selectOnlyOneAddOn.js';

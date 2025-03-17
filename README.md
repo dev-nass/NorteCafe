@@ -16,9 +16,9 @@
 [x] Enable remove for added item on cart <br>
 [ ] Add a QUEUE table <br>
 [ ] The insertion into `order` table should take place into the employee side 
-[ ] Handle placing order <br>
+[ ] Handle placing order on Admin Side <br>
 [ ] Handle transaction placing, review the logic <br>
-[ ] You can add `[]` on the name attribute of an input element to let it store multiple instances. Used for storing cart items on orders table <br>
+[/] You can add `[]` on the name attribute of an input element to let it store multiple instances. Used for storing cart items on orders table <br>
 [ ] Check the tables with `NULL` default and use it as guiade to finish the user side <br>
 [ ] Each column that corresponds to money should be in float <br>
 

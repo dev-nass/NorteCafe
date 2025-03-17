@@ -19,7 +19,7 @@
                                     </div>
                                     <div class="mt-3 mb-4 mt-md-4 mb-md-5">
                                         <p>Already have an account? <a class="text-decoration-underline text-white" href="login">Log In!</a></p>
-                                        <p class="mb-0 mt-4 mt-md-5 fs--1">Read our <a class="text-decoration-underline text-white" href="../../views/auth/terms&condition.view.php">Terms & Conditions</a></p>
+                                        <p class="mb-0 mt-4 mt-md-5 fs--1"><input class="terms-agreementCheckbox" type="checkbox"> I read and agree to <a class="text-decoration-underline text-white" href="../../views/auth/terms&condition.view.php">Terms & Conditions</a></p>
                                         <!-- <p class="mb-0 mt-4 mt-md-5 fs--1">Need Help? Go to our <a class="text-decoration-underline text-white" href="#">F A Q S</a></p> -->
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@
                                     <div class="p-4 p-md-5 w-100">
                                         <h1 class="fs-3">Register Account</h1>
                                         <!-- may validation -->
-                                        <form action="registration" method="POST" novalidate>
+                                        <form action="registration" method="POST" class="registration-form" novalidate>
                                             <div class="mb-3">
                                                 <label class="form-label" for="username">Username</label>
                                                 <div class="form-floating">
