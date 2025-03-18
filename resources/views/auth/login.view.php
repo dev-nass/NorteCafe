@@ -11,7 +11,7 @@
                             <div class="col-md-5 text-center info-section-bg text-white p-3">
                                 <div class="p-4 pt-md-5 pb-md-7">
                                     <!-- pa link na lang sa home page -->
-                                    <a href="../../views/user/index.view.php" class="no-underline">
+                                    <a href="index" class="no-underline">
                                         <h2 class="link-light fw-bolder">Norte Cafe'</h2>
                                     </a>
                                     <p>

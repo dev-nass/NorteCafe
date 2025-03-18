@@ -1,9 +1,9 @@
 # To-DO 
 [ ] Registration is only checking if a certain email is existing on users table this should also check the employee in the future. <br>
 [ ] Require users to finish setting their account first before allowing them to place an order. This is for `NULL` default columns in user table. <br>
-[ ] Terms and Conditions should be checkbox <br>
+[x] Terms and Conditions should be checkbox <br>
 [ ] Terms and conditions should contains delivery details such as no pick up from delivery orders. <br>
-[ ] Contact Us should contain their social logo <br>
+[x] Contact Us should contain their social logo <br>
 [ ] FAQs should contain image on side <br>
 [x] Create the Model first, and then change some codes within your LoginController.php. This will set the stage for the development of the ordering. <br>
 [x] Fix the modal content; Include image of selected item and search online for others <br>
@@ -32,6 +32,16 @@ Payment Method Handling:
 		`amount tendered` given.
 ```
 
+# CLASS AUTOLOAD FUNCTIONALITY
+```php
+spl_autoload_register(function ($class) {
+    // used due to namespace class, at controllers
+    // DIRECTORY_SEPERATOR can be substituted with '/', 
+    // but using this is more dynamic & will automatically design what's appropriate to your OS
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+    require base_path("{$class}.php");
+});
+```
 
 # Understanding Routes Logic
 ### Full OOP Approach

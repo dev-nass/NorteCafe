@@ -12,7 +12,7 @@
                                 <div class="col-md-5 text-center info-section-bg text-white p-3 d-flex flex-column justify-content-center">
                                     <div class="p-4 pt-md-5 pb-md-7">
                                         <!-- pa link nalang sa homepage -->
-                                        <a href="../../views/user/index.view.php" class="no-underline"><h2 class="link-light fw-bolder">Norte Cafe'</h2></a>
+                                        <a href="index" class="no-underline"><h2 class="link-light fw-bolder">Norte Cafe'</h2></a>
                                         <p>
                                              Enjoy the perfect blend of Tea and Milk tea at Norte Café! Crafted with quality ingredients and a passion for great flavors, every sip is a treat. Log in to place your order or sign up to explore our menu!                               
                                         </p>

@@ -15,7 +15,7 @@ require BASE_PATH . 'Core/functions.php';
 */
 spl_autoload_register(function ($class) {
     // can be use for clarity
-    // dump($class);
+    dd($class);
 
     // used due to namespace class, at controllers
     // DIRECTORY_SEPERATOR can be substituted with '/', 
@@ -23,6 +23,14 @@ spl_autoload_register(function ($class) {
     $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
     require base_path("{$class}.php");
 });
+
+/**
+ * Instead of manually doing this, we are just creating instances (Obj) of each class
+ * and the spl_autoload_register() is then responsible for tracking where that class is located
+ * and include it within our public/index.php
+*/
+// require base_path("Core/Router.php");
+// require base_path("App/Http/Controllers/UserController.php");
 
 $router = new Core\Router;
 
