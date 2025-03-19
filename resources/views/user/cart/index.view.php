@@ -18,7 +18,7 @@
                             <div class="card mb-3">
                                 <div class="row g-0">
                                     <div class="col-4">
-                                        <img src="https://picsum.photos/id/<?= $item['menu_item_id'] ?>/300/300" class="img-fluid rounded-start" alt="...">
+                                        <img src="../../storage/frontend/user/img/index/croffle.jpg" class="img-fluid rounded-start h-100 w-100" alt="...">
                                     </div>
                                     <div class="col-8">
                                         <div class="card-body">
@@ -35,15 +35,21 @@
                                                 </div>
                                             </div>
 
+                                            <div class="mb-3">
+                                                <div>Catgory:
+                                                    <span class="square ms-1"><?= $item['category'] ?></span>
+                                                </div>
+                                            </div>
+
                                             <!-- Quantity & Add Ons -->
                                             <div class="d-flex justify-content-between">
                                                 <div>
-                                                    <p>Add Ons: 
-                                                        <?php if($item['add_on_name']) : ?>
+                                                    <p>Add Ons:
+                                                        <?php if ($item['add_on_name']) : ?>
                                                             <span class="square"><?= $item['add_on_name'] ?> ₱<?= $item['add_on_price'] ?></span>
                                                         <?php else : ?>
                                                             <span class="square">None</span>
-                                                        <?php endif ; ?>
+                                                        <?php endif; ?>
                                                     </p>
                                                 </div>
                                                 <div>
@@ -75,9 +81,9 @@
                                                             <hr>
                                                             <!-- Form -->
                                                             <form id="cart-id<?= $item['menu_item_id'] ?>" action="cart-update" method="POST">
-                                                                <input 
-                                                                    class="d-none" 
-                                                                    name="__method" 
+                                                                <input
+                                                                    class="d-none"
+                                                                    name="__method"
                                                                     value="PATCH">
                                                                 <!-- Cart Id -->
                                                                 <input
@@ -112,24 +118,26 @@
                                                                         <?php endif; ?>
                                                                     <?php endforeach; ?>
                                                                 </div>
-                                                                <div class="bg-success bg-opacity-10 p-2 mt-2">
-                                                                    <h5>Add Ons</h5>
-                                                                    <p>Choose One: </p>
-                                                                    <?php foreach ($add_ons as $add_on) : ?>
-                                                                        <input
-                                                                            type="radio"
-                                                                            class="btn-check"
-                                                                            name="add_ons_id"
-                                                                            value="<?= $add_on['id'] ?>"
-                                                                            id="vbtn-radio-id<?= $item['id'] . '-' . $add_on['id'] ?>"
-                                                                            autocomplete="off"
-                                                                            <?= $item['add_on_name'] === $add_on['name'] ? 'checked' : '' ?>
-                                                                            required>
-                                                                        <label
-                                                                            class="btn btn-outline-dark my-1"
-                                                                            for="vbtn-radio-id<?= $item['id'] . '-' . $add_on['id'] ?>"><?= $add_on['name'] ?> ₱<?= $add_on['price'] ?></label>
-                                                                    <?php endforeach; ?>
-                                                                </div>
+                                                                <?php if ($item['category'] === 'MILKTEA') : ?>
+                                                                    <div class="bg-success bg-opacity-10 p-2 mt-2">
+                                                                        <h5>Add Ons</h5>
+                                                                        <p>Choose One: </p>
+                                                                        <?php foreach ($add_ons as $add_on) : ?>
+                                                                            <input
+                                                                                type="radio"
+                                                                                class="btn-check"
+                                                                                name="add_ons_id"
+                                                                                value="<?= $add_on['id'] ?>"
+                                                                                id="vbtn-radio-id<?= $item['id'] . '-' . $add_on['id'] ?>"
+                                                                                autocomplete="off"
+                                                                                <?= $item['add_on_name'] === $add_on['name'] ? 'checked' : '' ?>
+                                                                                >
+                                                                            <label
+                                                                                class="btn btn-outline-dark my-1"
+                                                                                for="vbtn-radio-id<?= $item['id'] . '-' . $add_on['id'] ?>"><?= $add_on['name'] ?> ₱<?= $add_on['price'] ?></label>
+                                                                        <?php endforeach; ?>
+                                                                    </div>
+                                                                <?php endif; ?>
 
                                                                 <!-- Quantity -->
                                                                 <div class="d-flex justify-content-between align-items-center mt-2">
@@ -178,11 +186,14 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Total:
-                            <?php $total = 0.00;  $delivery_fee = 50.00; ?>
+                            <?php $total = 0.00;
+                            $delivery_fee = 50.00;
+                            $add_ons_price = 0.00 ?>
                             <?php foreach ($cartMenuItems as $item) : ?>
+                                <?php $add_ons_price += $item['add_on_price']?>
                                 <?php $total += floatval($item['price']) * $item['quantity'] ?>
                             <?php endforeach; ?>
-                            ₱<?= $total > 0 ? number_format($total + $delivery_fee, 2, '.', '') : '0.00' ?>
+                            ₱<?= $total > 0 ? number_format($total + $delivery_fee + $add_ons_price, 2, '.', '') : '0.00' ?>
                         </h5>
                         <hr>
                         <h6 class="card-subtitle mb-2 text-body-secondary">Sub Total:

@@ -10,11 +10,11 @@
         </div>
         <div class="row">
             <?php foreach ($menu_items as $item) : ?>
-                <div class="col-6">
+                <div class="col-6 col-xxl-4">
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-12 col-md-4">
-                                <img src="https://picsum.photos/id/<?= $item['id'] ?>/200/200" class="img-fluid rounded-start w-100 h-100" alt="...">
+                                <img src="<?= $item['image_dir'] ?>" class="img-fluid rounded-start w-100 h-100" alt="...">
                             </div>
                             <div class="col-12 col-md-8">
                                 <div class="card-body">

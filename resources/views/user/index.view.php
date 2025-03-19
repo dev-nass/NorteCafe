@@ -144,7 +144,8 @@
             <div class="col-12 col-md-6 left-slide">
                 <h1 class="section-header delivery-header">Deliver Your Cravings at ⤦ Your Doorstep</h1>
                 <p class="mt-3 mb-4">Satisfy your cravings with fast, fresh, and hassle-free online delivery. Enjoy delicious meals, snacks, and drinks brought straight to your doorstep with just a few clicks!</p>
-                <a href="faqs" class="choco-btn mt-4">Learn More</a>
+                <a href="#" class="choco-btn mt-4">Learn More</a>
+                <a href="faqs" class="btn ms-2">FAQ's</a>
             </div>
             <div class="col-12 col-md-6 mt-sm-5 mt-md-4 d-flex justify-content-center align-items-center right-slide">
                 <div>

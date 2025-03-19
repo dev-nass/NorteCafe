@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ - Norte Cafe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,6 +28,10 @@
         header h1 {
             margin: 0;
             font-size: 2rem;
+        }
+
+        .faq-img {
+            height: 350px;
         }
 
         .container {
@@ -166,58 +171,66 @@
     </header>
 
     <div class="container">
-        <h2>Welcome to our FAQ page!</h2>
-        <p>We’ve compiled answers to some of the most common questions we receive. If you don’t find what you're looking for, feel free to reach out to us directly.</p>
+        <div class="row">
+            <div class="col-12 col-lg-5 d-flex justify-content-center align-items-center">
+                <img class="faq-img" src="../../storage/frontend/user/img/tampol-pages/faqs-img.png" alt="faq-image">
+            </div>
+            <div class="col-12 col-lg-7">
+                <h2>Welcome to our FAQ page!</h2>
+                <p>We’ve compiled answers to some of the most common questions we receive. If you don’t find what you're looking for, feel free to reach out to us directly.</p>
 
-        <div class="faq-item">
-            <h3 onclick="toggleCollapse(this)">1. What are your hours of operation?</h3>
-            <p class="collapse">We are open every day from 10:00 AM to 9:00 PM. Stop by anytime to enjoy your favorite brew!</p>
+                <div class="faq-item">
+                    <h3 onclick="toggleCollapse(this)">1. What are your hours of operation?</h3>
+                    <p class="collapse">We are open every day from 10:00 AM to 9:00 PM. Stop by anytime to enjoy your favorite brew!</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 onclick="toggleCollapse(this)">2. What should I do if I received an incorrect order?</h3>
+                    <p class="collapse">We’re sorry about that! If you receive an incorrect order, please let us know as soon as possible. We’ll happily correct it and ensure you get the right items. Your satisfaction is our priority.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 onclick="toggleCollapse(this)">3. Do you serve breakfast or lunch?</h3>
+                    <p class="collapse">Yes, we serve a variety of Lunch items (such as Sandwhiches, and Nachos)</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 onclick="toggleCollapse(this)">4. Can I place an order for pickup?</h3>
+                    <p class="collapse">Absolutely! You can place your order in advance through our mobile app or website for easy pickup.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 onclick="toggleCollapse(this)">5. Do you have Wi-Fi?</h3>
+                    <p class="collapse">Yes, we offer free Wi-Fi for all customers. Feel free to bring your laptop and get some work done, or just relax and surf the web while enjoying your coffee.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 onclick="toggleCollapse(this)">6. Do you offer catering services?</h3>
+                    <p class="collapse">We do offer catering for events! Whether it’s a small gathering or a large corporate event, we’d be happy to provide coffee and baked goods. Please contact us ahead of time for more details.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 onclick="toggleCollapse(this)">7. Do you offer loyalty programs or discounts?</h3>
+                    <p class="collapse">Yes, we offer a loyalty program through our mobile app. Earn points with every purchase and redeem them for free drinks or discounts.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 onclick="toggleCollapse(this)">8. How can I stay updated on new items or special offers?</h3>
+                    <p class="collapse">To stay in the loop on new menu items, special offers, and upcoming events, follow us on social media or sign up for our newsletter. We’ll keep you informed about everything happening at Norte Cafe.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 onclick="toggleCollapse(this)">9. Do you offer cold brew or iced coffee? </h3>
+                    <p class="collapse">Yes, we offer both cold brew coffee and iced coffee! Whether you’re in the mood for a refreshing cold drink or something stronger, we’ve got the perfect iced options. We also offer iced lattes and iced mochas.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 onclick="toggleCollapse(this)">10. Do you have parking available?</h3>
+                    <p class="collapse">Yes, we offer free parking in the lot below our shop. There are also street parking options nearby.</p>
+                </div>
+            </div>
         </div>
 
-        <div class="faq-item">
-            <h3 onclick="toggleCollapse(this)">2. What should I do if I received an incorrect order?</h3>
-            <p class="collapse">We’re sorry about that! If you receive an incorrect order, please let us know as soon as possible. We’ll happily correct it and ensure you get the right items. Your satisfaction is our priority.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3 onclick="toggleCollapse(this)">3. Do you serve breakfast or lunch?</h3>
-            <p class="collapse">Yes, we serve a variety of Lunch items (such as Sandwhiches, and Nachos)</p>
-        </div>
-
-        <div class="faq-item">
-            <h3 onclick="toggleCollapse(this)">4. Can I place an order for pickup?</h3>
-            <p class="collapse">Absolutely! You can place your order in advance through our mobile app or website for easy pickup.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3 onclick="toggleCollapse(this)">5. Do you have Wi-Fi?</h3>
-            <p class="collapse">Yes, we offer free Wi-Fi for all customers. Feel free to bring your laptop and get some work done, or just relax and surf the web while enjoying your coffee.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3 onclick="toggleCollapse(this)">6. Do you offer catering services?</h3>
-            <p class="collapse">We do offer catering for events! Whether it’s a small gathering or a large corporate event, we’d be happy to provide coffee and baked goods. Please contact us ahead of time for more details.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3 onclick="toggleCollapse(this)">7. Do you offer loyalty programs or discounts?</h3>
-            <p class="collapse">Yes, we offer a loyalty program through our mobile app. Earn points with every purchase and redeem them for free drinks or discounts.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3 onclick="toggleCollapse(this)">8. How can I stay updated on new items or special offers?</h3>
-            <p class="collapse">To stay in the loop on new menu items, special offers, and upcoming events, follow us on social media or sign up for our newsletter. We’ll keep you informed about everything happening at Norte Cafe.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3 onclick="toggleCollapse(this)">9. Do you offer cold brew or iced coffee? </h3>
-            <p class="collapse">Yes, we offer both cold brew coffee and iced coffee! Whether you’re in the mood for a refreshing cold drink or something stronger, we’ve got the perfect iced options. We also offer iced lattes and iced mochas.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3 onclick="toggleCollapse(this)">10. Do you have parking available?</h3>
-            <p class="collapse">Yes, we offer free parking in the lot below our shop. There are also street parking options nearby.</p>
-        </div>
 
     </div>
 
@@ -239,7 +252,7 @@
             }
         }
     </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
