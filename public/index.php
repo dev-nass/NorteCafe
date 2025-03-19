@@ -5,7 +5,7 @@ use Core\Session;
 session_start();
 
 const BASE_PATH = __DIR__ . '/../';
-const BASE_URL = 'http:localhost/PHP 2025/Norte Caffee/index.php/';
+const BASE_URL = 'http:localhost/PHP 2025/Norte Cafe/index.php/';
 
 require BASE_PATH . 'Core/functions.php';
 
@@ -15,7 +15,7 @@ require BASE_PATH . 'Core/functions.php';
 */
 spl_autoload_register(function ($class) {
     // can be use for clarity
-    dd($class);
+    // dd($class);
 
     // used due to namespace class, at controllers
     // DIRECTORY_SEPERATOR can be substituted with '/', 

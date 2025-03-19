@@ -1,16 +1,21 @@
+const scripts = [
+    "../resources/js/scrollReveal.min.js",
+    "js/registration.js",
+    "../resources/js/menu/quantityUpdate.js",
+    "js/menu/selectOnlyOneAddOn.js",
+    "js/admin_dashboard_foot_p1.js",
+    "js/admin_dashboard_foot_p2.js"
+];
 
-import '../js/scrollReveal.min.js';
+async function loadScripts() {
+    for (const script of scripts) {
+        try {
+            import(`../${script}`); // Dynamically import each script
+            console.log(`Loaded: ${script}`);
+        } catch (error) {
+            console.error(`Failed to load: ${script}`, error);
+        }
+    }
+}
 
-// Registration
-import '../js/registration.js';
-
-
-// User Side
-import '../js/menu/selectOnlyOneAddOn.js';
-import '../js/menu/quantityUpdate.js';
-
-// Admin Side
-import '../js/admin_dashboard_foot_p1.js';
-import '../js/admin_dashboard_foot_p2.js';
-
-
+loadScripts();

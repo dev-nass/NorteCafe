@@ -11,7 +11,7 @@ class Router {
     public function add($method, $uri, $controllerClass, $controllerMethod) {
         $this->routes[] = [
             'method' => $method,
-            'uri' => "/PHP%202025/Norte%20Caffee/public/index.php/{$uri}",
+            'uri' => "/PHP%202025/Norte%20Cafe/public/index.php/{$uri}",
             'controller_class' => $controllerClass,
             'controller_method' => $controllerMethod,
         ];

@@ -1,38 +1,25 @@
-# To-DO 
-[ ] Registration is only checking if a certain email is existing on users table this should also check the employee in the future. <br>
-[ ] Require users to finish setting their account first before allowing them to place an order. This is for `NULL` default columns in user table. <br>
-[x] Terms and Conditions should be checkbox <br>
-[ ] Terms and conditions should contains delivery details such as no pick up from delivery orders. <br>
-[x] Contact Us should contain their social logo <br>
-[ ] FAQs should contain image on side <br>
-[x] Create the Model first, and then change some codes within your LoginController.php. This will set the stage for the development of the ordering. <br>
-[x] Fix the modal content; Include image of selected item and search online for others <br>
-[x] Start creating the menu_item_sizes and start incorporating it to the menu <br>
-[x] Submission of the selected item should be added to the cart <br>
-[x] Integrate the logic for add-ons similar to sizes <br>
-[x] Inlcude quantity for both adding cart offcanvas and the actual cart <br>
-[ ] Only show these sizes on beverages not on foods <br>
-[x] Enable editing for added item on cart <br>
-[x] Enable remove for added item on cart <br>
-[ ] Add a QUEUE table <br>
-[ ] The insertion into `order` table should take place into the employee side 
-[ ] Handle placing order on Admin Side <br>
-[ ] Handle transaction placing, review the logic <br>
-[/] You can add `[]` on the name attribute of an input element to let it store multiple instances. Used for storing cart items on orders table <br>
-[ ] Check the tables with `NULL` default and use it as guiade to finish the user side <br>
-[ ] Each column that corresponds to money should be in float <br>
-
+# Setting Everything Up
+### Front-End
+- First install the `ZIP` file of the codebase; Click `Code` button at the upper right corner of the screen and download zip.
+![alt text](storage/readme/img/image-1.png)
+- Locate the downloaded ZIP file and extract it. The extracted file contain a folder named. ![alt text](storage/readme/img/image-2.png)
+- Rename it to ![alt text](storage/readme/img/image-3.png)
+- Head to this directory `xampp/htdocs/`. Create a new folder there named `PHP 2025` and paste there the whole `Norte Cafe` folder you extracted and named earlier.
+- Access the website using this URL 
 ```
-Future Plan
-Payment Method Handling:
-	If COD:
-		- Riders can have access to input the payment given by the customers this process
-		if for the `amount tendered`.
-		- The `change` however, should it have an autocompute function??? based on the 
-		`amount tendered` given.
+http://localhost/PHP%202025/Norte%20Cafe/public/index.php/index
 ```
 
-# CLASS AUTOLOAD FUNCTIONALITY
+### Back-End
+- Download the `.sql` file that contains the whole configuration of the database to discord.
+- Create a new database named `norte_cafe` within phpMyAdmin.
+- Try importing the downloaded `.sql` file; (1) it shows success then your good to go, (2) but if it fails, copy the error code, and ![alt text](storage/readme/img/image-4.png)
+- open the `.sql` file with vscode/notepad or any of your desired text editor, find every instance/copy of the error code within the file and replace every single one of them with `utf8mb4_general_ci`.
+- After all that is done, reset the database (drop every `table`, if there's any, and drop all the stored `procedures`);
+- Then do it again, try importing the edited `.sql` file.
+
+# Class Autoload Functionality
+- We are using this
 ```php
 spl_autoload_register(function ($class) {
     // used due to namespace class, at controllers
@@ -41,6 +28,11 @@ spl_autoload_register(function ($class) {
     $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
     require base_path("{$class}.php");
 });
+```
+- Instead of manually adding each of these
+```php
+require base_path("Core/Router.php");
+require base_path("App/Http/Controllers/UserController.php");
 ```
 
 # Understanding Routes Logic
