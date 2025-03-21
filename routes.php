@@ -12,11 +12,16 @@ $router->get('faqs', 'UserController', 'faqs');
 /**
  * Auth Web Pages
 */
+// Registration & Login
 $router->get('registration', 'RegistrationController', 'create');
 $router->post('registration', 'RegistrationController', 'store');
 $router->get('login', 'LoginController', 'create');
 $router->post('login', 'LoginController', 'store');
+// Frogot and Reset Password 
 $router->get('forgot-pass', 'ForgotPasswordController', 'index');
+$router->post('forgot-pass', 'ForgotPasswordController', 'store');
+$router->get('reset-pass', 'ForgotPasswordController', 'show');
+$router->post('reset-pass', 'ForgotPasswordController', 'update');
 
 /**
  * Specific Web Pages

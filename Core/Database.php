@@ -44,10 +44,15 @@ class Database
     public function query($query, $param = [], $paginate = false)
     {
 
-        $this->statement = $this->connection->prepare($query);
-        $this->statement->execute($param);
-
-        return $paginate ? $this->statement : $this;
+        try {
+            $this->statement = $this->connection->prepare($query);
+            $this->statement->execute($param);
+    
+            return $paginate ? $this->statement : $this;
+        } catch (PDOException $e) {
+            dd('Query error ' . $e->getMessage());
+        }
+        
     }
 
     /**

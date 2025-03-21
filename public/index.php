@@ -36,6 +36,7 @@ $router = new Core\Router;
 
 require BASE_PATH . 'routes.php';
 
+
 /**
  * Will trigger everytime we click an <a>
 */
