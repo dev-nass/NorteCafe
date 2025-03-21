@@ -18,9 +18,10 @@ class OrderController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Insert new transaction
-            $newTransactionEntry = $db->query("INSERT INTO transactions (user_id, amount_due) VALUES (:user_id, :amount_due)", [
+            $newTransactionEntry = $db->query("INSERT INTO transactions (user_id, amount_due, status) VALUES (:user_id, :amount_due, :status)", [
                 "user_id" => $_SESSION['__currentUser']['credentials']['id'],
                 "amount_due" => $_POST['amount_due'],
+                "status" => "pending",
             ]);
 
             $lastInsertedRecord = $db->query("SELECT id FROM transactions WHERE user_id = :user_id ORDER BY id DESC LIMIT 1", [

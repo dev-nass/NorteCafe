@@ -132,6 +132,13 @@ body {
     padding: 1.3rem 0 1rem 0;
 }
 
+
+.page-item.active .page-link {
+    background-color: var(--clr-choco) !important;
+    color: var(--clr-white) !important;
+    border-color: var(--clr-choco) !important;
+}
+
 .choco-bg {
     /* background: linear-gradient(130deg, var(--clr-choco), var(--clr-dark)); */
     background-color: var(--clr-choco);

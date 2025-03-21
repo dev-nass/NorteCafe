@@ -95,3 +95,10 @@ public function route($uri, $method) {
 # Login
 - Session
 - Authenticator
+
+# Pagination
+
+# Filtering Logic
+- Search Filter
+- Category Filter
+- How did Session got involve in this two process

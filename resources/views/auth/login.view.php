@@ -43,7 +43,7 @@
                                         <div class="mb-3">
                                             <div class="d-flex justify-content-between">
                                                 <label class="form-label" for="password">Password</label>
-                                                <a class="fs--1" href="../../views/auth/forgot-pass.view.php">Forgot Password?</a>
+                                                <a class="fs--1" href="forgot-pass">Forgot Password?</a>
                                             </div>
                                             <div class="form-floating">
                                                 <input class="form-control" name="password" type="password" id="password" placeholder="Password" required>

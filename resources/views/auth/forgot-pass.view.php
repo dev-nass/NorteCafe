@@ -1,4 +1,4 @@
-<?php require '../../views/components/head.php' ?>
+<?php require base_path('resources/views/components/head.php')?>
 
 <main class="container-fluid-gradient container-fluid">
     <div class="container">
@@ -46,4 +46,4 @@
         </div> -->
 </main>
 
-<?php require '../../views/components/foot.php' ?>
+<?php require base_path('resources/views/components/foot.php')?>

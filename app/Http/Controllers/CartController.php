@@ -68,8 +68,13 @@ class CartController
                     "quantity" => $quantity,
                 ]);
 
+
             if ($newCartEntry) {
-                redirect('menu');
+                if($_SERVER['HTTP_REFERER'] === 'http://localhost/PHP%202025/Norte%20Cafe/public/index.php/menu') {
+                    redirect('menu');
+                } else {
+                    redirect('search-filter');
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 <?php require base_path('resources/views/components/head.php') ?>
 <?php require base_path('resources/views/components/navbar.php') ?>
 
+
 <section class="section-container">
     <div class="container py-5">
         <div class="row">
@@ -12,6 +13,7 @@
                             <input
                                 name="search"
                                 type="text"
+                                value="<?= $_SESSION['__currentSearch']['search'] ?>"
                                 class="form-control"
                                 placeholder="Caramel Macchiato...">
                             <button form="search-filter" class="choco-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -28,8 +30,6 @@
                         <div class="offcanvas-body d-flex flex-column justify-content-between">
                             <form id="category-filter" action="category-filter">
                                 <h6>Category Filter</h6>
-                                <?php $first = true; // Flag to track the first iteration 
-                                ?>
                                 <?php foreach ($menu_item_categories as $category) : ?>
                                     <span>
                                         <input
@@ -39,13 +39,12 @@
                                             name="search"
                                             value="<?= $category['category'] ?>"
                                             autocomplete="off"
-                                            <?= $first ? 'checked' : '' ?>
+                                            <?= $category['category'] == $keywordSearch ? 'checked' : '' ?>
                                             >
                                         <label
                                             class="btn btn-outline-dark mb-2 me-2"
                                             for="v-btn-radio-category<?= $category['category'] ?>"><?= $category['category'] ?></label>
                                     </span>
-                                    <?php $first = false; ?>
                                 <?php endforeach; ?>
 
                                 <hr>
@@ -189,41 +188,8 @@
                 </div>
             <?php endforeach; ?>
         </div>
-
-        <!-- Pagination -->
-        <nav aria-label="Page navigation example">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <p>Showing <?= $pages['page_no'] ?> to <?= $pages['total_records_per_page'] ?> out of <?= $pages['total_records'] ?> results </p>
-                </div>
-
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a
-                            class="page-link text-dark <?= ($pages['page_no'] <= 1 ? 'disabled' : '') ?>"
-                            <?= ($pages['page_no'] > 1) ? 'href="?page_no=' . $pages['previous_page'] . '"' : '' ?>>Previous</a>
-                    </li>
-
-                    <?php for ($counter = 1; $counter <= $pages['total_no_of_pages']; $counter++) : ?>
-                        <li class="page-item <?= ($pages['page_no'] == $counter ? 'active' : '') ?>">
-                            <a
-                                class="page-link text-dark"
-                                href="?page_no=<?= $counter ?>"><?= $counter ?></a>
-                        </li>
-                    <?php endfor; ?>
-
-                    <li class="page-item">
-                        <a
-                            class="page-link text-dark <?= ($pages['page_no'] >= $pages['total_no_of_pages'] ? 'disabled' : '') ?>"
-                            <?= ($pages['page_no'] < $pages['total_no_of_pages']) ? 'href="?page_no=' . $pages['next_page'] . '"' : '' ?>>Next</a>
-                    </li>
-                </ul>
-            </div>
-
-        </nav>
     </div>
 </section>
-
 
 
 <?php require base_path('resources/views/components/foot.php') ?>

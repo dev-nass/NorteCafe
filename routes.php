@@ -16,10 +16,14 @@ $router->get('registration', 'RegistrationController', 'create');
 $router->post('registration', 'RegistrationController', 'store');
 $router->get('login', 'LoginController', 'create');
 $router->post('login', 'LoginController', 'store');
+$router->get('forgot-pass', 'ForgotPasswordController', 'index');
 
 /**
  * Specific Web Pages
 */
+$router->get('search-filter', 'FilterController', 'search');
+$router->get('category-filter', 'FilterController', 'category');
+
 $router->get('menu', 'MenuController', 'index');
 $router->get('cart', 'CartController', 'index');
 $router->post('cart-store', 'CartController', 'store');

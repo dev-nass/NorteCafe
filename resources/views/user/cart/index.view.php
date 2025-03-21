@@ -18,7 +18,7 @@
                             <div class="card mb-3">
                                 <div class="row g-0">
                                     <div class="col-4">
-                                        <img src="../../storage/frontend/user/img/index/croffle.jpg" class="img-fluid rounded-start h-100 w-100" alt="...">
+                                        <img src="<?= $item['image_dir'] ?>" class="img-fluid rounded-start h-100 w-100" alt="...">
                                     </div>
                                     <div class="col-8">
                                         <div class="card-body">
