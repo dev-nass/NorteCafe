@@ -8,6 +8,7 @@ $router->get('contactUs', 'UserController', 'contactUs');
 $router->get('aboutUsNorteCafe', 'UserController', 'aboutUsNorteCafe');
 $router->get('aboutUsDevelopers', 'UserController', 'aboutUsDevelopers');
 $router->get('faqs', 'UserController', 'faqs');
+$router->get('delivery-details', 'UserController', 'deliveryDetails');
 
 /**
  * Auth Web Pages

@@ -1,28 +1,26 @@
-<?php require base_path('resources/views/components/head.php')?>
+<?php require base_path('resources/views/components/head.php') ?>
 
 <main class="container-fluid-gradient container-fluid">
     <div class="container">
         <div class="row min-vh-100 d-flex justify-content-center align-items-center g-0">
-            <div class="col-lg-8 py-3">
+            <div class="col-lg-10 py-5">
                 <div class="card overflow-hidden">
                     <div class="card-body p-0">
                         <div class="row g-0 h-100">
                             <!-- info section -->
-                            <div class="col-md-5 text-center info-section-bg text-white p-3">
-                                <div class="p-4 pt-md-5 pb-md-7">
-                                    <!-- pa link na lang sa home page -->
+                            <div class="col-md-5 text-center info-section-bg text-white d-flex flex-column position-relative">
+                                <!-- pa link nalang sa homepage -->
+                                <div class="z-2 px-3 py-3 h-100 d-flex flex-column align-items-center justify-content-center">
+                                    <img style="height: 150px; width: 150px;" src="../../storage/frontend/user/img/index/rabbit-reg.png" alt="">
                                     <a href="index" class="no-underline">
-                                        <h2 class="link-light fw-bolder">Norte Cafe'</h2>
+                                        <h2 class="link-light fw-bolder">NORTE CAFE' BY CB</h2>
                                     </a>
                                     <p>
                                         Enjoy the perfect blend of Tea and Milk tea at Norte Café! Crafted with quality ingredients and a passion for great flavors, every sip is a treat. Log in to place your order or sign up to explore our menu!
                                     </p>
                                 </div>
-                                <div class="mt-3 mb-4 mt-md-4 mb-md-5">
-                                    <p>Don't have an account? <a class="text-decoration-underline text-white" href="registration">Register Now!</a></p>
-                                    <p class="mb-0 mt-4 mt-md-5 fs--1">Read our <a class="text-decoration-underline text-white" href="../../views/auth/terms&condition.view.php">Terms & Conditions</a></p>
-                                </div>
 
+                                <img class="z-1 w-100 h-100 opacity-25 position-absolute" src="../../storage/frontend/user/img/index/registration-side.jpg" alt="">
                             </div>
                             <!-- form section -->
                             <div class="col-md-7 form-section-bg d-flex align-items-center justify-content-center">
@@ -36,8 +34,8 @@
                                                 <label for="email">Username or E-Mail...</label>
                                                 <div class="invalid-feedback">Missing Username or E-Mail...</div>
                                             </div>
-                                            <?php if(isset($errors['email'])) : ?>
-                                                    <div class="text-danger"><?= $errors['email'] ?></div>
+                                            <?php if (isset($errors['email'])) : ?>
+                                                <div class="text-danger"><?= $errors['email'] ?></div>
                                             <?php endif; ?>
                                         </div>
                                         <div class="mb-3">
@@ -53,6 +51,9 @@
                                         </div>
                                         <div class="mb-3">
                                             <button class="login-btn w-100 mt-3" type="submit">Login</button>
+                                        </div>
+                                        <div class="mt-3 mb-4 mt-md-4 mb-md-5">
+                                            <p class="text-center">Don't have an account? <a class="text-decoration-underline" href="registration">Register Now!</a></p>
                                         </div>
                                     </form>
                                 </div>
@@ -79,5 +80,3 @@
         form.classList.add("was-validated");
     });
 </script>
-
-<?php require base_path('resources/views/components/foot.php')?>

@@ -63,7 +63,6 @@
 
     <!-- User Side -->
     <script src="../../resources/js/scrollReveal.min.js" defer></script>
-    <script src="../../resources/js/registration.js" defer></script>
     <script src="../../resources/js/menu/quantityUpdate.js" defer></script>
     <script src="../../resources/js/menu/selectOnlyOneAddOn.js" defer></script>
     

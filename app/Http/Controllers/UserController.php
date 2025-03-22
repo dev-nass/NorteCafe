@@ -31,4 +31,9 @@ class UserController {
 
         view('user/faqs.view.php');
     }
+
+    public function deliveryDetails() {
+
+        view('user/delivery-details.view.php');
+    }
 }
