@@ -25,13 +25,18 @@ $router->get('reset-pass', 'ForgotPasswordController', 'show');
 $router->post('reset-pass', 'ForgotPasswordController', 'update');
 
 /**
+ * HTTP Response Web Page
+*/
+$router->get('403', 'ResponseController', 'http_403');
+
+/**
  * Specific Web Pages
 */
 $router->get('search-filter', 'FilterController', 'search');
 $router->get('category-filter', 'FilterController', 'category');
 
-$router->get('menu', 'MenuController', 'index');
-$router->get('cart', 'CartController', 'index');
+$router->get('menu', 'MenuController', 'index')->only('auth');
+$router->get('cart', 'CartController', 'index')->only('auth');
 $router->post('cart-store', 'CartController', 'store');
 $router->patch('cart-update', 'CartController', 'update');
 $router->delete('cart-delete', 'CartController', 'destroy');

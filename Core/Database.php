@@ -48,6 +48,8 @@ class Database
             $this->statement = $this->connection->prepare($query);
             $this->statement->execute($param);
     
+            // $this->statement - is for pagination
+            // $this - is only for normal usage, which returns the whole instance of this all, everything this has to over. DD to understand.
             return $paginate ? $this->statement : $this;
         } catch (PDOException $e) {
             dd('Query error ' . $e->getMessage());

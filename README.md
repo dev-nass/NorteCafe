@@ -102,3 +102,9 @@ public function route($uri, $method) {
 - Search Filter
 - Category Filter
 - How did Session got involve in this two process
+
+# Middleware
+- routes.php
+- Router.php
+- Middleware.php
+- What's multidimensional array

@@ -21,7 +21,7 @@
                     <p>Explore a variety of rich, handcrafted coffees, delightful pastries, and savory treats. From classic brews to sweet indulgences, there’s something for every craving.</p>
                 </div>
                 <div class="mt-3 mb-4">
-                    <a href="#" class="choco-btn">
+                    <a href="menu" class="choco-btn">
                         Order Now
                     </a>
                     <a href="contactUs" class="btn ms-2">Contact Us</a>
