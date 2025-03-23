@@ -8,7 +8,9 @@ use Core\Session;
 class OrderController
 {
 
-
+    /**
+     * Will trigger everytime 'place order' button is clicked
+    */
     public function store()
     {
 
@@ -24,7 +26,8 @@ class OrderController
                 "status" => "pending",
             ]);
 
-            $lastInsertedRecord = $db->query("SELECT id FROM transactions WHERE user_id = :user_id ORDER BY id DESC LIMIT 1", [
+            // gets the id of the last inserted transaction record
+            $lastInsertedRecord = $db->query("SELECT transaction_id FROM transactions WHERE user_id = :user_id ORDER BY transaction_id DESC LIMIT 1", [
                 "user_id" => $_SESSION['__currentUser']['credentials']['id']
             ])->find();
 
@@ -34,12 +37,12 @@ class OrderController
                     $total_price = $_POST['total_price'][$index]; // Get corresponding total price
 
                     $db->query("INSERT INTO orders (transaction_id, cart_id, total_price) VALUES (:transaction_id, :cart_id, :total_price)", [
-                        "transaction_id" => $lastInsertedRecord['id'],
+                        "transaction_id" => $lastInsertedRecord['transaction_id'],
                         "cart_id" => $cart_id,
                         "total_price" => $total_price,
                     ]);
 
-                    $db->query("UPDATE carts SET order_placed = true WHERE id = :cart_id", [
+                    $db->query("UPDATE carts SET order_placed = true WHERE cart_id = :cart_id", [
                         "cart_id" => $cart_id,
                     ]);
                 }

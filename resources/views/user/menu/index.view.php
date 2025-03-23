@@ -3,6 +3,8 @@
 
 <section class="section-container">
     <div class="container py-5">
+
+        <!-- Filtering -->
         <div class="row">
             <div class="col-12">
                 <div>
@@ -56,6 +58,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Menu Item -->
         <div class="row">
             <?php foreach ($menu_items as $item) : ?>
                 <div class="col-6 col-xxl-4">
@@ -74,7 +78,7 @@
                                         <div>
                                             Sizes:
                                             <?php foreach ($menu_item_sizes as $size) : ?>
-                                                <?php if ($size['menu_item_id'] === $item['id']) : ?>
+                                                <?php if ($size['menu_item_id'] === $item['menu_item_id']) : ?>
                                                     <span class="square ms-1"><?= $size['size'] ?></span>
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
@@ -89,9 +93,9 @@
                                             <p class="card-text mt-2 <?= $item['available'] ? 'text-success' : 'text-danger' ?>"><?= $item['available'] ? 'Available' : 'Not Available' ?></p>
                                         </div>
                                         <div>
-                                            <button class="choco-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling-id<?= $item['id'] ?>" aria-controls="offcanvasScrolling"><i class="fa-solid fa-cart-plus"></i></button>
+                                            <button class="choco-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling-id<?= $item['menu_item_id'] ?>" aria-controls="offcanvasScrolling"><i class="fa-solid fa-cart-plus"></i></button>
 
-                                            <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling-id<?= $item['id'] ?>" aria-labelledby="offcanvasScrollingLabel">
+                                            <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling-id<?= $item['menu_item_id'] ?>" aria-labelledby="offcanvasScrollingLabel">
                                                 <div class="offcanvas-header">
                                                     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Menu Item Details</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -113,11 +117,11 @@
                                                             <?php $first = true; // Flag to track the first iteration 
                                                             ?>
                                                             <?php foreach ($menu_item_sizes as $size) : ?>
-                                                                <?php if ($size['menu_item_id'] === $item['id']) : ?>
+                                                                <?php if ($size['menu_item_id'] === $item['menu_item_id']) : ?>
                                                                     <input
                                                                         class="d-none"
                                                                         name="menu_item_id"
-                                                                        value="<?= $item['id'] ?>"
+                                                                        value="<?= $item['menu_item_id'] ?>"
                                                                         type="text">
                                                                     <div class="d-flex justify-content-between">
                                                                         <div>
@@ -125,14 +129,14 @@
                                                                                 type="radio"
                                                                                 class="btn-check"
                                                                                 name="menu_item_size_id"
-                                                                                value="<?= $size['id'] ?>"
-                                                                                id="vbtn-radio-id<?= $item['id'] . '-' . $size['size'] ?>"
+                                                                                value="<?= $size['menu_item_size_id'] ?>"
+                                                                                id="vbtn-radio-id<?= $item['menu_item_id'] . '-' . $size['size'] ?>"
                                                                                 autocomplete="off"
                                                                                 required
                                                                                 <?= $first ? 'checked' : '' ?>>
                                                                             <label
                                                                                 class="btn btn-outline-dark"
-                                                                                for="vbtn-radio-id<?= $item['id'] . '-' . $size['size'] ?>"><?= $size['size'] ?></label>
+                                                                                for="vbtn-radio-id<?= $item['menu_item_id'] . '-' . $size['size'] ?>"><?= $size['size'] ?></label>
                                                                         </div>
                                                                         <div>
                                                                             <p>₱<?= $size['price'] ?></p>
@@ -151,12 +155,12 @@
                                                                         type="radio"
                                                                         class="btn-check"
                                                                         name="add_ons_id"
-                                                                        value="<?= $add_on['id'] ?>"
-                                                                        id="vbtn-radio-id<?= $item['id'] . '-' . $add_on['id'] ?>"
+                                                                        value="<?= $add_on['add_on_id'] ?>"
+                                                                        id="vbtn-radio-id<?= $item['menu_item_id'] . '-' . $add_on['add_on_id'] ?>"
                                                                         autocomplete="off">
                                                                     <label
                                                                         class="btn btn-outline-dark my-1"
-                                                                        for="vbtn-radio-id<?= $item['id'] . '-' . $add_on['id'] ?>"><?= $add_on['name'] ?> ₱<?= $add_on['price'] ?></label>
+                                                                        for="vbtn-radio-id<?= $item['menu_item_id'] . '-' . $add_on['add_on_id'] ?>"><?= $add_on['name'] ?> ₱<?= $add_on['price'] ?></label>
                                                                 <?php endforeach; ?>
                                                             </div>
                                                         <?php endif; ?>

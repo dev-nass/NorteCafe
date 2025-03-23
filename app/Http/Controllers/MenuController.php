@@ -14,12 +14,14 @@ class MenuController {
         $pages = $db->paginated('menu_items');
         $menu_items = $pages['data'];
 
+        // Select each category (for filterting)
         $menu_item_categories = $db->query("SELECT DISTINCT category FROM menu_items")->get();
 
+        // Select each menu item and its corresponding size
         $menu_item_sizes = $db
             ->query("SELECT * 
                 FROM menu_items as menu_item
-                INNER JOIN menu_item_sizes as size ON menu_item.id = size.menu_item_id"
+                INNER JOIN menu_item_sizes as size ON menu_item.menu_item_id = size.menu_item_id"
             )->get();
 
         $add_ons = $db->query("SELECT * FROM add_ons")->get();

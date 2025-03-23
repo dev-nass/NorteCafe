@@ -29,7 +29,7 @@ class FilterController
             ->query(
                 "SELECT * 
                 FROM menu_items as menu_item
-                INNER JOIN menu_item_sizes as size ON menu_item.id = size.menu_item_id"
+                INNER JOIN menu_item_sizes as size ON menu_item.menu_item_id = size.menu_item_id"
             )->get();
 
         $add_ons = $db->query("SELECT * FROM add_ons")->get();
@@ -43,6 +43,9 @@ class FilterController
         ]);
     }
 
+    /**
+     * For loading category filter results
+    */
     public function category()
     {
 
@@ -61,7 +64,7 @@ class FilterController
             ->query(
                 "SELECT * 
                 FROM menu_items as menu_item
-                INNER JOIN menu_item_sizes as size ON menu_item.id = size.menu_item_id"
+                INNER JOIN menu_item_sizes as size ON menu_item.menu_item_id = size.menu_item_id"
             )->get();
 
         $add_ons = $db->query("SELECT * FROM add_ons")->get();

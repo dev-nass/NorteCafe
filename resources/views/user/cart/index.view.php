@@ -3,7 +3,7 @@
 
 <section class="secion-container py-5">
     <div class="container py-5">
-        <h1 class="section-header"><?= $_SESSION['__currentUser']['credentials']['username'] ?>'s Cart</h1>
+        <h1 class="hero-header"><?= $_SESSION['__currentUser']['credentials']['username'] ?>'s Cart</h1>
         <hr>
         <div class="row">
             <!-- Cards -->
@@ -63,9 +63,9 @@
                                             <div class="d-flex">
                                                 <!-- Update -->
                                                 <div>
-                                                    <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling-id<?= $item['id'] ?>" aria-controls="offcanvasScrolling"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                    <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling-id<?= $item['cart_id'] ?>" aria-controls="offcanvasScrolling"><i class="fa-solid fa-pen-to-square"></i></button>
 
-                                                    <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling-id<?= $item['id'] ?>" aria-labelledby="offcanvasScrollingLabel">
+                                                    <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling-id<?= $item['cart_id'] ?>" aria-labelledby="offcanvasScrollingLabel">
                                                         <div class="offcanvas-header">
                                                             <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Update Item Details</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -89,7 +89,7 @@
                                                                 <input
                                                                     class="d-none"
                                                                     name="cart_id"
-                                                                    value="<?= $item['id'] ?>">
+                                                                    value="<?= $item['cart_id'] ?>">
                                                                 <div class="bg-danger bg-opacity-10 p-2">
                                                                     <h5>Variation</h5>
                                                                     <p>Sizes: </p>
@@ -102,14 +102,14 @@
                                                                                         type="radio"
                                                                                         class="btn-check"
                                                                                         name="menu_item_size_id"
-                                                                                        value="<?= $size['id'] ?>"
-                                                                                        id="vbtn-radio-id<?= $item['id'] . '-' . $size['size'] ?>"
+                                                                                        value="<?= $size['menu_item_size_id'] ?>"
+                                                                                        id="vbtn-radio-id<?= $item['cart_id'] . '-' . $size['size'] ?>"
                                                                                         autocomplete="off"
                                                                                         <?= $item['size'] === $size['size'] ? 'checked' : '' ?>
                                                                                         required>
                                                                                     <label
                                                                                         class="btn btn-outline-dark"
-                                                                                        for="vbtn-radio-id<?= $item['id'] . '-' . $size['size'] ?>"><?= $size['size'] ?></label>
+                                                                                        for="vbtn-radio-id<?= $item['cart_id'] . '-' . $size['size'] ?>"><?= $size['size'] ?></label>
                                                                                 </div>
                                                                                 <div>
                                                                                     <p>₱<?= number_format($size['price'], 2, '.', '') ?></p>
@@ -127,14 +127,14 @@
                                                                                 type="radio"
                                                                                 class="btn-check"
                                                                                 name="add_ons_id"
-                                                                                value="<?= $add_on['id'] ?>"
-                                                                                id="vbtn-radio-id<?= $item['id'] . '-' . $add_on['id'] ?>"
+                                                                                value="<?= $add_on['add_on_id'] ?>"
+                                                                                id="vbtn-radio-id<?= $item['cart_id'] . '-' . $add_on['add_on_id'] ?>"
                                                                                 autocomplete="off"
                                                                                 <?= $item['add_on_name'] === $add_on['name'] ? 'checked' : '' ?>
                                                                                 >
                                                                             <label
                                                                                 class="btn btn-outline-dark my-1"
-                                                                                for="vbtn-radio-id<?= $item['id'] . '-' . $add_on['id'] ?>"><?= $add_on['name'] ?> ₱<?= $add_on['price'] ?></label>
+                                                                                for="vbtn-radio-id<?= $item['cart_id'] . '-' . $add_on['add_on_id'] ?>"><?= $add_on['name'] ?> ₱<?= $add_on['price'] ?></label>
                                                                         <?php endforeach; ?>
                                                                     </div>
                                                                 <?php endif; ?>
@@ -164,7 +164,7 @@
                                                         <input
                                                             class="d-none"
                                                             name="cart_id"
-                                                            value="<?= $item['id'] ?>"
+                                                            value="<?= $item['cart_id'] ?>"
                                                             type="text">
                                                         <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                                                     </form>
@@ -211,7 +211,7 @@
                                     <input
                                         class="d-none"
                                         name="cart_item[]"
-                                        value="<?= $item['id'] ?>"
+                                        value="<?= $item['cart_id'] ?>"
                                         type="text">
                                     <!-- This is for the orders table -->
                                     <input
