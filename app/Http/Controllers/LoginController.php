@@ -31,7 +31,6 @@ class LoginController {
                 $authUser = $userModel->getUser();
                 Session::set('__currentUser', 'credentials', $authUser);
 
-
                 redirect('index');
             }
 

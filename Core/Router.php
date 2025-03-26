@@ -71,7 +71,7 @@ class Router {
     }
 
     /**
-     * Used for adding middle to each route
+     * Used for adding middleware to each route
     */
     public function only($key) {
         // we are accessing the $this->routes array like this because its a multidiemnsional array

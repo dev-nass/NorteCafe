@@ -42,3 +42,11 @@ $router->patch('cart-update', 'CartController', 'update');
 $router->delete('cart-delete', 'CartController', 'destroy');
 
 $router->post('order-store', 'OrderController', 'store');
+
+
+
+/**
+ * Admin side
+*/
+$router->get('transaction-queue', 'Admin_TransactionController', 'queue');
+$router->get('transaction-show', 'Admin_TransactionController', 'show');

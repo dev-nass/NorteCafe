@@ -21,14 +21,14 @@ class OrderController
 
             // Insert new transaction
             $newTransactionEntry = $db->query("INSERT INTO transactions (user_id, amount_due, status) VALUES (:user_id, :amount_due, :status)", [
-                "user_id" => $_SESSION['__currentUser']['credentials']['id'],
+                "user_id" => $_SESSION['__currentUser']['credentials']['user_id'],
                 "amount_due" => $_POST['amount_due'],
                 "status" => "pending",
             ]);
 
             // gets the id of the last inserted transaction record
             $lastInsertedRecord = $db->query("SELECT transaction_id FROM transactions WHERE user_id = :user_id ORDER BY transaction_id DESC LIMIT 1", [
-                "user_id" => $_SESSION['__currentUser']['credentials']['id']
+                "user_id" => $_SESSION['__currentUser']['credentials']['user_id']
             ])->find();
 
             // Insert new order

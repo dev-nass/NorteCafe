@@ -207,7 +207,7 @@
                         <form action="order-store" method="POST">
                             <?php foreach ($cartMenuItems as $item) : ?>
                                 <!-- This so the only passed value to $_POST is the items added by the current user -->
-                                <?php if ($item['user_id'] === $_SESSION['__currentUser']['credentials']['id']) : ?>
+                                <?php if ($item['user_id'] === $_SESSION['__currentUser']['credentials']['user_id']) : ?>
                                     <input
                                         class="d-none"
                                         name="cart_item[]"

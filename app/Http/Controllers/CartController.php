@@ -14,7 +14,7 @@ class CartController
         $db = new Database;
         $db->iniDB();
 
-        $currentUser = Session::get('__currentUser', 'credentials')['id'];
+        $currentUser = Session::get('__currentUser', 'credentials')['user_id'];
 
         // fetch the user's cart items
         $cartMenuItems = $db
@@ -55,7 +55,7 @@ class CartController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $currentUser = Session::get('__currentUser', 'credentials')['id'];
+            $currentUser = Session::get('__currentUser', 'credentials')['user_id'];
             $menu_item_id = $_POST['menu_item_id'];
             $menu_item_size_id = $_POST['menu_item_size_id'];
             $add_ons_id = $_POST['add_ons_id'] ?? NULL;

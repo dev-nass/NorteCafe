@@ -16,6 +16,11 @@ function dd($value)
     die();
 }
 
+function urlIs($value)
+{
+    return $_SERVER['REQUEST_URI'] === "/PHP%202025/Norte%20Cafe/public/index.php/{$value}";
+}
+
 function base_path($path)
 {
     return str_replace('\\', '/', BASE_PATH . $path);
