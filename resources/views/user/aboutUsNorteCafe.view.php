@@ -6,7 +6,7 @@
 <div class="container-fluid white-bgv2" id="about-section">
     <section class="container py-5">
         <div class="row align-items-center">
-            <div class="col-md-6">
+            <div class="col-md-6 left-slide">
                 <div id="headings">
                     <h1 class="section-header text-center">ABOUT US</h1>
                 </div>
@@ -17,7 +17,7 @@
             </div>
 
 
-            <div id="logo-square-container" class="col-md-6 d-flex justify-content-center">
+            <div id="logo-square-container" class="col-md-6 d-flex justify-content-center right-slide">
                 <div class="card" style="width: 23rem;">
                     <img src="../../storage/frontend/user/img/aboutUs/logo.jpg" alt="logo">
                 </div>
@@ -31,13 +31,13 @@
 <div class="container-fluid choco-bg" id="mission-section">
     <section class="container py-5">
         <div class="row align-items-center">
-            <div class="col-md-5 text-center">
+            <div class="col-md-5 text-center left-slide">
                 <img src="../../storage/frontend/user/img/aboutUs/milktea.jpg" alt="Our Mission" class="img-fluid" id="milktea-img">
             </div>
 
             <div class="col-md-1"></div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 right-slide">
                 <div style="padding-top: 40px" id="headings">
                     <h1 class="text-align text-white section-header">WHAT IS OUR MISSION?</h1>
                 </div>
@@ -54,7 +54,7 @@
 <div class="container-fluid white-bgv2" id="ourstory-section">
     <section class="container py-5">
         <div class="row align-items-center">
-            <div class="col-md-5">
+            <div class="col-md-5 left-slide">
                 <div id="headings">
                     <h1 class="section-header text-center">OUR STORY</h1>
                 </div>
@@ -65,7 +65,7 @@
 
             <div class="col-md-1"></div>
 
-            <div class="col-md-6 text-center">
+            <div class="col-md-6 text-center right-slide">
                 <img src="../../storage/frontend/user/img/aboutUs/background.jpg" alt="Our story" class="img-fluid" id="story-img">
             </div>
         </div>

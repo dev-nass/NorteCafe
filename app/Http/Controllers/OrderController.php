@@ -23,7 +23,7 @@ class OrderController
             $newTransactionEntry = $db->query("INSERT INTO transactions (user_id, amount_due, status) VALUES (:user_id, :amount_due, :status)", [
                 "user_id" => $_SESSION['__currentUser']['credentials']['user_id'],
                 "amount_due" => $_POST['amount_due'],
-                "status" => "pending",
+                "status" => "Pending",
             ]);
 
             // gets the id of the last inserted transaction record

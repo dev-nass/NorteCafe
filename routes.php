@@ -50,3 +50,4 @@ $router->post('order-store', 'OrderController', 'store');
 */
 $router->get('transaction-queue', 'Admin_TransactionController', 'queue');
 $router->get('transaction-show', 'Admin_TransactionController', 'show');
+$router->post('transaction-update', 'Admin_TransactionController', 'update');

@@ -16,6 +16,9 @@ function dd($value)
     die();
 }
 
+/**
+ * Used for the adminside bar
+*/
 function urlIs($value)
 {
     return $_SERVER['REQUEST_URI'] === "/PHP%202025/Norte%20Cafe/public/index.php/{$value}";
@@ -42,4 +45,13 @@ function redirect($path)
 {
     header("location: {$path}");
     exit();
+}
+
+function abort($code = 404) 
+{
+    http_response_code($code);
+
+    require base_path("resources/views/{$code}.view.php");
+
+    die();
 }

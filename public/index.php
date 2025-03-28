@@ -30,6 +30,7 @@ spl_autoload_register(function ($class) {
  * and include it within our public/index.php
 */
 // require base_path("Core/Router.php");
+// require base_path("Core/Middleware/Middleware.php");
 // require base_path("App/Http/Controllers/UserController.php");
 
 $router = new Core\Router;

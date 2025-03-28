@@ -96,6 +96,18 @@ body {
     box-shadow: 5px 5px 0 -2px var(--clr-choco) !important;
 }
 
+.choco-btn-disabled {
+    background-color: var(--clr-choco) !important;
+    border: none;
+    box-shadow: 6px 6px 0 -1px var(--clr-darkest);
+    color: var(--clr-white);
+    font-weight: 500;
+    padding: 8px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: ease all .3s;
+}
+
 /* Normal Choco Btn */
 .choco-normal-btn {
     background-color: var(--clr-choco) !important;

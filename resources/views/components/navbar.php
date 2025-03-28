@@ -45,8 +45,8 @@
                                 <?= $_SESSION['__currentUser']['credentials']['username'] ?>
                             </a>
                         <?php else : ?>
-                            <a href="registration" class="choco-btn">
-                                Sign Up
+                            <a href="login" class="choco-btn">
+                                Sign In
                             </a>
                         <?php endif; ?>
                     </div>
@@ -62,8 +62,8 @@
                             <?= $_SESSION['__currentUser']['credentials']['username'] ?>
                         </a>
                     <?php else : ?>
-                        <a href="registration" class="choco-btn">
-                            Sign Up
+                        <a href="login" class="choco-btn">
+                            Sign In
                         </a>
                     <?php endif; ?>
                 </div>

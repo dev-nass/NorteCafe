@@ -93,7 +93,7 @@
                                             <p class="card-text mt-2 <?= $item['available'] ? 'text-success' : 'text-danger' ?>"><?= $item['available'] ? 'Available' : 'Not Available' ?></p>
                                         </div>
                                         <div>
-                                            <button class="choco-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling-id<?= $item['menu_item_id'] ?>" aria-controls="offcanvasScrolling"><i class="fa-solid fa-cart-plus"></i></button>
+                                            <button class="<?= $item['available'] ? 'choco-btn' : 'choco-btn-disabled opacity-50' ?>" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling-id<?= $item['menu_item_id'] ?>" aria-controls="offcanvasScrolling" <?= $item['available'] ? '' : 'disabled' ?>><i class="fa-solid fa-cart-plus"></i></button>
 
                                             <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling-id<?= $item['menu_item_id'] ?>" aria-labelledby="offcanvasScrollingLabel">
                                                 <div class="offcanvas-header">

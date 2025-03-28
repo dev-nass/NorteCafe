@@ -6,7 +6,7 @@
     <div class="container-fluid py-2">
         <div class="row">
             <div class="col-md-12 mt-4">
-                <div class="card">
+                <div class="card" aria-hidden="true">
                     <div class="card-header pb-0 px-3">
                         <h6 class="mb-0">Pending Transaction Queue</h6>
                     </div>
@@ -16,10 +16,10 @@
                                 <ul class="list-group">
                                     <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                                         <div class="d-flex flex-column">
-                                            <h6 class="mb-3 fs-5">Oliver Liam</h6>
-                                            <span class="mb-2 text-xs">Transaction ID: <span class="text-dark font-weight-bold ms-sm-2">Viking Burrito</span></span>
-                                            <span class="mb-2 text-xs">Address: <span class="text-dark ms-sm-2 font-weight-bold">oliver@burrito.com</span></span>
-                                            <span class="text-xs">Contact Number: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
+                                            <h6 class="mb-3 fs-5 placeholder-glow"><span class="placeholder col-7"></span></h6>
+                                            <span class="mb-2 text-xs placeholder-glow">Transaction ID: <span class="placeholder col-4"></span></span>
+                                            <span class="mb-2 text-xs placeholder-glow">Address: <span class="placeholder col-8"></span></span>
+                                            <span class="text-xs placeholder-glow">Contact Number: <span class="placeholder col-6"></span></span>
                                         </div>
                                         <div class="ms-auto d-flex flex-column align-items-end">
                                             <!-- <select class="form-select w-75" aria-label="Default select example">

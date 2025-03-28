@@ -235,7 +235,7 @@
                     <p>Founded by two kindred hearts, our coffee shop is a tale of love, warmth, and shared dreams—brewing passion into every cup for you to enjoy. What started as a simple dream became a cozy haven where every sip tells a story, inviting you to experience comfort, connection, and heartfelt flavors.</p>
                 </div>
                 <div class="mt-3 mb-4">
-                    <a href="aboutUsStore.view.php" class="choco-btn">
+                    <a href="aboutUsNorteCafe" class="choco-btn">
                         Learn More
                     </a>
                 </div>

@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <span class="mb-2 text-xs">Transaction ID: <span class="text-dark font-weight-bold ms-sm-2">${data.transaction_id}</span></span>
                                 <span class="mb-2 text-xs">Location: <span class="text-dark ms-sm-2 font-weight-bold">${data.location}</span></span>
                                 <span class="mb-2 text-xs">Contact Number: <span class="text-dark ms-sm-2 font-weight-bold">${data.contact_number}</span></span>
-                                <span class="text-xs">Total Price: <span class="text-dark ms-sm-2 font-weight-bold">${data.amount_due}</span></span>
+                                <span class="text-xs">Total Price: <span class="text-dark ms-sm-2 font-weight-bold">₱${data.amount_due}</span></span>
                             </div>
                             <div class="ms-auto d-flex flex-column align-items-end">
                             <span class="m-2 text-xs">Status: ${data.status.charAt(0).toUpperCase() + data.status.slice(1) }</span>
