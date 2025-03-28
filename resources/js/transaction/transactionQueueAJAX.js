@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <div class="ms-auto d-flex flex-column align-items-end">
                             <span class="m-2 text-xs">Status: ${data.status.charAt(0).toUpperCase() + data.status.slice(1) }</span>
                             <a class="btn btn-link text-danger text-gradient px-3 mt-2 mb-0" href="javascript:;"><i class="material-symbols-rounded text-sm me-2">delete</i>Delete</a>
-                            <a class="mb-2 btn btn-link text-dark px-3 mb-0" href="transaction-show?id=${data.transaction_id}"><i class="material-symbols-rounded text-sm me-2">edit</i>View Order</a>
+                            <a class="mb-2 btn btn-link text-dark px-3 mb-0" href="transaction-pending-show?id=${data.transaction_id}"><i class="material-symbols-rounded text-sm me-2">edit</i>View Order</a>
                             <span class="text-xs">Placed At: ${data.created_at}</span>
                             </div>
                         </li>

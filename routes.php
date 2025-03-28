@@ -49,5 +49,7 @@ $router->post('order-store', 'OrderController', 'store');
  * Admin side
 */
 $router->get('transaction-queue', 'Admin_TransactionController', 'queue');
+$router->get('transaction-pending-show', 'Admin_TransactionController', 'pending_show');
 $router->get('transaction-show', 'Admin_TransactionController', 'show');
 $router->post('transaction-update', 'Admin_TransactionController', 'update');
+$router->get('transaction-table', 'Admin_TransactionController', 'table');
