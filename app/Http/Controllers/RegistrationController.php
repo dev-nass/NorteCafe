@@ -51,10 +51,11 @@ class RegistrationController {
             }
 
             // Store
-            $db->query("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)", [
+            $db->query("INSERT INTO users (username, email, password, role) VALUES (:username, :email, :password, :role)", [
                 'username' => $username,
                 'email' => $email,
                 'password' => password_hash($password, PASSWORD_BCRYPT),
+                'role' => "Customer",
             ]);
 
             redirect('login');

@@ -151,16 +151,12 @@
                         <h6 class="mb-0">Order Details</h6>
                         <div class="d-flex align-items-center">
                             <span class="me-2 text-sm">Archive </span>
-                            <form id="status-reject" action="transaction-update" method="POST">
+                            <form id="transaction-archive" action="transaction-archive" method="POST">
                                 <input
                                     class="d-none"
                                     name="transaction-id"
                                     value="<?= $transactions[0]['transaction_id'] ?>">
-                                <input
-                                    class="d-none"
-                                    name="status"
-                                    value="Archive">
-                                <button form="status-reject" title="Reject" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-symbols-rounded text-lg">close</i></button>
+                                <button form="transaction-archive" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-symbols-rounded text-lg">close</i></button>
                             </form>
                         </div>
 

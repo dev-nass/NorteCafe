@@ -4,6 +4,9 @@ use Core\Session;
 
 session_start();
 
+// Set the default timezone to Philippine Time (PHT)
+date_default_timezone_set('Asia/Manila');
+
 const BASE_PATH = __DIR__ . '/../';
 const BASE_URL = 'http:localhost/PHP 2025/Norte Cafe/index.php/';
 

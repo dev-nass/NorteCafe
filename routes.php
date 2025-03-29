@@ -53,3 +53,4 @@ $router->get('transaction-pending-show', 'Admin_TransactionController', 'pending
 $router->get('transaction-show', 'Admin_TransactionController', 'show');
 $router->post('transaction-update', 'Admin_TransactionController', 'update');
 $router->get('transaction-table', 'Admin_TransactionController', 'table');
+$router->post('transaction-archive', 'Admin_TransactionController', 'delete');
