@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Userv2;
+
 class UserController {
 
     /**
@@ -9,6 +11,13 @@ class UserController {
     */
     public function index() {
 
+        $user = new Userv2;
+        dd($user->insert([
+            'username' => 'Poke',
+            'email' => 'poke@gmail.com',
+            'password' => 'rawr123',
+            'role' => 'Customer',
+        ]));
         view('user/index.view.php');
     }
 
