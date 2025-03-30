@@ -61,7 +61,8 @@ class Model extends Database
     /**
      * Inert a new record
      * 
-     * We have to check if its existing or not !!! 
+     * We have to check if its existing or not !!!
+     * (we can't just use plain firstWhere that's only applicable for users) 
     */
     public function insert($param = []) 
     {
