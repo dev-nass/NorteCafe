@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Core\Database;
 use Core\PHPMailer\src\PHPMailer;
 use Core\PHPMailer\src\Exception;
@@ -39,30 +40,35 @@ class ForgotPasswordController
             $exp_date = date("U") + 1800; // approx 30mins
 
             $url = "http://localhost/PHP%202025/Norte%20Cafe/public/index.php/reset-pass?selector=" . $token_selector . "&validator=" . bin2hex($token_validate);
-            // $url = "http://localhost/PHP%202025/Norte%20Cafe/public/index.php/reset-pass"; pang try lang
 
             // Each user can only have password reset request once, so we delete extras (1:1)
             $db->query("DELETE FROM password_reset_requests WHERE email = :email", [
                 ":email" => $email,
             ]);
 
-            // We insert a new user that sends a request for password reset
-            $newRequest = $db->query("INSERT INTO password_reset_requests (email, token_selector, token_validate, exp_date) VALUES (:email, :token_selector, :token_validate, :exp_date)", [
-                "email" => $email,
-                "token_selector" => $token_selector,
-                "token_validate" => password_hash($token_validate, PASSWORD_BCRYPT),
-                "exp_date" => $exp_date,
-            ]);
+            $user = new User;
+            $exist = $user->getUser(['email' => $email]);
 
-            if (! $newRequest) {
-                $message = "Failed to send request";
+            if ($exist) {
+                // We insert a new user that sends a request for password reset
+                $newRequest = $db->query("INSERT INTO password_reset_requests (email, token_selector, token_validate, exp_date) VALUES (:email, :token_selector, :token_validate, :exp_date)", [
+                    "email" => $email,
+                    "token_selector" => $token_selector,
+                    "token_validate" => password_hash($token_validate, PASSWORD_BCRYPT),
+                    "exp_date" => $exp_date,
+                ]);
+
+                if (! $newRequest) {
+                    dd("Failed to send request");
+                }
+
+                $this->email($email, $url);
             }
 
-            if ($newRequest) {
-                $message = " If an account associated with this email address is in our records, a password reset link will be sent to your email. Please check your inbox.";
-            }
 
-            $this->email($email, $url);
+            $message = "If an account associated with this email address is in our records, a password reset link will be sent to your email. Please check your inbox.";
+
+
 
             view("auth/forgot-pass.view.php", [
                 'message' => $message,
