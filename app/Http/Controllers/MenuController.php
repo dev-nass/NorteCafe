@@ -26,7 +26,7 @@ class MenuController {
 
         $add_ons = $db->query("SELECT * FROM add_ons")->get();
         
-        view('user/menu/index.view.php', [
+        view('Customer/menu/index.view.php', [
             'menu_items' => $menu_items,
             'pages' => $pages['pagination'],
             'menu_item_categories' => $menu_item_categories,

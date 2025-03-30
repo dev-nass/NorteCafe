@@ -27,11 +27,10 @@ class LoginController {
             if($auth->attempt($email, $password)) {
 
                 $userModel = new User;
-                $userModel->setUser($email);
-                $authUser = $userModel->getUser();
+                $authUser = $userModel->getUser(['email' => $email]);
                 Session::set('__currentUser', 'credentials', $authUser);
 
-                redirect('index');
+                $userModel->loadRoleView();
             }
 
             $errors['email'] = "Account does not exist";

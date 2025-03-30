@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\Userv2;
+
 class UserController {
 
     /**
@@ -9,31 +12,32 @@ class UserController {
     */
     public function index() {
 
-        view('user/index.view.php');
+        
+        view('Customer/index.view.php');
     }
 
     public function contactUs() {
 
-        view('user/contactUs.view.php');
+        view('Customer/contactUs.view.php');
     }
 
     public function aboutUsNorteCafe() {
 
-        view('user/aboutUsNorteCafe.view.php');
+        view('Customer/aboutUsNorteCafe.view.php');
     }
 
     public function aboutUsDevelopers() {
 
-        view('user/aboutUsDevelopers.view.php');
+        view('Customer/aboutUsDevelopers.view.php');
     }
 
     public function faqs() {
 
-        view('user/faqs.view.php');
+        view('Customer/faqs.view.php');
     }
 
     public function deliveryDetails() {
 
-        view('user/delivery-details.view.php');
+        view('Customer/delivery-details.view.php');
     }
 }
