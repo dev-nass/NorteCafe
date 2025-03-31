@@ -3,41 +3,41 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use App\Models\Userv2;
+use App\Models\User;
 
-class UserController {
+class UserController
+{
 
     /**
      * General Web Pages
-    */
-    public function index() {
-
-        
+     */
+    public function index()
+    {
         view('Customer/index.view.php');
     }
 
-    public function contactUs() {
-
+    public function contactUs()
+    {
         view('Customer/contactUs.view.php');
     }
 
-    public function aboutUsNorteCafe() {
-
+    public function aboutUsNorteCafe()
+    {
         view('Customer/aboutUsNorteCafe.view.php');
     }
 
-    public function aboutUsDevelopers() {
-
+    public function aboutUsDevelopers()
+    {
         view('Customer/aboutUsDevelopers.view.php');
     }
 
-    public function faqs() {
-
+    public function faqs()
+    {
         view('Customer/faqs.view.php');
     }
 
-    public function deliveryDetails() {
-
+    public function deliveryDetails()
+    {
         view('Customer/delivery-details.view.php');
     }
 }

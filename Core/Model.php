@@ -78,7 +78,7 @@ class Model extends Database
         $insertRecord = $this->query($sql, $values);
 
         if($insertRecord) {
-            // Get the last inserted id
+            // Get the last inserted id (useful for transactions)
             $lastInsertId = $this->connection->lastInsertId();
 
             // Fetch the newly insert ID
@@ -96,7 +96,7 @@ class Model extends Database
         $this->iniDB();
         $keys = array_keys($param);
         $values = array_values($param);
-        $columns = implode(" = ? ", $keys) . " = ?";
+        $columns = implode(" = ?, ", $keys) . " = ?";
 
         $table = substr($this->table, 0, -1);
 

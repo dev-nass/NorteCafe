@@ -27,7 +27,7 @@ class LoginController {
             if($auth->attempt($email, $password)) {
 
                 $userModel = new User;
-                $authUser = $userModel->getUser(['email' => $email]);
+                $authUser = $userModel->findUser(['email' => $email]);
                 Session::set('__currentUser', 'credentials', $authUser);
 
                 $userModel->loadRoleView();

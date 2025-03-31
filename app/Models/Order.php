@@ -3,20 +3,57 @@
 namespace App\Models;
 
 use Core\Database;
+use Core\Model;
 
-class Order
+class Order extends Model
 {
 
-    public function getPendingOrders()
+    protected $table = "orders";
+    protected $user_id;
+    protected $amount_due; // for transaction table
+    protected $status = "Pending";
+
+    protected $total_price = []; // for order table, array bcz each order record has different total_price due to quantity
+    protected $cart_items = [];
+
+
+    public function __construct($user_id, $amount_due, $total_price = [], $cart_items = [])
     {
+        $this->user_id = $user_id;
+        $this->amount_due = $amount_due;
+        $this->total_price = $total_price;
+        $this->cart_items = $cart_items;
+    }
 
-        $db = new Database;
-        $db->iniDB();
 
-        $orders = $db->query("SELECT * FROM transactions WHERE status = :status", [
-            "status" => "pending"
-        ])->get();
+    /**
+     * Used for placing the order
+    */
+    public function placeOrder()
+    {
+        $transaction = new Transaction;
+        $lastInsertedRecord = $transaction->insert([
+            "user_id" => $this->user_id,
+            "amount_due" => $this->amount_due,
+            "status" => $this->status,
+        ]);
+        
+        $cart = new Cart;
 
-        return $orders;
+        if ($lastInsertedRecord) {
+            foreach ($this->cart_items as $index => $cart_id) {
+                $total_price = $this->total_price[$index];
+                $this->insert([
+                    "transaction_id" => $lastInsertedRecord['transaction_id'],
+                    "cart_id" => $cart_id,
+                    "total_price" => $total_price,
+                ]);
+
+                $cart->update($cart_id, [
+                    "order_placed" => true,
+                ]);
+            }
+        }
+
     }
 }

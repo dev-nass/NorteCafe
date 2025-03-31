@@ -35,7 +35,7 @@ class User extends Model
      * Get a single user record
      * (Useful for direct class access, not on subclasses)
     */
-    public function getUser($param)
+    public function findUser($param)
     {
         $this->iniDB();
 

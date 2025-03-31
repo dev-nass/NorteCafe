@@ -47,7 +47,7 @@ class ForgotPasswordController
             ]);
 
             $user = new User;
-            $exist = $user->getUser(['email' => $email]);
+            $exist = $user->findUser(['email' => $email]);
 
             if ($exist) {
                 // We insert a new user that sends a request for password reset
