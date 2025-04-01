@@ -108,3 +108,6 @@ public function route($uri, $method) {
 - Router.php
 - Middleware.php
 - What's multidimensional array
+
+# Inheritance & Encapsulation
+# Discount
