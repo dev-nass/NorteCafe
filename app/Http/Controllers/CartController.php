@@ -40,10 +40,14 @@ class CartController
             ->query("SELECT * FROM add_ons")
             ->get();
 
+        // fetching all available discounts
+        $available_discounts = $db->query("SELECT * FROM discounts")->get();
+
         view('Customer/cart/index.view.php', [
             'cartMenuItems' => $cartMenuItems,
             'menu_item_sizes' => $menu_item_sizes,
             'add_ons' => $add_ons,
+            'available_discounts' => $available_discounts,
         ]);
     }
 

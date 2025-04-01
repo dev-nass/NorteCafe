@@ -62,9 +62,11 @@ class OrderController
 
             $order = new Order(
                 $_SESSION['__currentUser']['credentials']['user_id'], 
+                $_POST['discount_id'],
                 $_POST['amount_due'],
                 $_POST['total_price'],
                 $_POST['cart_item'],
+                
             );
             
             $order->placeOrder();

@@ -72,7 +72,7 @@
                                                         </div>
                                                         <div class="offcanvas-body">
                                                             <div class="d-flex justify-content-center">
-                                                                <img src="https://picsum.photos/id/<?= $item['menu_item_id'] ?>/500/300" class="img-fluid rounded-start" alt="...">
+                                                                <img src="<?= $item['image_dir'] ?>" class="img-fluid rounded-start" alt="...">
                                                             </div>
                                                             <div>
                                                                 <h5 class="mt-2"><?= $item['name'] ?></h5>
@@ -130,8 +130,7 @@
                                                                                 value="<?= $add_on['add_on_id'] ?>"
                                                                                 id="vbtn-radio-id<?= $item['cart_id'] . '-' . $add_on['add_on_id'] ?>"
                                                                                 autocomplete="off"
-                                                                                <?= $item['add_on_name'] === $add_on['name'] ? 'checked' : '' ?>
-                                                                                >
+                                                                                <?= $item['add_on_name'] === $add_on['name'] ? 'checked' : '' ?>>
                                                                             <label
                                                                                 class="btn btn-outline-dark my-1"
                                                                                 for="vbtn-radio-id<?= $item['cart_id'] . '-' . $add_on['add_on_id'] ?>"><?= $add_on['name'] ?> ₱<?= $add_on['price'] ?></label>
@@ -181,21 +180,28 @@
                 <?php endif; ?>
             </div>
 
-            <!-- Total -->
+            <!-- Prices -->
             <div class="col-12 col-lg-4">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Total:
-                            <?php $total = 0.00;
-                            $delivery_fee = 50.00;
-                            $add_ons_price = 0.00 ?>
-                            <?php foreach ($cartMenuItems as $item) : ?>
-                                <?php $add_ons_price += $item['add_on_price']?>
-                                <?php $total += floatval($item['price']) * $item['quantity'] ?>
-                            <?php endforeach; ?>
-                            ₱<?= $total > 0 ? number_format($total + $delivery_fee + $add_ons_price, 2, '.', '') : '0.00' ?>
+                        <!-- Total -->
+                        <h5 class="card-title d-flex">Total:
+                            <span class="ms-1">₱</span>
+                            <span id="total-price">
+                                <?php $total = 0.00;
+                                $delivery_fee = 50.00;
+                                $add_ons_price = 0.00 ?>
+                                <?php foreach ($cartMenuItems as $item) : ?>
+                                    <?php $add_ons_price += $item['add_on_price'] ?>
+                                    <?php $total += floatval($item['price']) * $item['quantity'] ?>
+                                <?php endforeach; ?>
+                                <?= $total > 0 ? number_format($total + $delivery_fee + $add_ons_price, 2, '.', '') : '0.00' ?>
+                            </span>
                         </h5>
+
                         <hr>
+
+                        <!-- Sub Total -->
                         <h6 class="card-subtitle mb-2 text-body-secondary">Sub Total:
                             <?php $subTotal = 0.00; ?>
                             <?php foreach ($cartMenuItems as $item) : ?>
@@ -203,32 +209,99 @@
                             <?php endforeach; ?>
                             ₱<?= number_format($subTotal, 2, '.', '') ?>
                         </h6>
+
+                        <!-- Delivery Fee -->
                         <h6 class="card-subtitle mb-2 text-body-secondary">Delivery Fee: ₱<?= number_format($delivery_fee, 2, '.', '') ?></h6>
-                        <form action="order-store" method="POST">
-                            <?php foreach ($cartMenuItems as $item) : ?>
-                                <!-- This so the only passed value to $_POST is the items added by the current user -->
-                                <?php if ($item['user_id'] === $_SESSION['__currentUser']['credentials']['user_id']) : ?>
-                                    <input
-                                        class="d-none"
-                                        name="cart_item[]"
-                                        value="<?= $item['cart_id'] ?>"
-                                        type="text">
-                                    <!-- This is for the orders table -->
-                                    <input
-                                        class="d-none"
-                                        name="total_price[]"
-                                        value="<?= number_format($item['price'] * $item['quantity'], 2, '.', '') ?>"
-                                        type="text">
-                                    <!-- This is for the transactions table -->
-                                    <input
-                                        class="d-none"
-                                        name="amount_due"
-                                        value="<?= number_format($total + $delivery_fee, 2, '.', '') ?>"
-                                        type="text">
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                            <button class="choco-btn">Place Order</button>
-                        </form>
+
+                        <!-- Selected Voucher Details -->
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Voucher: <span id="selectedVoucherHeader"></span></h6>
+
+                        <!-- Place Order -->
+                        <div class="d-flex align-items-end">
+                            <form action="order-store" method="POST">
+                                <?php foreach ($cartMenuItems as $item) : ?>
+                                    <!-- This so the only passed value to $_POST is the items added by the current user -->
+                                    <?php if ($item['user_id'] === $_SESSION['__currentUser']['credentials']['user_id']) : ?>
+                                        <input
+                                            class="d-none"
+                                            name="cart_item[]"
+                                            value="<?= $item['cart_id'] ?>"
+                                            type="text">
+                                        <!-- This is for the orders table -->
+                                        <input
+                                            class="d-none"
+                                            name="total_price[]"
+                                            value="<?= number_format($item['price'] * $item['quantity'], 2, '.', '') ?>"
+                                            type="text">
+                                        <!-- This is for the transactions table -->
+                                        <input
+                                            id="amount_due_input"
+                                            class="d-none"
+                                            name="amount_due"
+                                            value="<?= number_format($total + $delivery_fee, 2, '.', '') ?>"
+                                            type="text">
+                                        <!-- Selected Discount Voucher -->
+                                        <input
+                                            id="selected_voucher_input"
+                                            class="d-none"
+                                            name="discount_id"
+                                            value="">
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                <button class="choco-btn">Place Order</button>
+                            </form>
+                            <button title="voucher" type="button" class="btn btn-outline-success ms-3" data-bs-toggle="modal" data-bs-target="#voucherModal">
+                                <i class="fa-solid fa-ticket"></i>
+                            </button>
+                        </div>
+
+                        <!-- Discounts Modal -->
+                        <div class="modal fade" id="voucherModal" tabindex="-1" aria-labelledby="voucherModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Available Vouchers</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row g-3">
+                                            <?php foreach ($available_discounts as $discount): ?>
+                                                <?php if ($discount['min_amount'] <= $total): ?>
+
+                                                    <!-- Discount Container -->
+                                                    <div class="col-12 col-md-6">
+
+                                                        <input
+                                                            class="d-none"
+                                                            name="discounted_price"
+                                                            value="<?= $discount['value'] ?>">
+
+                                                        <button form="form-discount-id<?= $discount['discount_id'] ?>" class="btn btn-outline-success w-100 select-discount"
+                                                            data-id="<?= $discount['discount_id'] ?>"
+                                                            data-name="<?= $discount['name'] ?>"
+                                                            data-value="<?= $discount['value'] ?>"
+                                                            data-type="<?= $discount['type'] ?>">
+
+                                                            <?php $discounted_price = $discount['value'] ?>
+
+                                                            <strong><?= $discount['name'] ?></strong>
+
+                                                            <p>Min: ₱<?= $discount['min_amount'] ?></p>
+                                                        </button>
+
+                                                    </div>
+
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
