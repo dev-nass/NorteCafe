@@ -111,3 +111,4 @@ public function route($uri, $method) {
 
 # Inheritance & Encapsulation
 # Discount
+# Sample
