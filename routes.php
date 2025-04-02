@@ -48,6 +48,7 @@ $router->post('order-store', 'OrderController', 'store');
  * Profiling
 */
 $router->get('profile', 'ProfileController', 'index');
+$router->post('profile', 'ProfileController', 'update');
 
 
 /**

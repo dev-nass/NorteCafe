@@ -41,7 +41,7 @@
                     <a href="cart" class="text-dark"><i class="fa-solid fa-cart-shopping mb-4"></i></a>
                     <div class="profile">
                         <?php if (isset($_SESSION['__currentUser'])) : ?>
-                            <a href="#" class="choco-btn">
+                            <a href="profile" class="choco-btn">
                                 <?= $_SESSION['__currentUser']['credentials']['username'] ?>
                             </a>
                         <?php else : ?>
@@ -55,10 +55,15 @@
 
             <!-- Profile (Large scren) -->
             <div class="ms-auto d-none d-lg-flex align-items-center">
-                <a href="cart" class="text-dark"><i class="fa-solid fa-cart-shopping me-3"></i></a>
-                <div class="profile">
+                <a href="cart" class="text-dark position-relative">
+                    <i class="fa-solid fa-cart-shopping fs-6"></i>
+                    <span class="position-absolute top-25 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: .6rem;">
+                        1
+                    </span>
+                </a>
+                <div class="profile ms-3">
                     <?php if (isset($_SESSION['__currentUser'])) : ?>
-                        <a href="#" class="choco-btn">
+                        <a href="profile" class="choco-btn">
                             <?= $_SESSION['__currentUser']['credentials']['username'] ?>
                         </a>
                     <?php else : ?>
