@@ -44,6 +44,11 @@ $router->delete('cart-delete', 'CartController', 'destroy');
 $router->post('order-store', 'OrderController', 'store');
 
 
+/**
+ * Profiling
+*/
+$router->get('profile', 'ProfileController', 'index');
+
 
 /**
  * Admin side

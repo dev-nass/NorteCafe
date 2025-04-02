@@ -218,7 +218,7 @@
 
                         <!-- Place Order -->
                         <div class="d-flex align-items-end">
-                            <form action="order-store" method="POST">
+                            <form id="place-order-form" action="order-store" method="POST">
                                 <?php foreach ($cartMenuItems as $item) : ?>
                                     <!-- This so the only passed value to $_POST is the items added by the current user -->
                                     <?php if ($item['user_id'] === $_SESSION['__currentUser']['credentials']['user_id']) : ?>
@@ -248,7 +248,7 @@
                                             value="">
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                                <button class="choco-btn">Place Order</button>
+                                <button id="place-order-btn" class="choco-btn">Place Order</button>
                             </form>
                             <button title="voucher" type="button" class="btn btn-outline-success ms-3" data-bs-toggle="modal" data-bs-target="#voucherModal">
                                 <i class="fa-solid fa-ticket"></i>

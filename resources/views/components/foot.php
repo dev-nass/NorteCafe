@@ -6,7 +6,7 @@
                 <!-- LOGO Column Kamote nanaman -->
                 <div class="col-12 col-md-6 col-lg-3 mt-3">
                     <div>
-                        <img src="../../storage/frontend/user/img/index/norte-cafe-footer.png" >
+                        <img src="../../storage/frontend/user/img/index/norte-cafe-footer.png">
                     </div>
                 </div>
 
@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        
+
         <!-- Copyright -->
         <div class="container text-center pt-5 pb-3">
             <hr>
@@ -66,9 +66,12 @@
     <script src="../../resources/js/menu/quantityUpdate.js" defer></script>
     <script src="../../resources/js/menu/selectOnlyOneAddOn.js" defer></script>
     <script src="../../resources/js/cart/selectDiscount.js" defer></script>
+    <script src="../../resources/js/cart/placeOrderConfirmation.js" defer></script>
 
-    
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
 
     </html>
