@@ -31,63 +31,63 @@
                                                         class="d-none"
                                                         type="text"
                                                         name="user_id"
-                                                        value="<?= $current_user['user_id'] ?>">
+                                                        value="<?= $_SESSION['__currentUser']['credentials']['user_id'] ?>">
                                                     <div class="col-6">
                                                         <label for="validationCustom01" class="form-label">First name</label>
-                                                        <input type="text" class="form-control" id="validationCustom01" name="first_name" value="<?= $current_user['first_name'] ?>" placeholder="Juan" required>
+                                                        <input type="text" class="form-control" id="validationCustom01" name="first_name" value="<?= $_SESSION['__currentUser']['credentials']['first_name'] ?>" placeholder="Juan" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="validationCustom02" class="form-label">Last name</label>
-                                                        <input type="text" class="form-control" id="validationCustom02" name="last_name" value="<?= $current_user['last_name'] ?>" placeholder="Dela Cruz" required>
+                                                        <input type="text" class="form-control" id="validationCustom02" name="last_name" value="<?= $_SESSION['__currentUser']['credentials']['last_name'] ?>" placeholder="Dela Cruz" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <label for="validationCustom03" class="form-label">Email</label>
-                                                        <input type="email" class="form-control" id="validationCustom03" name="email" value="<?= $current_user['email'] ?>" placeholder="juanDelaCruz@gmail.com" required>
+                                                        <input type="email" class="form-control" id="validationCustom03" name="email" value="<?= $_SESSION['__currentUser']['credentials']['email'] ?>" placeholder="juanDelaCruz@gmail.com" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
                                                         <div class="invalid-feedback">
                                                             Enter a valid email!
                                                         </div>
-                                                        <?php if (! empty($error)) : ?>
+                                                        <?php if (! empty($error['email'])) : ?>
                                                             <div>
-                                                                <p class="text-danger"><?= $error['email'] ?></p>
+                                                                <p class="error-msg text-danger"><?= $error['email'] ?></p>
                                                             </div>
                                                         <?php endif; ?>
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="validationCustom04" class="form-label">Username</label>
-                                                        <input type="text" class="form-control" id="validationCustom04" name="username" value="<?= $current_user['username'] ?>" placeholder="JuanDC" required>
+                                                        <input type="text" class="form-control" id="validationCustom04" name="username" value="<?= $_SESSION['__currentUser']['credentials']['username'] ?>" placeholder="JuanDC" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
-                                                        <?php if (! empty($error)) : ?>
+                                                        <?php if (! empty($error['username'])) : ?>
                                                             <div>
-                                                                <p class="text-danger"><?= $error['username'] ?></p>
+                                                                <p class="error-msg text-danger"><?= $error['username'] ?></p>
                                                             </div>
                                                         <?php endif; ?>
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="validationCustom05" class="form-label">Contact Number</label>
-                                                        <input type="text" class="form-control" id="validationCustom05" name="contact_number" value="<?= $current_user['contact_number'] ?>" placeholder="09XXXXXXXXX" maxlength="11" required>
+                                                        <input type="text" class="form-control" id="validationCustom05" name="contact_number" value="<?= $_SESSION['__currentUser']['credentials']['contact_number'] ?>" placeholder="09XXXXXXXXX" maxlength="11" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
-                                                        <?php if (! empty($error)) : ?>
+                                                        <?php if (! empty($error['contact_number'])) : ?>
                                                             <div>
-                                                                <p class="text-danger"><?= $error['contact_number'] ?></p>
+                                                                <p class="error-msg text-danger"><?= $error['contact_number'] ?></p>
                                                             </div>
                                                         <?php endif; ?>
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="validationCustom06" class="form-label">Age</label>
-                                                        <input type="text" class="form-control" id="validationCustom06" name="age" value="<?= $current_user['age'] ?>" placeholder="69" maxlength="11" required>
+                                                        <input type="text" class="form-control" id="validationCustom06" name="age" value="<?= $_SESSION['__currentUser']['credentials']['age'] ?>" placeholder="69" maxlength="11" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
@@ -95,7 +95,7 @@
                                                     <div class="col-6">
                                                         <label for="validationServer07" class="form-label">Gender</label>
                                                         <select class="form-select form-control" id="validationServer07" name="gender" aria-describedby="validationServer07Feedback" required>
-                                                            <option selected disabled value="<?= $current_user['gender'] ?>">Choose...</option>
+                                                            <option selected disabled value="<?= $_SESSION['__currentUser']['credentials']['gender'] ?>">Choose...</option>
                                                             <option>Male</option>
                                                             <option>Female</option>
                                                         </select>
@@ -203,7 +203,7 @@
                                 <img src="https://picsum.photos/seed/picsum/220/230" alt="" style="border-radius: 40px;">
                             </div>
                             <div class="d-flex flex-column justify-content-center px-3">
-                                <h3 class="text-center mb-4"><?= $current_user['first_name'] . $current_user['last_name'] ?></h3>
+                                <h3 class="text-center mb-4"><?= $_SESSION['__currentUser']['credentials']['first_name'] . $_SESSION['__currentUser']['credentials']['last_name'] ?></h3>
                                 <div class="d-flex justify-content-around align-items-center">
                                     <div class="d-flex flex-column align-items-center">
                                         <p class="mb-0 fs-5">0<i class="material-symbols-rounded fs-6 align-baseline">shopping_cart</i></p>
@@ -221,9 +221,9 @@
                             </div>
                             <hr>
                             <div class="d-flex flex-column align-items-center mt-3">
-                                <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">location_on</i><?= $current_user['address'] ?? "No address" ?></span>
-                                <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">mail</i><?= $current_user['email'] ?? "No email" ?></span>
-                                <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">call</i><?= $current_user['contact_number'] ?? "No contact num" ?></span>
+                                <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">location_on</i><?= $_SESSION['__currentUser']['credentials']['address'] ?? "No address" ?></span>
+                                <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">mail</i><?= $_SESSION['__currentUser']['credentials']['email'] ?? "No email" ?></span>
+                                <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">call</i><?= $_SESSION['__currentUser']['credentials']['contact_number'] ?? "No contact num" ?></span>
                             </div>
                         </div>
                     </div>
@@ -239,23 +239,23 @@
 
                                 <div class="d-flex justify-content-between">
                                     <span class="text-secondary">First Name: </span>
-                                    <p><?= $current_user['first_name'] ?? "NULL" ?></p>
+                                    <p><?= $_SESSION['__currentUser']['credentials']['first_name'] ?? "NULL" ?></p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="text-secondary">Last Name: </span>
-                                    <p><?= $current_user['last_name'] ?? "NULL" ?></p>
+                                    <p><?= $_SESSION['__currentUser']['credentials']['last_name'] ?? "NULL" ?></p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="text-secondary">Username: </span>
-                                    <p><?= $current_user['username'] ?? "NULL" ?></p>
+                                    <p><?= $_SESSION['__currentUser']['credentials']['username'] ?? "NULL" ?></p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="text-secondary">Date of Birth: </span>
-                                    <p><?= $current_user['date_of_birth'] ?? "NULL" ?></p>
+                                    <p><?= $_SESSION['__currentUser']['credentials']['date_of_birth'] ?? "NULL" ?></p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="text-secondary">Gender: </span>
-                                    <p><?= $current_user['gender'] ?? "NULL" ?></p>
+                                    <p><?= $_SESSION['__currentUser']['credentials']['gender'] ?? "NULL" ?></p>
                                 </div>
                             </div>
                             <!-- Shipping Address -->

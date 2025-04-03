@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Core\Database;
 use Core\Session;
+use App\Models\User;
 
 class ProfileController
 {
@@ -14,10 +15,11 @@ class ProfileController
     public function index()
     {
 
-        $current_user = Session::get('__currentUser', 'credentials');
+        // We are using $_SESSION for profiling details
+        // Session::get('__currentUser', 'credentials');
+
 
         view('profiling/index.view.php', [
-            "current_user" => $current_user,
             "error" => [],
         ]);
     }
@@ -32,8 +34,8 @@ class ProfileController
         $db->iniDB();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $current_user = Session::get('__currentUser', 'credentials');
             $error = [];
+            $current_date = date("Y-m-d H:i:s");
 
             $user_id = $_POST['user_id'];
             $first_name = $_POST['first_name'];
@@ -44,7 +46,8 @@ class ProfileController
             $age = $_POST['age'];
             $gender = $_POST['gender'];
 
-            $chck_username = $db->query("SELECT username FROM users WHERE NOT user_id = :user_id", [
+            $chck_username = $db->query("SELECT username FROM users WHERE username = :username AND NOT user_id = :user_id", [
+                "username" => $username,
                 "user_id" => $user_id,
             ])->find();
 
@@ -52,15 +55,18 @@ class ProfileController
                 $error['username'] = "Username already exist";
             }
 
-            $chck_email = $db->query("SELECT email FROM users WHERE NOT user_id = :user_id", [
+            $chck_email = $db->query("SELECT email FROM users WHERE email = :email AND NOT user_id = :user_id", [
+                "email" => $email,
                 "user_id" => $user_id,
             ])->find();
+
 
             if ($chck_email) {
                 $error['email'] = "Email already exist";
             }
 
-            $chck_contact_num = $db->query("SELECT contact_number FROM users WHERE NOT user_id = :user_id", [
+            $chck_contact_num = $db->query("SELECT contact_number FROM users WHERE contact_number = :contact_number AND NOT user_id = :user_id", [
+                "contact_number" => $contact_number,
                 "user_id" => $user_id,
             ])->find();
 
@@ -70,10 +76,29 @@ class ProfileController
 
             if ($error) {
                 view('profiling/index.view.php', [
-                    "current_user" => $current_user,
                     "error" => $error,
                 ]);
             }
+
+            $user = new User;
+
+            $user->update($user_id, [
+                "first_name" => $first_name,
+                "last_name" => $last_name,
+                "email" => $email,
+                "username" => $username,
+                "contact_number" => $contact_number,
+                "age" => $age,
+                "gender" => $gender,
+                "updated_at" => $current_date,
+            ]);
+
+            $authUser = $user->findUser(['email' => $email]);
+            Session::set('__currentUser', 'credentials', $authUser);
+
+            view('profiling/index.view.php', [
+                "error" => [],
+            ]);
         }
     }
 }
