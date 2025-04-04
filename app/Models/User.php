@@ -43,7 +43,7 @@ class User extends Model
         $values = array_values($param);
         $conditions = implode(" = ? ", $keys) . " = ?";
 
-        $sql = "SELECT user_id, first_name, last_name, username, email, contact_number, gender, age, date_of_birth, address, role, available, profile_dir FROM $this->table WHERE $conditions";
+        $sql = "SELECT user_id, first_name, last_name, username, email, contact_number, gender, age, date_of_birth, address, role, house_number, street, barangay, city, provience, region, postal_code, available, profile_dir FROM $this->table WHERE $conditions";
 
         $record = $this->query($sql, $values)->find();
 

@@ -45,6 +45,13 @@ class ProfileController
             $contact_number = $_POST['contact_number'];
             $age = $_POST['age'];
             $gender = $_POST['gender'];
+            $house_number = $_POST["house_number"];
+            $street = $_POST["street"];
+            $barangay= $_POST["barangay"];
+            $city= $_POST["city"];
+            $provience= $_POST["provience"];
+            $region= $_POST["region"];
+            $postal_code= $_POST["postal_code"];
 
             $chck_username = $db->query("SELECT username FROM users WHERE username = :username AND NOT user_id = :user_id", [
                 "username" => $username,
@@ -91,6 +98,13 @@ class ProfileController
                 "age" => $age,
                 "gender" => $gender,
                 "updated_at" => $current_date,
+                "house_number" => $house_number,
+                "street" => $street,
+                "barangay" => $barangay,
+                "city" => $city,
+                "provience" => $provience,
+                "region" => $region,
+                "postal_code" => $postal_code,
             ]);
 
             $authUser = $user->findUser(['email' => $email]);

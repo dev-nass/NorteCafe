@@ -23,11 +23,11 @@
                                 <div class="modal-body p-5">
                                     <form id="profile-update" class="row g-3 needs-validation" action="profile" method="POST" novalidate>
                                         <div class="row">
-                                            <div class="col-3">Account</div>
-                                            <div class="col-9">
+                                            <div class="col-3 mb-3">Account</div>
+                                            <div class="col-9 mb-3">
                                                 <div class="row">
                                                     <!-- Added for the sake of updating -->
-                                                    <input 
+                                                    <input
                                                         class="d-none"
                                                         type="text"
                                                         name="user_id"
@@ -107,75 +107,73 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <!-- <hr> -->
-
-                                        <!-- <div class="row">
+                                            <hr>
+                                            
                                             <div class="col-3">Shipping Address</div>
-                                            <div class="col-9">
+                                            <div class="col-9 mb-3">
                                                 <div class="row">
-                                                    <div class="col-6">
-                                                        <label for="validationCustom01" class="form-label">First name</label>
-                                                        <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+                                                    <div class="col-8">
+                                                        <label for="validationCustom08" class="form-label">House number</label>
+                                                        <input type="text" class="form-control" id="validationCustom08" name="house_number" value="<?= $_SESSION['__currentUser']['credentials']['house_number'] ?>" placeholder="" required>
+                                                        <div class="valid-feedback">
+                                                            Looks good!
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <label for="validationCustom09" class="form-label">Street</label>
+                                                        <input type="text" class="form-control" id="validationCustom09" name="street" value="<?= $_SESSION['__currentUser']['credentials']['street'] ?>" placeholder="" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
-                                                        <label for="validationCustom02" class="form-label">Last name</label>
-                                                        <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-                                                        <div class="valid-feedback">
-                                                            Looks good!
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <label for="validationCustom03" class="form-label">Email</label>
-                                                        <input type="email" class="form-control" id="validationCustom03" value="" placeholder="myemail@gmail.com" required>
-                                                        <div class="valid-feedback">
-                                                            Looks good!
-                                                        </div>
-                                                        <div class="invalid-feedback">
-                                                            Enter a valid email!
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label for="validationCustom04" class="form-label">Username</label>
-                                                        <input type="text" class="form-control" id="validationCustom04" value="Mark" required>
+                                                        <label for="validationCustom10" class="form-label">Barangay</label>
+                                                        <input type="text" class="form-control" id="validationCustom10" name="barangay" value="<?= $_SESSION['__currentUser']['credentials']['barangay'] ?>" placeholder="" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
-                                                        <label for="validationCustom05" class="form-label">Contact Number</label>
-                                                        <input type="text" class="form-control" id="validationCustom05" value="" placeholder="09XXXXXXXXX" maxlength="11" required>
+                                                        <label for="validationCustom08" class="form-label">City</label>
+                                                        <input type="text" class="form-control" id="validationCustom08" name="city" value="<?= $_SESSION['__currentUser']['credentials']['city'] ?>" placeholder="" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
-                                                        <label for="validationCustom06" class="form-label">Age</label>
-                                                        <input type="text" class="form-control" id="validationCustom06" value="" placeholder="" maxlength="11" required>
-                                                        <div class="valid-feedback">
-                                                            Looks good!
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label for="validationServer07" class="form-label">Gender</label>
-                                                        <select class="form-select form-control" id="validationServer07" aria-describedby="validationServer07Feedback" required>
-                                                            <option selected disabled value="">Choose...</option>
-                                                            <option>Male</option>
-                                                            <option>Female</option>
+                                                        <label for="validationServer11" class="form-label">Provience</label>
+                                                        <select class="form-select form-control" id="validationServer11" name="provience" aria-describedby="validationServer11Feedback" required>
+                                                            <option selected disabled value="<?= $_SESSION['__currentUser']['credentials']['provience'] ?>">Choose...</option>
+                                                            <option>Cavite</option>
                                                         </select>
-                                                        <div id="validationServer07Feedback" class="valid-feedback">
+                                                        <div id="validationServer11Feedback" class="valid-feedback">
                                                             Looks good!
                                                         </div>
                                                     </div>
-                                                    <div class="col-12">
+                                                    <div class="col-4">
+                                                        <label for="validationServer12" class="form-label">Region</label>
+                                                        <select class="form-select form-control" id="validationServer12" name="region" aria-describedby="validationServer12Feedback" required>
+                                                            <option selected disabled value="<?= $_SESSION['__currentUser']['credentials']['region'] ?>">Choose...</option>
+                                                            <option>4A</option>
+                                                        </select>
+                                                        <div id="validationServer12Feedback" class="valid-feedback">
+                                                            Looks good!
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <label for="validationServer13" class="form-label">Postal Code</label>
+                                                        <select class="form-select form-control" id="validationServer13" name="postal_code" aria-describedby="validationServer13Feedback" required>
+                                                            <option selected disabled value="<?= $_SESSION['__currentUser']['credentials']['postal_code'] ?>">Choose...</option>
+                                                            <option>4114</option>
+                                                        </select>
+                                                        <div id="validationServer13Feedback" class="valid-feedback">
+                                                            Looks good!
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> -->
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -198,9 +196,9 @@
                 <div class="row gx-md-5">
                     <!-- Profile Card -->
                     <div class="col-12 col-md-6 border white-bg">
-                        <div class="d-flex flex-column py-4">
+                        <div class="d-flex flex-column justify-content-center h-100">
                             <div class="d-flex justify-content-center mb-3">
-                                <img src="https://picsum.photos/seed/picsum/220/230" alt="" style="border-radius: 40px;">
+                                <img src="https://picsum.photos/seed/picsum/230/250" alt="" style="border-radius: 40px;">
                             </div>
                             <div class="d-flex flex-column justify-content-center px-3">
                                 <h3 class="text-center mb-4"><?= $_SESSION['__currentUser']['credentials']['first_name'] . $_SESSION['__currentUser']['credentials']['last_name'] ?></h3>
@@ -266,24 +264,32 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between">
-                                    <span class="text-secondary">Address: </span>
-                                    <p>Blk J1 Lot 14</p>
+                                    <span class="text-secondary">House Number: </span>
+                                    <p><?= $_SESSION['__currentUser']['credentials']['house_number'] ?? "NULL" ?></p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-secondary">Street: </span>
+                                    <p><?= $_SESSION['__currentUser']['credentials']['street'] ?? "NULL" ?></p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="text-secondary">Barangay: </span>
-                                    <p>San Francisco 2</p>
+                                    <p><?= $_SESSION['__currentUser']['credentials']['barangay'] ?? "NULL" ?></p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="text-secondary">City: </span>
-                                    <p>Dasmarinas City</p>
+                                    <p><?= $_SESSION['__currentUser']['credentials']['city'] ?? "NULL" ?></p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="text-secondary">Provience: </span>
-                                    <p>Cavite</p>
+                                    <p><?= $_SESSION['__currentUser']['credentials']['provience'] ?? "NULL" ?></p>
                                 </div>
                                 <div class="d-flex justify-content-between">
-                                    <span class="text-secondary">Country: </span>
-                                    <p>Philippines</p>
+                                    <span class="text-secondary">Region: </span>
+                                    <p><?= $_SESSION['__currentUser']['credentials']['region'] ?? "NULL" ?></p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-secondary">Postal Code: </span>
+                                    <p><?= $_SESSION['__currentUser']['credentials']['postal_code'] ?? "NULL" ?></p>
                                 </div>
                             </div>
                         </div>
