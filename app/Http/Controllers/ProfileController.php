@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Core\Database;
 use Core\Session;
 use App\Models\User;
+use App\Models\Transaction;
 
 class ProfileController
 {
@@ -18,9 +19,23 @@ class ProfileController
         // We are using $_SESSION for profiling details
         // Session::get('__currentUser', 'credentials');
 
+        // current user transactions count
+        $currentUserId = Session::get('__currentUser', 'credentials')['user_id'];
+        $transactionObj = new Transaction;
+        $transactionCount = $transactionObj->countWhere('user_id',  [
+            "user_id" => $currentUserId,
+        ]);
+        Session::set('__currentUserTransactions', 'transaction_count', $transactionCount);
+
+        $db = new Database;
+        $db->iniDB();
+        $recentTransaction = $db->query("SELECT * FROM transactions WHERE user_id = :user_id ORDER BY transaction_id DESC LIMIT 1",[
+            "user_id" => $currentUserId,
+        ])->find();
 
         view('profiling/index.view.php', [
             "error" => [],
+            "recentTransaction" => $recentTransaction,
         ]);
     }
 
@@ -107,8 +122,10 @@ class ProfileController
                 "postal_code" => $postal_code,
             ]);
 
+            // this needs to be repeated, so the sessions can update (not just on login)
             $authUser = $user->findUser(['email' => $email]);
             Session::set('__currentUser', 'credentials', $authUser);
+
 
             view('profiling/index.view.php', [
                 "error" => [],

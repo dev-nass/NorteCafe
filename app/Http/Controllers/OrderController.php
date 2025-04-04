@@ -6,6 +6,7 @@ use Core\Database;
 use Core\Session;
 use App\Models\Transaction;
 use App\Models\Order;
+use App\Models\Cart;
 
 class OrderController
 {
@@ -70,6 +71,10 @@ class OrderController
             );
             
             $order->placeOrder();
+
+            // current user cart count (need here for navbar)
+            $cartObj = new Cart;
+            $cartObj->updateCartCount('user_id');
 
             redirect('cart');
         }

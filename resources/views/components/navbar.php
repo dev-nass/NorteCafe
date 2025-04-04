@@ -57,9 +57,11 @@
             <div class="ms-auto d-none d-lg-flex align-items-center">
                 <a href="cart" class="text-dark position-relative">
                     <i class="fa-solid fa-cart-shopping fs-6"></i>
-                    <span class="position-absolute top-25 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: .6rem;">
-                        1
-                    </span>
+                    <?php if (isset($_SESSION['__currentUserCarts'])) : ?>
+                        <span class="position-absolute top-25 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: .6rem;">
+                            <?= $_SESSION['__currentUserCarts']['cart_count']['COUNT(user_id)'] ?>
+                        </span>
+                    <?php endif; ?>
                 </a>
                 <div class="profile ms-3">
                     <?php if (isset($_SESSION['__currentUser'])) : ?>

@@ -109,7 +109,7 @@
                                             </div>
 
                                             <hr>
-                                            
+
                                             <div class="col-3">Shipping Address</div>
                                             <div class="col-9 mb-3">
                                                 <div class="row">
@@ -201,16 +201,16 @@
                                 <img src="https://picsum.photos/seed/picsum/230/250" alt="" style="border-radius: 40px;">
                             </div>
                             <div class="d-flex flex-column justify-content-center px-3">
-                                <h3 class="text-center mb-4"><?= $_SESSION['__currentUser']['credentials']['first_name'] . $_SESSION['__currentUser']['credentials']['last_name'] ?></h3>
+                                <h3 class="text-center mb-4"><?= $_SESSION['__currentUser']['credentials']['first_name'] . " " . $_SESSION['__currentUser']['credentials']['last_name'] ?></h3>
                                 <div class="d-flex justify-content-around align-items-center">
                                     <div class="d-flex flex-column align-items-center">
-                                        <p class="mb-0 fs-5">0<i class="material-symbols-rounded fs-6 align-baseline">shopping_cart</i></p>
+                                        <p class="mb-0 fs-5"><?= $_SESSION['__currentUserCarts']['cart_count']['COUNT(user_id)'] ?><i class="material-symbols-rounded fs-6 align-baseline">shopping_cart</i></p>
                                         <h6>
                                             Carts
                                         </h6>
                                     </div>
                                     <div class="d-flex flex-column align-items-center">
-                                        <p class="mb-0 fs-5">0<i class="material-symbols-rounded fs-6 align-baseline">receipt_long</i></p>
+                                        <p class="mb-0 fs-5"><?= $_SESSION['__currentUserTransactions']['transaction_count']['COUNT(user_id)'] ?><i class="material-symbols-rounded fs-6 align-baseline">receipt_long</i></p>
                                         <h6>
                                             Transactions
                                         </h6>
@@ -219,7 +219,7 @@
                             </div>
                             <hr>
                             <div class="d-flex flex-column align-items-center mt-3">
-                                <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">location_on</i><?= $_SESSION['__currentUser']['credentials']['address'] ?? "No address" ?></span>
+                                <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">location_on</i><?= $_SESSION['__currentUser']['credentials']['house_number'] . ", " . $_SESSION['__currentUser']['credentials']['street'] ?? "No address" ?></span>
                                 <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">mail</i><?= $_SESSION['__currentUser']['credentials']['email'] ?? "No email" ?></span>
                                 <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">call</i><?= $_SESSION['__currentUser']['credentials']['contact_number'] ?? "No contact num" ?></span>
                             </div>
@@ -301,12 +301,42 @@
                 <div class="row gy-2">
                     <div class="col-12 border white-bg">
                         <div class="d-flex justify-content-between">
-                            <h5 class="mb-4"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1 align-top">location_on</i>Shop Location</h5>
+                            <h5 class="mb-4"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1 align-top">stacks</i>Current Transactions</h5>
                         </div>
 
-                        <div class="d-flex justify-content-between">
-                            <span class="text-secondary">Norte Cafe: </span>
-                            <a href="#">Find Store</a>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Transaction ID: </span>
+                                    <span> <?= $recentTransaction['transaction_id'] ?></span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Status: </span>
+                                    <span> <?= $recentTransaction['status'] ?></span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Amount Due: </span>
+                                    <span>₱<?= $recentTransaction['amount_due'] ?></span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Placed At: </span>
+                                    <span><?= $recentTransaction['created_at'] ?></span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <div class="d-flex align-items-center">
+                                        <span class="text-secondary"></span>
+                                        <a href="current-transactions">View All</a>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <a title="Cancel" class="btn btn-outline-danger text-gradient px-3 mb-0 me-2" href="cancel"><i class="material-symbols-rounded" style="font-size: .9rem;">delete</i></a>
+                                            <a title="View Order" class="btn btn-outline-dark px-3 mb-0" href="javascript:;"><i class="material-symbols-rounded" style="font-size: .9rem;">edit</i></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-12 border white-bg">
@@ -316,7 +346,7 @@
 
                         <div class="d-flex justify-content-between">
                             <span class="text-secondary"></span>
-                            <a href="#">View All</a>
+                            <a href="previous-transactions">View All</a>
                         </div>
                     </div>
                 </div>

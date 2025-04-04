@@ -49,7 +49,7 @@ class Model extends Database
 
         $keys = array_keys($param); // column name
         $values = array_values($param); // value
-        $conditions = implode(" = ? ", $keys) . " = ?";
+        $conditions = implode(" = ? AND ", $keys) . " = ?";
 
         $sql = "SELECT * FROM $this->table WHERE $conditions";
 
@@ -131,5 +131,31 @@ class Model extends Database
         }
 
         return true;
+    }
+
+
+    /**
+     * Count occurences of a record in a table
+     * parameters: $col is what records to count from what columns,
+     * param is for conditions
+    */
+    public function countWhere($col, $param = [])
+    {
+
+        $this->iniDB();
+
+        $keys = array_keys($param);
+        $values = array_values($param);
+        $condition = implode(" = ? AND ", $keys) . " = ?";
+
+        $sql = "SELECT COUNT($col) FROM $this->table WHERE $condition";
+
+        $recordCounted = $this->query($sql, $values)->find();
+
+        if(! $recordCounted) {
+            return false;
+        }
+
+        return $recordCounted;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Core\Database;
 use Core\Session;
+use App\Models\Cart;
 
 class CartController
 {
@@ -51,6 +52,9 @@ class CartController
         ]);
     }
 
+    /**
+     * Triggers when new item is added
+    */
     public function store()
     {
 
@@ -82,6 +86,10 @@ class CartController
                 // } else {
                 //     redirect('search-filter');
                 // }
+                // current user cart count
+                $cartObj = new Cart;
+                $cartObj->updateCartCount('user_id');
+
                 redirect('menu');
             }
         }
@@ -133,6 +141,9 @@ class CartController
             ]);
 
             if($destroyCartEntry) {
+                $cartObj = new Cart;
+                $cartObj->updateCartCount('user_id');
+
                 redirect('cart');
             }
         }

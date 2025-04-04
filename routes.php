@@ -50,6 +50,12 @@ $router->post('order-store', 'OrderController', 'store');
 $router->get('profile', 'ProfileController', 'index');
 $router->post('profile', 'ProfileController', 'update');
 
+/**
+ * Customer Transsaction
+*/
+$router->get('current-transactions', 'TransactionController', 'currentTransactions');
+$router->get('previous-transactions', 'TransactionController', 'previousTransactions');
+
 
 /**
  * Admin side
