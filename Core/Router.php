@@ -40,6 +40,7 @@ class Router
             'controller_class' => $controllerClass,
             'controller_method' => $controllerMethod,
             'middleware' => null,
+            'middleware_role' => null,
         ];
 
         // Added for middleware
@@ -80,10 +81,11 @@ class Router
     /**
      * Used for adding middleware to each route
      */
-    public function only($key)
+    public function only($key, $role = null)
     {
         // we are accessing the $this->routes array like this because its a multidiemnsional array
         $this->routes[array_key_last($this->routes)]['middleware'] = $key;
+        $this->routes[array_key_last($this->routes)]['middleware_role'] = $role;
     }
 
     /**
@@ -96,7 +98,7 @@ class Router
 
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
 
-                Middleware::resolve($route['middleware']);
+                Middleware::resolve($route['middleware'], $route['middleware_role']);
 
                 $controllerClass = 'app\Http\Controllers\\' . $route['controller_class'];
                 $controllerInstance = new $controllerClass();

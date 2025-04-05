@@ -153,17 +153,21 @@ body {
 
 .choco-bg {
     /* background: linear-gradient(130deg, var(--clr-choco), var(--clr-dark)); */
-    background-color: var(--clr-choco);
-    color: var(--clr-white);
+    background-color: var(--clr-choco) !important;
+    color: var(--clr-white) !important;
+}
+
+.choco-gradient-bg {
+    background: linear-gradient(to top, var(--clr-darkest) 10%, var(--clr-choco));
 }
 
 .dark-bg {
-    background-color: var(--clr-dark);
-    color: var(--clr-white);
+    background-color: var(--clr-dark) !important;
+    color: var(--clr-white) !important;
 }
 
 .white-bg {
-    background-color: #fff;
+    background-color: #fff !important;
 }
 
 .whitev2-bg {
@@ -178,6 +182,10 @@ body {
     font-weight: 600;
     text-decoration: none;
     padding: .4rem .8rem;
+}
+
+.btn-circle {
+    border-radius: 100% !important;
 }
 
 /* md */

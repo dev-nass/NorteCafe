@@ -31,7 +31,7 @@ class Admin_TransactionController
 
     /**
      * Used for loading the view of the transactions queue;
-     * the file within folder Request is responsible for the data and AJAX call
+     * the file within folder 'Request' is responsible for the data and AJAX call
      */
     public function queue()
     {
@@ -66,15 +66,15 @@ class Admin_TransactionController
                 "transaction_id" => $transaction_id,
             ])->get();
 
-            $previewsTransactions = $db->query("SELECT * FROM transactions WHERE user_id = :user_id ORDER BY transaction_id DESC", [
-                "user_id" => $transactions[0]['user_id'],
-            ])->get();
-    
-    
-            view('admin/transaction/show.view.php', [
-                'transactions' => $transactions,
-                'previewsTransactions' => $previewsTransactions,
-            ]);
+        $previewsTransactions = $db->query("SELECT * FROM transactions WHERE user_id = :user_id ORDER BY transaction_id DESC", [
+            "user_id" => $transactions[0]['user_id'],
+        ])->get();
+
+
+        view('admin/transaction/show.view.php', [
+            'transactions' => $transactions,
+            'previewsTransactions' => $previewsTransactions,
+        ]);
     }
 
     /**
@@ -153,12 +153,12 @@ class Admin_TransactionController
     }
 
 
-    public function delete() 
+    public function delete()
     {
         $db = new Database;
         $db->iniDB();
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $archivedOrders = $db->query("DELETE FROM orders WHERE transaction_id = :transaction_id", [
                 "transaction_id" => $_POST['transaction-id'],
@@ -168,9 +168,9 @@ class Admin_TransactionController
                 "transaction_id" => $_POST['transaction-id'],
             ]);
 
-            if($archivedTransaction || $archivedOrders) {
+            if ($archivedTransaction || $archivedOrders) {
                 redirect('transaction-table');
             }
         }
-    }   
+    }
 }

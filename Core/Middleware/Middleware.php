@@ -10,7 +10,7 @@ class Middleware
         'auth' => Authenticated::class
     ];
 
-    public static function resolve($key)
+    public static function resolve($key, $role = "")
     {
 
         if (! $key) {
@@ -25,6 +25,6 @@ class Middleware
         }
 
         $instance = new $middleware;
-        $instance->handle();
+        $instance->handle($role);
     }
 }

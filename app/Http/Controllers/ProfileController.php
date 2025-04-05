@@ -29,13 +29,23 @@ class ProfileController
 
         $db = new Database;
         $db->iniDB();
-        $recentTransaction = $db->query("SELECT * FROM transactions WHERE user_id = :user_id ORDER BY transaction_id DESC LIMIT 1",[
+        $recentTransaction = $db->query("SELECT * FROM transactions WHERE user_id = :user_id AND (status = :pending_status OR status = :approved_status) ORDER BY transaction_id DESC LIMIT 1",[
             "user_id" => $currentUserId,
+            "pending_status" => "Pending",
+            "approved_status" => "Approved",
+        ])->find();
+
+        $previousTransaction = $db->query("SELECT * FROM transactions WHERE user_id = :user_id AND (status = :rejected_status OR status = :cancelled_status OR status = :delivered_status)  ORDER BY transaction_id DESC LIMIT 1",[
+            "user_id" => $currentUserId,
+            "rejected_status" => "Rejected",
+            "cancelled_status" => "Cancelled",
+            "delivered_status" => "Delivered",
         ])->find();
 
         view('profiling/index.view.php', [
             "error" => [],
             "recentTransaction" => $recentTransaction,
+            "previousTransaction" => $previousTransaction,
         ]);
     }
 

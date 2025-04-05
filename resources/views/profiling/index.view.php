@@ -299,6 +299,7 @@
             </div>
             <div class="col-12 col-lg-3 ms-lg-2">
                 <div class="row gy-2">
+                    <!-- Current Transaction -->
                     <div class="col-12 border white-bg">
                         <div class="d-flex justify-content-between">
                             <h5 class="mb-4"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1 align-top">stacks</i>Current Transactions</h5>
@@ -308,19 +309,19 @@
                             <div class="col-12">
                                 <div class="d-flex justify-content-between">
                                     <span class="mb-2 text-secondary">Transaction ID: </span>
-                                    <span> <?= $recentTransaction['transaction_id'] ?></span>
+                                    <span> <?= $recentTransaction['transaction_id'] ?? "" ?></span>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="mb-2 text-secondary">Status: </span>
-                                    <span> <?= $recentTransaction['status'] ?></span>
+                                    <span> <?= $recentTransaction['status'] ?? "" ?></span>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="mb-2 text-secondary">Amount Due: </span>
-                                    <span>₱<?= $recentTransaction['amount_due'] ?></span>
+                                    <span>₱<?= $recentTransaction['amount_due'] ?? "" ?></span>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="mb-2 text-secondary">Placed At: </span>
-                                    <span><?= $recentTransaction['created_at'] ?></span>
+                                    <span><?= $recentTransaction['created_at'] ?? "" ?></span>
                                 </div>
                                 <hr>
                                 <div class="d-flex justify-content-between mt-2">
@@ -339,14 +340,46 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Previous Transaction -->
                     <div class="col-12 border white-bg">
                         <div class="d-flex justify-content-between">
-                            <h5 class="mb-4"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1 align-top">History</i>Previews Transactions</h5>
+                            <h5 class="mb-4"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1 align-top">stacks</i>Current Transactions</h5>
                         </div>
 
-                        <div class="d-flex justify-content-between">
-                            <span class="text-secondary"></span>
-                            <a href="previous-transactions">View All</a>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Transaction ID: </span>
+                                    <span> <?= $previousTransaction['transaction_id'] ?? "" ?></span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Status: </span>
+                                    <span> <?= $previousTransaction['status'] ?? "" ?></span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Amount Due: </span>
+                                    <span>₱<?= $previousTransaction['amount_due'] ?? "" ?></span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="mb-2 text-secondary">Placed At: </span>
+                                    <span><?= $previousTransaction['created_at'] ?? "" ?></span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <div class="d-flex align-items-center">
+                                        <span class="text-secondary"></span>
+                                        <a href="previous-transactions">View All</a>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <a title="Cancel" class="btn btn-outline-danger text-gradient px-3 mb-0 me-2" href="cancel"><i class="material-symbols-rounded" style="font-size: .9rem;">delete</i></a>
+                                            <a title="View Order" class="btn btn-outline-dark px-3 mb-0" href="javascript:;"><i class="material-symbols-rounded" style="font-size: .9rem;">edit</i></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
