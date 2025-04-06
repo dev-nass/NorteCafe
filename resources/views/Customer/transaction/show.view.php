@@ -120,7 +120,7 @@
                         </ul>
 
                         <div class="p-0 border h-100">
-                            <img class="w-100 responsive-height" style="object-fit: cover;" src="../../storage/frontend/admin/transaction/delivery-proof-dummy.jpg" alt="delivery-proof">
+                            <img class="w-100 responsive-height" style="object-fit: cover;" src="<?= $transactions[0]['payment_proof_dir'] ?>" alt="delivery-proof">
                         </div>
 
                         <ul class="list-group">

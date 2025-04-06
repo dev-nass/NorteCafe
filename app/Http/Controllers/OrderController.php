@@ -13,7 +13,7 @@ class OrderController
 
     /**
      * Will trigger everytime 'place order' button is clicked
-    */
+     */
     public function store()
     {
 
@@ -21,6 +21,7 @@ class OrderController
         $db->iniDB();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
 
             // $transaction = new Transaction;
 
@@ -61,15 +62,19 @@ class OrderController
             //     redirect('cart');
             // }
 
-            $order = new Order(
-                $_SESSION['__currentUser']['credentials']['user_id'], 
+            $order = new Order;
+
+            $order->setAttributes(
+                $_SESSION['__currentUser']['credentials']['user_id'],
                 $_POST['discount_id'],
                 $_POST['amount_due'],
                 $_POST['total_price'],
                 $_POST['cart_item'],
-                
+                $_POST['location'],
+                $_POST['payment_method'],
+                $_FILES['proof_of_payment']
             );
-            
+
             $order->placeOrder();
 
             // current user cart count (need here for navbar)

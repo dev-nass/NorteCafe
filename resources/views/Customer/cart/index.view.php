@@ -184,6 +184,7 @@
             <div class="col-12 col-lg-4">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
+
                         <!-- Total -->
                         <h5 class="card-title d-flex">Total:
                             <span class="ms-1">₱</span>
@@ -216,9 +217,59 @@
                         <!-- Selected Voucher Details -->
                         <h6 class="card-subtitle mb-2 text-body-secondary">Voucher: <span id="selectedVoucherHeader"></span></h6>
 
-                        <!-- Place Order -->
-                        <div class="d-flex align-items-end">
-                            <form id="place-order-form" action="order-store" method="POST">
+                        <hr>
+
+                        <!-- Address, Payment Method, Place Order Form -->
+                        <form id="place-order-form" action="order-store" method="POST" enctype="multipart/form-data">
+
+                            <!-- Payment Method -->
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Payment Method: </h6>
+                            <div class="d-flex justify-content-around">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethodRadioBtn" id="codRadioBtn" checked>
+                                    <label class="form-check-label" for="codRadioBtn">
+                                        COD
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethodRadioBtn" id="gcashRadioBtn">
+                                    <label class="form-check-label" for="gcashRadioBtn">
+                                        GCASH
+                                    </label>
+                                </div>
+                            </div>
+
+                            <input
+                                id="payment-method-input"
+                                class="d-none"
+                                name="payment_method"
+                                value="COD"
+                                type="text">
+
+                            <!-- Proof of Payment Input -->
+                            <div id="paymentMethodContainer" class="mt-2 d-none">
+                                <div class="input-group mb-3">
+                                    <input id="file-input" name="proof_of_payment" type="file" class="form-control" id="inputGroupFile02">
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <!-- Address -->
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Shipping Address: </h6>
+                            <div class="input-group mb-3">
+                                <textarea
+                                    class="form-control"
+                                    name="location"
+                                    placeholder="House number, Street, Barangay, City, Provience, Region, Postal Code..."
+                                    rows="3"
+                                    aria-label="Username"><?= $_SESSION['__currentUser']['credentials']['house_number'] . ", " . $_SESSION['__currentUser']['credentials']['street'] . ", " . $_SESSION['__currentUser']['credentials']['barangay'] . ", " . $_SESSION['__currentUser']['credentials']['city'] . ", " . $_SESSION['__currentUser']['credentials']['provience'] . ", " . $_SESSION['__currentUser']['credentials']['region'] . ", " . $_SESSION['__currentUser']['credentials']['postal_code'] ?></textarea>
+                            </div>
+
+                            <hr>
+
+                            <!-- Place Order -->
+                            <div class="d-flex align-items-end">
                                 <?php foreach ($cartMenuItems as $item) : ?>
                                     <!-- This so the only passed value to $_POST is the items added by the current user -->
                                     <?php if ($item['user_id'] === $_SESSION['__currentUser']['credentials']['user_id']) : ?>
@@ -248,57 +299,57 @@
                                             value="">
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                                <button id="place-order-btn" class="choco-btn">Place Order</button>
-                            </form>
-                            <button title="voucher" type="button" class="btn btn-outline-success ms-3" data-bs-toggle="modal" data-bs-target="#voucherModal">
-                                <i class="fa-solid fa-ticket"></i>
-                            </button>
-                        </div>
+                                <button id="place-order-btn" form="place-order-form" class="choco-btn">Place Order</button>
+                                <button title="voucher" type="button" class="btn btn-outline-success ms-3" data-bs-toggle="modal" data-bs-target="#voucherModal">
+                                    <i class="fa-solid fa-ticket"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
 
-                        <!-- Discounts Modal -->
-                        <div class="modal fade" id="voucherModal" tabindex="-1" aria-labelledby="voucherModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Available Vouchers</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- Discounts Modal -->
+                    <div class="modal fade" id="voucherModal" tabindex="-1" aria-labelledby="voucherModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Available Vouchers</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row g-3">
+                                        <?php foreach ($available_discounts as $discount): ?>
+                                            <?php if ($discount['min_amount'] <= $total): ?>
+
+                                                <!-- Discount Container -->
+                                                <div class="col-12 col-md-6">
+
+                                                    <input
+                                                        class="d-none"
+                                                        name="discounted_price"
+                                                        value="<?= $discount['value'] ?>">
+
+                                                    <button form="form-discount-id<?= $discount['discount_id'] ?>" class="btn btn-outline-success w-100 select-discount"
+                                                        data-id="<?= $discount['discount_id'] ?>"
+                                                        data-name="<?= $discount['name'] ?>"
+                                                        data-value="<?= $discount['value'] ?>"
+                                                        data-type="<?= $discount['type'] ?>">
+
+                                                        <?php $discounted_price = $discount['value'] ?>
+
+                                                        <strong><?= $discount['name'] ?></strong>
+
+                                                        <p>Min: ₱<?= $discount['min_amount'] ?></p>
+                                                    </button>
+
+                                                </div>
+
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
                                     </div>
-                                    <div class="modal-body">
-                                        <div class="row g-3">
-                                            <?php foreach ($available_discounts as $discount): ?>
-                                                <?php if ($discount['min_amount'] <= $total): ?>
 
-                                                    <!-- Discount Container -->
-                                                    <div class="col-12 col-md-6">
-
-                                                        <input
-                                                            class="d-none"
-                                                            name="discounted_price"
-                                                            value="<?= $discount['value'] ?>">
-
-                                                        <button form="form-discount-id<?= $discount['discount_id'] ?>" class="btn btn-outline-success w-100 select-discount"
-                                                            data-id="<?= $discount['discount_id'] ?>"
-                                                            data-name="<?= $discount['name'] ?>"
-                                                            data-value="<?= $discount['value'] ?>"
-                                                            data-type="<?= $discount['type'] ?>">
-
-                                                            <?php $discounted_price = $discount['value'] ?>
-
-                                                            <strong><?= $discount['name'] ?></strong>
-
-                                                            <p>Min: ₱<?= $discount['min_amount'] ?></p>
-                                                        </button>
-
-                                                    </div>
-
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
-                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -306,6 +357,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
 
     </div>

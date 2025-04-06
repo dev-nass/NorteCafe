@@ -66,6 +66,7 @@
     <script src="../../resources/js/menu/quantityUpdate.js" defer></script>
     <script src="../../resources/js/menu/selectOnlyOneAddOn.js" defer></script>
     <script src="../../resources/js/cart/selectDiscount.js" defer></script>
+    <script src="../../resources/js/cart/paymentMethod.js" defer></script>    
     <script src="../../resources/js/cart/placeOrderConfirmation.js" defer></script>
     <script src="../../resources/js/profiling/errorAlert.js" defer></script>
 
