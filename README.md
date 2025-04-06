@@ -108,6 +108,11 @@ public function route($uri, $method) {
 - Router.php
 - Middleware.php
 - What's multidimensional array
+- Updated Middleware with:
+```php
+->only('auth', 'Customer');
+routes.php > Router.php > Middleware.php > Authenticated.php
+```
 
 # Inheritance & Encapsulation
 # Discount

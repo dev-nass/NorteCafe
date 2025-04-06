@@ -331,8 +331,18 @@
                                     </div>
                                     <div>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <a title="Cancel" class="btn btn-outline-danger text-gradient px-3 mb-0 me-2" href="cancel"><i class="material-symbols-rounded" style="font-size: .9rem;">delete</i></a>
-                                            <a title="View Order" class="btn btn-outline-dark px-3 mb-0" href="javascript:;"><i class="material-symbols-rounded" style="font-size: .9rem;">edit</i></a>
+                                            <form id="transaction-update" action="transaction-update" method="POST">
+                                                <input
+                                                    class="d-none"
+                                                    name="transaction-id"
+                                                    value="<?= $recentTransaction['transaction_id'] ?>">
+                                                <input
+                                                    class="d-none"
+                                                    name="status"
+                                                    value="Cancelled">
+                                                <button for="transaction-update" title="Cancel" class="btn btn-outline-danger text-gradient px-3 mb-0 me-2"><i class="material-symbols-rounded" style="font-size: .9rem;">delete</i></button>
+                                            </form>
+                                            <a title="View Order" class="btn btn-outline-dark px-3 mb-0" href="transaction-show?id=<?= $recentTransaction['transaction_id'] ?>"><i class="material-symbols-rounded" style="font-size: .9rem;">edit</i></a>
                                         </div>
                                     </div>
 

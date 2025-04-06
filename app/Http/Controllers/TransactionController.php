@@ -83,7 +83,7 @@ class TransactionController
 
         $transactions =
             $db->query("SELECT transactions.*, 
-                users.user_id, CONCAT(users.first_name, ' ', users.last_name) AS fullname, users.username, users.email, users.contact_number,
+                users.user_id, CONCAT(users.first_name, ' ', users.last_name) AS fullname, users.username, users.email, users.contact_number, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.provience, ', ', users.region, ', ', users.postal_code) AS address,
                 riders.user_id, CONCAT(riders.first_name, ' ', riders.last_name) as rider_name, riders.contact_number,
                 orders.order_id, orders.transaction_id, orders.cart_id, orders.total_price, 
                 carts.*, 
@@ -102,14 +102,17 @@ class TransactionController
                 "transaction_id" => $transaction_id,
             ])->get();
 
-        $previewsTransactions = $db->query("SELECT * FROM transactions WHERE user_id = :user_id ORDER BY transaction_id DESC", [
+        $previousTransactions = $db->query("SELECT * FROM transactions WHERE user_id = :user_id AND (transactions.status = :rejected_status OR transactions.status = :cancelled_status OR transactions.status = :delivered_status) ORDER BY transaction_id DESC", [
             "user_id" => $transactions[0]['user_id'],
+            "rejected_status" => "Rejected",
+            "cancelled_status" => "Cancelled",
+            "delivered_status" => "Delivered",
         ])->get();
 
 
         view('Customer/transaction/show.view.php', [
             'transactions' => $transactions,
-            'previewsTransactions' => $previewsTransactions,
+            'previousTransactions' => $previousTransactions,
         ]);
     }
 

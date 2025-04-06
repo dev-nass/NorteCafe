@@ -10,20 +10,22 @@
                         <div class="card bg-transparent shadow">
                             <div class="overflow-hidden position-relative border-radius-xl choco-gradient-bg">
                                 <img src="../../resources/assets/img/illustrations/pattern-tree.svg" class="position-absolute opacity-25 start-0 top-0 w-100 z-index-1 h-100" alt="pattern-tree">
-                                <div class="card-body position-relative z-index-1 p-3">
-                                    <h5 class="text-white mt-4">Transaction ID: <?= $transactions[0]['transaction_id'] ?></h5>
+                                <div class="card-body position-relative z-index-1 px-3">
+                                    <h5 class="text-white mt-2">Transaction ID: <?= $transactions[0]['transaction_id'] ?></h5>
                                     <div class="pb-4">
                                         <p class="text-white text-sm opacity-8 mb-0">Status: <span class="text-white mb-0"><?= $transactions[0]['status'] ?></span></p>
                                     </div>
-                                    <div class="d-flex" style="padding-top: 2.3rem;">
-                                        <div class="d-flex">
-                                            <div class="me-4">
-                                                <p class="text-white text-xs opacity-8 mb-0">Customer Name</p>
-                                                <h6 class="text-white mb-0"><?= $transactions[0]['username'] ?></h6>
+                                    <div class="d-flex" style="padding-top: 1rem;">
+                                        <div class="">
+                                            <div class="mb-2">
+                                                <p class="text-white text-xs opacity-8 mb-0">Customer Name: <span class="fw-light"><?= $transactions[0]['username'] ?></span></p>
+                                                <h6 class="text-white mb-0"></h6>
+                                            </div>
+                                            <div class="mb-2">
+                                                <p class="text-white text-xs opacity-8 mb-0">Placed At: <span class="fw-light"><?= date("F d, Y \a\\t h:i A", strtotime($transactions[0]['created_at']));  ?></span></p>
                                             </div>
                                             <div>
-                                                <p class="text-white text-xs opacity-8 mb-0">Placed At</p>
-                                                <h6 class="text-white mb-0"><?= date("F d, Y \a\\t h:i A", strtotime($transactions[0]['created_at']));  ?></h6>
+                                                <h6 class="mb-lg-1 text-white">Address: <span class="fw-light"><?= $transactions[0]['address'] ?></span></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -65,8 +67,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 mb-lg-0 mb-4">
-                        <div class="card mt-4 shadow-sm">
+                    <div class="col-md-12 w-100 mb-lg-0 mb-4">
+                        <div class="card mt-4 p-2 shadow-sm">
                             <div class="pb-0 p-3">
                                 <div class="row">
                                     <div class="col-6 d-flex align-items-center">
@@ -97,7 +99,7 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card h-100 shadow-sm">
+                <div class="card shadow-sm h-100">
                     <div class="pb-0 p-3 white-bg">
                         <div class="row">
                             <div class="col-6 d-flex align-items-center">
@@ -117,8 +119,8 @@
                             </li>
                         </ul>
 
-                        <div class="mb-1">
-                            <img class="w-75 h-100" src="../../storage/frontend/admin/transaction/delivery-proof-dummy.jpg" alt="delivery-proof">
+                        <div class="p-0 border h-100">
+                            <img class="w-100 responsive-height" style="object-fit: cover;" src="../../storage/frontend/admin/transaction/delivery-proof-dummy.jpg" alt="delivery-proof">
                         </div>
 
                         <ul class="list-group">
@@ -126,9 +128,10 @@
                                 <div class="d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column">
                                         <span class="mb-1" style="font-size: .8rem">Delivery At: </span>
-                                        <h6 class="mb-1 text-dark font-weight-bold text-sm">Amount Due: </h6>
-                                        <h6 class="mb-1 text-dark font-weight-bold text-sm">Amount Tendered: </h6>
-                                        <h6 class="mb-1 text-dark font-weight-bold text-sm">Change: </h6>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Voucher: <span class="text-dark">₱<?= $transactions[0]['amount_due'] ?></span></h6>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Due: <span class="text-dark">₱<?= $transactions[0]['amount_due'] ?></span></h6>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Tendered: <span class="text-dark"></span></h6>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Change: <span class="text-dark"></span></h6>
                                     </div>
                                 </div>
                             </li>
@@ -139,13 +142,13 @@
         </div>
 
         <div class="row">
-            <div class="col-md-7 mt-4">
+            <div class="col-12 col-lg-7 mt-4">
                 <div class="card shadow-sm">
                     <div class="pt-4 px-4 d-flex justify-content-between align-items-center white-bg">
                         <h6 class="mb-0">Order Details</h6>
                         <div class="d-flex align-items-center">
                             <span class="me-2 text-sm">Cancel </span>
-                            <form id="transaction-archive" action="transaction-update" method="POST">
+                            <form id="transaction-update" action="transaction-update" method="POST">
                                 <input
                                     class="d-none"
                                     name="transaction-id"
@@ -154,7 +157,7 @@
                                     class="d-none"
                                     name="status"
                                     value="Cancelled">
-                                <button form="transaction-archive" class="btn btn-circle btn-outline-danger mb-0 p-2 btn-sm d-flex align-items-center justify-content-center"><i class="material-symbols-rounded fs-6">close</i></button>
+                                <button form="transaction-update" class="btn btn-circle btn-outline-danger mb-0 p-2 btn-sm d-flex align-items-center justify-content-center"><i class="material-symbols-rounded fs-6">close</i></button>
                             </form>
                         </div>
 
@@ -183,28 +186,28 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 mt-4">
+            <div class="col-12 col-lg-5 mt-4">
                 <div class="card h-100 mb-4 shadow-sm">
                     <div class="pt-4 px-4 white-bg">
                         <div class="row">
                             <div class="col-12">
-                                <h6 class="mb-0">Previews Transactions (Newest)</h6>
+                                <h6 class="mb-0">Previous Transactions (Newest)</h6>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
-                            <?php foreach ($previewsTransactions as $previews) : ?>
+                            <?php foreach ($previousTransactions as $previous) : ?>
                                 <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                     <div class="d-flex align-items-center">
-                                        <a class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 p-2 btn-sm d-flex align-items-center justify-content-center btn-circle" href="transaction-show?id=<?= $previews['transaction_id'] ?>"><i class="material-symbols-rounded fs-6">info_i</i></a>
+                                        <a class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 p-2 btn-sm d-flex align-items-center justify-content-center btn-circle" href="transaction-show?id=<?= $previous['transaction_id'] ?>"><i class="material-symbols-rounded fs-6">info_i</i></a>
                                         <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark text-sm">Transaction ID: <?= $previews['transaction_id'] ?></h6>
-                                            <span class="text-xs"><?= date("F d, Y \a\\t h:i A", strtotime($previews['created_at'])); ?></span>
+                                            <h6 class="mb-1 text-dark text-sm">Transaction ID: <?= $previous['transaction_id'] ?></h6>
+                                            <span class="text-xs"><?= date("F d, Y \a\\t h:i A", strtotime($previous['created_at'])); ?></span>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
-                                        ₱<?= $previews['amount_due'] ?>
+                                        ₱<?= $previous['amount_due'] ?>
                                     </div>
                                 </li>
                             <?php endforeach; ?>
