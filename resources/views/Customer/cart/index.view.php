@@ -14,7 +14,7 @@
                     </div>
                 <?php else : ?>
                     <?php foreach ($cartMenuItems as $item) : ?>
-                        <div>
+                        <div class="shadow-sm">
                             <div class="card mb-3">
                                 <div class="row g-0">
                                     <div class="col-4">
@@ -182,7 +182,7 @@
 
             <!-- Prices -->
             <div class="col-12 col-lg-4">
-                <div class="card" style="width: 18rem;">
+                <div class="card shadow-sm" style="width: 18rem;">
                     <div class="card-body">
 
                         <!-- Total -->
@@ -299,7 +299,7 @@
                                             value="">
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                                <button id="place-order-btn" form="place-order-form" class="choco-btn">Place Order</button>
+                                <button id="place-order-btn" form="place-order-form" class="<?= $subTotal > 150 ? "choco-btn" : "choco-btn-disabled opacity-50" ?>" <?= $subTotal > 150 ? "" : "disabled" ?> >Place Order</button>
                                 <button title="voucher" type="button" class="btn btn-outline-success ms-3" data-bs-toggle="modal" data-bs-target="#voucherModal">
                                     <i class="fa-solid fa-ticket"></i>
                                 </button>

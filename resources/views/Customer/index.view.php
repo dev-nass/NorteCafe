@@ -76,7 +76,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Croffle</h5>
                                 <p class="card-text mt-2 mb-4">A crispy, flaky croissant pressed like a waffle, sweet or savory.</p>
-                                <a href="#" class="white-choco-btn">View Product</a>
+                                <a href="category-filter?search=CROFFLES" class="white-choco-btn">View Product</a>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Sandwhich & Nachos</h5>
                                 <p class="card-text mt-2 mb-4">Crunchy nachos and hearty sandwiches, packed with flavors.</p>
-                                <a href="#" class="white-choco-btn">View Product</a>
+                                <a href="category-filter?search=NACHOS" class="white-choco-btn">View Product</a>
                             </div>
                         </div>
                         <div class="col-4">
@@ -111,7 +111,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Coffee</h5>
                                 <p class="card-text mt-2 mb-4">Rich, aromatic coffee brewed to perfection for a delightful experience for everybody.</p>
-                                <a href="#" class="white-choco-btn">View Product</a>
+                                <a href="category-filter?search=COFFEE" class="white-choco-btn">View Product</a>
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Milktea</h5>
                                 <p class="card-text mt-2 mb-4">Creamy, flavorful, savoring milk tea with chewy boba for a refreshing treat.</p>
-                                <a href="#" class="white-choco-btn">View Product</a>
+                                <a href="category-filter?search=MILKTEA" class="white-choco-btn">View Product</a>
                             </div>
                         </div>
                         <div class="col-4">

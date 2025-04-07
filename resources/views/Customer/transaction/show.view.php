@@ -86,8 +86,32 @@
                                             </div>
 
                                             <div>
-                                                <div class="icon icon-shape icon-lg bg-gradient-dark shadow text-center border-radius-lg choco-gradient-bg p-3 rounded">
-                                                    <i class="material-symbols-rounded opacity-10 text-white">photo_library</i>
+                                                <button title="Proof of Payment" type="button" class="btn choco-gradient-bg" data-bs-toggle="modal" data-bs-target="#proofOfPaymentModal">
+                                                    <div class="icon icon-shape icon-lg bg-gradient-dark shadow text-center border-radius-lg p-2 rounded">
+                                                        <i class="material-symbols-rounded opacity-10 text-white">photo_library</i>
+                                                    </div>
+                                                </button>
+
+                                            </div>
+
+                                            <!-- Proof of Payment Modal -->
+                                            <div class="modal fade" id="proofOfPaymentModal" tabindex="-1" aria-labelledby="proofOfPaymentModal" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Proof of Payment</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="border h-100">
+                                                                <img class="w-100" style="object-fit: cover;" src="<?= $transactions[0]['payment_proof_dir'] ?>" alt="delivery-proof">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -128,7 +152,7 @@
                                 <div class="d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column">
                                         <span class="mb-1" style="font-size: .8rem">Delivery At: </span>
-                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Voucher: <span class="text-dark">₱<?= $transactions[0]['amount_due'] ?></span></h6>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Discount: <span class="text-dark"><?= $transactions[0]['discount_name'] ?></span></h6>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Due: <span class="text-dark">₱<?= $transactions[0]['amount_due'] ?></span></h6>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Tendered: <span class="text-dark"></span></h6>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Change: <span class="text-dark"></span></h6>

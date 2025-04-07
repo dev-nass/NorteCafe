@@ -354,7 +354,7 @@
                     <!-- Previous Transaction -->
                     <div class="col-12 border white-bg">
                         <div class="d-flex justify-content-between">
-                            <h5 class="mb-4"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1 align-top">stacks</i>Current Transactions</h5>
+                            <h5 class="mb-4"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1 align-top">history</i>Previous Transactions</h5>
                         </div>
 
                         <div class="row">

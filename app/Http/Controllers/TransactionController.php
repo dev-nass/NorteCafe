@@ -89,7 +89,8 @@ class TransactionController
                 carts.*, 
                 menu_items.menu_item_id, menu_items.name as menu_item_name, menu_items.category, menu_items.image_dir, 
                 menu_item_sizes.menu_item_size_id, menu_item_sizes.menu_item_id, menu_item_sizes.size, menu_item_sizes.price as menu_item_size_price, 
-                add_ons.add_on_id, add_ons.name as add_on_name, add_ons.price as add_on_price
+                add_ons.add_on_id, add_ons.name as add_on_name, add_ons.price as add_on_price,
+                discounts.discount_id, discounts.name AS discount_name
                 FROM transactions
                 LEFT JOIN users AS users ON users.user_id = transactions.user_id
                 LEFT JOIN users AS riders ON riders.user_id = transactions.rider_id
@@ -98,6 +99,7 @@ class TransactionController
                 LEFT JOIN menu_items ON menu_items.menu_item_id = carts.menu_item_id
                 LEFT JOIN menu_item_sizes ON menu_item_sizes.menu_item_size_id = carts.menu_item_size_id
                 LEFT JOIN add_ons ON add_ons.add_on_id = carts.add_ons_id
+                LEFT JOIN discounts ON discounts.discount_id = transactions.discount_id
                 WHERE transactions.transaction_id = :transaction_id", [
                 "transaction_id" => $transaction_id,
             ])->get();
