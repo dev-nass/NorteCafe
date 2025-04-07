@@ -16,7 +16,7 @@ class Order extends Model
     protected $total_price = []; // for order table, array bcz each order record has different total_price due to quantity
     protected $cart_items = [];
     protected $location;
-    protected $payment_method;
+    protected $payment_method; // will now contian an instance of either CODPayment or GCASHPayment
     protected $proof_of_payment = []; // will contains all element passed by $_FILES
 
 
@@ -39,21 +39,24 @@ class Order extends Model
     public function placeOrder()
     {
         $transaction = new Transaction;
+
+        $payment_details = $this->payment_method->getPaymentDetails();
+
         $lastInsertedRecord = $transaction->insert([
             "user_id" => $this->user_id,
             "discount_id" => $this->discount_id,
             "amount_due" => $this->amount_due,
             "status" => $this->status,
             "location" => $this->location,
-            "payment_method" => $this->payment_method,
+            "payment_method" => $payment_details['payment_method'],
             "payment_proof_dir" => isset($this->proof_of_payment['error']) && $this->proof_of_payment['error'] === 0
                 ? "../../storage/backend/img/proof_of_payment/" . $this->proof_of_payment['name']
                 : NULL,
         ]);
 
-        // We are passing uploading the proof of payment to its directory
-        if ($this->proof_of_payment !== NULL) {
-            $this->uploadFile($this->proof_of_payment);
+        if ($payment_details['payment_method'] === 'GCASH') {
+            // Process the payment (uploads proof for GCash, no-op for COD)
+            $this->payment_method->processPayment($this->amount_due);
         }
 
         $cart = new Cart;
@@ -72,26 +75,5 @@ class Order extends Model
                 ]);
             }
         }
-    }
-
-    /**
-     * Will be used for moving the uploaded proof of payment
-     * to our desired directory
-     */
-    public function uploadFile($file)
-    {
-        $target_dir = BASE_PATH . "storage/backend/img/proof_of_payment/";
-        $target_path = $target_dir . basename($file['name']);
-
-        // Ensure the directory exists
-        if (!is_dir($target_dir)) {
-            mkdir($target_dir, 0777, true);
-        }
-
-        if (move_uploaded_file($file['tmp_name'], $target_path)) {
-            return $target_path;
-        }
-
-        return false;
     }
 }

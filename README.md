@@ -115,5 +115,13 @@ routes.php > Router.php > Middleware.php > Authenticated.php
 ```
 
 # Inheritance & Encapsulation
+```
+Model.php > User.php
+```
 # Discount
 # Sample
+
+# Polymorphism
+```
+PaymentMethod.php > CODPayment.php > GCASHPayment.php > Order.php > OrderController.php
+```
