@@ -258,12 +258,23 @@
                             <!-- Address -->
                             <h6 class="card-subtitle mb-2 text-body-secondary">Shipping Address: </h6>
                             <div class="input-group mb-3">
+                                <?php $addressParts = [
+                                    $_SESSION['__currentUser']['credentials']['house_number'],
+                                    $_SESSION['__currentUser']['credentials']['street'],
+                                    $_SESSION['__currentUser']['credentials']['barangay'],
+                                    $_SESSION['__currentUser']['credentials']['city'],
+                                    $_SESSION['__currentUser']['credentials']['provience'],
+                                    $_SESSION['__currentUser']['credentials']['region'],
+                                    $_SESSION['__currentUser']['credentials']['postal_code'],
+                                ];  
+                                    $address = implode(', ', array_filter($addressParts));
+                                ?>
                                 <textarea
                                     class="form-control"
                                     name="location"
                                     placeholder="House number, Street, Barangay, City, Provience, Region, Postal Code..."
                                     rows="3"
-                                    aria-label="Username"><?= $_SESSION['__currentUser']['credentials']['house_number'] . ", " . $_SESSION['__currentUser']['credentials']['street'] . ", " . $_SESSION['__currentUser']['credentials']['barangay'] . ", " . $_SESSION['__currentUser']['credentials']['city'] . ", " . $_SESSION['__currentUser']['credentials']['provience'] . ", " . $_SESSION['__currentUser']['credentials']['region'] . ", " . $_SESSION['__currentUser']['credentials']['postal_code'] ?></textarea>
+                                    aria-label="Address"><?= htmlspecialchars($address) ?></textarea>
                             </div>
 
                             <hr>

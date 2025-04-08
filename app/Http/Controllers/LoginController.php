@@ -51,4 +51,12 @@ class LoginController
             }
         }
     }
+
+    public function logout()
+    {
+        $auth = new Authenticator;
+        $auth->logout();
+
+        redirect('index');
+    }
 }

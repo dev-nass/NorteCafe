@@ -17,16 +17,20 @@
                                     <div class="pb-4">
                                         <p class="text-white text-sm opacity-8 mb-0">Status: <span class="text-white mb-0"><?= $transactions[0]['status'] ?></span></p>
                                     </div>
-                                    <div class="d-flex" style="padding-top: 2.3rem;">
-                                        <div class="d-flex">
+                                    <div class="d-flex flex-column" style="padding-top: 1rem;">
+                                        <div class="d-flex mb-3">
                                             <div class="me-4">
                                                 <p class="text-white text-xs opacity-8 mb-0">Customer Name</p>
-                                                <h6 class="text-white mb-0"><?= $transactions[0]['username'] ?></h6>
+                                                <h6 class="text-white mb-0 text-xs"><?= $transactions[0]['fullname'] ?></h6>
                                             </div>
                                             <div>
                                                 <p class="text-white text-xs opacity-8 mb-0">Placed At</p>
-                                                <h6 class="text-white mb-0"><?= date("F d, Y \a\\t h:i A", strtotime($transactions[0]['created_at']));  ?></h6>
+                                                <h6 class="text-white mb-0 text-xs"><?= date("F d, Y \a\\t h:i A", strtotime($transactions[0]['created_at']));  ?></h6>
                                             </div>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-lg-1 text-white text-xs opacity-8 d-inline">Address: </h6>
+                                            <span class="text-white text-sm d-inline"><?= $transactions[0]['location'] ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -67,9 +71,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 mb-lg-0 mb-4">
-                        <div class="card mt-4">
-                            <div class="card-header pb-0 p-3">
+                    <div class="col-md-12 w-100 mb-lg-0 mb-4">
+                        <div class="card mt-4 p-2 shadow-sm">
+                            <div class="pb-0 p-3">
                                 <div class="row">
                                     <div class="col-6 d-flex align-items-center">
                                         <h6 class="mb-0">Payment Method</h6>
@@ -79,15 +83,39 @@
                             <div class="card-body p-3">
                                 <div class="row">
                                     <div class="col-12 mb-md-0 mb-4">
-                                        <div class="card card-body border card-plain border-radius-lg d-flex align-items-center justify-content-between flex-row">
+                                        <div class="card card-body border card-plain border-radius-lg pb-2 d-flex align-items-center justify-content-between flex-row">
                                             <div>
                                                 <h6 class="mb-0">Phone Number: 09071055556</h6>
-                                                <span class="">Method: </span>
+                                                <span class="">Method: <?= $transactions[0]['payment_method'] ?></span>
                                             </div>
 
                                             <div>
-                                                <div class="icon icon-shape icon-lg bg-gradient-dark shadow text-center border-radius-lg">
-                                                    <i class="material-symbols-rounded opacity-10">photo_library</i>
+                                                <button title="Proof of Payment" type="button" class="btn choco-gradient-bg" data-bs-toggle="modal" data-bs-target="#proofOfPaymentModal">
+                                                    <div class="icon icon-shape icon-lg bg-gradient-dark shadow text-center border-radius-lg d-flex align-items-center justify-content-center rounded">
+                                                        <i class="material-symbols-rounded opacity-10 text-white">photo_library</i>
+                                                    </div>
+                                                </button>
+
+                                            </div>
+
+                                            <!-- Proof of Payment Modal -->
+                                            <div class="modal fade" id="proofOfPaymentModal" tabindex="-1" aria-labelledby="proofOfPaymentModal" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Proof of Payment</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="border h-100">
+                                                                <img class="w-100" style="object-fit: cover;" src="<?= $transactions[0]['payment_proof_dir'] ?>" alt="delivery-proof">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -99,15 +127,15 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card h-100">
-                    <div class="card-header pb-0 p-3">
+                <div class="card shadow-sm h-100">
+                    <div class="pb-0 p-3 white-bg">
                         <div class="row">
                             <div class="col-6 d-flex align-items-center">
                                 <h6 class="mb-0">Rider Details</h6>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body p-3 pb-0 d-flex flex-column justify-content-between">
+                    <div class="card-body p-3 pt-0 pb-0 d-flex flex-column justify-content-between">
                         <ul class="list-group">
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                 <div class="d-flex flex-column justify-content-between">
@@ -115,26 +143,23 @@
                                         <h4 class="mb-1 text-dark font-weight-bold">Aruthuro Velaskes</h4>
                                         <span class="text-xs">09507373644</span>
                                     </div>
-                                    <div class="d-flex align-items-center text-sm">
-                                        Online
-                                        <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="material-symbols-rounded text-lg position-relative me-1">picture_as_pdf</i> View</button>
-                                    </div>
                                 </div>
                             </li>
                         </ul>
 
-                        <div class="mb-1">
-                            <img class="w-75 h-100" src="../../storage/frontend/admin/transaction/delivery-proof-dummy.jpg" alt="delivery-proof">
+                        <div class="p-0 border h-100">
+                            <img class="w-100 responsive-height" style="object-fit: cover;" src="<?= $transactions[0]['payment_proof_dir'] ?>" alt="delivery-proof">
                         </div>
 
                         <ul class="list-group">
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                 <div class="d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column">
-                                        <span class="mb-1 text-xs">Delivery At: </span>
-                                        <h6 class="mb-1 text-dark font-weight-bold text-sm">Amount Due: </h6>
-                                        <h6 class="mb-1 text-dark font-weight-bold text-sm">Amount Tendered: </h6>
-                                        <h6 class="mb-1 text-dark font-weight-bold text-sm">Change: </h6>
+                                        <span class="mb-1 text-xs" style="font-size: .8rem">Delivery At: </span>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Discount: <span class="text-dark"><?= $transactions[0]['discount_name'] ?></span></h6>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Due: <span class="text-dark">₱<?= $transactions[0]['amount_due'] ?></span></h6>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Tendered: <span class="text-dark"></span></h6>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Change: <span class="text-dark"></span></h6>
                                     </div>
                                 </div>
                             </li>
@@ -151,12 +176,12 @@
                         <h6 class="mb-0">Order Details</h6>
                         <div class="d-flex align-items-center">
                             <span class="me-2 text-sm">Archive </span>
-                            <form id="transaction-archive" action="transaction-archive" method="POST">
+                            <form id="transaction-archive" action="transaction-archive-admin" method="POST">
                                 <input
                                     class="d-none"
                                     name="transaction-id"
                                     value="<?= $transactions[0]['transaction_id'] ?>">
-                                <button form="transaction-archive" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-symbols-rounded text-lg">close</i></button>
+                                <button title="Archive" form="transaction-archive" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-symbols-rounded text-lg">close</i></button>
                             </form>
                         </div>
 
@@ -190,24 +215,24 @@
                     <div class="card-header pb-0 px-3">
                         <div class="row">
                             <div class="col-12">
-                                <h6 class="mb-0">Previews Transactions</h6>
+                                <h6 class="mb-0">Previous Transactions</h6>
                             </div>
                         </div>
                     </div>
                     <div class="card-body pt-4 p-3">
                         <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Newest</h6>
                         <ul class="list-group">
-                            <?php foreach ($previewsTransactions as $previews) : ?>
+                            <?php foreach ($previousTransactions as $previous) : ?>
                                 <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                     <div class="d-flex align-items-center">
-                                        <a class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 p-3 btn-sm d-flex align-items-center justify-content-center" href="transaction-show?transaction_id=<?= $previews['transaction_id'] ?>"><i class="material-symbols-rounded text-lg">info_i</i></a>
+                                        <a class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 p-3 btn-sm d-flex align-items-center justify-content-center" href="transaction-show-admin?transaction_id=<?= $previous['transaction_id'] ?>"><i class="material-symbols-rounded text-lg">info_i</i></a>
                                         <div class="d-flex flex-column">
-                                            <h6 class="mb-1 text-dark text-sm">Transaction ID: <?= $previews['transaction_id'] ?></h6>
-                                            <span class="text-xs"><?= date("F d, Y \a\\t h:i A", strtotime($previews['created_at'])); ?></span>
+                                            <h6 class="mb-1 text-dark text-sm">Transaction ID: <?= $previous['transaction_id'] ?></h6>
+                                            <span class="text-xs"><?= date("F d, Y \a\\t h:i A", strtotime($previous['created_at'])); ?></span>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
-                                        ₱<?= $previews['amount_due'] ?>
+                                        ₱<?= $previous['amount_due'] ?>
                                     </div>
                                 </li>
                             <?php endforeach; ?>

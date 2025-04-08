@@ -25,7 +25,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= urlIs('transaction-queue') ? 'active bg-gradient-dark' : 'text-dark' ?>" href="transaction-queue">
+                <a class="nav-link <?= urlIs('transaction-queue-admin') ? 'active bg-gradient-dark' : 'text-dark' ?>" href="transaction-queue-admin">
                     <i class="material-symbols-rounded opacity-5">receipt_long</i>
                     <span class="nav-link-text ms-1">Transaction Queue</span>
                 </a>
@@ -52,7 +52,7 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Tables</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= urlIs('transaction-table') ? 'active bg-gradient-dark text-light' : 'text-dark' ?>" href="transaction-table">
+                <a class="nav-link <?= urlIs('transaction-table-admin') ? 'active bg-gradient-dark text-light' : 'text-dark' ?>" href="transaction-table-admin">
                     <i class="material-symbols-rounded opacity-5">table_view</i>
                     <span class="nav-link-text ms-1">Transactions</span>
                 </a>

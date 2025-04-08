@@ -18,6 +18,7 @@ $router->get('registration', 'RegistrationController', 'create')->only('guest');
 $router->post('registration', 'RegistrationController', 'store');
 $router->get('login', 'LoginController', 'create')->only('guest');
 $router->post('login', 'LoginController', 'store');
+$router->post('logout', 'LoginController', 'logout');
 // Frogot and Reset Password 
 $router->get('forgot-pass', 'ForgotPasswordController', 'index');
 $router->post('forgot-pass', 'ForgotPasswordController', 'store');
@@ -62,9 +63,9 @@ $router->post('transaction-update', 'TransactionController', 'update')->only('au
 /**
  * Admin side
 */
-$router->get('transaction-queue', 'Admin_TransactionController', 'queue');
-$router->get('transaction-pending-show', 'Admin_TransactionController', 'pending_show');
-$router->get('transaction-show', 'Admin_TransactionController', 'show')->only('auth', 'Admin');
-$router->post('transaction-update', 'Admin_TransactionController', 'update')->only('auth', 'Admin');
-$router->get('transaction-table', 'Admin_TransactionController', 'table');
-$router->post('transaction-archive', 'Admin_TransactionController', 'delete');
+$router->get('transaction-queue-admin', 'Admin_TransactionController', 'queue');
+$router->get('transaction-pending-show-admin', 'Admin_TransactionController', 'pending_show');
+$router->get('transaction-show-admin', 'Admin_TransactionController', 'show')->only('auth', 'Admin');
+$router->post('transaction-update-admin', 'Admin_TransactionController', 'update')->only('auth', 'Admin'); // (Admin/transactions/pending-show) change status "Approved" or "Rejected"
+$router->get('transaction-table-admin', 'Admin_TransactionController', 'table');
+$router->post('transaction-archive-admin', 'Admin_TransactionController', 'delete');

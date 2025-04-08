@@ -32,7 +32,7 @@
                             <td>₱<?= $transaction['amount_tendered'] ?></td>
                             <td>₱<?= $transaction['change'] ?></td>
                             <td><?= $transaction['status'] ?></td>
-                            <td><a class="btn btn-dark" href="transaction-show?transaction_id=<?= $transaction['transaction_id'] ?>">View</a></td>
+                            <td><a class="btn btn-dark" href="transaction-show-admin?transaction_id=<?= $transaction['transaction_id'] ?>">View</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

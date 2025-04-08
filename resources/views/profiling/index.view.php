@@ -185,7 +185,9 @@
                     </div>
                 </div>
                 <div class="">
-                    <a href="profile-edit" class="btn btn-outline-danger">Logout</a>
+                    <form action="logout" method="POST">
+                        <button class="btn btn-outline-danger">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>

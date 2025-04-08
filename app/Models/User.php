@@ -60,7 +60,7 @@ class User extends Model
         $role = $_SESSION['__currentUser']['credentials']['role'];
 
         $routes = [
-            'Admin' => 'transaction-queue',
+            'Admin' => 'transaction-queue-admin',
             'Customer' => 'index',
         ];
 
