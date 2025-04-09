@@ -69,3 +69,6 @@ $router->get('transaction-show-admin', 'Admin_TransactionController', 'show')->o
 $router->post('transaction-update-admin', 'Admin_TransactionController', 'update')->only('auth', 'Admin'); // (Admin/transactions/pending-show) change status "Approved" or "Rejected"
 $router->get('transaction-table-admin', 'Admin_TransactionController', 'table');
 $router->post('transaction-archive-admin', 'Admin_TransactionController', 'delete');
+
+$router->get('menu-upload-admin', 'Admin\Admin_MenuController', 'upload');
+$router->post('menu-store-admin', 'Admin\Admin_MenuController', 'store');

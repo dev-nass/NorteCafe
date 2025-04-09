@@ -31,9 +31,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="../pages/virtual-reality.html">
-                    <i class="material-symbols-rounded opacity-5">view_in_ar</i>
-                    <span class="nav-link-text ms-1">Virtual Reality</span>
+                <a class="nav-link <?= urlIs('menu-upload-admin') ? 'active bg-gradient-dark' : 'text-dark' ?>" href="menu-upload-admin">
+                    <i class="material-symbols-rounded opacity-5">add_shopping_cart</i>
+                    <span class="nav-link-text ms-1">Add Menu Item</span>
                 </a>
             </li>
             <li class="nav-item">

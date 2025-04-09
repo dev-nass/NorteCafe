@@ -40,7 +40,8 @@
 
 <!-- My Personal JS -->
 <script src="../../js/app.js" type="module"></script>
-<script src="../../resources/js/transaction/transactionQueueAJAX.js"></script>
+<script src="../../resources/js/transaction/transactionQueueAJAX.js" defer></script>
+<script src="../../resources/js/transaction/drag&DropMenuImg.js" defer></script>
 
 <!-- Data Table -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script> <!-- jQuery FIRST -->
