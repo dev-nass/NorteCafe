@@ -21,8 +21,25 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body p-5">
-                                    <form id="profile-update" class="row g-3 needs-validation" action="profile" method="POST" novalidate>
+                                    <form id="profile-update" class="row g-3 needs-validation" action="profile" method="POST" enctype="multipart/form-data" novalidate>
                                         <div class="row">
+                                            <div class="col-3 mb-3">Profile Picture</div>
+                                            <div class="col-9 mb-3" style="width: 500px; height: 500px">
+                                                <div class="bg-white p-4 rounded h-100">
+                                                    <label id="drop-area" class="form-control w-100 h-100" for="input-upload-item">
+                                                        <input class="d-none" name="user-profile-img" type="file" accept="image/*" id="input-upload-item">
+                                                        <div id="image-view-container" class="rounded d-flex flex-column align-items-center justify-content-center h-100" style="border: 1px dashed black; object-fit: cover; background-position: center; background-image: url(<?= $_SESSION['__currentUser']['credentials']['profile_dir'] ?>);">
+                                                            <?php if($_SESSION['__currentUser']['credentials']['profile_dir'] === NULL) : ?>
+                                                                <img class="w-25" src="../../storage/frontend/admin/transaction/upload-logo.png" alt="upload-logo">
+                                                                <p class="text-center text-md mb-0">Click here to upload image</p>
+                                                            <?php endif ; ?>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <hr>
+
                                             <div class="col-3 mb-3">Account</div>
                                             <div class="col-9 mb-3">
                                                 <div class="row">
@@ -95,9 +112,9 @@
                                                     <div class="col-6">
                                                         <label for="validationServer07" class="form-label">Gender</label>
                                                         <select class="form-select form-control" id="validationServer07" name="gender" aria-describedby="validationServer07Feedback" required>
-                                                            <option selected disabled value="<?= $_SESSION['__currentUser']['credentials']['gender'] ?>">Choose...</option>
-                                                            <option>Male</option>
-                                                            <option>Female</option>
+                                                            <option selected disabled>Choose...</option>
+                                                            <option <?= $_SESSION['__currentUser']['credentials']['gender'] === "Male" ? "selected" : "" ?>>Male</option>
+                                                            <option <?= $_SESSION['__currentUser']['credentials']['gender'] === "Female" ? "selected" : "" ?>>Female</option>
                                                         </select>
                                                         <div id="validationServer07Feedback" class="valid-feedback">
                                                             Looks good!
@@ -144,8 +161,8 @@
                                                     <div class="col-6">
                                                         <label for="validationServer11" class="form-label">Provience</label>
                                                         <select class="form-select form-control" id="validationServer11" name="provience" aria-describedby="validationServer11Feedback" required>
-                                                            <option selected disabled value="<?= $_SESSION['__currentUser']['credentials']['provience'] ?>">Choose...</option>
-                                                            <option>Cavite</option>
+                                                            <option disabled>Choose...</option>
+                                                            <option <?= $_SESSION['__currentUser']['credentials']['provience'] === "Cavite" ? "selected" : "" ?> >Cavite</option>
                                                         </select>
                                                         <div id="validationServer11Feedback" class="valid-feedback">
                                                             Looks good!
@@ -154,8 +171,8 @@
                                                     <div class="col-4">
                                                         <label for="validationServer12" class="form-label">Region</label>
                                                         <select class="form-select form-control" id="validationServer12" name="region" aria-describedby="validationServer12Feedback" required>
-                                                            <option selected disabled value="<?= $_SESSION['__currentUser']['credentials']['region'] ?>">Choose...</option>
-                                                            <option>4A</option>
+                                                            <option disabled>Choose...</option>
+                                                            <option <?= $_SESSION['__currentUser']['credentials']['region'] === "4A" ? "selected" : "" ?> >4A</option>
                                                         </select>
                                                         <div id="validationServer12Feedback" class="valid-feedback">
                                                             Looks good!
@@ -164,8 +181,8 @@
                                                     <div class="col-4">
                                                         <label for="validationServer13" class="form-label">Postal Code</label>
                                                         <select class="form-select form-control" id="validationServer13" name="postal_code" aria-describedby="validationServer13Feedback" required>
-                                                            <option selected disabled value="<?= $_SESSION['__currentUser']['credentials']['postal_code'] ?>">Choose...</option>
-                                                            <option>4114</option>
+                                                            <option disabled>Choose...</option>
+                                                            <option <?= $_SESSION['__currentUser']['credentials']['postal_code'] === "4114" ? "selected" : "" ?>>4114</option>
                                                         </select>
                                                         <div id="validationServer13Feedback" class="valid-feedback">
                                                             Looks good!
@@ -200,8 +217,13 @@
                     <div class="col-12 col-md-6 border white-bg">
                         <div class="d-flex flex-column justify-content-center h-100">
                             <div class="d-flex justify-content-center mb-3">
-                                <img src="https://picsum.photos/seed/picsum/230/250" alt="" style="border-radius: 40px;">
+                                <img src="<?= $_SESSION['__currentUser']['credentials']['profile_dir'] != NULL ? $_SESSION['__currentUser']['credentials']['profile_dir'] : "https://picsum.photos/seed/picsum/230/250" ?>" alt="profile" style="border-radius: 40px; height: 250px; width: 230px;">
                             </div>
+                            <?php if ($_SESSION['__currentUser']['credentials']['verified'] == 1) : ?>
+                                <div class="text-center">
+                                    <p><i class="material-symbols-rounded text-lg fs-5 align-middle me-1 align-top text-primary">verified</i>Verified Account</p>
+                                </div>
+                            <?php endif; ?>
                             <div class="d-flex flex-column justify-content-center px-3">
                                 <h3 class="text-center mb-4"><?= $_SESSION['__currentUser']['credentials']['first_name'] . " " . $_SESSION['__currentUser']['credentials']['last_name'] ?></h3>
                                 <div class="d-flex justify-content-around align-items-center">

@@ -80,7 +80,7 @@
                             <div id="image-view-container" class="rounded d-flex flex-column align-items-center justify-content-center h-100" style="border: 1px dashed black; object-fit: cover; background-position: center;">
                                 <img class="w-25" src="../../storage/frontend/admin/transaction/upload-logo.png" alt="upload-logo">
                                 <p class="opacity-4 m-0">500x500</p>
-                                <p class="text-center text-md mb-0">Drag and drop or click here to upload image</p>
+                                <p class="text-center text-md mb-0">Click here to upload image</p>
                             </div>
                         </label>    
                     </div>

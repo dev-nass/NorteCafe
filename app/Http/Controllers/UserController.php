@@ -18,6 +18,7 @@ class UserController
 
     public function contactUs()
     {
+        dd($_SESSION);
         view('Customer/contactUs.view.php');
     }
 

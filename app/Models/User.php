@@ -43,7 +43,7 @@ class User extends Model
         $values = array_values($param);
         $conditions = implode(" = ? ", $keys) . " = ?";
 
-        $sql = "SELECT user_id, first_name, last_name, username, email, contact_number, gender, age, date_of_birth, address, role, house_number, street, barangay, city, provience, region, postal_code, available, profile_dir FROM $this->table WHERE $conditions";
+        $sql = "SELECT user_id, first_name, last_name, username, email, contact_number, gender, age, date_of_birth, address, role, house_number, street, barangay, city, provience, region, postal_code, available, verified, profile_dir FROM $this->table WHERE $conditions";
 
         $record = $this->query($sql, $values)->find();
 
@@ -65,5 +65,26 @@ class User extends Model
         ];
 
         redirect($routes[$role] ?? 'index');
+    }
+
+    /**
+     * Will be used for moving the uploaded profile image
+     * to our desired directory
+     */
+    public function uploadFile($file)
+    {
+        $target_dir = BASE_PATH . "storage/backend/img/profiling/";
+        $target_path = $target_dir . basename($file['name']);
+
+        // Ensure the directory exists
+        if (!is_dir($target_dir)) {
+            mkdir($target_dir, 0777, true);
+        }
+
+        if (move_uploaded_file($file['tmp_name'], $target_path)) {
+            return $target_path;
+        }
+
+        dd('alaws na ups');
     }
 }

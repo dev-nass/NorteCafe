@@ -249,7 +249,7 @@
                             <!-- Proof of Payment Input -->
                             <div id="paymentMethodContainer" class="mt-2 d-none">
                                 <div class="input-group mb-3">
-                                    <input id="file-input" name="proof_of_payment" type="file" class="form-control" id="inputGroupFile02">
+                                    <input id="file-input" name="proof_of_payment" type="file" class="form-control" id="inputGroupFile02" accept="image/*">
                                 </div>
                             </div>
 
@@ -310,7 +310,11 @@
                                             value="">
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                                <button id="place-order-btn" form="place-order-form" class="<?= $subTotal > 150 && isOrderingTime() ? "choco-btn" : "choco-btn-disabled opacity-50" ?>" <?= $subTotal > 150 && isOrderingTime() ? "" : "disabled" ?> >Place Order</button>
+                                <button 
+                                    id="place-order-btn" 
+                                    form="place-order-form" 
+                                    class="<?= $subTotal > 150 && isOrderingTime() && $_SESSION['__currentUser']['credentials']['verified'] == 1 ? "choco-btn" : "choco-btn-disabled opacity-50" ?>" 
+                                    <?= $subTotal > 150 && isOrderingTime() && $_SESSION['__currentUser']['credentials']['verified'] == 1  ? "" : "disabled" ?> >Place Order</button>
                                 <button title="voucher" type="button" class="btn btn-outline-success ms-3" data-bs-toggle="modal" data-bs-target="#voucherModal">
                                     <i class="fa-solid fa-ticket"></i>
                                 </button>

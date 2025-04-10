@@ -1,6 +1,14 @@
 <?php require base_path('resources/views/components/head.php')?>
 <?php require base_path('resources/views/components/navbar.php')?>
 
+<!-- Added for 1st time account log-in -->
+<?php if($_SESSION) : ?>
+    <input
+    class="d-none"
+    id="user_verified_status"
+    value="<?= $_SESSION['__currentUser']['credentials']['verified'] ?>">
+<?php endif ; ?>
+
 
 <!-- SECTION 1 (Hero Section) -->
 <section class="section-container white-bg">

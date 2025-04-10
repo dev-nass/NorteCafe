@@ -29,13 +29,13 @@ class ProfileController
 
         $db = new Database;
         $db->iniDB();
-        $recentTransaction = $db->query("SELECT * FROM transactions WHERE user_id = :user_id AND (status = :pending_status OR status = :approved_status) ORDER BY transaction_id DESC LIMIT 1",[
+        $recentTransaction = $db->query("SELECT * FROM transactions WHERE user_id = :user_id AND (status = :pending_status OR status = :approved_status) ORDER BY transaction_id DESC LIMIT 1", [
             "user_id" => $currentUserId,
             "pending_status" => "Pending",
             "approved_status" => "Approved",
         ])->find();
 
-        $previousTransaction = $db->query("SELECT * FROM transactions WHERE user_id = :user_id AND (status = :rejected_status OR status = :cancelled_status OR status = :delivered_status)  ORDER BY transaction_id DESC LIMIT 1",[
+        $previousTransaction = $db->query("SELECT * FROM transactions WHERE user_id = :user_id AND (status = :rejected_status OR status = :cancelled_status OR status = :delivered_status)  ORDER BY transaction_id DESC LIMIT 1", [
             "user_id" => $currentUserId,
             "rejected_status" => "Rejected",
             "cancelled_status" => "Cancelled",
@@ -62,6 +62,7 @@ class ProfileController
             $error = [];
             $current_date = date("Y-m-d H:i:s");
 
+            $image_dir = $_FILES['user-profile-img'];
             $user_id = $_POST['user_id'];
             $first_name = $_POST['first_name'];
             $last_name = $_POST['last_name'];
@@ -72,11 +73,11 @@ class ProfileController
             $gender = $_POST['gender'];
             $house_number = $_POST["house_number"];
             $street = $_POST["street"];
-            $barangay= $_POST["barangay"];
-            $city= $_POST["city"];
-            $provience= $_POST["provience"];
-            $region= $_POST["region"];
-            $postal_code= $_POST["postal_code"];
+            $barangay = $_POST["barangay"];
+            $city = $_POST["city"];
+            $provience = $_POST["provience"];
+            $region = $_POST["region"];
+            $postal_code = $_POST["postal_code"];
 
             $chck_username = $db->query("SELECT username FROM users WHERE username = :username AND NOT user_id = :user_id", [
                 "username" => $username,
@@ -130,7 +131,16 @@ class ProfileController
                 "provience" => $provience,
                 "region" => $region,
                 "postal_code" => $postal_code,
+                "verified" => true
             ]);
+
+            if ($image_dir['full_path'] !== "") {
+                $user->update($user_id, [
+                    "profile_dir" => "../../storage/backend/img/profiling/" . $image_dir['name'],
+                ]);
+
+                $user->uploadFile($image_dir);
+            }
 
             // this needs to be repeated, so the sessions can update (not just on login)
             $authUser = $user->findUser(['email' => $email]);

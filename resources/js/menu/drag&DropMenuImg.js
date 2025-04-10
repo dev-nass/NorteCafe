@@ -26,13 +26,3 @@ const uploadFile = () => {
 
 
 uploadFileInput.addEventListener('change', uploadFile);
-
-dropAreaLabel.addEventListener('dragover', (e) => {
-    e.preventDefault();
-});
-
-dropAreaLabel.addEventListener('drop', (e) => {
-    e.preventDefault();
-    uploadFileInput.files = e.dataTransfer.files;
-    uploadFile();
-});
