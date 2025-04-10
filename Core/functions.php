@@ -55,3 +55,19 @@ function abort($code = 404)
 
     die();
 }
+
+/**
+ * Used for checking if the shop is open or closed
+*/
+function isOrderingTime()
+{
+    $now = new DateTime('now', new DateTimeZone('Asia/Manila')); // Adjust timezone as needed
+    $start = new DateTime('today 10:00:00', new DateTimeZone('Asia/Manila'));
+    $end = new DateTime('today 20:45:00', new DateTimeZone('Asia/Manila')); // 9 PM = 21:00
+
+    if($now >= $start && $now < $end) {
+        return true;
+    }
+
+    return false;
+}

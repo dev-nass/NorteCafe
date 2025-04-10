@@ -140,8 +140,8 @@
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                 <div class="d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column">
-                                        <h4 class="mb-1 text-dark font-weight-bold">Aruthuro Velaskes</h4>
-                                        <span class="text-xs">09507373644</span>
+                                        <h4 class="mb-1 text-dark font-weight-bold"><?= $transactions[0]['rider_name'] ?></h4>
+                                        <span class="text-xs"><?= $transactions[0]['contact_number'] ?></span>
                                     </div>
                                 </div>
                             </li>

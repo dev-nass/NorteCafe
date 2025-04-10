@@ -137,66 +137,27 @@
                     </div>
                     <div class="card-body p-3 pb-0">
                         <ul class="list-group">
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex flex-column">
-                                    <h6 class="mb-1 text-dark font-weight-bold text-sm">March, 01, 2020</h6>
-                                    <span class="text-xs">#MS-415646</span>
-                                </div>
-                                <div class="d-flex align-items-center text-sm">
-                                    $180
-                                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="material-symbols-rounded text-lg position-relative me-1">picture_as_pdf</i> PDF</button>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex flex-column">
-                                    <h6 class="text-dark mb-1 font-weight-bold text-sm">February, 10, 2021</h6>
-                                    <span class="text-xs">#RV-126749</span>
-                                </div>
-                                <div class="d-flex align-items-center text-sm">
-                                    $250
-                                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="material-symbols-rounded text-lg position-relative me-1">picture_as_pdf</i> PDF</button>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex flex-column">
-                                    <h6 class="text-dark mb-1 font-weight-bold text-sm">April, 05, 2020</h6>
-                                    <span class="text-xs">#FB-212562</span>
-                                </div>
-                                <div class="d-flex align-items-center text-sm">
-                                    $560
-                                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="material-symbols-rounded text-lg position-relative me-1">picture_as_pdf</i> PDF</button>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex flex-column">
-                                    <h6 class="text-dark mb-1 font-weight-bold text-sm">June, 25, 2019</h6>
-                                    <span class="text-xs">#QW-103578</span>
-                                </div>
-                                <div class="d-flex align-items-center text-sm">
-                                    $120
-                                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="material-symbols-rounded text-lg position-relative me-1">picture_as_pdf</i> PDF</button>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
-                                <div class="d-flex flex-column">
-                                    <h6 class="text-dark mb-1 font-weight-bold text-sm">March, 01, 2019</h6>
-                                    <span class="text-xs">#AR-803481</span>
-                                </div>
-                                <div class="d-flex align-items-center text-sm">
-                                    $300
-                                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="material-symbols-rounded text-lg position-relative me-1">picture_as_pdf</i> PDF</button>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
-                                <div class="d-flex flex-column">
-                                    <h6 class="text-dark mb-1 font-weight-bold text-sm">March, 01, 2019</h6>
-                                    <span class="text-xs">#AR-803481</span>
-                                </div>
-                                <div class="d-flex align-items-center text-sm">
-                                    $300
-                                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="material-symbols-rounded text-lg position-relative me-1">picture_as_pdf</i> PDF</button>
-                                </div>
-                            </li>
+                            <?php foreach ($availableRiders as $rider) : ?>
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex flex-column">
+                                        <h6 class="mb-1 text-dark font-weight-bold text-sm"><?= $rider['fullname'] ?></h6>
+                                        <span class="text-xs text-success"><?= $rider['available'] ? "Available" : "" ?></span>
+                                    </div>
+                                    <div class="d-flex align-items-center text-sm">
+                                        <form action="transaction-assign-admin" method="POST">
+                                            <input
+                                                class="d-none"
+                                                name="transaction_id"
+                                                value="<?= $transactions[0]['transaction_id'] ?>">
+                                            <input
+                                                class="d-none"
+                                                name="rider_id"
+                                                value="<?= $rider['user_id'] ?>">
+                                            <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="material-symbols-rounded text-lg position-relative me-1">assignment_add</i>Assign</button>
+                                        </form>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>

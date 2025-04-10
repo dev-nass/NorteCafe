@@ -1,8 +1,7 @@
 <?php require base_path('resources/views/components/head.php') ?>
-<?php require base_path('resources/views/components/navbar.php') ?>
 
 
-<section class="section-container white-bg mb-0">
+<section class="white-bg mb-0 py-5">
     <div class="container py-5">
         <div class="row py-5 py-lg-2">
             <div class="col-12 col-lg-6">
@@ -21,5 +20,5 @@
     </div>
 </section>
 
-
-<?php require base_path('resources/views/components/foot.php') ?>
+</body>
+</html>

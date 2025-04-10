@@ -123,6 +123,12 @@ class Admin_TransactionController
             ])->get();
 
         // available rider query
+        $availableRiders = $db->query("SELECT users.user_id, CONCAT(users.first_name, ' ', users.last_name) AS fullname, users.username, users.email, users.contact_number, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.provience, ', ', users.region, ', ', users.postal_code) AS address, users.available
+            FROM users 
+            WHERE role = :role AND available = :available   ", [
+            "role" => "Rider",
+            "available" => 1,
+        ])->get();
 
         // preview transactions
         $previousTransactions = $db->query("SELECT * FROM transactions WHERE user_id = :user_id ORDER BY transaction_id DESC", [
@@ -133,6 +139,7 @@ class Admin_TransactionController
         view('admin/transaction/pending-show.view.php', [
             'transactions' => $transactions,
             'previousTransactions' => $previousTransactions,
+            'availableRiders' => $availableRiders,
         ]);
     }
 
@@ -157,7 +164,30 @@ class Admin_TransactionController
             ]);
 
             if ($updatedStatus) {
-                redirect("transaction-pending-show-admin?id={$_POST['transaction-id']}");
+                redirect("transaction-pending-show-admin?transaction_id={$_POST['transaction-id']}");
+            }
+        }
+    }
+
+    /**
+     * Used for assigning a rider to
+     * a transaction
+     */
+    public function assign()
+    {
+
+        $db = new Database;
+        $db->iniDB();
+
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            $assignedRider = $db->query("UPDATE transactions SET rider_id = :rider_id, status = :approved_status WHERE transaction_id = :transaction_id", [
+                "rider_id" => $_POST['rider_id'],
+                "approved_status" => "Approved",
+                "transaction_id" => $_POST['transaction_id']
+            ]);
+
+            if($assignedRider) {
+                redirect("transaction-show-admin?transaction_id={$_POST['transaction_id']}");
             }
         }
     }

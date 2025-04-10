@@ -310,7 +310,7 @@
                                             value="">
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                                <button id="place-order-btn" form="place-order-form" class="<?= $subTotal > 150 ? "choco-btn" : "choco-btn-disabled opacity-50" ?>" <?= $subTotal > 150 ? "" : "disabled" ?> >Place Order</button>
+                                <button id="place-order-btn" form="place-order-form" class="<?= $subTotal > 150 && isOrderingTime() ? "choco-btn" : "choco-btn-disabled opacity-50" ?>" <?= $subTotal > 150 && isOrderingTime() ? "" : "disabled" ?> >Place Order</button>
                                 <button title="voucher" type="button" class="btn btn-outline-success ms-3" data-bs-toggle="modal" data-bs-target="#voucherModal">
                                     <i class="fa-solid fa-ticket"></i>
                                 </button>

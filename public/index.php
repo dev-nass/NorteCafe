@@ -12,6 +12,8 @@ const BASE_URL = 'http:localhost/PHP 2025/Norte Cafe/index.php/';
 
 require BASE_PATH . 'Core/functions.php';
 
+// dd(isOrderingTime());
+
 /**
  * all instantiation of classes will be load here
  * README for more information
