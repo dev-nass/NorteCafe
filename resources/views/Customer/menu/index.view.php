@@ -41,8 +41,7 @@
                                             name="search"
                                             value="<?= $category['category'] ?>"
                                             autocomplete="off"
-                                            <?= $first ? 'checked' : '' ?>
-                                            >
+                                            <?= $first ? 'checked' : '' ?>>
                                         <label
                                             class="btn btn-outline-dark mb-2 me-2"
                                             for="v-btn-radio-category<?= $category['category'] ?>"><?= $category['category'] ?></label>
@@ -95,6 +94,7 @@
                                         <div>
                                             <button class="<?= $item['available'] ? 'choco-btn' : 'choco-btn-disabled opacity-50' ?>" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling-id<?= $item['menu_item_id'] ?>" aria-controls="offcanvasScrolling" <?= $item['available'] ? '' : 'disabled' ?>><i class="fa-solid fa-cart-plus"></i></button>
 
+                                            <!-- Off canvas (before adding to cart) -->
                                             <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling-id<?= $item['menu_item_id'] ?>" aria-labelledby="offcanvasScrollingLabel">
                                                 <div class="offcanvas-header">
                                                     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Menu Item Details</h5>
@@ -111,7 +111,7 @@
                                                     <hr>
                                                     <!-- Form -->
                                                     <form action="cart-store" method="POST">
-                                                        <div class="bg-danger bg-opacity-10 p-2">
+                                                        <div class="bg-danger bg-opacity-10 p-2 rounded">
                                                             <h5>Variation</h5>
                                                             <p>Sizes: </p>
                                                             <?php $first = true; // Flag to track the first iteration 
@@ -146,11 +146,13 @@
                                                                 <?php endif; ?>
                                                             <?php endforeach; ?>
                                                         </div>
-                                                        <?php if ($item['category'] === 'MILKTEA') : ?>
-                                                            <div class="bg-success bg-opacity-10 p-2 mt-2">
-                                                                <h5>Add Ons</h5>
-                                                                <p>Choose One: </p>
-                                                                <?php foreach ($add_ons as $add_on) : ?>
+                                                        <div class="bg-success bg-opacity-10 p-2 mt-2 rounded">
+                                                            <h5>Add Ons</h5>
+                                                            <p>Choose One: </p>
+                                                            <?php $firstv2 = false; ?>
+                                                            <?php foreach ($add_ons as $add_on) : ?>
+                                                                <?php if ($item['category'] === $add_on['category']) : ?>
+                                                                    <?php $firstv2 = true; ?>
                                                                     <input
                                                                         type="radio"
                                                                         class="btn-check"
@@ -161,9 +163,13 @@
                                                                     <label
                                                                         class="btn btn-outline-dark my-1"
                                                                         for="vbtn-radio-id<?= $item['menu_item_id'] . '-' . $add_on['add_on_id'] ?>"><?= $add_on['name'] ?> ₱<?= $add_on['price'] ?></label>
-                                                                <?php endforeach; ?>
-                                                            </div>
-                                                        <?php endif; ?>
+                                                                <?php endif; ?>
+                                                            <?php endforeach; ?>
+
+                                                            <?php if (! $firstv2) : ?>
+                                                                <p>(No add ons for this product)</p>
+                                                            <?php endif; ?>
+                                                        </div>
 
                                                         <!-- Quantity -->
                                                         <div class="d-flex justify-content-between align-items-center mt-2">

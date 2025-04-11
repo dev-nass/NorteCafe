@@ -24,6 +24,7 @@ class MenuController {
                 INNER JOIN menu_item_sizes as size ON menu_item.menu_item_id = size.menu_item_id"
             )->get();
 
+        // Select all add ons
         $add_ons = $db->query("SELECT * FROM add_ons")->get();
         
         view('Customer/menu/index.view.php', [

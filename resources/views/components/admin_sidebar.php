@@ -37,9 +37,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="../pages/rtl.html">
-                    <i class="material-symbols-rounded opacity-5">format_textdirection_r_to_l</i>
-                    <span class="nav-link-text ms-1">RTL</span>
+                <a class="nav-link <?= urlIs('add-ons-upload-admin') ? 'active bg-gradient-dark' : 'text-dark' ?>" href="add-ons-upload-admin">
+                    <i class="material-symbols-rounded opacity-5">playlist_add</i>
+                    <span class="nav-link-text ms-1">Add Add-On</span>
                 </a>
             </li>
             <li class="nav-item">

@@ -73,3 +73,6 @@ $router->post('transaction-archive-admin', 'Admin_TransactionController', 'delet
 
 $router->get('menu-upload-admin', 'Admin\Admin_MenuController', 'upload');
 $router->post('menu-store-admin', 'Admin\Admin_MenuController', 'store');
+
+$router->get('add-ons-upload-admin', 'Admin\Admin_AddOnsController', 'upload');
+$router->post('add-ons-upload-admin', 'Admin\Admin_AddOnsController', 'store');
