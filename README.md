@@ -103,17 +103,86 @@ public function route($uri, $method) {
 - Category Filter
 - How did Session got involve in this two process
 
-# Middleware
-- routes.php
-- Router.php
-- Middleware.php
-- What's multidimensional array
-- Updated Middleware with:
-```php
-->only('auth', 'Customer');
-routes.php > Router.php > Middleware.php > Authenticated.php
+# Middleware *(Updated ✨)*
+Open these files on tabs in order:
 ```
+routes.php > Router.php > Middleware.php
+```
+- As we all know, we register routes that can be access on our system on `routes.php` file, and this file contains three kinds of registered route;
+```php
+// the normal one
+$router->get('index', 'UserController', 'index');
+// w middleare
+$router->get('registration', 'RegistrationController', 'create')->only('guest');
+// w middleware + role
+$router->get('menu', 'MenuController', 'index')->only('auth', 'Customer');
 
+```
+- The **normal one** simply indicates that it can be access whenever there's logged in or out user etc.,
+- The **w middleware** indicates that the route can only be access when there's no session stored.
+- The **w middleare + role** similar to what's above, however only *authenticated* user that has the role of *Customer* can access.
+
+### How does **only()** actually works?
+- To properly undertand this logic we have to take a closer look within `Router.php` file first:
+```php
+/**
+* Used for adding middleware to each route
+*/
+public function only($key, $role = null)
+{
+    // we are accessing the $this->routes array like this because its a multidiemnsional array
+    $this->routes[array_key_last($this->routes)]['middleware'] = $key;
+    $this->routes[array_key_last($this->routes)]['middleware_role'] = $role;
+}
+```
+- Similar to the `add()` method within `Router.php`, its `only()` method also does the same but it passes the value it received from `routes.php`,
+- Before proceding look at the 3  different kind of registered routes again, focus specifically how we are using `->only()` method there.
+- Notice that the `only()` method within `Router.php` is expecting 2 arguments, because it have two paramters, but why on `routes.php` we can choose whether to pass one or two arguments on `->only()` method? 
+- This is because of this line
+```php
+public function only($key, $role = null)
+```
+- This means that `$key` is always expecting an argument, but `$role` on the otherhand, if it receives value it will use it, but if it didn't it will have a default value of `NULL`, in short passing a value is not required for `$role`.
+
+### Logic behind everything (Middleware)
+- **Notice:** To further understand this, you have to ensure that you understand the logic behinnd `routes()` method within `Router.php` first, how it iterates through every registered routes and stuff.
+- See this line on `routes()` method of `Router.php`:
+```php
+Middleware::resolve($route['middleware'], $route['middleware_role']);
+```
+- Basicaly, what this does is it calls a method named `resolve()` within `Core\Middleware\Middleware.php` another class that we will introduce.
+
+### Middleware Class
+- The class has a property:
+```php
+public const MAP = [
+    'guest' => Guest::class,
+    'auth' => Authenticated::class
+];
+```
+- This is an associative array that will call the respective class within `Core\Middleware\...`
+- But most importantly understand the code within `public static function resolve($key, $role="")`. Basically what this does is it recives the argument passed earlier within `routes()` on `Router.php`:
+```php
+// route() method within Router.php
+Middleware::resolve($route['middleware'], $route['middleware_role']);
+```
+- Now inside the method, if the key passed is not one of those who are indiciated withhin the `MAP` property above, it will just return without doing anything:
+```php
+if (! $key) {
+    return;
+}
+```
+- However, if it is, it means this code can access the propety `MAP` using the key passed and it will return the value, the respective class class
+```php
+// Will contain the Middleware Class
+$middleware = static::MAP[$key] ?? false;
+```
+- Now we can just create an instance of the class, depending whether the key passed within `only` on `routes.php` is either `auth` or `guest`:
+```php
+$instance = new $middleware;
+$instance->handle($role);
+``` 
+- Now its up to you guys to understand `Core\Middleware\Guest.php` and `Core\Middleware\Middleware.php`
 # Inheritance & Encapsulation
 ```
 Model.php > User.php
