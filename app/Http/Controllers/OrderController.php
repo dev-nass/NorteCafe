@@ -23,7 +23,6 @@ class OrderController
         $db->iniDB();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             // $transaction = new Transaction;
 
             // $lastInsertedRecord = $transaction->insert([

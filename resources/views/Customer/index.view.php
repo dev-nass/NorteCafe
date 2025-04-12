@@ -44,7 +44,7 @@
                     <div class="col-6 mt-2">
                         <div class="d-flex">
                             <div class="square"><i class="fa-solid fa-clock h4 square-icon"></i></div>
-                            <div class="ms-2">Open From <br> 9am-10pm</div>
+                            <div class="ms-2">Open From <br> 10am-9pm</div>
                         </div>
                     </div>
                     <div class="col-6 mt-2">

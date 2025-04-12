@@ -118,11 +118,13 @@
                                                                         <?php endif; ?>
                                                                     <?php endforeach; ?>
                                                                 </div>
-                                                                <?php if ($item['category'] === 'MILKTEA') : ?>
-                                                                    <div class="bg-success bg-opacity-10 p-2 mt-2">
-                                                                        <h5>Add Ons</h5>
-                                                                        <p>Choose One: </p>
-                                                                        <?php foreach ($add_ons as $add_on) : ?>
+                                                                <div class="bg-success bg-opacity-10 p-2 mt-2">
+                                                                    <h5>Add Ons</h5>
+                                                                    <p>Choose One: </p>
+                                                                    <?php $add_on_indicator = false ?>
+                                                                    <?php foreach ($add_ons as $add_on) : ?>
+                                                                        <?php if ($item['category'] === $add_on['category']) : ?>
+                                                                            <?php $add_on_indicator = true ?>
                                                                             <input
                                                                                 type="radio"
                                                                                 class="btn-check"
@@ -134,9 +136,13 @@
                                                                             <label
                                                                                 class="btn btn-outline-dark my-1"
                                                                                 for="vbtn-radio-id<?= $item['cart_id'] . '-' . $add_on['add_on_id'] ?>"><?= $add_on['name'] ?> ₱<?= $add_on['price'] ?></label>
-                                                                        <?php endforeach; ?>
-                                                                    </div>
-                                                                <?php endif; ?>
+                                                                        <?php endif; ?>
+                                                                    <?php endforeach; ?>
+
+                                                                    <?php if (! $add_on_indicator) : ?>
+                                                                        <p>(No add ons for this product)</p>
+                                                                    <?php endif; ?>
+                                                                </div>
 
                                                                 <!-- Quantity -->
                                                                 <div class="d-flex justify-content-between align-items-center mt-2">
@@ -182,7 +188,7 @@
 
             <!-- Prices -->
             <div class="col-12 col-lg-4">
-                <div class="card shadow-sm" style="width: 18rem;">
+                <div class="card shadow-sm w-100">
                     <div class="card-body">
 
                         <!-- Total -->
@@ -223,17 +229,19 @@
                         <form id="place-order-form" action="order-store" method="POST" enctype="multipart/form-data">
 
                             <!-- Payment Method -->
-                            <h6 class="card-subtitle mb-2 text-body-secondary">Payment Method: </h6>
+                            <h6 class="card-subtitle mb-3 text-body-secondary">Payment Method: </h6>
                             <div class="d-flex justify-content-around">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="paymentMethodRadioBtn" id="codRadioBtn" checked>
-                                    <label class="form-check-label" for="codRadioBtn">
+                                <div class="form-check p-0">
+                                    <input class="btn-check" type="radio" name="paymentMethodRadioBtn" id="codRadioBtn" checked>
+                                    <label class="btn btn-outline-dark d-flex flex-column" for="codRadioBtn" style="padding: 1rem 3rem;">
+                                        <i class="material-symbols-rounded text-lg fs-5 align-middle me-1 align-top">account_balance_wallet</i>
                                         COD
                                     </label>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="paymentMethodRadioBtn" id="gcashRadioBtn">
-                                    <label class="form-check-label" for="gcashRadioBtn">
+                                <div class="form-check p-0">
+                                    <input class="btn-check" type="radio" name="paymentMethodRadioBtn" id="gcashRadioBtn">
+                                    <label class="btn btn-outline-dark d-flex flex-column" for="gcashRadioBtn" style="padding: 1rem 3rem;">
+                                        <i class="material-symbols-rounded text-lg fs-5 align-middle me-1 align-top">credit_card</i>
                                         GCASH
                                     </label>
                                 </div>
@@ -256,7 +264,7 @@
                             <hr>
 
                             <!-- Address -->
-                            <h6 class="card-subtitle mb-2 text-body-secondary">Shipping Address: </h6>
+                            <h6 class="card-subtitle mb-3 text-body-secondary">Shipping Address: </h6>
                             <div class="input-group mb-3">
                                 <?php $addressParts = [
                                     $_SESSION['__currentUser']['credentials']['house_number'],
@@ -266,8 +274,8 @@
                                     $_SESSION['__currentUser']['credentials']['provience'],
                                     $_SESSION['__currentUser']['credentials']['region'],
                                     $_SESSION['__currentUser']['credentials']['postal_code'],
-                                ];  
-                                    $address = implode(', ', array_filter($addressParts));
+                                ];
+                                $address = implode(', ', array_filter($addressParts));
                                 ?>
                                 <textarea
                                     class="form-control"
@@ -310,11 +318,11 @@
                                             value="">
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                                <button 
-                                    id="place-order-btn" 
-                                    form="place-order-form" 
-                                    class="<?= $subTotal > 150 && isOrderingTime() && $_SESSION['__currentUser']['credentials']['verified'] == 1 ? "choco-btn" : "choco-btn-disabled opacity-50" ?>" 
-                                    <?= $subTotal > 150 && isOrderingTime() && $_SESSION['__currentUser']['credentials']['verified'] == 1  ? "" : "disabled" ?> >Place Order</button>
+                                <button
+                                    id="place-order-btn"
+                                    form="place-order-form"
+                                    class="<?= $subTotal > 150 && isOrderingTime() && $_SESSION['__currentUser']['credentials']['verified'] == 1 ? "choco-btn" : "choco-btn-disabled opacity-50" ?>"
+                                    <?= $subTotal > 150 && isOrderingTime() && $_SESSION['__currentUser']['credentials']['verified'] == 1  ? "" : "disabled" ?>>Place Order</button>
                                 <button title="voucher" type="button" class="btn btn-outline-success ms-3" data-bs-toggle="modal" data-bs-target="#voucherModal">
                                     <i class="fa-solid fa-ticket"></i>
                                 </button>
