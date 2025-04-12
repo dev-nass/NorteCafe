@@ -144,7 +144,7 @@ public function only($key, $role = null)
 ```
 - This means that `$key` is always expecting an argument, but `$role` on the otherhand, if it receives value it will use it, but if it didn't it will have a default value of `NULL`, in short passing a value is not required for `$role`.
 
-### Logic behind everything (Middleware)
+### Logic behind everything (Middleware::resolve)
 - **Notice:** To further understand this, you have to ensure that you understand the logic behinnd `routes()` method within `Router.php` first, how it iterates through every registered routes and stuff.
 - See this line on `routes()` method of `Router.php`:
 ```php
@@ -183,14 +183,116 @@ $instance = new $middleware;
 $instance->handle($role);
 ``` 
 - Now its up to you guys to understand `Core\Middleware\Guest.php` and `Core\Middleware\Middleware.php`
-# Inheritance & Encapsulation
+# Inheritance *(Updated✨)*
+Open these files on tabs in order:
 ```
 Model.php > User.php
 ```
+- The concept behind inheritance is stated within the name itself, inherit. Similar to how a child can inherit a trait from their parents.
+- In its programming coounterpart, this is how the process goes,
+- We create a parent class that has pre-defined methods inside it and create a sub or child class that use `extends` to explicitely define that they are that class child.
+
+### Model.php
+- This class is located within `Core\Model.php`, this class serves as the parent class of all the model class that we will create within `App\Models\...` directory.
+- This class contains `function procedure`, means that all basic operation such as `CRUD` are defined here as methods to simplify the process (reduced MySQL writing on each Controller).
+- But the most important part of this class is the 
+```php
+// Model.php
+protected $table;
+```
+- This `$table` var / property is always being called on each method in the form of `$this->table`, such as this one:
+```php
+public function findAll($order = "")
+{
+    $this->iniDB();
+
+    $table = substr($this->table, 0, -1);
+
+    $records = $this->query("SELECT * FROM $this->table ORDER BY {$table}_id $order")->get();
+
+        return $records;
+    }
+```
+- This is where the main logic happens, if you visit the `App\Models\...` each of the model classes there have `extends Model` means that they are defining themselves as a child of `Model.php` this way they also have access to the methods defined on `Model.php`;
+- But the methods within `Model.php` contains ambiguity since the `$this->table` property there doesn't contain any value yet.
+- All of this are solved due to this property defined on each child model class:
+```php
+// User.php
+protected $table = "users";
+```
+- This overwrites the `$table` property within the parent `Model.php` class.
+
+### How to use this:
+- So imagine this scenario, say we want to find a user whose email is `pogiako@gmail.com`, knowing all the process above we can do this:
+```php
+// SomewhereController.php
+$userObj = new User;
+$user->firstWhere([
+    "email" => "pogiako@gmail.com",
+]);
+```
+- Remember that the `firstWhere()` is a method defined within `Model.php`, but since we `extends` that class on `User` class we now have access to its methods and properties.
+
+# Encapsulation (Updated✨)
+Open these files on tabs in order:
+```
+Order.php > OrderController.php
+```
+- So far the only very visible encapsulation that we have can be seen on `App\Models\Order.php` where each property are defined as `protected` and have setter method (`setAttribute`) that set value to those property;
+- On `OrderController.php` the usage of this `setAttribute` method can be seen.
 # Discount
 # Sample
 
-# Polymorphism
+# Polymorphism / Interface (Updated✨)
+Open these files on tabs in order:
 ```
 PaymentMethod.php > CODPayment.php > GCASHPayment.php > Order.php > OrderController.php
 ```
+(All of this are within `App\Models\...`)
+- The concept behind this is we create a `base class` that will have a pre-defined method that is/are empty, and the `sub classes` `implements` this `base class`, inheriting those empty method that they are require to overwrite with their own implementation.
+- **Note:** To avoid confusion, `parent` and `child` class are names associated when we talk about `inheritance`, but `base` and `sub` class is more fitting for polymorphism, idk this is just my preference.
+
+### How to does this work:
+- As discussed above, we have a `base class` named:
+```php
+// PaymentMethod.php
+interface PaymentMethod {
+    public function processPayment($amountDue); // Process the payment and return the result
+    public function getPaymentDetails(); // Return details passed
+}
+```
+- And now we have the sub classes `CODPayment.php` & `GCASHPayment.php`.
+- Now if you visit both of this `sub classes` they have access to the same methods from the `base class` that they `implements`, again overwriting these empty methods are required.
+
+### How do use this?
+- Inside our `OrderController` we have this code that listening to the what `$_POST['payment_method']` have and create an instance of either of the two `sub class`:
+```php
+// OrderController.php
+ if($_POST['payment_method'] === "COD") {
+    $paymentMethodObj = new CODPayment($_POST['amount_due']);
+} else if ($_POST['payment_method'] === "GCASH") {
+    $paymentMethodObj = new GCASHPayment($_POST['amount_due'], $_FILES['proof_of_payment']);
+} else {
+    dd("Invalid Payment Method selected");
+}
+```
+- Then the `$paymentMethodObj` variable is then passed to the `Order.php`
+```php
+// OrderController.php
+$order->setAttributes(
+    $_SESSION['__currentUser']['credentials']['user_id'],
+    $_POST['discount_id'],
+    $_POST['amount_due'],
+    $_POST['total_price'],
+    $_POST['cart_item'],
+    $_POST['location'],
+    $paymentMethodObj,
+    $_FILES['proof_of_payment']
+);
+```
+- And then the placing order takes place after calling this method.
+```php
+// OrderController.php
+$order->placeOrder();
+```
+- After this you can just read the code of `Order.php` model.

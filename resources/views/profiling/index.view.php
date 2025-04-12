@@ -214,7 +214,7 @@
             <div class="col-12 col-lg-8 mb-3">
                 <div class="row gx-md-5">
                     <!-- Profile Card -->
-                    <div class="col-12 col-md-6 border white-bg">
+                    <div class="col-12 col-md-6 border white-bg shadow-sm">
                         <div class="d-flex flex-column justify-content-center h-100">
                             <div class="d-flex justify-content-center mb-3">
                                 <img src="<?= $_SESSION['__currentUser']['credentials']['profile_dir'] != NULL ? $_SESSION['__currentUser']['credentials']['profile_dir'] : "https://picsum.photos/seed/picsum/230/250" ?>" alt="profile" style="border-radius: 40px; height: 250px; width: 230px;">
@@ -253,7 +253,7 @@
                     <div class="col-12 col-md-6">
                         <div class="row gy-3">
                             <!-- Acount Details -->
-                            <div class="col-12 border white-bg py-4">
+                            <div class="col-12 border white-bg py-4 shadow-sm">
                                 <div class="d-flex justify-content-between">
                                     <h5 class="mb-4">Account Details</h5>
                                     <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">person</i></span>
@@ -281,7 +281,7 @@
                                 </div>
                             </div>
                             <!-- Shipping Address -->
-                            <div class="col-12 border white-bg py-4">
+                            <div class="col-12 border white-bg py-4 shadow-sm">
                                 <div class="d-flex justify-content-between">
                                     <h5 class="mb-4">Shipping Address</h5>
                                     <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">home</i></span>
@@ -324,7 +324,7 @@
             <div class="col-12 col-lg-3 ms-lg-2">
                 <div class="row gy-2">
                     <!-- Current Transaction -->
-                    <div class="col-12 border white-bg">
+                    <div class="col-12 border white-bg shadow-sm">
                         <div class="d-flex justify-content-between">
                             <h5 class="mb-4"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1 align-top">stacks</i>Current Transactions</h5>
                         </div>
@@ -376,7 +376,7 @@
                     </div>
 
                     <!-- Previous Transaction -->
-                    <div class="col-12 border white-bg">
+                    <div class="col-12 border white-bg shadow-sm">
                         <div class="d-flex justify-content-between">
                             <h5 class="mb-4"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1 align-top">history</i>Previous Transactions</h5>
                         </div>

@@ -32,13 +32,17 @@
                     </li>
                 </ul>
 
-                <!-- <div id="div-search" class="ms-auto d-flex d-lg-none justify-content-center">
-                    <input id="input-search" class="form-control w-auto me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button id="button-search" class="btn btn-outline-light" type="submit">Search</button>
-                    </div> -->
                 <!-- Profile (Small screen) -->
                 <div class="ms-auto d-flex d-lg-none flex-column align-items-center justify-content-center mt-3">
-                    <a href="cart" class="text-dark"><i class="fa-solid fa-cart-shopping mb-4"></i></a>
+                    <!-- Shopping Cart -->
+                    <a href="cart" class="text-dark position-relative mb-4">
+                        <i class="fa-solid fa-cart-shopping fs-6"></i>
+                        <?php if (isset($_SESSION['__currentUserCarts'])) : ?>
+                            <span class="position-absolute top-25 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: .6rem;">
+                                <?= $_SESSION['__currentUserCarts']['cart_count']['COUNT(user_id)'] ?>
+                            </span>
+                        <?php endif; ?>
+                    </a>
                     <div class="profile">
                         <?php if (isset($_SESSION['__currentUser'])) : ?>
                             <a href="profile" class="choco-btn">
@@ -55,6 +59,7 @@
 
             <!-- Profile (Large scren) -->
             <div class="ms-auto d-none d-lg-flex align-items-center">
+                <!-- Shopping Cart -->
                 <a href="cart" class="text-dark position-relative">
                     <i class="fa-solid fa-cart-shopping fs-6"></i>
                     <?php if (isset($_SESSION['__currentUserCarts'])) : ?>
