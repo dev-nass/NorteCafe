@@ -3,11 +3,57 @@
 namespace App\Http\Controllers\Admin;
 
 use Core\Database;
+use App\Models\AddOns;
 use App\Models\MenuItem;
 use App\Models\MenuSize;
 
 class Admin_MenuController
 {
+
+    public function table()
+    {
+
+        $menuItemsObj = new MenuItem;
+        $menuItems = $menuItemsObj->findAll();
+
+        view('Admin/menu/table.view.php', [
+            "menuItems" => $menuItems,
+        ]);
+
+    }
+
+    public function show()
+    {
+
+        $menu_item_id = $_GET['menu_item_id'];
+        
+        $db = new Database;
+        $db->iniDB();
+        // Menu Item
+        $menuItem = $db
+            ->query("SELECT menu_items.*, menu_item_sizes.* FROM menu_items
+                LEFT JOIN menu_item_sizes ON menu_item_sizes.menu_item_id = menu_items.menu_item_id
+                WHERE menu_items.menu_item_id = :menu_item_id", [
+                    "menu_item_id" => $menu_item_id,
+            ])->get();
+
+        // Sizes
+        $menuSizesObj = new MenuSize;
+        $menuSizes = $menuSizesObj->findAllWhere([
+            "menu_item_id" => $menu_item_id,
+        ]);
+
+
+        // Add-ons
+        $addOnsObj = new AddOns;
+        $addOns = $addOnsObj->findAll();
+
+        view('Admin/menu/show.view.php', [
+            "menuItem" => $menuItem,
+            "menuSizes" => $menuSizes,
+            "addOns" => $addOns,
+        ]);
+    }
 
     /**
      * Loads the page for uploading new menu item
@@ -22,7 +68,6 @@ class Admin_MenuController
 
     public function store()
     {
-
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['menu_name'];
@@ -45,7 +90,7 @@ class Admin_MenuController
             $menuItemsObj->uploadFile($image_dir);
             
             $menuItemSizesObj = new MenuSize;
-
+            // Insert new menu item size
             $new_menuItemSize = $menuItemSizesObj->insert([
                 "menu_item_id" => $new_menuItem['menu_item_id'],
                 "size" => $size,
@@ -53,6 +98,14 @@ class Admin_MenuController
             ]);
             
             redirect('menu-upload-admin');
+        }
+    }
+
+    public function update()
+    {
+        
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // we finish here for today
         }
     }
 }

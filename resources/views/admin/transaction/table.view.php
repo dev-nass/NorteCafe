@@ -5,7 +5,7 @@
     <?php require base_path('resources/views/components/admin_navbar.php') ?>
     <div class="container-fluid py-2 px-1">
         <div class="responsive-table">
-            <table id="transaction-table" class="table table-striped" style="width:100%">
+            <table id="transaction-table" class="table table-striped custom-data-table" style="width:100%">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>

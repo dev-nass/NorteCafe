@@ -5,7 +5,7 @@
     <?php require base_path('resources/views/components/admin_navbar.php') ?>
     <div class="container-fluid py-2 pt-3">
 
-        <form id="menu_item_store" class="needs-validation" action="menu-store-admin" method="POST" enctype="multipart/form-data" novalidate>
+        <form class="menu_item_store needs-validation" action="menu-store-admin" method="POST" enctype="multipart/form-data" novalidate>
             <div class="row">
                 <div class="col-12 col-lg-8">
                     <div class="bg-white py-4 px-4 shadow-sm rounded">
@@ -75,9 +75,9 @@
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="bg-white p-4 shadow-sm rounded h-100">
-                        <label id="drop-area" class="h-100 w-100 form-control" for="input-upload-item">
-                            <input class="d-none" name="menu-item-img" type="file" accept="image/*" id="input-upload-item">
-                            <div id="image-view-container" class="rounded d-flex flex-column align-items-center justify-content-center h-100" style="border: 1px dashed black; object-fit: cover; background-position: center;">
+                        <label class="drop-area h-100 w-100 form-control" for="input-upload-item">
+                            <input class="input-upload-item d-none" name="menu-item-img" type="file" accept="image/*" id="input-upload-item">
+                            <div class="image-view-container rounded d-flex flex-column align-items-center justify-content-center h-100" style="border: 1px dashed black; object-fit: cover; background-position: center;">
                                 <img class="w-25" src="../../storage/frontend/admin/transaction/upload-logo.png" alt="upload-logo">
                                 <p class="opacity-4 m-0">500x500</p>
                                 <p class="text-center text-md mb-0">Click here to upload image</p>

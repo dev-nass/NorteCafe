@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var table = $('#transaction-table').DataTable({
+    var table = $('.custom-data-table').DataTable({
         responsive: true,
         columnDefs: [
             {

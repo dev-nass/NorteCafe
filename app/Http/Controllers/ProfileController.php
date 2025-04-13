@@ -134,6 +134,7 @@ class ProfileController
                 "verified" => true
             ]);
 
+            // We are only updating ew 'profile_dir' column is the $image_dir is not empty
             if ($image_dir['full_path'] !== "") {
                 $user->update($user_id, [
                     "profile_dir" => "../../storage/backend/img/profiling/" . $image_dir['name'],

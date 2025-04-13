@@ -61,7 +61,7 @@ $router->post('transaction-update', 'TransactionController', 'update')->only('au
 
 
 /**
- * Admin side
+ * Admin side 
 */
 $router->get('transaction-queue-admin', 'Admin_TransactionController', 'queue');
 $router->get('transaction-pending-show-admin', 'Admin_TransactionController', 'pending_show');
@@ -73,6 +73,12 @@ $router->post('transaction-archive-admin', 'Admin_TransactionController', 'delet
 
 $router->get('menu-upload-admin', 'Admin\Admin_MenuController', 'upload');
 $router->post('menu-store-admin', 'Admin\Admin_MenuController', 'store');
+$router->get('menu-table-admin', 'Admin\Admin_MenuController', 'table');
+$router->get('menu-show-admin', 'Admin\Admin_MenuController', 'show');
+$router->post('menu-update-admin', 'Admin\Admin_MenuController', 'update');
 
 $router->get('add-ons-upload-admin', 'Admin\Admin_AddOnsController', 'upload');
 $router->post('add-ons-upload-admin', 'Admin\Admin_AddOnsController', 'store');
+
+$router->get('customer-table-admin', 'Admin\Admin_CustomerController', 'table');
+$router->get('customer-show-admin', 'Admin\Admin_CustomerController', 'show');
