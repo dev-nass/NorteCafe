@@ -108,7 +108,7 @@ class Admin_MenuController
                 "price" => $price,
             ]);
             
-            redirect('menu-upload-admin');
+            redirect("menu-show-admin?menu_item_id={$new_menuItem['menu_item_id']}");
         }
     }
 
@@ -128,16 +128,20 @@ class Admin_MenuController
             $item_name = $_POST['item_name'];
             $category = $_POST['category'];
             $description = $_POST['description'];
+            $availability = $_POST['available'] == 1 ? 1 : 0;
             $sizes = $_POST['sizes'];
             $prices = $_POST['prices'];
             $image_dir = $_FILES['menu-item-img'];
+
+            // repeating name shouldn't be allowed
 
             // update the menu item
             $menuItemObj = new MenuItem;
             $updated_menuItem = $menuItemObj->update($menu_item_id, [
                 "name" => $item_name,
                 "category" => $category,
-                "description" => $description
+                "description" => $description,
+                "available" => $availability
             ]);
 
             // update the size
@@ -166,6 +170,34 @@ class Admin_MenuController
             // redirect
             if($updated_menuItem && $isSizeUpdated) {
                 redirect("menu-show-admin?menu_item_id={$menu_item_id}");
+            }
+        }
+    }
+
+    /**
+     * Use for updating the availability of menu items
+     * make it "Available" and "Not Available"
+    */
+    public function change_availability()
+    {
+
+        if($_SERVER['REQUEST_METHOD'] === "POST") {
+            $menu_item_ids = $_POST['menu-item-ids'];
+            $menu_availability = $_POST['availability'] == "Available" ? 1 : 0;
+
+            $menuItemsObj = new MenuItem;
+            $availablityUpdated = false;
+
+            foreach($menu_item_ids as $id) {
+                $menuItemsObj->update($id, [
+                    "available" => $menu_availability,
+                ]);
+
+                $availablityUpdated = true;
+            }
+
+            if($availablityUpdated) {
+                redirect('menu-table-admin');
             }
         }
     }

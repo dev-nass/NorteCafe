@@ -5,40 +5,35 @@
     <?php require base_path('resources/views/components/admin_navbar.php') ?>
     <div class="container-fluid py-2 pt-3">
 
-        <form id="addOn_store" class="needs-validation" action="add-ons-upload-admin" method="POST" enctype="multipart/form-data" novalidate>
+        <form id="menu_item_size_store" class="needs-validation" action="size-store-admin" method="POST" novalidate>
             <div class="row">
                 <div class="col-12">
                     <div class="bg-white py-4 px-4 shadow-sm rounded">
-                        <h3 class="mb-4">Add Add-Ons</h3>
+                        <h3 class="mb-4">Menu Item Size</h3>
                         <div class="row">
                             <div class="col-12 mb-3">
-                                <label for="validationCustom01" class="form-label">Add On Name</label>
-                                <input type="text" class="form-control border border-dark px-2" id="validationCustom01" name="add_on_name" placeholder="Honey Syrup" required>
+                                <label for="validationCustom01" class="form-label">Menu Item ID</label>
+                                <input type="text" class="form-control border border-dark px-2" id="validationCustom01" name="menu-item-id" placeholder="43" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                                 <div class="invalid-feedback">
-                                    Enter a valid Add On Name!
+                                    Enter a valid menu item ID!
                                 </div>
-                                <?php if(isset($error['addOn_name'])) : ?>
-                                    <div>
-                                        <p class="text-danger mb-0"><?= $error['addOn_name'] ?></p>
-                                    </div>
-                                <?php endif ; ?>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="validationCustom02" class="form-label">Category</label>
-                                <input type="text" class="form-control border border-dark px-2" id="validationCustom02" name="add_on_category" placeholder="MILKTEA" required>
+                                <label for="validationCustom02" class="form-label">Size Name</label>
+                                <input type="text" class="form-control border border-dark px-2" id="validationCustom02" name="size-name" placeholder="M" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                                 <div class="invalid-feedback">
-                                    Enter a valid category!
+                                    Enter a valid Size Name!
                                 </div>
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="validationCustom03" class="form-label">Price</label>
-                                <input type="text" class="form-control border border-dark px-2" id="validationCustom03" name="add_on_price" placeholder="25.00" required>
+                                <input type="text" class="form-control border border-dark px-2" id="validationCustom03" name="size-price" placeholder="40.00" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>

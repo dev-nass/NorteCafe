@@ -76,6 +76,10 @@ $router->post('menu-store-admin', 'Admin\Admin_MenuController', 'store');
 $router->get('menu-table-admin', 'Admin\Admin_MenuController', 'table');
 $router->get('menu-show-admin', 'Admin\Admin_MenuController', 'show');
 $router->post('menu-update-admin', 'Admin\Admin_MenuController', 'update');
+$router->post('menu-change-availability-admin', 'Admin\Admin_MenuController', 'change_availability');
+
+$router->get('size-upload-admin', 'Admin\Admin_MenuSizeController', 'upload');
+$router->post('size-store-admin', 'Admin\Admin_MenuSizeController', 'store');
 
 $router->get('add-ons-upload-admin', 'Admin\Admin_AddOnsController', 'upload');
 $router->post('add-ons-upload-admin', 'Admin\Admin_AddOnsController', 'store');
