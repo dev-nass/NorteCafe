@@ -34,49 +34,60 @@
                                         <div class="col-12" style="height: 350px">
                                             <div class="bg-white rounded h-100">
                                                 <label class="drop-area h-100 w-100 form-control" for="input-upload-item">
-                                                    <input class="d-none input-upload-item" name="menu-item-img" type="file" accept="image/*">
+                                                    <input class="input-upload-item d-none" name="menu-item-img" type="file" accept="image/*" id="input-upload-item">
                                                     <div class="image-view-container rounded d-flex flex-column align-items-center justify-content-center h-100" style="border: 1px dashed black; object-fit: cover; background-position: center;">
                                                         <img class="w-25" src="../../storage/frontend/admin/transaction/upload-logo.png" alt="upload-logo">
                                                         <p class="opacity-4 m-0">500x500</p>
-                                                        <p class="text-center text-md mb-0">Click here to upload a new image</p>
+                                                        <p class="text-center text-md mb-0">Click here to upload image</p>
                                                     </div>
                                                 </label>
                                             </div>
                                         </div>
+                                        <!-- Used for upddating -->
+                                        <input
+                                            class="d-none"
+                                            name="menu_item_id"
+                                            value="<?= $menuItem[0]['menu_item_id'] ?>">
                                         <div class="col-12">
                                             <label for="validationCustom01" class="form-label">Item Name</label>
-                                            <input name="<?= $menuItem[0]['name'] ?>" type="text" class="form-control border px-2" id="validationCustom01" value="<?= $menuItem[0]['name'] ?>" required>
+                                            <input name="item_name" type="text" class="form-control border px-2" id="validationCustom01" value="<?= $menuItem[0]['name'] ?>" required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <label for="validationCustom02" class="form-label">Category</label>
-                                            <input name="<?= $menuItem[0]['category'] ?>" type="text" class="form-control border px-2" id="validationCustom02" value="<?= $menuItem[0]['category'] ?>" required>
+                                            <input name="category" type="text" class="form-control border px-2" id="validationCustom02" value="<?= $menuItem[0]['category'] ?>" required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <label for="validationCustom03" class="form-label">Description</label>
-                                            <textarea name="<?= $menuItem[0]['description'] ?>" type="text" class="form-control border px-2" id="validationCustom03" required><?= $menuItem[0]['description'] ?></textarea>
+                                            <textarea name="description" type="text" class="form-control border px-2" id="validationCustom03" required><?= $menuItem[0]['description'] ?></textarea>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
                                         </div>
                                         <?php foreach ($menuItem as $item) : ?>
                                             <div class="col-12">
+                                                <!-- For updating the size -->
+                                                <input
+                                                    class="d-none"
+                                                    name="menu_item_sizes_id[]"
+                                                    value="<?= $item['menu_item_size_id'] ?>"
+                                                    type="text">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <label for="validationCustom<?= $item['menu_item_size_id'] ?>" class="form-label">Size</label>
-                                                        <input name="<?= $item['size'] ?>" type="text" class="form-control border px-2" id="validationCustom<?= $item['menu_item_size_id'] ?>" value="<?= $item['size'] ?>" required>
+                                                        <input name="sizes[]" type="text" class="form-control border px-2" id="validationCustom<?= $item['menu_item_size_id'] ?>" value="<?= $item['size'] ?>" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="validationCustom<?= $item['menu_item_size_id'] ?>" class="form-label">Price</label>
-                                                        <input name="<?= $item['size'] ?>" type="text" class="form-control border px-2" id="validationCustom<?= $item['menu_item_size_id'] ?>" value="<?= $item['price'] ?>" required>
+                                                        <input name="prices[]" type="text" class="form-control border px-2" id="validationCustom<?= $item['menu_item_size_id'] ?>" value="<?= $item['price'] ?>" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>

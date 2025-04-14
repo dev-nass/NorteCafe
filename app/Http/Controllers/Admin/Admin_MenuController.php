@@ -10,6 +10,10 @@ use App\Models\MenuSize;
 class Admin_MenuController
 {
 
+    /**
+     * Used for loading the table view
+     * for menu items
+    */
     public function table()
     {
 
@@ -22,6 +26,9 @@ class Admin_MenuController
 
     }
 
+    /**
+     * Used for showing a specific menu item
+    */
     public function show()
     {
 
@@ -66,6 +73,10 @@ class Admin_MenuController
         ]);
     }
 
+    /**
+     * Used for storing a new menu item alongside its
+     * size, and image_dir
+    */
     public function store()
     {
 
@@ -101,11 +112,61 @@ class Admin_MenuController
         }
     }
 
+    /**
+     * Used for updating a menu item together with its
+     * sizes
+    */
     public function update()
     {
         
+        // dd($_POST);
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             // we finish here for today
+            $menu_item_id = $_POST['menu_item_id'];
+            $menu_item_sizes_ids = $_POST['menu_item_sizes_id']; // in plural
+            
+            $item_name = $_POST['item_name'];
+            $category = $_POST['category'];
+            $description = $_POST['description'];
+            $sizes = $_POST['sizes'];
+            $prices = $_POST['prices'];
+            $image_dir = $_FILES['menu-item-img'];
+
+            // update the menu item
+            $menuItemObj = new MenuItem;
+            $updated_menuItem = $menuItemObj->update($menu_item_id, [
+                "name" => $item_name,
+                "category" => $category,
+                "description" => $description
+            ]);
+
+            // update the size
+            $menuSizesObj = new MenuSize;
+            $isSizeUpdated = false;
+            // $key - is the size
+            // $value - is the price
+            foreach($prices as $key => $value) {
+                $menuSizesObj->update($menu_item_sizes_ids[$key], [
+                    "size" => $sizes[$key],
+                    "price" => $value
+                ]);
+
+                // for checking is something actually updates
+                $isSizeUpdated = true;
+            }
+
+            // check if image_dir should be updated
+            if($image_dir['full_path'] !== "") {
+                $menuItemObj->update($menu_item_id, [
+                    "image_dir" => "../../storage/backend/img/menu_testing/" . $image_dir['name'],
+                ]);
+                $menuItemObj->uploadFile($image_dir);
+            }
+
+            // redirect
+            if($updated_menuItem && $isSizeUpdated) {
+                redirect("menu-show-admin?menu_item_id={$menu_item_id}");
+            }
         }
     }
 }
