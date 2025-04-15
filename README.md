@@ -240,8 +240,6 @@ Order.php > OrderController.php
 ```
 - So far the only very visible encapsulation that we have can be seen on `App\Models\Order.php` where each property are defined as `protected` and have setter method (`setAttribute`) that set value to those property;
 - On `OrderController.php` the usage of this `setAttribute` method can be seen.
-# Discount
-# Sample
 
 # Polymorphism / Interface (Updated✨)
 Open these files on tabs in order:
@@ -264,7 +262,7 @@ interface PaymentMethod {
 - And now we have the sub classes `CODPayment.php` & `GCASHPayment.php`.
 - Now if you visit both of this `sub classes` they have access to the same methods from the `base class` that they `implements`, again overwriting these empty methods are required.
 
-### How do use this?
+### How to use this?
 - Inside our `OrderController` we have this code that listening to the what `$_POST['payment_method']` have and create an instance of either of the two `sub class`:
 ```php
 // OrderController.php
@@ -295,4 +293,14 @@ $order->setAttributes(
 // OrderController.php
 $order->placeOrder();
 ```
-- After this you can just read the code of `Order.php` model.
+- After this you can just read the code of `Order.php` model, and its to you to understand the whole process.
+- **Tip:** just open the two OrderController and Order files side by side and understand what values are being passed and received.
+
+# Abstraction
+```
+Controller.php > TestController.php > test.view.php
+```
+
+
+# Discount
+# Sample

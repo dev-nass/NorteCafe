@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\User;
+use Core\Controller;
 
-class UserController
+class UserController extends Controller
 {
 
     /**
@@ -18,7 +19,6 @@ class UserController
 
     public function contactUs()
     {
-        dd($_SESSION);
         view('Customer/contactUs.view.php');
     }
 

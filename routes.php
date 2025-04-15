@@ -1,5 +1,8 @@
 <?php
 
+$router->get('test', 'TestController', 'index');
+$router->post('test-store', 'TestController', 'store');
+
 /**
  * General Web-Pages
 */
