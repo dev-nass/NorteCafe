@@ -9,9 +9,14 @@ class TestController extends Controller
 
     public function index()
     {
-        view('test.view.php', [
+        $this->view('test.view.php', [
             "errros" => [],
         ]);
+    }
+
+    public function show()
+    {
+
     }
 
     public function store()
@@ -23,14 +28,25 @@ class TestController extends Controller
         ];
 
         $errors = $this->validate($data, [
-            "name" => "required|min:5",
-            "email" => "required|email",
+            "name" => "required|min:5|max:20",
+            "email" => "required|email|unique:users,email",
         ]);
 
         if (!empty($errors)) {
-            view('test.view.php', [
+            return $this->view('test.view.php', [
                 "errors" => $errors,
             ]);
         }
+
+    }
+
+    public function update()
+    {
+
+    }
+
+    public function delete()
+    {
+
     }
 }

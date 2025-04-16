@@ -5,21 +5,24 @@ namespace App\Http\Controllers;
 use Core\Database;
 use Core\Validator;
 
-class RegistrationController {
+class RegistrationController
+{
 
-    public function create() {
+    public function create()
+    {
 
         view('auth/registration.view.php', [
             'errors' => [],
         ]);
     }
 
-    public function store() {
-        
+    public function store()
+    {
+
         $db = new Database;
         $db->iniDB();
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $email = $_POST['email'];
             $password = $_POST['password'];
@@ -28,7 +31,7 @@ class RegistrationController {
             $errors = [];
 
             // validate
-            if(! Validator::string($username, 5, 255)) {
+            if (! Validator::string($username, 5, 255)) {
                 $errors['username'] = "Username is either too long or short";
             }
 
@@ -36,15 +39,15 @@ class RegistrationController {
                 'email' => $email,
             ])->find();
 
-            if($user) {
+            if ($user) {
                 $errors['email'] = "Email already exists";
             }
 
-            if($password !== $password_confirm) {
+            if ($password !== $password_confirm) {
                 $errors['password'] = "Passwords doesnt Match";
             }
 
-            if($errors) {
+            if ($errors) {
                 return view('auth/registration.view.php', [
                     'errors' => $errors,
                 ]);
@@ -60,6 +63,5 @@ class RegistrationController {
 
             redirect('login');
         }
-
     }
 }

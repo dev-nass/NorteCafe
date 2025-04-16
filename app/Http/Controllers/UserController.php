@@ -6,7 +6,7 @@ use App\Models\Customer;
 use App\Models\User;
 use Core\Controller;
 
-class UserController extends Controller
+class UserController
 {
 
     /**
