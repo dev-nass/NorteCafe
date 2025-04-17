@@ -25,7 +25,7 @@ $router->post('logout', 'LoginController', 'logout');
 // Frogot and Reset Password 
 $router->get('forgot-pass', 'ForgotPasswordController', 'index');
 $router->post('forgot-pass', 'ForgotPasswordController', 'store');
-$router->get('reset-pass', 'ForgotPasswordController', 'show');
+$router->get('reset-pass', 'ForgotPasswordController', 'create');
 $router->post('reset-pass', 'ForgotPasswordController', 'update');
 
 /**

@@ -29,17 +29,26 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="password_confirmed">Confirm New Password</label>
+                                <label class="form-label" for="new_password_confirmation">Confirm New Password</label>
                                 <div class="form-floating">
-                                    <input class="form-control" name="password_confirmed" type="password" id="password_confirmed" placeholder="Confirm New Password" required>
-                                    <label for="password_confirmed">Re-Enter New Password...</label>
+                                    <input class="form-control" name="new_password_confirmation" type="password" id="new_password_confirmation" placeholder="Confirm New Password" required>
+                                    <label for="new_password_confirmation">Re-Enter New Password...</label>
                                     <div class="invalid-feedback">Passwords do not match...</div>
                                 </div>
                             </div>
-                            <?php if ($message) : ?>
-                                <div class="mt-3">
-                                    <p class="text-danger"><?= $message ?></p>
-                                </div>
+                            <?php if (isset($errors['new_password'])): ?>
+                                <ul class="m-0 p-0" style="list-style: none;">
+                                    <?php foreach ($errors['new_password'] as $error): ?>
+                                        <li class="text-danger"><?= htmlspecialchars($error) ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+                            <?php if (isset($errors['request_error'])): ?>
+                                <ul class="m-0 p-0" style="list-style: none;">
+                                    <?php foreach ($errors['request_error'] as $error): ?>
+                                        <li class="text-danger"><?= htmlspecialchars($error) ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
                             <?php endif; ?>
                             <div class="mb-3">
                                 <button class="Cpass-btn w-100 mt-3" type="submit">Reset Password</button>

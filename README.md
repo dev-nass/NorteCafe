@@ -300,7 +300,9 @@ $order->placeOrder();
 ```
 Controller.php > TestController.php > test.view.php
 ```
-
+# Forgot Password
+- The `token selector` is used for fetcing the record of the user from the `password_reset_request` table.
+- After getting the user record, we will use its fetched `token validate` column, and compare it to the `token validate` from the form that has been embedded into it by default (done through the construction of a specific URL variable that redirect to a page and puts token at the URL, that are then used later on)
 # Cart Count Logic
 # Discount
 # Sample

@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Core\Controller;
+use Core\Mailer;
 
 class TestController extends Controller
 {
 
     public function index()
     {
+
+        $mail = new Mailer;
+        $mail->forgotPassword('jonasemperor@gmail.com', 'emeeme');
         $this->view('test.view.php', [
             "errros" => [],
         ]);

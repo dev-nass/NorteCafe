@@ -62,14 +62,17 @@ abstract class Controller
             $ruleSet = explode('|', $rule);
             foreach ($ruleSet as $singleRule) {
                 
+                // added for the 'contact_number' to be 'contact number'
+                $mod_field_name = str_replace('_', ' ', $field); 
+                
                 // for required fields
                 if ($singleRule === "required" && empty($data[$field])) {
-                    $errors[$field][] = ucfirst("$field is required");
+                    $errors[$field][] = ucfirst("$mod_field_name is required");
                 }
 
                 // for email fields
                 if ($singleRule === "email" && ! filter_var($data[$field], FILTER_VALIDATE_EMAIL)) {
-                    $errors[$field][] = ucfirst("$field must be a valid email");
+                    $errors[$field][] = ucfirst("$mod_field_name must be a valid email");
                 }
 
                 // for min length (not fully understood)
@@ -77,15 +80,16 @@ abstract class Controller
                     // returns the exact number min:5, the 5 for instance bcz its position 4
                     $minLength = (int) substr($singleRule, 4);
                     if (strlen($data[$field]) < $minLength) {
-                        $errors[$field][] = ucfirst("$field must be at least $minLength characters");
+                        $errors[$field][] = ucfirst("$mod_field_name must be at least $minLength characters");
                     }
                 }
 
+                // for max length
                 if(strpos($singleRule, 'max:') === 0) {
                     // returns the exact number max:5, the 5 for instance bcz its position 4
                     $maxLength = (int) substr($singleRule, 4);
                     if(strlen($data[$field]) > $maxLength) {
-                        $errors[$field][] = ucfirst("$field must not exceed $maxLength characters");
+                        $errors[$field][] = ucfirst("$mod_field_name must not exceed $maxLength characters");
                     }
                 }
 
@@ -95,16 +99,16 @@ abstract class Controller
                     [$table, $column, $id] = explode(',', $singleRule);
                     // checks whether the value exists
                     if($this->valueExists(substr($table, 7), $column, $data[$field], $id)) {
-                        // added for the 'contact_number' to be 'contact number'
-                        $mod_field_name = str_replace('_', ' ', $field); 
+                        
                         $errors[$field][] = ucfirst("{$mod_field_name} already exists");
                     }
                 }
 
                 // for similar password
                 if(strpos($singleRule, 'confirmed') === 0) {
-                    if($data['password'] !== $data['password_confirmation']) {
-                        $errors[$field][] = ucfirst("$field should match");
+                    if($data[$field] !== $data["{$field}_confirmation"]) {
+                        dump($data["{$field}_confirmation"]);
+                        $errors[$field][] = ucfirst("$mod_field_name should match");
                     }
                 }
             }
