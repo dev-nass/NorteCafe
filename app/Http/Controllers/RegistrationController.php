@@ -3,19 +3,32 @@
 namespace App\Http\Controllers;
 
 use Core\Database;
+use Core\Controller;
 use Core\Validator;
 
-class RegistrationController
+class RegistrationController extends Controller
 {
 
+    public function index() {}
+
+    public function show() {}
+
+    /**
+     * Loads the view for the
+     * Registration View
+    */
     public function create()
     {
 
-        view('auth/registration.view.php', [
+        $this->view('auth/registration.view.php', [
             'errors' => [],
         ]);
     }
 
+    /**
+     * Handle the submit of the
+     * Registration Form
+    */
     public function store()
     {
 
@@ -23,45 +36,41 @@ class RegistrationController
         $db->iniDB();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $password_confirm = $_POST['confirm-password'];
 
-            $errors = [];
+            $data = [
+                "username" => $this->getInput('username'),
+                "email" => $this->getInput("email"),
+                "password" => $this->getInput("password"),
+                "password_confirmation" => $this->getInput("password_confirmation")
+            ];
 
             // validate
-            if (! Validator::string($username, 5, 255)) {
-                $errors['username'] = "Username is either too long or short";
-            }
+            $errors = $this->validate($data, [
+                "username" => "required|min:5|max:255|unique:users,username,0",
+                "email" => "required|email|unique:users,email,0",
+                "password" => "required|min:8|confirmed",
+            ]);
 
-            $user = $db->query("SELECT * FROM users WHERE email = :email", [
-                'email' => $email,
-            ])->find();
-
-            if ($user) {
-                $errors['email'] = "Email already exists";
-            }
-
-            if ($password !== $password_confirm) {
-                $errors['password'] = "Passwords doesnt Match";
-            }
-
+            // redirect if there's errors
             if ($errors) {
-                return view('auth/registration.view.php', [
+                return $this->view('auth/registration.view.php', [
                     'errors' => $errors,
                 ]);
             }
 
             // Store
             $db->query("INSERT INTO users (username, email, password, role) VALUES (:username, :email, :password, :role)", [
-                'username' => $username,
-                'email' => $email,
-                'password' => password_hash($password, PASSWORD_BCRYPT),
+                'username' => $data['username'],
+                'email' => $data['email'],
+                'password' => password_hash($data['password'], PASSWORD_BCRYPT),
                 'role' => "Customer",
             ]);
 
-            redirect('login');
+            return $this->redirect('login');
         }
     }
+
+    public function update() {}
+
+    public function delete() {}
 }

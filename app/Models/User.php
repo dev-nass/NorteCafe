@@ -35,13 +35,13 @@ class User extends Model
      * Get a single user record
      * (Useful for direct class access, not on subclasses)
     */
-    public function findUser($param)
+    public function findUserOr($param)
     {
         $this->iniDB();
 
         $keys = array_keys($param);
         $values = array_values($param);
-        $conditions = implode(" = ? ", $keys) . " = ?";
+        $conditions = implode(" = ? OR ", $keys) . " = ?";
 
         $sql = "SELECT user_id, first_name, last_name, username, email, contact_number, gender, age, date_of_birth, address, role, house_number, street, barangay, city, provience, region, postal_code, available, verified, profile_dir FROM $this->table WHERE $conditions";
 
@@ -54,6 +54,7 @@ class User extends Model
     /**
      * Used for logged-in user and redirect them to their proper
      * default pages
+     * ...(Create the same view for Admin and Employee upon logging in)
     */
     public function loadRoleView()
     {

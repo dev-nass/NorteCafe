@@ -20,6 +20,7 @@ abstract class Controller
 
     abstract public function index();
     abstract public function show();
+    abstract public function create();
     abstract public function store();
     abstract public function update();
     abstract public function delete();
@@ -36,7 +37,7 @@ abstract class Controller
      * Used for getting a specific value within
      * $this->request; Equilvalent to $var = $_GET['name']
      */
-    protected function getInput($key, $default = "")
+    protected function getInput($key, $default = NULL)
     {
         $value = $this->request[$key] ?? $default;
         return is_string($value) ? htmlspecialchars(trim($value), ENT_QUOTES, 'UTF-8') : $value;
@@ -63,12 +64,12 @@ abstract class Controller
                 
                 // for required fields
                 if ($singleRule === "required" && empty($data[$field])) {
-                    $errors[$field][] = "$field is required";
+                    $errors[$field][] = ucfirst("$field is required");
                 }
 
                 // for email fields
                 if ($singleRule === "email" && ! filter_var($data[$field], FILTER_VALIDATE_EMAIL)) {
-                    $errors[$field][] = "$field must be a valid email";
+                    $errors[$field][] = ucfirst("$field must be a valid email");
                 }
 
                 // for min length (not fully understood)
@@ -76,7 +77,7 @@ abstract class Controller
                     // returns the exact number min:5, the 5 for instance bcz its position 4
                     $minLength = (int) substr($singleRule, 4);
                     if (strlen($data[$field]) < $minLength) {
-                        $errors[$field][] = "$field must be at least $minLength characters";
+                        $errors[$field][] = ucfirst("$field must be at least $minLength characters");
                     }
                 }
 
@@ -84,17 +85,26 @@ abstract class Controller
                     // returns the exact number max:5, the 5 for instance bcz its position 4
                     $maxLength = (int) substr($singleRule, 4);
                     if(strlen($data[$field]) > $maxLength) {
-                        $errors[$field][] = "$field must not exceed $maxLength characters";
+                        $errors[$field][] = ucfirst("$field must not exceed $maxLength characters");
                     }
                 }
 
                 // for unique
                 if(strpos($singleRule, 'unique:') === 0) {
                     // dd($singleRule);
-                    [$table, $column] = explode(',', $singleRule);
+                    [$table, $column, $id] = explode(',', $singleRule);
                     // checks whether the value exists
-                    if($this->valueExists(substr($table, 7), $column, $data[$field])) {
-                        $errors[$field][] = "$field already exists";
+                    if($this->valueExists(substr($table, 7), $column, $data[$field], $id)) {
+                        // added for the 'contact_number' to be 'contact number'
+                        $mod_field_name = str_replace('_', ' ', $field); 
+                        $errors[$field][] = ucfirst("{$mod_field_name} already exists");
+                    }
+                }
+
+                // for similar password
+                if(strpos($singleRule, 'confirmed') === 0) {
+                    if($data['password'] !== $data['password_confirmation']) {
+                        $errors[$field][] = ucfirst("$field should match");
                     }
                 }
             }
@@ -107,14 +117,25 @@ abstract class Controller
         return $errors;
     }
 
-    protected function valueExists($table, $column, $value) {
+    /**
+     * Updated and now take an $id parameter
+     * (Added for updating, with the ID, it ensuring that 
+     * when a user updates their profile (e.g., changing their address 
+     * but keeping their email), the unique validation rule 
+     * doesn’t falsely flag their existing email as a duplicate.)...
+    */
+    protected function valueExists($table, $column, $value, $id = 0) {
         $db = new Database;
         $db->iniDB();
-        $doestExist = $db->query("SELECT * FROM $table WHERE $column = :value", [
+
+        $tableSingular = substr($table, 0, -1);
+        
+        $doesExist = $db->query("SELECT * FROM $table WHERE $column = :value AND NOT {$tableSingular}_id = :id", [
             "value" => $value,
+            "id" => $id
         ])->find();
 
-        return $doestExist ? true : false;
+        return $doesExist ? true : false;
     }
 
     /**

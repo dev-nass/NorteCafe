@@ -11,7 +11,7 @@
             <?php else : ?>
                 <?php foreach ($previousTransactions as $transaction) : ?>
                     <div class="col-12 col-lg-6 mt-3">
-                        <div class="row white-bg p-3">
+                        <div class="row white-bg shadow p-3">
                             <div class="col-6">
                                 <div class="d-flex flex-column">
                                     <h6 class="mb-3 fs-5">Transaction ID: <?= $transaction['transaction_id'] ?></h6>

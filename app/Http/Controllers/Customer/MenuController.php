@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Customer;
 
 use Core\Database;
 
 class MenuController {
 
+    /**
+     * Loads the view for the menu page
+    */
     public function index() {
 
         $db = new Database;

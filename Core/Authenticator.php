@@ -31,8 +31,6 @@ class Authenticator
             }
         }
 
-
-
         return false;
     }
 

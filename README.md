@@ -301,6 +301,6 @@ $order->placeOrder();
 Controller.php > TestController.php > test.view.php
 ```
 
-
+# Cart Count Logic
 # Discount
 # Sample

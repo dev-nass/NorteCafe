@@ -47,35 +47,20 @@ class Router
         return $this;
     }
 
+    /**
+     * Used for accessing a page; clicking <a> / clicking a link, traversing the URL
+    */
     public function get($uri, $controllerClass, $controllerMethod)
     {
         return $this->add('GET', $uri, $controllerClass, $controllerMethod);
     }
 
+    /**
+     * Used for every submit of form; create, update, delete
+    */
     public function post($uri, $controllerClass, $controllerMethod)
     {
         return $this->add('POST', $uri, $controllerClass, $controllerMethod);
-    }
-
-    public function delete($uri, $controllerClass, $controllerMethod)
-    {
-        return $this->add('DELETE', $uri, $controllerClass, $controllerMethod);
-    }
-
-    /**
-     * PATCH - update part of a resource (if available and appropriate)
-     */
-    public function patch($uri, $controllerClass, $controllerMethod)
-    {
-        return $this->add('PATCH', $uri, $controllerClass, $controllerMethod);
-    }
-
-    /**
-     * PUT - update a resource (by replacing it with a new version)
-     */
-    public function put($uri, $controllerClass, $controllerMethod)
-    {
-        return $this->add('PUT', $uri, $controllerClass, $controllerMethod);
     }
 
     /**

@@ -29,10 +29,10 @@
                                                     <label id="drop-area" class="form-control w-100 h-100" for="input-upload-item">
                                                         <input class="d-none" name="user-profile-img" type="file" accept="image/*" id="input-upload-item">
                                                         <div id="image-view-container" class="rounded d-flex flex-column align-items-center justify-content-center h-100" style="border: 1px dashed black; object-fit: cover; background-position: center; background-image: url(<?= $_SESSION['__currentUser']['credentials']['profile_dir'] ?>);">
-                                                            <?php if($_SESSION['__currentUser']['credentials']['profile_dir'] === NULL) : ?>
+                                                            <?php if ($_SESSION['__currentUser']['credentials']['profile_dir'] === NULL) : ?>
                                                                 <img class="w-25" src="../../storage/frontend/admin/transaction/upload-logo.png" alt="upload-logo">
                                                                 <p class="text-center text-md mb-0">Click here to upload image</p>
-                                                            <?php endif ; ?>
+                                                            <?php endif; ?>
                                                         </div>
                                                     </label>
                                                 </div>
@@ -72,10 +72,12 @@
                                                         <div class="invalid-feedback">
                                                             Enter a valid email!
                                                         </div>
-                                                        <?php if (! empty($error['email'])) : ?>
-                                                            <div>
-                                                                <p class="error-msg text-danger"><?= $error['email'] ?></p>
-                                                            </div>
+                                                        <?php if (isset($errors['email'])): ?>
+                                                            <ul class="m-0 p-0" style="list-style: none;">
+                                                                <?php foreach ($errors['email'] as $error): ?>
+                                                                    <li class="text-danger"><?= htmlspecialchars($error) ?></li>
+                                                                <?php endforeach; ?>
+                                                            </ul>
                                                         <?php endif; ?>
                                                     </div>
                                                     <div class="col-6">
@@ -84,10 +86,12 @@
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
-                                                        <?php if (! empty($error['username'])) : ?>
-                                                            <div>
-                                                                <p class="error-msg text-danger"><?= $error['username'] ?></p>
-                                                            </div>
+                                                        <?php if (isset($errors['username'])): ?>
+                                                            <ul class="m-0 p-0" style="list-style: none;">
+                                                                <?php foreach ($errors['username'] as $error): ?>
+                                                                    <li class="text-danger"><?= htmlspecialchars($error) ?></li>
+                                                                <?php endforeach; ?>
+                                                            </ul>
                                                         <?php endif; ?>
                                                     </div>
                                                     <div class="col-6">
@@ -96,10 +100,12 @@
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
-                                                        <?php if (! empty($error['contact_number'])) : ?>
-                                                            <div>
-                                                                <p class="error-msg text-danger"><?= $error['contact_number'] ?></p>
-                                                            </div>
+                                                        <?php if (isset($errors['contact_number'])): ?>
+                                                            <ul class="m-0 p-0" style="list-style: none;">
+                                                                <?php foreach ($errors['contact_number'] as $error): ?>
+                                                                    <li class="text-danger"><?= htmlspecialchars($error) ?></li>
+                                                                <?php endforeach; ?>
+                                                            </ul>
                                                         <?php endif; ?>
                                                     </div>
                                                     <div class="col-6">
@@ -120,6 +126,13 @@
                                                             Looks good!
                                                         </div>
                                                     </div>
+                                                    <div class="col-6">
+                                                        <label for="validationCustom08" class="form-label">Date of Birth</label>
+                                                        <input type="date" class="form-control" id="validationCustom08" name="date_of_birth" value="<?= $_SESSION['__currentUser']['credentials']['date_of_birth'] ?>"  aria-describedby="validationServer08Feedback" required>
+                                                        <div id="validationServer08Feedback" class="valid-feedback">
+                                                            Looks good!
+                                                        </div>
+                                                    </div>
                                                     <div class="col-12">
                                                     </div>
                                                 </div>
@@ -131,56 +144,59 @@
                                             <div class="col-9 mb-3">
                                                 <div class="row">
                                                     <div class="col-8">
-                                                        <label for="validationCustom08" class="form-label">House number</label>
-                                                        <input type="text" class="form-control" id="validationCustom08" name="house_number" value="<?= $_SESSION['__currentUser']['credentials']['house_number'] ?>" placeholder="" required>
+                                                        <label for="validationCustom09" class="form-label">House number</label>
+                                                        <input type="text" class="form-control" id="validationCustom09" name="house_number" value="<?= $_SESSION['__currentUser']['credentials']['house_number'] ?>" placeholder="" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
-                                                        <label for="validationCustom09" class="form-label">Street</label>
-                                                        <input type="text" class="form-control" id="validationCustom09" name="street" value="<?= $_SESSION['__currentUser']['credentials']['street'] ?>" placeholder="" required>
+                                                        <label for="validationCustom10" class="form-label">Street</label>
+                                                        <input type="text" class="form-control" id="validationCustom10" name="street" value="<?= $_SESSION['__currentUser']['credentials']['street'] ?>" placeholder="" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
-                                                        <label for="validationCustom10" class="form-label">Barangay</label>
-                                                        <input type="text" class="form-control" id="validationCustom10" name="barangay" value="<?= $_SESSION['__currentUser']['credentials']['barangay'] ?>" placeholder="" required>
+                                                        <label for="validationCustom11" class="form-label">Barangay</label>
+                                                        <input type="text" class="form-control" id="validationCustom11" name="barangay" value="<?= $_SESSION['__currentUser']['credentials']['barangay'] ?>" placeholder="" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
-                                                        <label for="validationCustom08" class="form-label">City</label>
-                                                        <input type="text" class="form-control" id="validationCustom08" name="city" value="<?= $_SESSION['__currentUser']['credentials']['city'] ?>" placeholder="" required>
-                                                        <div class="valid-feedback">
-                                                            Looks good!
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label for="validationServer11" class="form-label">Provience</label>
-                                                        <select class="form-select form-control" id="validationServer11" name="provience" aria-describedby="validationServer11Feedback" required>
+                                                        <label for="validationCustom12" class="form-label">City</label>
+                                                        <select class="form-select form-control" id="validationServe128" name="city" aria-describedby="validationServer08Feedback" required>
                                                             <option disabled>Choose...</option>
-                                                            <option <?= $_SESSION['__currentUser']['credentials']['provience'] === "Cavite" ? "selected" : "" ?> >Cavite</option>
+                                                            <option <?= $_SESSION['__currentUser']['credentials']['city'] === "Dasmariñas" ? "selected" : "" ?>>Dasmariñas</option>
+                                                        </select>
+                                                        <div id="validationServer11Feedback" class="valid-feedback">
+                                                            Looks good!
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label for="validationServer13" class="form-label">Provience</label>
+                                                        <select class="form-select form-control" id="validationServer31" name="provience" aria-describedby="validationServer11Feedback" required>
+                                                            <option disabled>Choose...</option>
+                                                            <option <?= $_SESSION['__currentUser']['credentials']['provience'] === "Cavite" ? "selected" : "" ?>>Cavite</option>
                                                         </select>
                                                         <div id="validationServer11Feedback" class="valid-feedback">
                                                             Looks good!
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
-                                                        <label for="validationServer12" class="form-label">Region</label>
-                                                        <select class="form-select form-control" id="validationServer12" name="region" aria-describedby="validationServer12Feedback" required>
+                                                        <label for="validationServer14" class="form-label">Region</label>
+                                                        <select class="form-select form-control" id="validationServer42" name="region" aria-describedby="validationServer12Feedback" required>
                                                             <option disabled>Choose...</option>
-                                                            <option <?= $_SESSION['__currentUser']['credentials']['region'] === "4A" ? "selected" : "" ?> >4A</option>
+                                                            <option <?= $_SESSION['__currentUser']['credentials']['region'] === "4A" ? "selected" : "" ?>>4A</option>
                                                         </select>
                                                         <div id="validationServer12Feedback" class="valid-feedback">
                                                             Looks good!
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
-                                                        <label for="validationServer13" class="form-label">Postal Code</label>
-                                                        <select class="form-select form-control" id="validationServer13" name="postal_code" aria-describedby="validationServer13Feedback" required>
+                                                        <label for="validationServer15" class="form-label">Postal Code</label>
+                                                        <select class="form-select form-control" id="validationServer53" name="postal_code" aria-describedby="validationServer13Feedback" required>
                                                             <option disabled>Choose...</option>
                                                             <option <?= $_SESSION['__currentUser']['credentials']['postal_code'] === "4114" ? "selected" : "" ?>>4114</option>
                                                         </select>
@@ -273,7 +289,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="text-secondary">Date of Birth: </span>
-                                    <p><?= $_SESSION['__currentUser']['credentials']['date_of_birth'] ?? "NULL" ?></p>
+                                    <p><?= date("F d, Y", strtotime($_SESSION['__currentUser']['credentials']['date_of_birth']))  ?? "NULL" ?></p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="text-secondary">Gender: </span>
@@ -322,7 +338,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-3 ms-lg-2">
-                <div class="row gy-2">
+                <div class="row gy-3">
                     <!-- Current Transaction -->
                     <div class="col-12 border white-bg shadow-sm">
                         <div class="d-flex justify-content-between">
@@ -333,19 +349,19 @@
                             <div class="col-12">
                                 <div class="d-flex justify-content-between">
                                     <span class="mb-2 text-secondary">Transaction ID: </span>
-                                    <span> <?= $recentTransaction['transaction_id'] ?? "" ?></span>
+                                    <span> <?= $currentTransaction['transaction_id'] ?? "" ?></span>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="mb-2 text-secondary">Status: </span>
-                                    <span> <?= $recentTransaction['status'] ?? "" ?></span>
+                                    <span> <?= $currentTransaction['status'] ?? "" ?></span>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="mb-2 text-secondary">Amount Due: </span>
-                                    <span>₱<?= $recentTransaction['amount_due'] ?? "" ?></span>
+                                    <span>₱<?= $currentTransaction['amount_due'] ?? "" ?></span>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="mb-2 text-secondary">Placed At: </span>
-                                    <span><?= $recentTransaction['created_at'] ?? "" ?></span>
+                                    <span><?= $currentTransaction['created_at'] ?? "" ?></span>
                                 </div>
                                 <hr>
                                 <div class="d-flex justify-content-between mt-2">
@@ -359,14 +375,14 @@
                                                 <input
                                                     class="d-none"
                                                     name="transaction-id"
-                                                    value="<?= $recentTransaction['transaction_id'] ?>">
+                                                    value="<?= $currentTransaction['transaction_id'] ?>">
                                                 <input
                                                     class="d-none"
                                                     name="status"
                                                     value="Cancelled">
                                                 <button for="transaction-update" title="Cancel" class="btn btn-outline-danger text-gradient px-3 mb-0 me-2"><i class="material-symbols-rounded" style="font-size: .9rem;">delete</i></button>
                                             </form>
-                                            <a title="View Order" class="btn btn-outline-dark px-3 mb-0" href="transaction-show?id=<?= $recentTransaction['transaction_id'] ?>"><i class="material-symbols-rounded" style="font-size: .9rem;">edit</i></a>
+                                            <a title="View Order" class="btn btn-outline-dark px-3 mb-0" href="transaction-show?id=<?= $currentTransaction['transaction_id'] ?>"><i class="material-symbols-rounded" style="font-size: .9rem;">edit</i></a>
                                         </div>
                                     </div>
 

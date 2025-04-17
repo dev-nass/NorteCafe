@@ -102,6 +102,7 @@ class Model extends Database
 
         $sql = "UPDATE $this->table SET $columns WHERE {$table}_id = ?";
 
+        // Id will be the last here because it is the last added... to the where clause
         $values[] = $id;
 
         $updateRecord = $this->query($sql, $values);
@@ -123,8 +124,9 @@ class Model extends Database
         $table = substr($this->table, 0, -1);
 
         $sql = "DELETE FROM $this->table WHERE {$table}_id = ?";
+        $values[] = $id;
 
-        $deleteRecord = $this->query($sql, $id);
+        $deleteRecord = $this->query($sql, $values);
 
         if (! $deleteRecord) {
             return false;

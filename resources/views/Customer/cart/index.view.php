@@ -65,6 +65,7 @@
                                                 <div>
                                                     <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling-id<?= $item['cart_id'] ?>" aria-controls="offcanvasScrolling"><i class="fa-solid fa-pen-to-square"></i></button>
 
+                                                    <!-- Off canvas (Update) -->
                                                     <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling-id<?= $item['cart_id'] ?>" aria-labelledby="offcanvasScrollingLabel">
                                                         <div class="offcanvas-header">
                                                             <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Update Item Details</h5>
@@ -81,10 +82,6 @@
                                                             <hr>
                                                             <!-- Form -->
                                                             <form id="cart-id<?= $item['menu_item_id'] ?>" action="cart-update" method="POST">
-                                                                <input
-                                                                    class="d-none"
-                                                                    name="__method"
-                                                                    value="PATCH">
                                                                 <!-- Cart Id -->
                                                                 <input
                                                                     class="d-none"
@@ -165,7 +162,6 @@
                                                 <!-- Delete -->
                                                 <div class="ms-1">
                                                     <form action="cart-delete" method="POST">
-                                                        <input class="d-none" name="__method" value="DELETE">
                                                         <input
                                                             class="d-none"
                                                             name="cart_id"
@@ -212,7 +208,7 @@
                         <h6 class="card-subtitle mb-2 text-body-secondary">Sub Total:
                             <?php $subTotal = 0.00; ?>
                             <?php foreach ($cartMenuItems as $item) : ?>
-                                <?php $subTotal += floatval($item['price']) * floatval($item['quantity']) ?>
+                                <?php $subTotal += floatval($item['price']) * floatval($item['quantity']) + $item['add_on_price'] ?>
                             <?php endforeach; ?>
                             ₱<?= number_format($subTotal, 2, '.', '') ?>
                         </h6>

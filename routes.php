@@ -6,12 +6,12 @@ $router->post('test-store', 'TestController', 'store');
 /**
  * General Web-Pages
 */
-$router->get('index', 'UserController', 'index');
-$router->get('contactUs', 'UserController', 'contactUs');
-$router->get('aboutUsNorteCafe', 'UserController', 'aboutUsNorteCafe');
-$router->get('aboutUsDevelopers', 'UserController', 'aboutUsDevelopers');
-$router->get('faqs', 'UserController', 'faqs');
-$router->get('delivery-details', 'UserController', 'deliveryDetails');
+$router->get('index', 'Customer\UserController', 'index');
+$router->get('contactUs', 'Customer\UserController', 'contactUs');
+$router->get('aboutUsNorteCafe', 'Customer\UserController', 'aboutUsNorteCafe');
+$router->get('aboutUsDevelopers', 'Customer\UserController', 'aboutUsDevelopers');
+$router->get('faqs', 'Customer\UserController', 'faqs');
+$router->get('delivery-details', 'Customer\UserController', 'deliveryDetails');
 
 /**
  * Auth Web Pages
@@ -36,43 +36,44 @@ $router->get('403', 'ResponseController', 'http_403');
 /**
  * Specific Web Pages
 */
-$router->get('search-filter', 'FilterController', 'search');
-$router->get('category-filter', 'FilterController', 'category');
+$router->get('search-filter', 'Customer\FilterController', 'search');
+$router->get('category-filter', 'Customer\FilterController', 'category');
 
-$router->get('menu', 'MenuController', 'index')->only('auth', 'Customer');
-$router->get('cart', 'CartController', 'index')->only('auth', 'Customer');
-$router->post('cart-store', 'CartController', 'store');
-$router->patch('cart-update', 'CartController', 'update');
-$router->delete('cart-delete', 'CartController', 'destroy');
+$router->get('menu', 'Customer\MenuController', 'index')->only('auth', 'Customer');
 
-$router->post('order-store', 'OrderController', 'store');
+$router->get('cart', 'Customer\CartController', 'index')->only('auth', 'Customer');
+$router->post('cart-store', 'Customer\CartController', 'store');
+$router->post('cart-update', 'Customer\CartController', 'update');
+$router->post('cart-delete', 'Customer\CartController', 'delete');
+
+$router->post('order-store', 'Customer\OrderController', 'store');
 
 
 /**
  * Profiling
 */
-$router->get('profile', 'ProfileController', 'index')->only('auth', 'Customer');
-$router->post('profile', 'ProfileController', 'update');
+$router->get('profile', 'Customer\ProfileController', 'index')->only('auth', 'Customer');
+$router->post('profile', 'Customer\ProfileController', 'update');
 
 /**
  * Customer Transsaction
 */
-$router->get('current-transactions', 'TransactionController', 'currentTransactions')->only('auth', 'Customer');
-$router->get('previous-transactions', 'TransactionController', 'previousTransactions')->only('auth', 'Customer');
-$router->get('transaction-show', 'TransactionController', 'show')->only('auth', 'Customer');
-$router->post('transaction-update', 'TransactionController', 'update')->only('auth', 'Customer');
+$router->get('current-transactions', 'Customer\TransactionController', 'currentTransactions')->only('auth', 'Customer');
+$router->get('previous-transactions', 'Customer\TransactionController', 'previousTransactions')->only('auth', 'Customer');
+$router->get('transaction-show', 'Customer\TransactionController', 'show')->only('auth', 'Customer');
+$router->post('transaction-update', 'Customer\TransactionController', 'update')->only('auth', 'Customer');
 
 
 /**
  * Admin side 
 */
-$router->get('transaction-queue-admin', 'Admin_TransactionController', 'queue');
-$router->get('transaction-pending-show-admin', 'Admin_TransactionController', 'pending_show');
-$router->get('transaction-show-admin', 'Admin_TransactionController', 'show')->only('auth', 'Admin');
-$router->post('transaction-update-admin', 'Admin_TransactionController', 'update')->only('auth', 'Admin'); // (Admin/transactions/pending-show) change status "Approved" or "Rejected"
-$router->post('transaction-assign-admin', 'Admin_TransactionController', 'assign')->only('auth', 'Admin');
-$router->get('transaction-table-admin', 'Admin_TransactionController', 'table');
-$router->post('transaction-archive-admin', 'Admin_TransactionController', 'delete');
+$router->get('transaction-queue-admin', 'Admin\Admin_TransactionController', 'queue');
+$router->get('transaction-pending-show-admin', 'Admin\Admin_TransactionController', 'pending_show');
+$router->get('transaction-show-admin', 'Admin\Admin_TransactionController', 'show')->only('auth', 'Admin');
+$router->post('transaction-update-admin', 'Admin\Admin_TransactionController', 'update')->only('auth', 'Admin'); // (Admin/transactions/pending-show) change status "Approved" or "Rejected"
+$router->post('transaction-assign-admin', 'Admin\Admin_TransactionController', 'assign')->only('auth', 'Admin');
+$router->get('transaction-table-admin', 'Admin\Admin_TransactionController', 'table');
+$router->post('transaction-archive-admin', 'Admin\Admin_TransactionController', 'delete');
 
 $router->get('menu-upload-admin', 'Admin\Admin_MenuController', 'upload');
 $router->post('menu-store-admin', 'Admin\Admin_MenuController', 'store');

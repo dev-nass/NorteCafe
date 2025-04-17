@@ -14,10 +14,9 @@ class TestController extends Controller
         ]);
     }
 
-    public function show()
-    {
+    public function show() {}
 
-    }
+    public function create() {}
 
     public function store()
     {
@@ -37,16 +36,9 @@ class TestController extends Controller
                 "errors" => $errors,
             ]);
         }
-
     }
 
-    public function update()
-    {
+    public function update() {}
 
-    }
-
-    public function delete()
-    {
-
-    }
+    public function delete() {}
 }
