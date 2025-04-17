@@ -126,6 +126,7 @@ class ForgotPasswordController extends Controller
 
             // converting back (bcz above we use bin2hex)
             $tokenBin = hex2bin($data["validator"]);
+            // we check if the token_validate on URL is the some as the one on the table
             $validatorTokenCheck = password_verify($tokenBin, $user_who_request['token_validate']);
 
             if (! $validatorTokenCheck) {
@@ -154,7 +155,7 @@ class ForgotPasswordController extends Controller
                 ":email" => $user_to_update['email'],
             ]);
 
-            redirect('index');
+            return $this->redirect('index');
         }
     }
 

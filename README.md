@@ -304,5 +304,6 @@ Controller.php > TestController.php > test.view.php
 - The `token selector` is used for fetcing the record of the user from the `password_reset_request` table.
 - After getting the user record, we will use its fetched `token validate` column, and compare it to the `token validate` from the form that has been embedded into it by default (done through the construction of a specific URL variable that redirect to a page and puts token at the URL, that are then used later on)
 # Cart Count Logic
+- We are utilitizing PHP `$_SESSION` super global and updates the count whenever (1) the user logged in, and (2) the user add another item on their cart, and (3) if they placed their orders
 # Discount
 # Sample

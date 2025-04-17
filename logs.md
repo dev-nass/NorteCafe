@@ -19,3 +19,7 @@ All of the changes I've made to transition the Controller classes to use the bas
 ### Controller Folder
 - Seperate the `Customer` & `Admin`, this will be the convention if future customer is to be added such as `Rider`.
 - While some controllers that are general to all users remains in the same positions.
+
+### Mailer class
+- Implementation of OOP and encapsulation on PHP mailer.
+- The class will be populated with method that are responsible for sending different kinds of emails
