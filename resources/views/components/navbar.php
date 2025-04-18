@@ -28,7 +28,7 @@
                         </div>
                     </li>
                     <li>
-                        <a href="findStore.php" class="nav-link">Find Store</a>
+                        <a href="findStore" class="nav-link">Find Store</a>
                     </li>
                 </ul>
 

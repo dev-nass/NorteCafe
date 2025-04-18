@@ -107,7 +107,6 @@ abstract class Controller
                 // for similar password
                 if(strpos($singleRule, 'confirmed') === 0) {
                     if($data[$field] !== $data["{$field}_confirmation"]) {
-                        dump($data["{$field}_confirmation"]);
                         $errors[$field][] = ucfirst("$mod_field_name should match");
                     }
                 }

@@ -40,9 +40,8 @@ class UserController extends Controller
                 "subject" => $this->getInput("subject"),
                 "message" => $this->getInput("message"),
             ];
-
             $mailerObj = new Mailer;
-            $mailSent = $mailerObj->contatUs($data["name"], $data["email"], $data["subject"], $data["message"]);
+            $mailSent = $mailerObj->contactUs($data["name"], $data["email"], $data["subject"], $data["message"]);
 
             if($mailSent) {
                 $this->redirect('contactUs');
@@ -58,6 +57,11 @@ class UserController extends Controller
     public function aboutUsDevelopers()
     {
         return $this->view('Customer/aboutUsDevelopers.view.php');
+    }
+
+    public function findStore()
+    {
+        return $this->view('Customer/findStore.view.php');
     }
 
     public function faqs()

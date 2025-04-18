@@ -70,7 +70,7 @@
                             <div class="col-12 col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $item['name'] ?></h5>
-                                    <p class="card-text"><?= $item['description'] ?></p>
+                                    <p class="card-text"><?= substr($item['description'], 0, 50) ?>...</p>
 
                                     <!-- Sizes -->
                                     <div class="d-flex">

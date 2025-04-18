@@ -2,7 +2,7 @@
 <?php require base_path('resources/views/components/navbar.php')?>
 
 <!-- Added for 1st time account log-in -->
-<?php if($_SESSION) : ?>
+<?php if(isset($_SESSION['__currentUser']['credentials']['verified'])) : ?>
     <input
     class="d-none"
     id="user_verified_status"

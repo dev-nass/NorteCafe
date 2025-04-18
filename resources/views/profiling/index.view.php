@@ -128,7 +128,7 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="validationCustom08" class="form-label">Date of Birth</label>
-                                                        <input type="date" class="form-control" id="validationCustom08" name="date_of_birth" value="<?= $_SESSION['__currentUser']['credentials']['date_of_birth'] ?>"  aria-describedby="validationServer08Feedback" required>
+                                                        <input type="date" class="form-control" id="validationCustom08" name="date_of_birth" value="<?= $_SESSION['__currentUser']['credentials']['date_of_birth'] ?>" aria-describedby="validationServer08Feedback" required>
                                                         <div id="validationServer08Feedback" class="valid-feedback">
                                                             Looks good!
                                                         </div>
@@ -166,43 +166,19 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="validationCustom12" class="form-label">City</label>
-                                                        <select class="form-select form-control" id="validationServe128" name="city" aria-describedby="validationServer08Feedback" required>
-                                                            <option disabled>Choose...</option>
-                                                            <option <?= $_SESSION['__currentUser']['credentials']['city'] === "Dasmariñas" ? "selected" : "" ?>>Dasmariñas</option>
-                                                        </select>
-                                                        <div id="validationServer11Feedback" class="valid-feedback">
-                                                            Looks good!
-                                                        </div>
+                                                        <input type="text" class="form-control" id="validationCustom12" name="city" value="Dasmariñas" disabled required>
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="validationServer13" class="form-label">Provience</label>
-                                                        <select class="form-select form-control" id="validationServer31" name="provience" aria-describedby="validationServer11Feedback" required>
-                                                            <option disabled>Choose...</option>
-                                                            <option <?= $_SESSION['__currentUser']['credentials']['provience'] === "Cavite" ? "selected" : "" ?>>Cavite</option>
-                                                        </select>
-                                                        <div id="validationServer11Feedback" class="valid-feedback">
-                                                            Looks good!
-                                                        </div>
+                                                        <input type="text" class="form-control" id="validationCustom13" name="provience" value="Cavite" disabled required>
                                                     </div>
                                                     <div class="col-4">
                                                         <label for="validationServer14" class="form-label">Region</label>
-                                                        <select class="form-select form-control" id="validationServer42" name="region" aria-describedby="validationServer12Feedback" required>
-                                                            <option disabled>Choose...</option>
-                                                            <option <?= $_SESSION['__currentUser']['credentials']['region'] === "4A" ? "selected" : "" ?>>4A</option>
-                                                        </select>
-                                                        <div id="validationServer12Feedback" class="valid-feedback">
-                                                            Looks good!
-                                                        </div>
+                                                        <input type="text" class="form-control" id="validationCustom14" name="region" value="4A" disabled required>
                                                     </div>
                                                     <div class="col-4">
                                                         <label for="validationServer15" class="form-label">Postal Code</label>
-                                                        <select class="form-select form-control" id="validationServer53" name="postal_code" aria-describedby="validationServer13Feedback" required>
-                                                            <option disabled>Choose...</option>
-                                                            <option <?= $_SESSION['__currentUser']['credentials']['postal_code'] === "4114" ? "selected" : "" ?>>4114</option>
-                                                        </select>
-                                                        <div id="validationServer13Feedback" class="valid-feedback">
-                                                            Looks good!
-                                                        </div>
+                                                        <input type="text" class="form-control" id="validationCustom15" name="postal_code" value="4114" disabled required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -216,6 +192,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="me-3">
+                    <a class="btn btn-outline-success" href="change-pass">Change Password</a>
                 </div>
                 <div class="">
                     <form action="logout" method="POST">
@@ -289,7 +268,9 @@
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="text-secondary">Date of Birth: </span>
-                                    <p><?= date("F d, Y", strtotime($_SESSION['__currentUser']['credentials']['date_of_birth']))  ?? "NULL" ?></p>
+                                    <p><?= isset($_SESSION['__currentUser']['credentials']['date_of_birth']) && strtotime($_SESSION['__currentUser']['credentials']['date_of_birth'])
+                                            ? date("F d, Y", strtotime($_SESSION['__currentUser']['credentials']['date_of_birth']))
+                                            : "NULL" ?></p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="text-secondary">Gender: </span>
@@ -361,7 +342,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="mb-2 text-secondary">Placed At: </span>
-                                    <span><?= $currentTransaction['created_at'] ?? "" ?></span>
+                                    <span><?= date("F d, Y", strtotime($currentTransaction['created_at'])); ?></span>
                                 </div>
                                 <hr>
                                 <div class="d-flex justify-content-between mt-2">
@@ -371,17 +352,6 @@
                                     </div>
                                     <div>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <form id="transaction-update" action="transaction-update" method="POST">
-                                                <input
-                                                    class="d-none"
-                                                    name="transaction-id"
-                                                    value="<?= $currentTransaction['transaction_id'] ?>">
-                                                <input
-                                                    class="d-none"
-                                                    name="status"
-                                                    value="Cancelled">
-                                                <button for="transaction-update" title="Cancel" class="btn btn-outline-danger text-gradient px-3 mb-0 me-2"><i class="material-symbols-rounded" style="font-size: .9rem;">delete</i></button>
-                                            </form>
                                             <a title="View Order" class="btn btn-outline-dark px-3 mb-0" href="transaction-show?id=<?= $currentTransaction['transaction_id'] ?>"><i class="material-symbols-rounded" style="font-size: .9rem;">edit</i></a>
                                         </div>
                                     </div>
@@ -413,7 +383,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="mb-2 text-secondary">Placed At: </span>
-                                    <span><?= $previousTransaction['created_at'] ?? "" ?></span>
+                                    <span><?= date("F d, Y", strtotime($previousTransaction['created_at'])); ?></span>
                                 </div>
                                 <hr>
                                 <div class="d-flex justify-content-between mt-2">
@@ -423,8 +393,7 @@
                                     </div>
                                     <div>
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <a title="Cancel" class="btn btn-outline-danger text-gradient px-3 mb-0 me-2" href="cancel"><i class="material-symbols-rounded" style="font-size: .9rem;">delete</i></a>
-                                            <a title="View Order" class="btn btn-outline-dark px-3 mb-0" href="javascript:;"><i class="material-symbols-rounded" style="font-size: .9rem;">edit</i></a>
+                                            <a title="View Order" class="btn btn-outline-dark px-3 mb-0" href="transaction-show?id=<?= $previousTransaction['transaction_id'] ?>"><i class="material-symbols-rounded" style="font-size: .9rem;">edit</i></a>
                                         </div>
                                     </div>
 

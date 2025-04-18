@@ -37,8 +37,8 @@ class ProfileController extends Controller
 
         return $this->view('profiling/index.view.php', [
             "errors" => [],
-            "currentTransaction" => $currentTransaction[0],
-            "previousTransaction" => $previousTransaction[0],
+            "currentTransaction" => $currentTransaction[0] ?? NULL,
+            "previousTransaction" => $previousTransaction[0] ?? NULL,
         ]);
     }
 

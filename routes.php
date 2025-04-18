@@ -11,6 +11,7 @@ $router->get('contactUs', 'Customer\UserController', 'contactUs');
 $router->post('contactUs', 'Customer\UserController', 'sendMessage');
 $router->get('aboutUsNorteCafe', 'Customer\UserController', 'aboutUsNorteCafe');
 $router->get('aboutUsDevelopers', 'Customer\UserController', 'aboutUsDevelopers');
+$router->get('findStore', 'Customer\UserController', 'findStore');
 $router->get('faqs', 'Customer\UserController', 'faqs');
 $router->get('delivery-details', 'Customer\UserController', 'deliveryDetails');
 
@@ -28,6 +29,9 @@ $router->get('forgot-pass', 'ForgotPasswordController', 'index');
 $router->post('forgot-pass', 'ForgotPasswordController', 'store');
 $router->get('reset-pass', 'ForgotPasswordController', 'create');
 $router->post('reset-pass', 'ForgotPasswordController', 'update');
+// Change Password
+$router->get('change-pass', 'ChangePasswordController', 'create');
+$router->post('change-pass', 'ChangePasswordController', 'store');
 
 /**
  * HTTP Response Web Page

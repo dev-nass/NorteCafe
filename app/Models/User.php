@@ -50,6 +50,25 @@ class User extends Model
         return $record ?? false;
     }
 
+    /**
+     * Stricker version of OR above
+     * and uses the operator AND
+    */
+    public function findUserAnd($param)
+    {
+        $this->iniDB();
+
+        $keys = array_keys($param);
+        $values = array_values($param);
+        $conditions = implode(" = ? AND ", $keys) . " = ?";
+
+        $sql = "SELECT user_id, first_name, last_name, username, email, contact_number, gender, age, date_of_birth, address, role, house_number, street, barangay, city, provience, region, postal_code, available, verified, profile_dir FROM $this->table WHERE $conditions";
+
+        $record = $this->query($sql, $values)->find();
+
+        return $record ?? false;
+    }
+
 
     /**
      * Used for logged-in user and redirect them to their proper

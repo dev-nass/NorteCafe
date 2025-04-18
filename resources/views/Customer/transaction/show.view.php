@@ -25,7 +25,7 @@
                                                 <p class="text-white text-xs opacity-8 mb-0">Placed At: <span class="fw-light"><?= date("F d, Y \a\\t h:i A", strtotime($transactions[0]['created_at']));  ?></span></p>
                                             </div>
                                             <div>
-                                                <h6 class="mb-lg-1 text-white">Address: <span class="fw-light"><?= $transactions[0]['address'] ?></span></h6>
+                                                <h6 class="mb-lg-1 text-white">Address: <span class="fw-light"><?= $transactions[0]['location'] ?></span></h6>
                                             </div>
                                         </div>
                                     </div>
