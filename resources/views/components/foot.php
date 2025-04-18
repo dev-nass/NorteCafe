@@ -64,6 +64,7 @@
     <!-- User Side -->
     <script src="../../resources/js/scrollReveal.min.js" defer></script>
     <script src="../../resources/js/firstTime_logIn.js" defer></script>
+    <script src="../../resources/js/contactUs/emailSent.js" defer></script>
 
     <script src="../../resources/js/menu/quantityUpdate.js" defer></script>
     <script src="../../resources/js/menu/selectOnlyOneAddOn.js" defer></script>

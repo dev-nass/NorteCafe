@@ -52,4 +52,23 @@ class Mailer
 
         return $this->mail->send() ?? false;
     }
+
+    /**
+     * Used for sending email to the norte_cafe if the customers
+     * have conerns
+    */
+    public function contatUs($sender_name, $sender_email, $subject, $message)
+    {
+
+        $this->mailerSettings();
+
+        $this->mail->setFrom($sender_email, $sender_name);
+        $this->mail->addAddress($this->username);
+
+        $this->mail->isHTML(true);
+        $this->mail->Subject = "{$subject}";
+        $this->mail->Body = "{$message}";
+
+        return $this->mail->send() ?? false;
+    }
 }

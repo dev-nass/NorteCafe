@@ -1,7 +1,7 @@
 # Abstraction
 All of the changes I've made to transition the Controller classes to use the base Controller class will be here.
 
-### April 17, 2025
+## April 17, 2025
 ### Cart Controller
 - Modified the `CartController` use the respective model classes to make this file more cleaner,
 - Since this Controller class highly relies on joining multiple table, I hid those queries to the each model classes, and enclose them to a method.
@@ -23,3 +23,7 @@ All of the changes I've made to transition the Controller classes to use the bas
 ### Mailer class
 - Implementation of OOP and encapsulation on PHP mailer.
 - The class will be populated with method that are responsible for sending different kinds of emails
+
+## April 18, 2025
+### Contact Us
+- Send inquiries through contact us is now possible.

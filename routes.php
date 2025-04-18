@@ -8,6 +8,7 @@ $router->post('test-store', 'TestController', 'store');
 */
 $router->get('index', 'Customer\UserController', 'index');
 $router->get('contactUs', 'Customer\UserController', 'contactUs');
+$router->post('contactUs', 'Customer\UserController', 'sendMessage');
 $router->get('aboutUsNorteCafe', 'Customer\UserController', 'aboutUsNorteCafe');
 $router->get('aboutUsDevelopers', 'Customer\UserController', 'aboutUsDevelopers');
 $router->get('faqs', 'Customer\UserController', 'faqs');

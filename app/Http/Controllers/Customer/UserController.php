@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Models\Customer;
 use App\Models\User;
 use Core\Controller;
+use Core\Mailer;
 
 class UserController extends Controller
 {
@@ -26,6 +27,27 @@ class UserController extends Controller
     public function contactUs()
     {
         return $this->view('Customer/contactUs.view.php');
+    }
+
+    public function sendMessage() 
+    {
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $data = [
+                "name" => $this->getInput("name"),
+                "email" => $this->getInput("email"),
+                "subject" => $this->getInput("subject"),
+                "message" => $this->getInput("message"),
+            ];
+
+            $mailerObj = new Mailer;
+            $mailSent = $mailerObj->contatUs($data["name"], $data["email"], $data["subject"], $data["message"]);
+
+            if($mailSent) {
+                $this->redirect('contactUs');
+            }
+        }
     }
 
     public function aboutUsNorteCafe()
