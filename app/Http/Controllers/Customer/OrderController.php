@@ -53,6 +53,8 @@ class OrderController
             $cartObj = new Cart;
             $cartObj->updateCartCount('user_id');
 
+            Session::set('__flash', 'placed_order_notif', 'Order Placed!');
+
             redirect('cart');
         }
     }

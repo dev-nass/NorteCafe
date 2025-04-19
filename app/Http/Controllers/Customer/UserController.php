@@ -22,12 +22,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        return $this->view('Customer/index.view.php');
+        return $this->view('Customer/index.view.php', [
+            "title" => "Norte Cafe"
+        ]);
     }
 
     public function contactUs()
     {
-        return $this->view('Customer/contactUs.view.php');
+        return $this->view('Customer/contactUs.view.php', [
+            "title" => "Contact Us"
+        ]);
     }
 
     /**
@@ -57,26 +61,36 @@ class UserController extends Controller
 
     public function aboutUsNorteCafe()
     {
-        return $this->view('Customer/aboutUsNorteCafe.view.php');
+        return $this->view('Customer/aboutUsNorteCafe.view.php', [
+            "title" => "About Us Store"
+        ]);
     }
 
     public function aboutUsDevelopers()
     {
-        return $this->view('Customer/aboutUsDevelopers.view.php');
+        return $this->view('Customer/aboutUsDevelopers.view.php', [
+            "title" => "About Us Developers"
+        ]);
     }
 
     public function findStore()
     {
-        return $this->view('Customer/findStore.view.php');
+        return $this->view('Customer/findStore.view.php', [
+            "title" => "Find Store"
+        ]);
     }
 
     public function faqs()
     {
-        return $this->view('Customer/faqs.view.php');
+        return $this->view('Customer/faqs.view.php', [
+            "title" => "FAQs - Norte Cafe"
+        ]);
     }
 
     public function deliveryDetails()
     {
-        return $this->view('Customer/delivery-details.view.php');
+        return $this->view('Customer/delivery-details.view.php', [
+            "title" => "Delivery Details"
+        ]);
     }
 }

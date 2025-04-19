@@ -19,6 +19,7 @@ class ForgotPasswordController extends Controller
     {
 
         view('auth/forgot-pass.view.php', [
+            'title' => 'Forgot Password',
             "message" => "",
         ]);
     }
@@ -79,11 +80,13 @@ class ForgotPasswordController extends Controller
 
     /**
      * Used for showing reset-password form page
+     * (Page send from GMAIL)
      */
     public function create()
     {
 
         view("auth/reset-pass.view.php", [
+            "title" => "Reset Password",
             "errors" => [],
             "token_selector" => $_GET['selector'],
             "token_reset" => $_GET['validator'],

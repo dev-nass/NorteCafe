@@ -19,6 +19,7 @@ class ChangePasswordController extends Controller
     public function create() 
     {
         return $this->view('auth/change-pass.view.php', [
+            "title" => "Change Password",
             "errors" => [],
         ]);
     }

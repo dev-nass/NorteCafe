@@ -27,6 +27,7 @@ class TransactionController extends Controller
         $currentTransactions = $transactionObj->getCurrentTransactions($currentUserId);
 
         return $this->view('Customer/transaction/current-index.view.php', [
+            "title" => "Current Transactions",
             "currentTransactions" => $currentTransactions,
         ]);
     }
@@ -45,6 +46,7 @@ class TransactionController extends Controller
         $previousTransactions = $transactionObj->getPreviousTransactions($currentUserId);
 
         return $this->view('Customer/transaction/previous-index.view.php', [
+            "title" => "Previous Transactions",
             "previousTransactions" => $previousTransactions,
         ]);
     }
@@ -67,6 +69,7 @@ class TransactionController extends Controller
         $previousTransactions = $transactionObj->getPreviousTransactions($transactions[0]['user_id'], "DESC");
 
         return $this->view('Customer/transaction/show.view.php', [
+            'title' => "Show Transaction",
             'transactions' => $transactions,
             'previousTransactions' => $previousTransactions,
         ]);

@@ -36,6 +36,7 @@ class ProfileController extends Controller
         $previousTransaction = $transactionObj->getPreviousTransactions($currentUserId, 'DESC', 1);
 
         return $this->view('profiling/index.view.php', [
+            "title" => "Profile",
             "errors" => [],
             "currentTransaction" => $currentTransaction[0] ?? NULL,
             "previousTransaction" => $previousTransaction[0] ?? NULL,

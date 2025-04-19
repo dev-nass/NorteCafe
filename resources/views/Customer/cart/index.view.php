@@ -383,3 +383,22 @@
 </section>
 
 <?php require base_path('resources/views/components/foot.php') ?>
+
+<script>
+    <?php if (isset($_SESSION['__flash']['placed_order_notif'])) : ?>
+        Swal.fire({
+            icon: "success",
+            title: "Order Placed Successfully!",
+            text: "Make another purchase?",
+            allowOutsideClick: false,
+            showConfirmButton: true,
+            showDenyButton: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "http://localhost/PHP%202025/Norte%20Cafe/public/index.php/menu";
+            } else if (result.isDenied) {
+
+            }
+        });
+    <?php endif; ?>
+</script>

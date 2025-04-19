@@ -43,6 +43,7 @@ class CartController extends Controller
         $available_discounts = $discountObj->findAll();
 
         view('Customer/cart/index.view.php', [
+            "title" => "Cart",
             'cartMenuItems' => $cartMenuItems,
             'menu_item_sizes' => $menu_item_sizes,
             'add_ons' => $add_ons,

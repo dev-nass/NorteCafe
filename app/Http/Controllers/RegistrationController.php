@@ -21,6 +21,7 @@ class RegistrationController extends Controller
     {
 
         $this->view('auth/registration.view.php', [
+            'title' => 'Registration',
             'errors' => [],
         ]);
     }

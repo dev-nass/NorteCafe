@@ -23,6 +23,7 @@ class LoginController extends Controller
     {
 
         return $this->view('auth/login.view.php', [
+            'title' => 'Login',
             'errors' => [],
         ]);
     }

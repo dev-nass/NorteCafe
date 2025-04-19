@@ -35,6 +35,7 @@ class FilterController
         $add_ons = $db->query("SELECT * FROM add_ons")->get();
 
         view('Customer/menu/result.view.php', [
+            "title" => "Menu",
             'keywordSearch' => $value,
             'menu_items' => $menu_items,
             'menu_item_categories' => $menu_item_categories,
@@ -70,6 +71,7 @@ class FilterController
         $add_ons = $db->query("SELECT * FROM add_ons")->get();
 
         view('Customer/menu/result.view.php', [
+            'title' => 'Menu',
             'keywordSearch' => $value,
             'menu_items' => $menu_items,
             'menu_item_categories' => $menu_item_categories,
