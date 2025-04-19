@@ -1,16 +1,34 @@
 
-const changePass_fornm = document.querySelector('.change-pass');
+const changePass_form = document.querySelector('.change-pass');
 
-changePass_fornm.addEventListener('submit', () => {
+changePass_form.addEventListener('submit', async (event) => {
 
-    const error_li = document.querySelector('.error-li');
+    event.preventDefault();
 
-    if(! error_li) {
+    const form = event.target;
+    const formData = new FormData(form);
+
+    try {
+
+        const response = await fetch('../../App/Http/Controllers/ChangePasswordController.php', {
+            method: 'POST',
+            body: formData,
+            header: {
+                'Accept': 'application/json'
+            }
+        });
+
         Swal.fire({
             icon: "success",
             title: "Chaged Password Sucessfully!",
             text: "Redirect you to login page now",
             allowOutsideClick: false,
         });
+
+    } catch (e) {
+        console.log(e);
     }
+
+
+
 });

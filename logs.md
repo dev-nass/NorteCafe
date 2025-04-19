@@ -55,4 +55,12 @@ SendderName <senderEmail@gmail.com>
 ### Change Password
 - We are using email instead of user_id because I think its more safer. Attackers can identify the available ID on the db if they saw the hidden input value to have 50, it means there are (1-49) other users on the database.
 - However using email its more obscure.
-- **Issue:** There are not alert as of the momment notifying them that the password has been changed, only redirecting them.
+- **Issue:** There are no alert as of the momment notifying them that the password has been changed, only redirecting them.
+
+
+# April 19, 2025
+### Change Password
+- Used a session based notification for showing the user that changing their password is succesful.
+
+### Session
+- Fixed the use the `$_SESSION['__currentUser']['credentials']` as the default customer session record.

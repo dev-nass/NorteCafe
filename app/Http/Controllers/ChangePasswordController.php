@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Core\Authenticator;
 use Core\Controller;
+use Core\Session;
 use App\Models\User;
 
 class ChangePasswordController extends Controller
@@ -70,17 +71,19 @@ class ChangePasswordController extends Controller
                     "errors" => $errors
                 ]);
             }
-
+            
             // we can update the password
             $user_pass_updated = $userObj->query('UPDATE users SET password = :password WHERE email = :email', [
                 "email" => $data["email"],
                 "password" => password_hash($data["new_password"], PASSWORD_BCRYPT),
             ]);
-
+            
             // redirect
             if($user_pass_updated) {
+                Session::set('__flash', 'change_password_notif', 'Password Changed Successfully');
                 $auth = new Authenticator;
                 $auth->logout();
+
                 return $this->redirect('login');
             }
         }

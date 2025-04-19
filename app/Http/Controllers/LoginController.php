@@ -44,19 +44,15 @@ class LoginController extends Controller
             ];
 
             // the login process is happening inside attempt() function
-            if ($auth->attempt($data['emailOrUsername'], $data['password'])) {
+            $authUser = $auth->attempt($data['emailOrUsername'], $data['password']);
 
-                $userModel = new User;
-                $authUser = $userModel->findUserOr([
-                    'email' => $data['emailOrUsername'], 
-                    'username' => $data['emailOrUsername']
-                ]);
-                Session::set('__currentUser', 'credentials', $authUser);
+            if ($authUser) {
 
                 // current user cart count (need here for navbar)
                 $cartObj = new Cart;
                 $cartObj->updateCartCount('user_id');
-
+                
+                $userModel = new User;
                 $userModel->loadRoleView();
             }
 

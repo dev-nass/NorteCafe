@@ -3,6 +3,7 @@
 namespace Core;
 
 use Core\Database;
+use App\Models\User;
 
 class Authenticator
 {
@@ -14,37 +15,35 @@ class Authenticator
     public function attempt($emailOrUsername, $password)
     {
 
-        $db = new Database;
-        $db->iniDB();
-
-        $user = $db->query("SELECT * FROM users WHERE email = :email OR username = :username", [
-            'email' => $emailOrUsername,
-            'username' => $emailOrUsername,
-        ])->find();
+        $userObj = new User;
+        $user = $userObj->findUserOr([
+            "email" => $emailOrUsername,
+            "username" => $emailOrUsername,
+        ]);
 
         if ($user) {
             if (password_verify($password, $user['password'])) {
 
-                $this->login($emailOrUsername);
+                $this->login($user);
 
-                return true;
+                return $user;
             }
         }
 
         return false;
     }
 
-    public function login($email)
+    public function login($credentials)
     {
-        $_SESSION['user'] = [
-            'email' => $email,
-        ];
+        $_SESSION['__currentUser']['credentials'] = $credentials;
 
         session_regenerate_id(true);
     }
 
     public function logout()
     {
-        session_destroy();
+        unset($_SESSION['__currentUser']);
+        unset($_SESSION['__currentUserCarts']);
+        unset($_SESSION['__currentUserTransactions']);
     }
 }

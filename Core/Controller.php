@@ -170,14 +170,15 @@ abstract class Controller
 
     /**
      * Shows a responsive message in the form of JSON
-     * on the screen. Mostly, erros msgs
+     * on the screen. Mostly, erros msgs.
+     * 
+     * Used for sending PHP errors to a JS file
     */
     protected function respond($data, $status = 200)
     {
         http_response_code($status);
         header('Content-Type: application/json');
         echo json_encode($data);
-        exit;
     }
 
 }

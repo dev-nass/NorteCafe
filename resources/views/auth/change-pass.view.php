@@ -64,6 +64,9 @@
 </main>
 </body>
 
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- =================== -->
 <!-- End Change Password Content -->
 <!-- =================== -->
@@ -77,23 +80,5 @@
             e.preventDefault();
         }
         form.classList.add("was-validated");
-    });
-
-
-    // FINISH THIS TOMMORROW !!!!!!!!!
-    const changePass_form = document.querySelector('.change-pass');
-
-    changePass_form.addEventListener('submit', () => {
-
-        const error_li = document.querySelector('.error-li');
-        alert(error_li);
-        if (error_li == null) {
-            Swal.fire({
-                icon: "success",
-                title: "Chaged Password Sucessfully!",
-                text: "Redirect you to login page now",
-                allowOutsideClick: false,
-            });
-        }
     });
 </script>

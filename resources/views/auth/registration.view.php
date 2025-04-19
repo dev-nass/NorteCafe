@@ -83,8 +83,16 @@
                                                 <div class="invalid-feedback">Missing Password...</div>
                                             </div>
                                         </div>
-                                        <div class="">
-                                            <p class="mb-0"><input class="terms-agreementCheckbox" type="checkbox"> I read and agree to <a class="text-decoration-underline" href="../../views/auth/terms&condition.view.php">Terms & Conditions</a></p>
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                                <label class="form-check-label" for="invalidCheck">
+                                                    Agree to terms and conditions
+                                                </label>
+                                                <div class="invalid-feedback">
+                                                    You must agree before submitting.
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="mb-3">
                                             <button class="register-btn w-100 mt-3" type="submit">Register</button>

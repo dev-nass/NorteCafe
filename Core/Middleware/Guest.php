@@ -12,7 +12,7 @@ class Guest
     public function handle($role)
     {
 
-        if($_SESSION) {
+        if(isset($_SESSION['__currentUser']['credentials'])) {
             header('location: 403');
             exit();
         }

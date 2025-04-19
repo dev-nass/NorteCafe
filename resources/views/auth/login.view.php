@@ -68,6 +68,20 @@
 </body>
 
 
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Alert for newly changed password -->
+<?php if (isset($_SESSION['__flash']['change_password_notif']) && $_SESSION['__flash']['change_password_notif'] === "Password Changed Successfully") : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Chaged Password Sucessfully!",
+            text: "Please login using your new password",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php endif; ?>
 
 <!-- js for validating -->
 <script>

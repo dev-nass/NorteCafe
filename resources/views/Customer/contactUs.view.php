@@ -121,3 +121,14 @@
 </script>
 
 <?php require base_path('resources/views/components/foot.php') ?>
+
+<script>
+    <?php if(isset($_SESSION['__flash']['contactUs_notif'])) : ?>
+        Swal.fire({
+            icon: "success",
+            title: "Message Sent Sucessfully!",
+            text: "We'll reply back to you as soon as possible. Please check your inbox for reply.",
+            allowOutsideClick: false,
+        });
+    <?php endif ; ?>
+</script>

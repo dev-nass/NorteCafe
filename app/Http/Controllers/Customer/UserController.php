@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\User;
 use Core\Controller;
 use Core\Mailer;
+use Core\Session;
 
 class UserController extends Controller
 {
@@ -29,6 +30,10 @@ class UserController extends Controller
         return $this->view('Customer/contactUs.view.php');
     }
 
+    /**
+     * Used for sending GMAIL message on
+     * Contact Us page
+    */
     public function sendMessage() 
     {
 
@@ -44,6 +49,7 @@ class UserController extends Controller
             $mailSent = $mailerObj->contactUs($data["name"], $data["email"], $data["subject"], $data["message"]);
 
             if($mailSent) {
+                Session::set('__flash', 'contactUs_notif', 'Message Sent');
                 $this->redirect('contactUs');
             }
         }

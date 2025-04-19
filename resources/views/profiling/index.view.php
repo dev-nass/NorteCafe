@@ -212,7 +212,7 @@
                     <div class="col-12 col-md-6 border white-bg shadow-sm">
                         <div class="d-flex flex-column justify-content-center h-100">
                             <div class="d-flex justify-content-center mb-3">
-                                <img src="<?= $_SESSION['__currentUser']['credentials']['profile_dir'] != NULL ? $_SESSION['__currentUser']['credentials']['profile_dir'] : "https://picsum.photos/seed/picsum/230/250" ?>" alt="profile" style="border-radius: 40px; height: 250px; width: 230px;">
+                                <img src="<?= $_SESSION['__currentUser']['credentials']['profile_dir'] != NULL ? $_SESSION['__currentUser']['credentials']['profile_dir'] : "../../storage/frontend/user/img/index/default-pfp.jpg" ?>" alt="profile" style="border-radius: 40px; height: 250px; width: 230px;">
                             </div>
                             <?php if ($_SESSION['__currentUser']['credentials']['verified'] == 1) : ?>
                                 <div class="text-center">
@@ -238,7 +238,7 @@
                             </div>
                             <hr>
                             <div class="d-flex flex-column align-items-center mt-3">
-                                <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">location_on</i><?= $_SESSION['__currentUser']['credentials']['house_number'] . ", " . $_SESSION['__currentUser']['credentials']['street'] ?? "No address" ?></span>
+                                <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">location_on</i><?= isset($_SESSION['__currentUser']['credentials']['house_number']) ? $_SESSION['__currentUser']['credentials']['house_number'] . ", " . $_SESSION['__currentUser']['credentials']['street'] : "No address" ?></span>
                                 <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">mail</i><?= $_SESSION['__currentUser']['credentials']['email'] ?? "No email" ?></span>
                                 <span class="mb-2"><i class="material-symbols-rounded text-lg fs-5 align-middle me-1">call</i><?= $_SESSION['__currentUser']['credentials']['contact_number'] ?? "No contact num" ?></span>
                             </div>
@@ -342,7 +342,9 @@
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="mb-2 text-secondary">Placed At: </span>
-                                    <span><?= date("F d, Y", strtotime($currentTransaction['created_at'])); ?></span>
+                                    <span><?= isset($currentTransaction['created_at']) && strtotime($currentTransaction['created_at'])
+                                            ? date("F d, Y", strtotime($currentTransaction['created_at']))
+                                            : "" ?> </span>
                                 </div>
                                 <hr>
                                 <div class="d-flex justify-content-between mt-2">
@@ -383,7 +385,9 @@
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="mb-2 text-secondary">Placed At: </span>
-                                    <span><?= date("F d, Y", strtotime($previousTransaction['created_at'])); ?></span>
+                                    <span><?= isset($previousTransaction['created_at']) && strtotime($previousTransaction['created_at'])
+                                            ? date("F d, Y", strtotime($previousTransaction['created_at']))
+                                            : "" ?></span>
                                 </div>
                                 <hr>
                                 <div class="d-flex justify-content-between mt-2">
