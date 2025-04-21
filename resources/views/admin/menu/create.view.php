@@ -20,6 +20,13 @@
                                 <div class="invalid-feedback">
                                     Enter a valid Item Name!
                                 </div>
+                                <?php if (isset($errors['menu_name'])): ?>
+                                    <ul class="m-0 p-0" style="list-style: none;">
+                                        <?php foreach ($errors['menu_name'] as $error): ?>
+                                            <li class="text-danger"><?= htmlspecialchars($error) ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endif; ?>
                             </div>
                             <div class="col-4 mb-3">
                                 <label for="validationCustom02" class="form-label">Size</label>
@@ -65,6 +72,13 @@
                                 <div class="invalid-feedback">
                                     Enter a valid Description!
                                 </div>
+                                <?php if (isset($errors['menu_description'])): ?>
+                                    <ul class="m-0 p-0" style="list-style: none;">
+                                        <?php foreach ($errors['menu_description'] as $error): ?>
+                                            <li class="text-danger"><?= htmlspecialchars($error) ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end mt-2">
@@ -82,7 +96,7 @@
                                 <p class="opacity-4 m-0">500x500</p>
                                 <p class="text-center text-md mb-0">Click here to upload image</p>
                             </div>
-                        </label>    
+                        </label>
                     </div>
                 </div>
             </div>

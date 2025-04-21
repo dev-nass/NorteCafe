@@ -245,4 +245,18 @@
 
 </main>
 
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<?php if (isset($_SESSION['__flash']['rider_assigned'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Transaction assigned to <?= $transactions[0]['rider_name'] ?>!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php endif ; ?>
+
 <?php require base_path('resources/views/components/admin_foot.php') ?>

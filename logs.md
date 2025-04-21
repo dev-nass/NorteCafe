@@ -63,4 +63,7 @@ SendderName <senderEmail@gmail.com>
 - Used a session based notification for showing the user that changing their password is succesful.
 
 ### Session
-- Fixed the use the `$_SESSION['__currentUser']['credentials']` as the default customer session record.
+- Fixed the use the `$_SESSION['__currentUser']['credentials']` as the default customer session record. And removed the `$_SESSION['user']['email']`
+
+# April 21, 2025
+- Fixed the admin controllers and added appropriate alert for each action, specially for transaction actions and changing the status.

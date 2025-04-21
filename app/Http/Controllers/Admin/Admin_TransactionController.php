@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Transaction;
 use Core\Database;
+use Core\Controller;
+use Core\Session;
 use App\Models\Order;
 
-class Admin_TransactionController
+class Admin_TransactionController extends Controller
 {
+
+    public function index() {}
 
     /**
      * Used for loading the transactions table
@@ -24,7 +29,7 @@ class Admin_TransactionController
             ->get();
 
 
-        view('admin/transaction/table.view.php', [
+        return $this->view('admin/transaction/table.view.php', [
             "transactions" => $transactions,
         ]);
     }
@@ -35,7 +40,7 @@ class Admin_TransactionController
      */
     public function queue()
     {
-        view('admin/transaction/queue.view.php');
+        return $this->view('admin/transaction/queue.view.php');
     }
 
     /**
@@ -44,40 +49,15 @@ class Admin_TransactionController
      */
     public function show()
     {
-        $db = new Database;
-        $db->iniDB();
-
+        
         $transaction_id = $_GET['transaction_id'];
-
-        $transactions =
-            $db->query("SELECT transactions.*, 
-                users.user_id, CONCAT(users.first_name, ' ', users.last_name) AS fullname, users.username, users.email, users.contact_number, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.provience, ', ', users.region, ', ', users.postal_code) AS address,
-                riders.user_id, CONCAT(riders.first_name, ' ', riders.last_name) as rider_name, riders.contact_number,
-                orders.order_id, orders.transaction_id, orders.cart_id, orders.total_price, 
-                carts.*, 
-                menu_items.menu_item_id, menu_items.name as menu_item_name, menu_items.category, menu_items.image_dir, 
-                menu_item_sizes.menu_item_size_id, menu_item_sizes.menu_item_id, menu_item_sizes.size, menu_item_sizes.price as menu_item_size_price, 
-                add_ons.add_on_id, add_ons.name as add_on_name, add_ons.price as add_on_price,
-                discounts.discount_id, discounts.name AS discount_name
-                FROM transactions
-                LEFT JOIN users AS users ON users.user_id = transactions.user_id
-                LEFT JOIN users AS riders ON riders.user_id = transactions.rider_id
-                LEFT JOIN orders ON orders.transaction_id = transactions.transaction_id
-                LEFT JOIN carts ON carts.cart_id = orders.cart_id
-                LEFT JOIN menu_items ON menu_items.menu_item_id = carts.menu_item_id
-                LEFT JOIN menu_item_sizes ON menu_item_sizes.menu_item_size_id = carts.menu_item_size_id
-                LEFT JOIN add_ons ON add_ons.add_on_id = carts.add_ons_id
-                LEFT JOIN discounts ON discounts.discount_id = transactions.discount_id
-                WHERE transactions.transaction_id = :transaction_id", [
-                "transaction_id" => $transaction_id,
-            ])->get();
-
-        $previousTransactions = $db->query("SELECT * FROM transactions WHERE user_id = :user_id ORDER BY transaction_id DESC", [
-            "user_id" => $transactions[0]['user_id'],
-        ])->get();
+        
+        $transactionObj = new Transaction;
+        $transactions = $transactionObj->getOrdersTransaction($transaction_id);
+        $previousTransactions = $transactionObj->getPreviousTransactions($transactions[0]['user_id'], "DESC");
 
 
-        view('admin/transaction/show.view.php', [
+        return $this->view('admin/transaction/show.view.php', [
             'transactions' => $transactions,
             'previousTransactions' => $previousTransactions,
         ]);
@@ -90,58 +70,35 @@ class Admin_TransactionController
     public function pending_show()
     {
 
-        $db = new Database;
-        $db->iniDB();
-
-        // transaction queries
         $transaction_id = $_GET['id'];
 
         // this variable will contain an array [] each one with repeating transacton_id but different col value next to it.
         // we use ->get() here instead of ->find() because each transactions can have multipe orders on them,
         // and each of those orders are rendered into their own row/records
-        $transactions =
-            $db->query("SELECT transactions.*, 
-                users.user_id, CONCAT(users.first_name, ' ', users.last_name) AS fullname, users.username, users.email, users.contact_number, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.provience, ', ', users.region, ', ', users.postal_code) AS address,
-                riders.user_id, CONCAT(riders.first_name, ' ', riders.last_name) as rider_name, riders.contact_number,
-                orders.order_id, orders.transaction_id, orders.cart_id, orders.total_price, 
-                carts.*, 
-                menu_items.menu_item_id, menu_items.name as menu_item_name, menu_items.category, menu_items.image_dir, 
-                menu_item_sizes.menu_item_size_id, menu_item_sizes.menu_item_id, menu_item_sizes.size, menu_item_sizes.price as menu_item_size_price, 
-                add_ons.add_on_id, add_ons.name as add_on_name, add_ons.price as add_on_price,
-                discounts.discount_id, discounts.name AS discount_name, discounts.type, discounts.min_amount
-                FROM transactions
-                LEFT JOIN users AS users ON users.user_id = transactions.user_id
-                LEFT JOIN users AS riders ON riders.user_id = transactions.rider_id
-                LEFT JOIN orders ON orders.transaction_id = transactions.transaction_id
-                LEFT JOIN carts ON carts.cart_id = orders.cart_id
-                LEFT JOIN menu_items ON menu_items.menu_item_id = carts.menu_item_id
-                LEFT JOIN menu_item_sizes ON menu_item_sizes.menu_item_size_id = carts.menu_item_size_id
-                LEFT JOIN add_ons ON add_ons.add_on_id = carts.add_ons_id
-                LEFT JOIN discounts ON discounts.discount_id = transactions.discount_id
-                WHERE transactions.transaction_id = :transaction_id", [
-                "transaction_id" => $transaction_id,
-            ])->get();
+        $transactionObj = new Transaction;
+        $transactions = $transactionObj->getOrdersTransaction($transaction_id);
+        $previousTransactions = $transactionObj->getPreviousTransactions($transactions[0]['user_id']);
 
         // available rider query
+        $db = new Database;
+        $db->iniDB();
         $availableRiders = $db->query("SELECT users.user_id, CONCAT(users.first_name, ' ', users.last_name) AS fullname, users.username, users.email, users.contact_number, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.provience, ', ', users.region, ', ', users.postal_code) AS address, users.available
             FROM users 
-            WHERE role = :role AND available = :available   ", [
+            WHERE role = :role AND available = :available", [
             "role" => "Rider",
             "available" => 1,
         ])->get();
 
-        // preview transactions
-        $previousTransactions = $db->query("SELECT * FROM transactions WHERE user_id = :user_id ORDER BY transaction_id DESC", [
-            "user_id" => $transactions[0]['user_id'],
-        ])->get();
-
-
-        view('admin/transaction/pending-show.view.php', [
+        return $this->view('admin/transaction/pending-show.view.php', [
             'transactions' => $transactions,
             'previousTransactions' => $previousTransactions,
             'availableRiders' => $availableRiders,
         ]);
     }
+
+    public function create() {}
+
+    public function store() {}
 
 
     /**
@@ -150,21 +107,23 @@ class Admin_TransactionController
     public function update()
     {
 
-        $db = new Database;
-        $db->iniDB();
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $current_date = date("Y-m-d H:i:s");
+            $data = [
+                'status' => $this->getInput('status'),
+                'transaction_id' => $this->getInput('transaction-id')
+            ];
 
-            $updatedStatus = $db->query("UPDATE transactions SET status = :status, confirmed_at = :confirmed_at WHERE transaction_id = :transaction_id", [
-                "status" => $_POST['status'],
-                "transaction_id" => $_POST['transaction-id'],
+            $transactionObj = new Transaction;
+            $current_date = date("Y-m-d H:i:s");
+            $updatedStatus = $transactionObj->update($data["transaction_id"], [
+                "status" => $data["status"],
                 "confirmed_at" => $current_date,
             ]);
 
             if ($updatedStatus) {
-                redirect("transaction-pending-show-admin?transaction_id={$_POST['transaction-id']}");
+                Session::set('__flash', 'status_changed', $data['status']);
+                return $this->redirect("transaction-pending-show-admin?id={$data['transaction_id']}");
             }
         }
     }
@@ -180,14 +139,16 @@ class Admin_TransactionController
         $db->iniDB();
 
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
-            $assignedRider = $db->query("UPDATE transactions SET rider_id = :rider_id, status = :approved_status WHERE transaction_id = :transaction_id", [
-                "rider_id" => $_POST['rider_id'],
-                "approved_status" => "Approved",
-                "transaction_id" => $_POST['transaction_id']
-            ]);
 
+            $transactionObj = new Transaction;
+            $assignedRider = $transactionObj->update($_POST['transaction_id'], [
+                "rider_id" => $_POST['rider_id'],
+                "status" => "Approved by Employee",
+            ]);
+        
             if($assignedRider) {
-                redirect("transaction-show-admin?transaction_id={$_POST['transaction_id']}");
+                Session::set('__flash', 'rider_assigned', 'Approved by Employee');
+                return $this->redirect("transaction-show-admin?transaction_id={$_POST['transaction_id']}");
             }
         }
     }
@@ -209,7 +170,7 @@ class Admin_TransactionController
             ]);
 
             if ($archivedTransaction || $archivedOrders) {
-                redirect('transaction-table-admin');
+                return $this->redirect('transaction-table-admin');
             }
         }
     }

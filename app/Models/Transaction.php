@@ -11,9 +11,9 @@ class Transaction extends Model
     /**
      * Used to get a very detailed collection of records,
      * and return every order thats under a single
-     * tranaction id
+     * tranaction id (used for transaction/show())
     */
-    public function getUserTransactions($transaction_id)
+    public function getOrdersTransaction($transaction_id)
     {
 
         $this->iniDB();
@@ -28,7 +28,7 @@ class Transaction extends Model
             menu_items.menu_item_id, menu_items.name as menu_item_name, menu_items.category, menu_items.image_dir, 
             menu_item_sizes.menu_item_size_id, menu_item_sizes.menu_item_id, menu_item_sizes.size, menu_item_sizes.price as menu_item_size_price, 
             add_ons.add_on_id, add_ons.name as add_on_name, add_ons.price as add_on_price,
-            discounts.discount_id, discounts.name AS discount_name
+            discounts.discount_id, discounts.name AS discount_name, discounts.type, discounts.min_amount
             FROM transactions
             LEFT JOIN users AS users ON users.user_id = transactions.user_id
             LEFT JOIN users AS riders ON riders.user_id = transactions.rider_id
@@ -58,15 +58,18 @@ class Transaction extends Model
             "SELECT transactions.*, users.user_id, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.provience, ', ', users.region, ', ', users.postal_code) AS address, users.username, users.email, users.contact_number
                 FROM transactions
                 LEFT JOIN users AS users ON users.user_id = transactions.user_id
-                WHERE transactions.user_id = :user_id AND (transactions.status = :pending_status OR transactions.status = :approved_status)
+                WHERE transactions.user_id = :user_id AND 
+                (transactions.status = :pending_status OR transactions.status = :approved_status_employee OR transactions.status = :approved_status_rider OR transactions.status = :rejected_status_rider OR transactions.status = :in_transit)
                 ORDER BY transaction_id $order_by
                 LIMIT $limit",
             [
                 "user_id" => $user_id,
                 "pending_status" => "Pending",
-                "approved_status" => "Approved",
-            ]
-        )->get();
+                "approved_status_employee" => "Approved by Employee",
+                "approved_status_rider" => "Approved by Rider",
+                "rejected_status_rider" => "Rejected by Rider",
+                "in_transit" => "In Transit",
+            ])->get();
 
         return $currentTransactions;
     }
@@ -84,16 +87,17 @@ class Transaction extends Model
             "SELECT transactions.*, users.user_id, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.provience, ', ', users.region, ', ', users.postal_code) AS address, users.username, users.email, users.contact_number
                 FROM transactions
                 LEFT JOIN users AS users ON users.user_id = transactions.user_id
-                WHERE transactions.user_id = :user_id AND (transactions.status = :rejected_status OR transactions.status = :cancelled_status OR transactions.status = :delivered_status)
+                WHERE transactions.user_id = :user_id AND 
+                (transactions.status = :cancelled_status OR transactions.status = :rejected_status OR transactions.status = :delivered_status OR transactions.status = :failed_delivery)
                 ORDER BY transaction_id $order_by
                 LIMIT $limit",
             [
                 "user_id" => $user_id,
-                "rejected_status" => "Rejected",
                 "cancelled_status" => "Cancelled",
+                "rejected_status" => "Rejected by Employee",
                 "delivered_status" => "Delivered",
-            ]
-        )->get();
+                "failed_delivery" => "Failed Delivery",
+            ])->get();
 
         return $previousTransactions;
     }

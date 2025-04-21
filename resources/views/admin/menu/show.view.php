@@ -11,7 +11,7 @@
                         <div class="h-100 mb-4 ">
                             <div class="card-body pt-4 p-3">
                                 <ul class="list-group">
-                                    <img class="" style="height: 300px;" src="<?= $menuItem[0]['image_dir'] ?>" alt="menu_item_img">
+                                    <img class="" style="max-height: 300px;" src="<?= $menuItem[0]['image_dir'] ?>" alt="menu_item_img">
                                 </ul>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                                         <i class="material-symbols-rounded text-lg">edit_note</i>
                                     </button>
                                 </div>
-                                <!-- Off canvas -->
+                                <!-- (Update) Off canvas  -->
                                 <div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
                                     <div class="offcanvas-header">
                                         <h5 class="offcanvas-title" id="staticBackdropLabel">Edit <?= $menuItem[0]['name'] ?></h5>
@@ -60,6 +60,13 @@
                                                     <div class="valid-feedback">
                                                         Looks good!
                                                     </div>
+                                                    <?php if (isset($errors['item_name'])): ?>
+                                                        <ul class="m-0 p-0" style="list-style: none;">
+                                                            <?php foreach ($errors['item_name'] as $error): ?>
+                                                                <li class="text-danger"><?= htmlspecialchars($error) ?></li>
+                                                            <?php endforeach; ?>
+                                                        </ul>
+                                                    <?php endif; ?>
                                                 </div>
                                                 <div class="col-12">
                                                     <label for="validationCustom02" class="form-label">Category</label>
@@ -74,12 +81,19 @@
                                                     <div class="valid-feedback">
                                                         Looks good!
                                                     </div>
+                                                    <?php if (isset($errors['description'])): ?>
+                                                        <ul class="m-0 p-0" style="list-style: none;">
+                                                            <?php foreach ($errors['description'] as $error): ?>
+                                                                <li class="text-danger"><?= htmlspecialchars($error) ?></li>
+                                                            <?php endforeach; ?>
+                                                        </ul>
+                                                    <?php endif; ?>
                                                 </div>
                                                 <div class="col-12">
                                                     <label for="validationCustom04" class="form-label">Availability</label>
                                                     <select class="form-select border px-2" name="available">
-                                                        <option value="1" <?php $menuItem[0]['available'] == 1 ? "seelcted" : "" ?> >Available</option>
-                                                        <option value="2" <?php $menuItem[0]['available'] == 0 ? "seelcted" : "" ?> >Not Available</option>
+                                                        <option value="1" <?php $menuItem[0]['available'] == 1 ? "seelcted" : "" ?>>Available</option>
+                                                        <option value="2" <?php $menuItem[0]['available'] == 0 ? "seelcted" : "" ?>>Not Available</option>
                                                     </select>
                                                 </div>
                                                 <?php foreach ($menuItem as $item) : ?>
@@ -109,7 +123,7 @@
                                                     </div>
                                                 <?php endforeach; ?>
                                                 <div class="col-12">
-                                                    <button class="btn btn-primary" type="submit">Submit form</button>
+                                                    <button class="btn btn-primary" type="submit">Update Item</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -122,15 +136,13 @@
                                 <h5><strong>Description:</strong></h5>
                                 <p><?= $menuItem[0]['description'] ?></p>
                                 <h5><strong>Size:</strong></h5>
-                                <div class="d-flex mb-2">
+                                <div class="row">
                                     <?php foreach ($menuSizes as $size) : ?>
-                                        <ul class="list-group">
-                                            <li class="list-group-item border-0 d-flex align-items-center justify-content-center me-3 mb-2 bg-gray-100 border-radius-lg">
-                                                <div class="d-flex flex-row">
-                                                    <p><strong><?= $size['size'] ?></strong> ₱<?= $size['price'] ?></p>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        <div class="col-3 border-0 d-flex align-items-center justify-content-center me-3 mb-2 bg-gray-100 border-radius-lg">
+                                            <div class="d-flex flex-row">
+                                                <p><strong><?= $size['size'] ?></strong> ₱<?= $size['price'] ?></p>
+                                            </div>
+                                        </div>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
@@ -139,7 +151,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-lg-3 mt-4">
+            <div class="col-12 col-lg-3 mt-4 p-0 ps-lg-2">
                 <div class="bg-white shadow-sm rounded mb-4 shadow-sm p-4" style="min-height: 100%; overflow-y: auto;">
                     <div class="card-header">
                         <h5 class="mb-3">Add-Ons</h5>
@@ -186,5 +198,48 @@
         })
     })()
 </script>
+
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<?php if (isset($_SESSION['__flash']['menu_item_uploaded'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Menu Item created successfully!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php elseif (isset($_SESSION['__flash']['menu_item_updated'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Menu Item updated successfully!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php elseif (isset($_SESSION['__flash']['menu_item_update_error'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Oopsss...",
+            text: "Double check the menu item information",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php elseif (isset($_SESSION['__flash']['menu_item_size_uploaded'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Menu Item Size created successfully!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php endif; ?>
+
 
 <?php require base_path('resources/views/components/admin_foot.php') ?>

@@ -43,7 +43,7 @@ class Model extends Database
      * Returns a collection of records that matches the query
      * w/ Condition
      */
-    public function findAllWhere($param)
+    public function findAllWhere($param, $order = "ASC")
     {
         $this->iniDB();
 
@@ -51,7 +51,9 @@ class Model extends Database
         $values = array_values($param); // value
         $conditions = implode(" = ? AND ", $keys) . " = ?";
 
-        $sql = "SELECT * FROM $this->table WHERE $conditions";
+        $table = substr($this->table, 0, -1);
+
+        $sql = "SELECT * FROM $this->table WHERE $conditions ORDER BY {$table}_id $order";
 
         $records = $this->query($sql, $values)->get();
 

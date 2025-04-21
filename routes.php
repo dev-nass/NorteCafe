@@ -80,17 +80,17 @@ $router->post('transaction-assign-admin', 'Admin\Admin_TransactionController', '
 $router->get('transaction-table-admin', 'Admin\Admin_TransactionController', 'table');
 $router->post('transaction-archive-admin', 'Admin\Admin_TransactionController', 'delete');
 
-$router->get('menu-upload-admin', 'Admin\Admin_MenuController', 'upload');
+$router->get('menu-upload-admin', 'Admin\Admin_MenuController', 'create');
 $router->post('menu-store-admin', 'Admin\Admin_MenuController', 'store');
 $router->get('menu-table-admin', 'Admin\Admin_MenuController', 'table');
 $router->get('menu-show-admin', 'Admin\Admin_MenuController', 'show');
 $router->post('menu-update-admin', 'Admin\Admin_MenuController', 'update');
 $router->post('menu-change-availability-admin', 'Admin\Admin_MenuController', 'change_availability');
 
-$router->get('size-upload-admin', 'Admin\Admin_MenuSizeController', 'upload');
+$router->get('size-upload-admin', 'Admin\Admin_MenuSizeController', 'create');
 $router->post('size-store-admin', 'Admin\Admin_MenuSizeController', 'store');
 
-$router->get('add-ons-upload-admin', 'Admin\Admin_AddOnsController', 'upload');
+$router->get('add-ons-upload-admin', 'Admin\Admin_AddOnsController', 'create');
 $router->post('add-ons-upload-admin', 'Admin\Admin_AddOnsController', 'store');
 
 $router->get('customer-table-admin', 'Admin\Admin_CustomerController', 'table');

@@ -20,11 +20,13 @@
                                 <div class="invalid-feedback">
                                     Enter a valid Add On Name!
                                 </div>
-                                <?php if(isset($error['addOn_name'])) : ?>
-                                    <div>
-                                        <p class="text-danger mb-0"><?= $error['addOn_name'] ?></p>
-                                    </div>
-                                <?php endif ; ?>
+                                <?php if (isset($errors['add_on_name'])): ?>
+                                    <ul class="m-0 p-0" style="list-style: none;">
+                                        <?php foreach ($errors['add_on_name'] as $error): ?>
+                                            <li class="text-danger"><?= htmlspecialchars($error) ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php endif; ?>
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="validationCustom02" class="form-label">Category</label>
@@ -114,5 +116,19 @@
         })
     })()
 </script>
+
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<?php if (isset($_SESSION['__flash']['add_ons_uploaded'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Add ons created successfully!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php endif ; ?>
 
 <?php require base_path('resources/views/components/admin_foot.php') ?>

@@ -153,7 +153,7 @@
                                                 class="d-none"
                                                 name="rider_id"
                                                 value="<?= $rider['user_id'] ?>">
-                                            <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="material-symbols-rounded text-lg position-relative me-1">assignment_add</i>Assign</button>
+                                            <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4" <?= $transactions[0]['status'] == "Approved by Employee" ? "" : "disabled" ?> ><i class="material-symbols-rounded text-lg position-relative me-1">assignment_add</i>Assign</button>
                                         </form>
                                     </div>
                                 </li>
@@ -202,7 +202,7 @@
                                 <input
                                     class="d-none"
                                     name="status"
-                                    value="Approved">
+                                    value="Approved by Employee">
                                 <button id="status-approve" title="Approve" class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-symbols-rounded text-lg">check</i></button>
                             </form>
                             <form id="status-reject" action="transaction-update-admin" method="POST">
@@ -213,7 +213,7 @@
                                 <input
                                     class="d-none"
                                     name="status"
-                                    value="Rejected">
+                                    value="Rejected by Employee">
                                 <button form="status-reject" title="Reject" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-symbols-rounded text-lg">close</i></button>
                             </form>
                         </div>
@@ -309,5 +309,20 @@
     </div>
 
 </main>
+
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<?php if (isset($_SESSION['__flash']['status_changed'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Status changed to <?= $_SESSION['__flash']['status_changed'] ?>!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php endif ; ?>
 
 <?php require base_path('resources/views/components/admin_foot.php') ?>

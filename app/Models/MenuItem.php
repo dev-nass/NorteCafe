@@ -9,6 +9,24 @@ class MenuItem extends Model
 
     protected $table = "menu_items";
 
+    /**
+     * Used within Menu/show() controller,
+     * to abstract the sql query
+     * 
+     * Return a collection of records
+    */
+    public function showMenuItem($menu_item_id) 
+    {
+        $this->iniDB();
+
+        $menuItem = $this->query("SELECT menu_items.*, menu_item_sizes.* FROM menu_items
+                LEFT JOIN menu_item_sizes ON menu_item_sizes.menu_item_id = menu_items.menu_item_id
+                WHERE menu_items.menu_item_id = :menu_item_id", [
+                    "menu_item_id" => $menu_item_id,
+            ])->get();
+        
+        return $menuItem;
+    }
 
     /**
      * Will be used for moving the uploaded image of menu item

@@ -16,7 +16,8 @@ class TransactionController extends Controller
 
     /**
      * Used for showing current transactions
-     * status: ('Pending', 'Approved')
+     * status: (Pending, Approved by Employee, Approved by Rider, Rejected by Rider, In Transit)
+
      */
     public function currentTransactions()
     {
@@ -35,7 +36,7 @@ class TransactionController extends Controller
 
     /**
      * Used for showing previous transactions
-     * status: ('Rejected', 'Cancelled', 'Delivered')
+     * status: ('Rejected', 'Cancelled', 'Delivered', 'Failed Delivery')
      */
     public function previousTransactions()
     {
@@ -65,7 +66,7 @@ class TransactionController extends Controller
         $transaction_id = $_GET['id'];
 
         $transactionObj = new Transaction;
-        $transactions = $transactionObj->getUserTransactions($transaction_id);
+        $transactions = $transactionObj->getOrdersTransaction($transaction_id);
         $previousTransactions = $transactionObj->getPreviousTransactions($transactions[0]['user_id'], "DESC");
 
         return $this->view('Customer/transaction/show.view.php', [
