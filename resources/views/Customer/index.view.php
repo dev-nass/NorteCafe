@@ -178,7 +178,7 @@
                     </div>
                     <div>
                         <p class="d-block mb-1 fw-bold">Fast & Free Shipping</p>
-                        <p>We deliver your guitar to your door with the utmost care and ease.</p>
+                        <p>We deliver your foods & drinks to your door with the utmost care and ease.</p>
                     </div>
                 </div>
             </div>

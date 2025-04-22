@@ -33,7 +33,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="username">Username</label>
                                             <div class="form-floating">
-                                                <input class="form-control" name="username" type="text" id="username" placeholder="Username" required autofocus>
+                                                <input class="form-control" name="username" type="text" id="username" placeholder="Username" value="<?= old('username') ?>" required autofocus>
                                                 <label for="username">Enter Username...</label>
                                                 <div class="invalid-feedback">Missing Username...</div>
                                             </div>
@@ -48,7 +48,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="email">E-Mail</label>
                                             <div class="form-floating">
-                                                <input class="form-control" name="email" type="email" id="email" placeholder="E-Mail" required>
+                                                <input class="form-control" name="email" type="email" id="email" placeholder="E-Mail" value="<?= old('email') ?>" required>
                                                 <label for="email">Enter E-Mail...</label>
                                                 <div class="invalid-feedback">Invalid E-Mail...</div>
                                             </div>

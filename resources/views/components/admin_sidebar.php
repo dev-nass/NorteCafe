@@ -65,8 +65,14 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= urlIs('menu-table-admin') ? 'active bg-gradient-dark text-light' : 'text-dark' ?>" href="menu-table-admin">
-                    <i class="material-symbols-rounded opacity-5">menu</i>
+                    <i class="material-symbols-rounded opacity-5">shopping_cart</i>
                     <span class="nav-link-text ms-1">Menu Items</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= urlIs('add-ons-table-admin') ? 'active bg-gradient-dark text-light' : 'text-dark' ?>" href="add-ons-table-admin">
+                    <i class="material-symbols-rounded opacity-5">menu</i>
+                    <span class="nav-link-text ms-1">Add-On</span>
                 </a>
             </li>
             <li class="nav-item mt-3">

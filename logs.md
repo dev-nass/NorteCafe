@@ -66,4 +66,30 @@ SendderName <senderEmail@gmail.com>
 - Fixed the use the `$_SESSION['__currentUser']['credentials']` as the default customer session record. And removed the `$_SESSION['user']['email']`
 
 # April 21, 2025
+### Admin Controllers
 - Fixed the admin controllers and added appropriate alert for each action, specially for transaction actions and changing the status.
+
+### Middleware
+- Added a general middleware for general webpage, this prevents `admin` and `rider` account from accessing the general webpages.
+
+# April 22, 2025
+### Session flash and old method
+- I implementedd the `old($input = "", $key = "credentials")` method within the functions.php file,
+- The expected value of the session will be like this:
+```php
+$data = [
+    "key/variablename" => "value"
+];
+// we are putting the data to the session
+Session::set('__flash', 'credentials', $data);
+
+// expected value
+$_SESSION['__flash'] = [
+    'credentials' => [
+        'key/variableFromData' => 'valueFromData'
+    ],
+];
+
+// we are putting the data to the input
+<input value="<?= old('key/variablename') ?>" >
+```

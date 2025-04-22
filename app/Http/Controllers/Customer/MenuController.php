@@ -3,13 +3,19 @@
 namespace App\Http\Controllers\Customer;
 
 use Core\Database;
+use Core\Controller;
+use App\Models\MenuSize;
+use App\Models\AddOns;
 
-class MenuController {
+
+class MenuController extends Controller 
+{
 
     /**
      * Loads the view for the menu page
     */
-    public function index() {
+    public function index() 
+    {
 
         $db = new Database;
         $db->iniDB();
@@ -21,16 +27,14 @@ class MenuController {
         $menu_item_categories = $db->query("SELECT DISTINCT category FROM menu_items")->get();
 
         // Select each menu item and its corresponding size
-        $menu_item_sizes = $db
-            ->query("SELECT * 
-                FROM menu_items as menu_item
-                INNER JOIN menu_item_sizes as size ON menu_item.menu_item_id = size.menu_item_id"
-            )->get();
+        $menuSizeObj = new MenuSize;
+        $menu_item_sizes = $menuSizeObj->getMenuItemsAndSizes();
 
         // Select all add ons
-        $add_ons = $db->query("SELECT * FROM add_ons")->get();
+        $addOnsObj = new AddOns;
+        $add_ons = $addOnsObj->findAll();
         
-        view('Customer/menu/index.view.php', [
+        return $this->view('Customer/menu/index.view.php', [
             'title' => 'Menu',
             'menu_items' => $menu_items,
             'pages' => $pages['pagination'],
@@ -39,4 +43,10 @@ class MenuController {
             'add_ons' => $add_ons,
         ]);
     }
+
+    public function show() {}
+    public function create() {}
+    public function store() {}
+    public function update() {}
+    public function delete() {}
 }

@@ -13,8 +13,6 @@ class Admin_CustomerController extends Controller
 
     public function index() {}
 
-    public function show() {}
-
     public function table()
     {
 
@@ -30,7 +28,7 @@ class Admin_CustomerController extends Controller
         ]);
     }
 
-    public function create()
+    public function show()
     {
 
         $customer_id = $_GET['customer_id'];
@@ -69,6 +67,8 @@ class Admin_CustomerController extends Controller
             "previousTransactions" => $previousTransactions,
         ]);
     }
+
+    public function create() {}
 
     public function store() {}
 

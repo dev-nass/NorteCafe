@@ -9,7 +9,20 @@ use App\Models\AddOns;
 class Admin_AddOnsController extends Controller
 {
 
-    public function index() {}
+    /**
+     * Used for loading the table view
+     * of AddOns
+    */
+    public function index() 
+    {
+
+        $addOnsObj = new AddOns;
+        $addOns = $addOnsObj->findAll();
+        
+        return $this->view('Admin/AddOns/index.view.php', [
+            'addOns' => $addOns,
+        ]);
+    }
 
     public function show() {}
 
@@ -19,7 +32,7 @@ class Admin_AddOnsController extends Controller
     public function create()
     {
 
-        view('Admin/AddOns/create.view.php', [
+        return $this->view('Admin/AddOns/create.view.php', [
             "errors" => [],
         ]);
     }
@@ -62,7 +75,7 @@ class Admin_AddOnsController extends Controller
             // redirect them to its show
             if($newAddOns) {
                 Session::set('__flash', 'add_ons_uploaded', 'Add ons uploadedd successfully');
-                redirect('add-ons-upload-admin');
+                return $this->redirect('add-ons-upload-admin');
             }
         }
 

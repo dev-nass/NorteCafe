@@ -10,10 +10,11 @@ class MenuItem extends Model
     protected $table = "menu_items";
 
     /**
-     * Used within Menu/show() controller,
+     * Used within Admin_Menu/show() controller,
      * to abstract the sql query
      * 
-     * Return a collection of records
+     * Return a collection of 
+     * records of item and its size
     */
     public function showMenuItem($menu_item_id) 
     {

@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Core\Database;
 use Core\Controller;
 use Core\Validator;
+use Core\Session;
 
 class RegistrationController extends Controller
 {
+
+    protected $title = 'Registration';
 
     public function index() {}
 
@@ -21,7 +24,7 @@ class RegistrationController extends Controller
     {
 
         $this->view('auth/registration.view.php', [
-            'title' => 'Registration',
+            'title' => $this->title,
             'errors' => [],
         ]);
     }
@@ -45,6 +48,8 @@ class RegistrationController extends Controller
                 "password_confirmation" => $this->getInput("password_confirmation")
             ];
 
+            Session::set('__flash', 'credentials', $data);
+
             // validate
             $errors = $this->validate($data, [
                 "username" => "required|min:5|max:255|unique:users,username,0",
@@ -55,6 +60,7 @@ class RegistrationController extends Controller
             // redirect if there's errors
             if ($errors) {
                 return $this->view('auth/registration.view.php', [
+                    'title' => $this->title,
                     'errors' => $errors,
                 ]);
             }

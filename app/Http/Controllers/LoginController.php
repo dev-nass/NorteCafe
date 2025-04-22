@@ -11,6 +11,8 @@ use App\Models\Cart;
 class LoginController extends Controller
 {
 
+    protected $title = 'Login';
+
     public function index() {}
 
     public function show() {}
@@ -23,7 +25,7 @@ class LoginController extends Controller
     {
 
         return $this->view('auth/login.view.php', [
-            'title' => 'Login',
+            'title' => $this->title,
             'errors' => [],
         ]);
     }
@@ -58,9 +60,11 @@ class LoginController extends Controller
             }
 
             $errors['email'] = "Account does not exist";
+            Session::set('__flash', 'credentials', $data);
 
             if ($errors) {
                 return $this->view('auth/login.view.php', [
+                    'title' => $this->title,
                     'errors' => $errors,
                 ]);
             }

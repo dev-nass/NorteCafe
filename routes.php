@@ -6,7 +6,7 @@ $router->post('test-store', 'TestController', 'store');
 /**
  * General Web-Pages
 */
-$router->get('index', 'Customer\UserController', 'index');
+$router->get('index', 'Customer\UserController', 'index')->only('general', 'Customer');
 $router->get('contactUs', 'Customer\UserController', 'contactUs');
 $router->post('contactUs', 'Customer\UserController', 'sendMessage');
 $router->get('aboutUsNorteCafe', 'Customer\UserController', 'aboutUsNorteCafe');
@@ -90,6 +90,7 @@ $router->post('menu-change-availability-admin', 'Admin\Admin_MenuController', 'c
 $router->get('size-upload-admin', 'Admin\Admin_MenuSizeController', 'create');
 $router->post('size-store-admin', 'Admin\Admin_MenuSizeController', 'store');
 
+$router->get('add-ons-table-admin', 'Admin\Admin_AddOnsController', 'index');
 $router->get('add-ons-upload-admin', 'Admin\Admin_AddOnsController', 'create');
 $router->post('add-ons-upload-admin', 'Admin\Admin_AddOnsController', 'store');
 

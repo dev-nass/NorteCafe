@@ -30,7 +30,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="email">Username or E-Mail</label>
                                             <div class="form-floating">
-                                                <input class="form-control" name="email" type="text" id="email" placeholder="Username or E-Mail" required autofocus>
+                                                <input class="form-control" name="email" type="text" id="email" placeholder="Username or E-Mail" value="<?= old('emailOrUsername') ?>" required autofocus>
                                                 <label for="email">Username or E-Mail...</label>
                                                 <div class="invalid-feedback">Missing Username or E-Mail...</div>
                                             </div>

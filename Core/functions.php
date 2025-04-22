@@ -47,6 +47,15 @@ function redirect($path)
     exit();
 }
 
+/**
+ * Used for showing the previous input
+ * after an error occurred
+*/
+function old($input, $key = 'credentials') 
+{
+    return Core\Session::get('__flash', $key)[$input] ?? '';
+}
+
 function abort($code = 404) 
 {
     http_response_code($code);
