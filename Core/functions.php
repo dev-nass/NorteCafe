@@ -18,7 +18,7 @@ function dd($value)
 
 /**
  * Used for the adminside bar
-*/
+ */
 function urlIs($value)
 {
     return $_SERVER['REQUEST_URI'] === "/PHP%202025/Norte%20Cafe/public/index.php/{$value}";
@@ -50,13 +50,30 @@ function redirect($path)
 /**
  * Used for showing the previous input
  * after an error occurred
-*/
-function old($input, $key = 'credentials') 
+ */
+function old($input)
 {
-    return Core\Session::get('__flash', $key)[$input] ?? '';
+    return Core\Session::get('__flash', 'data')['old'][$input] ?? null;
 }
 
-function abort($code = 404) 
+/**
+ * Simplify the display of errors
+*/
+function error($input)
+{
+
+    $errors = Core\Session::get('__flash', 'data')['errors'][$input] ?? '';
+
+    if (isset($_SESSION['__flash']['data']['errors'])) {
+        echo "<ul class='m-0 p-0' style='list-style: none;'>";
+        foreach ($errors as $error) {
+            echo "<li class='text-danger'>" . htmlspecialchars($error) . "</li>";
+        }
+        echo "</ul>";
+    }
+}
+
+function abort($code = 404)
 {
     http_response_code($code);
 
@@ -67,14 +84,14 @@ function abort($code = 404)
 
 /**
  * Used for checking if the shop is open or closed
-*/
+ */
 function isOrderingTime()
 {
     $now = new DateTime('now', new DateTimeZone('Asia/Manila')); // Adjust timezone as needed
     $start = new DateTime('today 10:00:00', new DateTimeZone('Asia/Manila'));
     $end = new DateTime('today 20:45:00', new DateTimeZone('Asia/Manila')); // 9 PM = 21:00
 
-    if($now >= $start && $now < $end) {
+    if ($now >= $start && $now < $end) {
         return true;
     }
 

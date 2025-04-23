@@ -93,3 +93,28 @@ $_SESSION['__flash'] = [
 // we are putting the data to the input
 <input value="<?= old('key/variablename') ?>" >
 ```
+
+# April 23, 2025
+### The Laravel Way of Error
+- So the issue I encountered was that after I validate the inputs I'm showing the view to the same `show.view.php` page, however the URL is not changing, so If you try to refresh the page there will be errors indicating that the page can't be found because the id attached to the URL before was gone, because the `view()` method can alter the URL only `redirect()`,
+- As a solution, laravel displays their error to session and use `redirect()` method to show the errors to the user, but intact the same URL that contains the ID, hence I did the following.
+### New error method
+- The function now contains the creation of the HTML itself so I just have to call it, and pass the variable name that contains the input errors and the list of errors will automatically be renedered
+### New old method
+- Changed the `?? ''` to `?? null`, so that I can use the code below properly
+```php
+value="<?= old() ?? $data['name'] ?>"
+```
+### To achive both of these I created
+- With this approach the `__flash` within the session is own an array consists of old data and error data.
+- Each method of `old()` and `error()` are also adjusted accordingly to easily fetch the nested arrays.
+```php
+if ($errors) {
+    $flash_data = [
+        "errors" => $errors, 
+        "old" => $data
+    ];
+    Session::set('__flash', 'data', $flash_data);
+    return $this->redirect("add-ons-update-admin?id={$data['add_on_id']}");
+}
+```

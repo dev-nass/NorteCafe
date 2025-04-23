@@ -93,6 +93,8 @@ $router->post('size-store-admin', 'Admin\Admin_MenuSizeController', 'store');
 $router->get('add-ons-table-admin', 'Admin\Admin_AddOnsController', 'index');
 $router->get('add-ons-upload-admin', 'Admin\Admin_AddOnsController', 'create');
 $router->post('add-ons-upload-admin', 'Admin\Admin_AddOnsController', 'store');
+$router->get('add-ons-show-admin', 'Admin\Admin_AddOnsController', 'show');
+$router->post('add-ons-update-admin', 'Admin\Admin_AddOnsController', 'update');
 
 $router->get('customer-table-admin', 'Admin\Admin_CustomerController', 'table');
 $router->get('customer-show-admin', 'Admin\Admin_CustomerController', 'show');
