@@ -72,12 +72,14 @@ $router->post('transaction-update', 'Customer\TransactionController', 'update')-
 /**
  * Admin side 
 */
+$router->get('index-admin', 'Admin\Admin_AdminController', 'index');
+
 $router->get('transaction-queue-admin', 'Admin\Admin_TransactionController', 'queue');
 $router->get('transaction-pending-show-admin', 'Admin\Admin_TransactionController', 'pending_show');
 $router->get('transaction-show-admin', 'Admin\Admin_TransactionController', 'show')->only('auth', 'Admin');
 $router->post('transaction-update-admin', 'Admin\Admin_TransactionController', 'update')->only('auth', 'Admin'); // (Admin/transactions/pending-show) change status "Approved" or "Rejected"
 $router->post('transaction-assign-admin', 'Admin\Admin_TransactionController', 'assign')->only('auth', 'Admin');
-$router->get('transaction-table-admin', 'Admin\Admin_TransactionController', 'table');
+$router->get('transaction-table-admin', 'Admin\Admin_TransactionController', 'index');
 $router->post('transaction-archive-admin', 'Admin\Admin_TransactionController', 'delete');
 
 $router->get('menu-table-admin', 'Admin\Admin_MenuController', 'index');
@@ -85,6 +87,7 @@ $router->get('menu-show-admin', 'Admin\Admin_MenuController', 'show');
 $router->get('menu-create-admin', 'Admin\Admin_MenuController', 'create');
 $router->post('menu-store-admin', 'Admin\Admin_MenuController', 'store');
 $router->post('menu-update-admin', 'Admin\Admin_MenuController', 'update');
+$router->post('menu-delete-admin', 'Admin\Admin_MenuController', 'delete');
 $router->post('menu-change-availability-admin', 'Admin\Admin_MenuController', 'change_availability');
 
 $router->get('size-create-admin', 'Admin\Admin_MenuSizeController', 'create');
@@ -95,12 +98,15 @@ $router->get('add-ons-show-admin', 'Admin\Admin_AddOnsController', 'show');
 $router->get('add-ons-create-admin', 'Admin\Admin_AddOnsController', 'create');
 $router->post('add-ons-create-admin', 'Admin\Admin_AddOnsController', 'store');
 $router->post('add-ons-update-admin', 'Admin\Admin_AddOnsController', 'update');
+$router->post('add-ons-delete-admin', 'Admin\Admin_AddOnsController', 'delete');
+$router->post('add-ons-change-availability-admin', 'Admin\Admin_AddOnsController',  'change_availability');
 
 $router->get('discount-table-admin', 'Admin\Admin_DiscountController', 'index');
 $router->get('discount-show-admin', 'Admin\Admin_DiscountController', 'show');
 $router->get('discount-create-admin', 'Admin\Admin_DiscountController', 'create');
 $router->post('discount-store-admin', 'Admin\Admin_DiscountController', 'store');
 $router->post('discount-update-admin', 'Admin\Admin_DiscountController', 'update');
+$router->post('discount-delete-admin', 'Admin\Admin_DiscountController', 'delete');
 
 $router->get('customer-table-admin', 'Admin\Admin_CustomerController', 'index');
 $router->get('customer-show-admin', 'Admin\Admin_CustomerController', 'show');

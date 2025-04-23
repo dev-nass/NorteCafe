@@ -149,20 +149,6 @@ class Admin_MenuController extends Controller
             ];
             $image_dir = $_FILES['menu-item-img'];
 
-            // Used for providing data to the show after redirecting
-                // Menu Item
-            $menuItemObj = new MenuItem;
-            $menuItem = $menuItemObj->showMenuItem($data["menu_item_id"]);
-
-                // Sizes
-            $menuSizesObj = new MenuSize;
-            $menuSizes = $menuSizesObj->findAllWhere([
-                "menu_item_id" => $data["menu_item_id"],
-            ]);
-
-                // Add-ons
-            $addOnsObj = new AddOns;
-            $addOns = $addOnsObj->findAll();
 
             // validation
             $errors = $this->validate($data, [
@@ -172,13 +158,7 @@ class Admin_MenuController extends Controller
 
             // redirect if there's errors
             if ($errors) {
-                Session::set('__flash', 'menu_item_update_error', 'menu item update error');
-                return $this->view('Admin/menu/show.view.php', [
-                    "errors" => $errors,
-                    "menuItem" => $menuItem,
-                    "menuSizes" => $menuSizes,
-                    "addOns" => $addOns,
-                ]);
+                return $this->redirect("menu-show-admin?menu_item_id={$data['menu_item_id']}");
             }
 
             // update the menu item
@@ -249,5 +229,23 @@ class Admin_MenuController extends Controller
         }
     }
 
-    public function delete() {}
+    /**
+     * Used for deleting a specific menu item
+    */
+    public function delete() 
+    {
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $menu_item_id = $this->getInput('menu_item_id');
+
+            $menuItemObj = new MenuItem;
+            $deleted_menuItem = $menuItemObj->delete($menu_item_id);
+
+            if($deleted_menuItem) {
+                Session::set('__flash', 'menu_item_deleted', 'deleted successfully');
+                return $this->redirect('menu-table-admin');
+            }
+        }
+    }
 }

@@ -129,5 +129,24 @@ class Admin_DiscountController extends Controller
         }
 
     }
-    public function delete() {}
+
+    /**
+     * Delete a specific discount
+    */
+    public function delete() 
+    {
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $discount_id = $this->getInput('discount_id');
+
+            $discountObj = new Discount;
+            $deleted_discount = $discountObj->delete($discount_id);
+
+            if($deleted_discount) {
+                Session::set('__flash', 'discount_deleted', 'deleted successfully');
+                return $this->redirect('discount-table-admin');
+            }
+        }
+    }
 }

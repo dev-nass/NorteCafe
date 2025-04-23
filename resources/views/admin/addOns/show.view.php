@@ -5,7 +5,7 @@
     <?php require base_path('resources/views/components/admin_navbar.php') ?>
     <div class="container-fluid py-2 pt-3">
 
-        <form id="addOn_store" class="needs-validation" action="add-ons-update-admin" method="POST" enctype="multipart/form-data" novalidate>
+        <form id="addOn_update" class="needs-validation" action="add-ons-update-admin" method="POST" enctype="multipart/form-data" novalidate>
             <!-- Added for the update -->
             <input
                 class="d-none"
@@ -52,8 +52,8 @@
                             <div class="col-12">
                                 <label for="validationCustom04" class="form-label">Availability</label>
                                 <select class="form-select border border-dark px-2" id="validationCustom04" name="available" required>
-                                    <option value="1" <?= $addOns['available'] == 1 ? "checked" : "" ?> >Available</option>
-                                    <option value="0" <?= $addOns['available'] == 0 ? "checked" : "" ?> >Not Available</option>
+                                    <option value="1" <?= $addOns['available'] == 1 ? "checked" : "" ?>>Available</option>
+                                    <option value="0" <?= $addOns['available'] == 0 ? "checked" : "" ?>>Not Available</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Please select a valid state.
@@ -62,11 +62,19 @@
                         </div>
                         <div class="d-flex justify-content-end mt-2">
                             <button class="mt-3 btn btn-primary" value="id<?= $addOns['add_on_id'] ?>">Submit</button>
+                            <button form="addOns_delete" class="btn btn-outline-warning mt-3 ms-2">Delete</button>
                         </div>
                     </div>
-
                 </div>
             </div>
+        </form>
+        <form id="addOns_delete" action="add-ons-delete-admin" method="POST">
+            <input
+                class="d-none"
+                name="add_ons_id"
+                value="<?= $addOns['add_on_id'] ?>"
+                type="text"
+                readonly>
         </form>
     </div>
 

@@ -56,17 +56,11 @@
                                                     value="<?= $menuItem[0]['menu_item_id'] ?>">
                                                 <div class="col-12">
                                                     <label for="validationCustom01" class="form-label">Item Name</label>
-                                                    <input name="item_name" type="text" class="form-control border px-2" id="validationCustom01" value="<?= $menuItem[0]['name'] ?>" required>
+                                                    <input name="item_name" type="text" class="form-control border px-2" id="validationCustom01" value="<?= old('item_name') ?? $menuItem[0]['name'] ?>" required>
                                                     <div class="valid-feedback">
                                                         Looks good!
                                                     </div>
-                                                    <?php if (isset($errors['item_name'])): ?>
-                                                        <ul class="m-0 p-0" style="list-style: none;">
-                                                            <?php foreach ($errors['item_name'] as $error): ?>
-                                                                <li class="text-danger"><?= htmlspecialchars($error) ?></li>
-                                                            <?php endforeach; ?>
-                                                        </ul>
-                                                    <?php endif; ?>
+                                                    <?php error('item_name') ?>
                                                 </div>
                                                 <div class="col-12">
                                                     <label for="validationCustom02" class="form-label">Category</label>
@@ -124,7 +118,16 @@
                                                 <?php endforeach; ?>
                                                 <div class="col-12">
                                                     <button class="btn btn-primary" type="submit">Update Item</button>
+                                                    <button form="menu_item_delete" class="btn btn-outline-warning">Delete</button>
                                                 </div>
+                                            </form>
+                                            <form id="menu_item_delete" action="menu-delete-admin" method="POST">
+                                                <input 
+                                                    class="d-none"
+                                                    name="menu_item_id"
+                                                    value="<?= $menuItem[0]['menu_item_id'] ?>"
+                                                    type="text"
+                                                    readonly>
                                             </form>
                                         </div>
                                     </div>
@@ -169,10 +172,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Add Ons -->
-        <div class="row">
-
         </div>
     </div>
 
@@ -221,7 +220,7 @@
             allowOutsideClick: false,
         });
     </script>
-<?php elseif (isset($_SESSION['__flash']['menu_item_update_error'])) : ?>
+<?php elseif (isset($_SESSION['__flash']['data']['errors'])) : ?>
     <script>
         Swal.fire({
             icon: "error",

@@ -36,12 +36,16 @@
 <script src="../../resources/assets/js/core/bootstrap.min.js"></script>
 <script src="../../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="../../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
-<script src="../../resources/assets/js/plugins/chartjs.min.js"></script>
+<!-- <script src="../../resources/assets/js/plugins/chartjs.min.js"></script> -->
+
+<!-- Chart JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
 <!-- My Personal JS -->
 <script src="../../js/app.js" type="module"></script>
 <script src="../../resources/js/transaction/transactionQueueAJAX.js" defer></script>
 <script src="../../resources/js/menu/drag&DropMenuImg.js" defer></script>
+<script src="../../resources/js/chartjs/bar_graph.js" defer></script>
 
 <!-- Data Table -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script> <!-- jQuery FIRST -->
@@ -50,6 +54,7 @@
 <!-- <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>  -->
 <script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
 <script src="../../resources/js/transaction/dataTable.js" defer></script>
+
 
 
 <!-- Github buttons -->

@@ -62,11 +62,19 @@
                         </div>
                         <div class="d-flex justify-content-end mt-2">
                             <button class="mt-3 btn btn-primary">Submit</button>
+                            <button form="discount_delete" class="btn btn-outline-warning mt-3 ms-2">Delete</button>
                         </div>
                     </div>
-
                 </div>
             </div>
+        </form>
+        <form id="discount_delete" action="discount-delete-admin" method="POST">
+            <input
+                class="d-none"
+                name="discount_id"
+                value="<?= $discount['discount_id'] ?>"
+                type="text"
+                readonly>
         </form>
     </div>
 

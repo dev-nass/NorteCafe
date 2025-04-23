@@ -4,6 +4,20 @@
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <?php require base_path('resources/views/components/admin_navbar.php') ?>
     <div class="container-fluid py-2 px-1">
+        <div class="d-flex justify-content-start align-items-center pe-2">
+            <p class="me-2 fw-bold">Change all item availability:</p>
+            <form class="d-flex" action="add-ons-change-availability-admin" method="POST">
+                <?php foreach ($addOns as $addOn) : ?>
+                    <input
+                        class="d-none"
+                        name="add-on-id[]"
+                        value="<?= $addOn["add_on_id"] ?>"
+                        type="text">
+                <?php endforeach; ?>
+                <input class="btn btn-outline-success me-2" name="availability" value="Available" type="submit">
+                <input class="btn btn-outline-danger" name="availability" value="Not Available" type="submit">
+            </form>
+        </div>
         <div class="responsive-table">
             <table id="addOn-table" class="table table-striped custom-data-table" style="width:100%">
                 <thead>
@@ -70,6 +84,15 @@
             icon: "success",
             title: "Success",
             text: "Add on updated successfully!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php elseif (isset($_SESSION['__flash']['addOns_deleted'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Add on deleted successfully!",
             allowOutsideClick: false,
         });
     </script>

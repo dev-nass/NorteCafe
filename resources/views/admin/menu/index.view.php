@@ -51,4 +51,19 @@
 
 </main>
 
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<?php if (isset($_SESSION['__flash']['menu_item_deleted'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Menu item deleted successfully!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php endif ; ?>
+
 <?php require base_path('resources/views/components/admin_foot.php') ?>

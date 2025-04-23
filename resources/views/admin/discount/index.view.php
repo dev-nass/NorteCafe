@@ -82,6 +82,15 @@
             allowOutsideClick: false,
         });
     </script>
+<?php elseif (isset($_SESSION['__flash']['discount_deleted'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Discount deleted successfully!",
+            allowOutsideClick: false,
+        });
+    </script>
 <?php endif; ?>
 
 

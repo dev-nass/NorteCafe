@@ -11,12 +11,11 @@ use App\Models\Order;
 class Admin_TransactionController extends Controller
 {
 
-    public function index() {}
 
     /**
      * Used for loading the transactions table
      */
-    public function table()
+    public function index()
     {
         $db = new Database;
         $db->iniDB();
@@ -29,7 +28,7 @@ class Admin_TransactionController extends Controller
             ->get();
 
 
-        return $this->view('admin/transaction/table.view.php', [
+        return $this->view('admin/transaction/index.view.php', [
             "transactions" => $transactions,
         ]);
     }

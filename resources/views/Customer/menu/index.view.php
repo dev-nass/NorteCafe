@@ -86,7 +86,7 @@
 
                                     <p class="card-text m-1">Category: <span class="square ms-1"><?= $item['category'] ?></span></p>
 
-                                    <!-- Availability & Modal -->
+                                    <!-- Availability, Add Ons & Sizes -->
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <p class="card-text mt-2 <?= $item['available'] ? 'text-success' : 'text-danger' ?>"><?= $item['available'] ? 'Available' : 'Not Available' ?></p>
@@ -151,7 +151,7 @@
                                                             <p>Choose One: </p>
                                                             <?php $firstv2 = false; ?>
                                                             <?php foreach ($add_ons as $add_on) : ?>
-                                                                <?php if ($item['category'] === $add_on['category']) : ?>
+                                                                <?php if ($item['category'] === $add_on['category'] && $add_on['available'] == true) : ?>
                                                                     <?php $firstv2 = true; ?>
                                                                     <input
                                                                         type="radio"

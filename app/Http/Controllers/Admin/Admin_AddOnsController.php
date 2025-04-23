@@ -55,7 +55,6 @@ class Admin_AddOnsController extends Controller
         ]);
     }
 
-
     /**
      * Used for storing a new record; Method is calledd
      * everytime the form is submitted
@@ -95,8 +94,6 @@ class Admin_AddOnsController extends Controller
                 Session::set('__flash', 'add_ons_uploaded', 'Add ons uploadedd successfully');
                 return $this->redirect('add-ons-upload-admin');
             }
-
-
         }
     }
 
@@ -135,12 +132,53 @@ class Admin_AddOnsController extends Controller
                 "available" => $data['availability']
             ]);
 
-            if($newAddOns) {
+            if ($newAddOns) {
                 Session::set('__flash', 'addOns_updated', 'Updated Successfully');
                 return $this->redirect('add-ons-table-admin');
             }
         }
     }
 
-    public function delete() {}
+    /**
+     * Delete a single Add Ons
+    */
+    public function delete() 
+    {
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $add_on_id = $this->getInput('add_ons_id');
+
+            $addOnsObj = new AddOns;
+            $deleted_addOns = $addOnsObj->delete($add_on_id);
+
+            if($deleted_addOns) {
+                Session::set('__flash', 'addOns_deleted', 'deleted successfully');
+                return $this->redirect('add-ons-table-admin');
+            }
+        }
+    }
+
+    public function change_availability()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            $add_ons_ids = $_POST['add-on-id'];
+            $add_ons_availability = $_POST['availability'] == "Available" ? 1 : 0;
+
+            $AddOnsObj = new AddOns;
+            $availablityUpdated = false;
+
+            foreach ($add_ons_ids as $id) {
+                $AddOnsObj->update($id, [
+                    "available" => $add_ons_availability,
+                ]);
+
+                $availablityUpdated = true;
+            }
+
+            if ($availablityUpdated) {
+                redirect('add-ons-table-admin');
+            }
+        }
+    }
 }
