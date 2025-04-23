@@ -12,19 +12,17 @@ use App\Models\MenuSize;
 class Admin_MenuController extends Controller
 {
 
-    public function index() {}
-
     /**
      * Used for loading the table view
      * for menu items
      */
-    public function table()
+    public function index()
     {
 
         $menuItemsObj = new MenuItem;
         $menuItems = $menuItemsObj->findAll();
 
-        return $this->view('Admin/menu/table.view.php', [
+        return $this->view('Admin/menu/index.view.php', [
             "menuItems" => $menuItems,
         ]);
     }

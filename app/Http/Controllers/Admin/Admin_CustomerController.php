@@ -11,9 +11,11 @@ use App\Models\Cart;
 class Admin_CustomerController extends Controller
 {
 
-    public function index() {}
-
-    public function table()
+    /**
+     * Loads the table view of
+     * Customer Records
+    */
+    public function index()
     {
 
         $db = new Database;
@@ -28,6 +30,9 @@ class Admin_CustomerController extends Controller
         ]);
     }
 
+    /**
+     * Used for showing specific user
+    */
     public function show()
     {
 

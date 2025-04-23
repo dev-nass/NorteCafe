@@ -5,27 +5,27 @@
     <?php require base_path('resources/views/components/admin_navbar.php') ?>
     <div class="container-fluid py-2 px-1">
         <div class="responsive-table">
-            <table id="addOn-table" class="table table-striped custom-data-table" style="width:100%">
+            <table id="discount-table" class="table table-striped custom-data-table" style="width:100%">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Availability</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">Min Amount</th>
                         <th scope="col">Edit</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($addOns as $addOn): ?>
+                    <?php foreach ($discounts as $discount): ?>
                         <tr>
-                            <th scope="row"><?= $addOn['add_on_id'] ?></th>
-                            <td><?= $addOn['name'] ?></td>
-                            <td><?= strtoupper($addOn['category']) ?></td>
-                            <td>₱<?= number_format($addOn['price'], '2', '.', '') ?></td>
-                            <td><?= $addOn['available'] == 1 ? "Available" : "Not Available" ?></td>
+                            <th scope="row"><?= $discount['discount_id'] ?></th>
+                            <td><?= $discount['name'] ?></td>
+                            <td><?= $discount['type'] ?></td>
+                            <td>-<?= $discount['value'] ?></td>
+                            <td>₱<?= number_format($discount['min_amount'], '2', '.', ',') ?></td>
                             <td>
-                                <a class="btn btn-dark" href="add-ons-show-admin?id=<?= $addOn['add_on_id'] ?>">Edit</a>
+                                <a class="btn btn-dark" href="discount-show-admin?id=<?= $discount['discount_id'] ?>">Edit</a>
                             </td>
                         </tr>
 
@@ -64,12 +64,21 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-<?php if (isset($_SESSION['__flash']['addOns_updated'])) : ?>
+<?php if (isset($_SESSION['__flash']['discount_updated'])) : ?>
     <script>
         Swal.fire({
             icon: "success",
             title: "Success",
-            text: "Add on updated successfully!",
+            text: "Discount updated successfully!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php elseif (isset($_SESSION['__flash']['discount_created'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Discount created successfully!",
             allowOutsideClick: false,
         });
     </script>

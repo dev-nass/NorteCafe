@@ -3,6 +3,7 @@
 namespace Core;
 
 use Core\Database;
+use Core\Session;
 
 abstract class Controller
 {
@@ -113,16 +114,19 @@ abstract class Controller
             }
         }
 
-        // if (!empty($errors)) {
-        //     $this->response(['errros' => $errors], 422);
-        // }
+        // So everytime we validate inputs it is automatically on session
+        $flashData = [
+            'old' => $data,
+            'errors' => $errors,
+        ];
+        Session::set('__flash', 'data', $flashData);
 
         return $errors;
     }
 
     /**
      * Updated and now take an $id parameter
-     * (Added for updating, with the ID, it ensuring that 
+     * (Added for tracking, with the ID, it ensuring that 
      * when a user updates their profile (e.g., changing their address 
      * but keeping their email), the unique validation rule 
      * doesn’t falsely flag their existing email as a duplicate.)...

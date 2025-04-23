@@ -95,6 +95,8 @@ class Admin_AddOnsController extends Controller
                 Session::set('__flash', 'add_ons_uploaded', 'Add ons uploadedd successfully');
                 return $this->redirect('add-ons-upload-admin');
             }
+
+
         }
     }
 
@@ -114,23 +116,28 @@ class Admin_AddOnsController extends Controller
                 'availability' => $this->getInput('available') == 1 ? 1 : 0,
             ];
 
+            // validate
             $errors = $this->validate($data, [
                 'add_on_name' => "required|unique:add_ons,name,{$data['add_on_id']}",
             ]);
 
-            // find the add on
-            $addOnsObj = new AddOns;
-            $addOns = $addOnsObj->firstWhere([
-                "add_on_id" => $data['add_on_id'],
+            // redirect if there's error
+            if ($errors) {
+                return $this->redirect("add-ons-show-admin?id={$data['add_on_id']}");
+            }
+
+            // update add ons
+            $addOns_obj = new AddOns;
+            $newAddOns = $addOns_obj->update($data["add_on_id"], [
+                "name" => $data['add_on_name'],
+                "category" => strtoupper($data['add_on_category']),
+                "price" => number_format($data['add_on_price'], '2', '.', ''),
+                "available" => $data['availability']
             ]);
 
-            if ($errors) {
-                $flash_data = [
-                    "errors" => $errors, 
-                    "old" => $data
-                ];
-                Session::set('__flash', 'data', $flash_data);
-                return $this->redirect("add-ons-update-admin?id={$data['add_on_id']}");
+            if($newAddOns) {
+                Session::set('__flash', 'addOns_updated', 'Updated Successfully');
+                return $this->redirect('add-ons-table-admin');
             }
         }
     }

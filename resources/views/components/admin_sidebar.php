@@ -31,21 +31,27 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Add records</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= urlIs('menu-upload-admin') ? 'active bg-gradient-dark' : 'text-dark' ?>" href="menu-upload-admin">
+                <a class="nav-link <?= urlIs('menu-create-admin') ? 'active bg-gradient-dark' : 'text-dark' ?>" href="menu-create-admin">
                     <i class="material-symbols-rounded opacity-5">add_shopping_cart</i>
                     <span class="nav-link-text ms-1">Menu Item</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= urlIs('size-upload-admin') ? 'active bg-gradient-dark' : 'text-dark' ?>" href="size-upload-admin">
+                <a class="nav-link <?= urlIs('size-create-admin') ? 'active bg-gradient-dark' : 'text-dark' ?>" href="size-create-admin">
                     <i class="material-symbols-rounded opacity-5">masked_transitions_add</i>
                     <span class="nav-link-text ms-1">Menu Size</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= urlIs('add-ons-upload-admin') ? 'active bg-gradient-dark' : 'text-dark' ?>" href="add-ons-upload-admin">
+                <a class="nav-link <?= urlIs('add-ons-create-admin') ? 'active bg-gradient-dark' : 'text-dark' ?>" href="add-ons-create-admin">
                     <i class="material-symbols-rounded opacity-5">playlist_add</i>
                     <span class="nav-link-text ms-1">Add-On</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= urlIs('discount-create-admin') ? 'active bg-gradient-dark' : 'text-dark' ?>" href="discount-create-admin">
+                    <i class="material-symbols-rounded opacity-5">add_card</i>
+                    <span class="nav-link-text ms-1">Discount</span>
                 </a>
             </li>
             <li class="nav-item mt-3">
@@ -73,6 +79,12 @@
                 <a class="nav-link <?= urlIs('add-ons-table-admin') ? 'active bg-gradient-dark text-light' : 'text-dark' ?>" href="add-ons-table-admin">
                     <i class="material-symbols-rounded opacity-5">menu</i>
                     <span class="nav-link-text ms-1">Add-On</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= urlIs('discount-table-admin') ? 'active bg-gradient-dark text-light' : 'text-dark' ?>" href="discount-table-admin">
+                    <i class="material-symbols-rounded opacity-5">credit_card</i>
+                    <span class="nav-link-text ms-1">Discount</span>
                 </a>
             </li>
             <li class="nav-item mt-3">
