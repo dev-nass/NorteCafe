@@ -16,7 +16,7 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Interface</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= urlIs('index-admin') ? 'active bg-gradient-dark' : 'text-dark' ?>" href="index-admin">
+                <a class="nav-link <?= urlIs('dashboard') ? 'active bg-gradient-dark' : 'text-dark' ?>" href="dashboard">
                     <i class="material-symbols-rounded opacity-5">dashboard</i>
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>

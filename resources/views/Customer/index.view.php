@@ -253,4 +253,8 @@
     </div>
 </section>
 
+<script>
+    fetch('https://api.counterapi.dev/v1/local/norte-cafe/up');
+</script>
+
 <?php require base_path('resources/views/components/foot.php')?>
