@@ -75,6 +75,7 @@ $router->post('transaction-update', 'Customer\TransactionController', 'update')-
 $router->get('dashboard', 'Admin\Admin_AdminController', 'index');
 $router->get('dashboard-analytics', 'Admin\Admin_AdminController', 'admin_dashboard');
 $router->get('total-transactions', 'Admin\Admin_AdminController', 'total_transactions');
+$router->get('top-sales', 'Admin\Admin_AdminController', 'top_sales');
 
 $router->get('transaction-queue-admin', 'Admin\Admin_TransactionController', 'queue');
 $router->get('transaction-pending-show-admin', 'Admin\Admin_TransactionController', 'pending_show');

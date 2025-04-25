@@ -17,15 +17,15 @@ class User extends Model
 
     /**
      * Gets all records of a user based on their roles
-     * (Useful for subclasses)
+     * (Useful for subclasses, Customer.php, Rider.php)
     */
-    public function getUsersByRole()
+    public function getUsersByRole($available = true, $verified = true)
     {
         $this->iniDB();
 
         $users = $this
-            ->query("SELECT user_id, first_name, last_name, username, email, contact_number, age, role, available, profile_dir FROM users WHERE role = ?", 
-                [$this->role])
+            ->query("SELECT user_id, first_name, last_name, username, email, contact_number, age, role, available, profile_dir FROM users WHERE role = ? AND available = ? AND verified = ?", 
+                [$this->role, $available, $verified])
             ->get();
 
         return $users ?? null;

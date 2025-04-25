@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Core\Database;
 use Core\Controller;
+use App\Models\Rider;
 
 class Admin_AdminController
 {
@@ -38,6 +39,23 @@ class Admin_AdminController
             $db->query("SELECT COUNT(*)
                 FROM transactions
                 WHERE status = 'Rejected by Employee'")->find();
+            
+        $riderObj = new Rider;
+        $available_riders_count = $riderObj->countWhere('user_id', [
+            'role' => 'Rider',
+            'available' => true,
+        ]);
+        $available_riders = $riderObj->getUsersByRole();
+
+        $top_sales_age = $db->query("SELECT COUNT(menu_items.menu_item_id) as sale_count, users.age, menu_items.name, menu_items.image_dir
+            FROM transactions
+            LEFT JOIN users ON transactions.user_id = users.user_id
+            LEFT JOIN orders ON transactions.transaction_id = orders.transaction_id
+            LEFT JOIN carts ON orders.cart_id = carts.cart_id
+            LEFT JOIN menu_items ON carts.menu_item_id = menu_items.menu_item_id
+            GROUP BY users.age, menu_items.name, menu_items.image_dir
+            ORDER BY sale_count DESC
+            LIMIT 10")->get();
 
         view('Admin/index.view.php', [
             'total_revenue' => $total_revenue['total_sales'],
@@ -45,6 +63,9 @@ class Admin_AdminController
             'total_customers' => $total_customers['COUNT(*)'],
             'total_delivered' => $total_delivered['COUNT(*)'],
             'total_rejected' => $total_rejected['COUNT(*)'],
+            'available_riders_count' => $available_riders_count['COUNT(user_id)'],
+            'available_riders' => $available_riders,
+            'top_sales_age' => $top_sales_age,
         ]);
     }
 
@@ -104,7 +125,6 @@ class Admin_AdminController
      * API for fetching total transactions
      * 
      * Graph: shows monthly transactions
-     * Number: Shows the overall transactions
      */
     public function total_transactions()
     {
@@ -120,5 +140,57 @@ class Admin_AdminController
                 ORDER BY sale_date ASC")->get();
 
         echo json_encode($total_transactions);
+    }
+
+    /**
+     * API for fetching top sales
+     * depending on the category (top sales, ... by age, ... gender)
+    */
+    public function top_sales()
+    {
+
+        $db = new Database;
+        $db->iniDB();
+
+        $category = isset($_GET['category']) ? $_GET['category'] : 'most-sale';
+
+        switch ($category) {
+
+            case 'most-sale-gender' :
+                $top_sales = $db->query("SELECT COUNT(menu_items.menu_item_id) as sale_count, users.gender, menu_items.name, menu_items.image_dir
+                    FROM transactions
+                    LEFT JOIN users ON transactions.user_id = users.user_id
+                    LEFT JOIN orders ON transactions.transaction_id = orders.transaction_id
+                    LEFT JOIN carts ON orders.cart_id = carts.cart_id
+                    LEFT JOIN menu_items ON carts.menu_item_id = menu_items.menu_item_id
+                    GROUP BY users.gender, menu_items.name, menu_items.image_dir
+                    ORDER BY sale_count DESC
+                    LIMIT 10")->get();
+            break;
+            case 'most-sale-age' :
+                $top_sales = $db->query("SELECT COUNT(menu_items.menu_item_id) as sale_count, users.age, menu_items.name, menu_items.image_dir
+                    FROM transactions
+                    LEFT JOIN users ON transactions.user_id = users.user_id
+                    LEFT JOIN orders ON transactions.transaction_id = orders.transaction_id
+                    LEFT JOIN carts ON orders.cart_id = carts.cart_id
+                    LEFT JOIN menu_items ON carts.menu_item_id = menu_items.menu_item_id
+                    GROUP BY users.age, menu_items.name, menu_items.image_dir
+                    ORDER BY sale_count DESC
+                    LIMIT 10")->get();
+            break;
+            case 'most-sale' :
+            default :
+            $top_sales = $db->query("SELECT COUNT(menu_items.menu_item_id) as sale_count, menu_items.name, menu_items.image_dir
+                    FROM transactions
+                    LEFT JOIN orders ON transactions.transaction_id = orders.transaction_id
+                    LEFT JOIN carts ON orders.cart_id = carts.cart_id
+                    LEFT JOIN menu_items ON carts.menu_item_id = menu_items.menu_item_id
+                    GROUP BY menu_items.name, menu_items.image_dir
+                    ORDER BY sale_count DESC
+                    LIMIT 10")->get();
+            break;
+        }
+
+        echo json_encode($top_sales);
     }
 }

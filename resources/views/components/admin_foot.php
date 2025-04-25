@@ -49,6 +49,8 @@
 <script src="../../resources/js/dashboard/fetch_visit.js" defer></script>
 <script src="../../resources/js/dashboard/revenue_graph.js" defer></script>
 <script src="../../resources/js/dashboard/transaction_bar.js" defer></script>
+<script src="../../resources/js/dashboard/most_sale.js" defer></script>
+
 
 <!-- Data Table -->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script> <!-- jQuery FIRST -->

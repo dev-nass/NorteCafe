@@ -110,6 +110,60 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-6 mt-4 mb-3 mb-lg-0">
+                <div class="bg-white rounded shadow p-3 pb-2">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0">Riders: </h4>
+                            <p class="opacity-10 text-xs mb-1">Available Today: <?= $available_riders_count ?></p>
+                            <h3 class="revenue-amount-header"></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <?php foreach ($available_riders as $rider) : ?>
+                            <div class="col-12 d-flex justify-content-between py-2 border-top">
+                                <div>
+                                    <h6 class="mb-0 text-md"><?= $rider['first_name'] . ' ' . $rider['last_name']  ?></h6>
+                                    <span class="text-sm"><?= $rider['contact_number'] ?></span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <span class="badge badge-sm bg-success">Online</span>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 mt-4 mb-3 mb-lg-0">
+                <div class="bg-white rounded shadow p-3 pb-2">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0">Top Sale Item: </h4>
+                            <p class="opacity-10 text-xs mb-1">All Time</p>
+                            <h3 class="revenue-amount-header"></h3>
+                        </div>
+                        <div>
+                            <div class="dropdown">
+                                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="material-symbols-rounded opacity-10">more_horiz</i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li onclick="updateSalesShow('most-sale')"><button class="btn mb-0">Most Sale</button></li>
+                                    <li onclick="updateSalesShow('most-sale-age')"><button class="btn mb-0">Most Sale by Age</button></li>
+                                    <li onclick="updateSalesShow('most-sale-gender')"><button class="btn mb-0">Most Sale by Gender</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="top-sale-row" class="row px-2">
+                        <!-- Top sales goes here -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </main>
