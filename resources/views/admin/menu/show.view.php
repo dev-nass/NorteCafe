@@ -71,17 +71,11 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <label for="validationCustom03" class="form-label">Description</label>
-                                                    <textarea name="description" type="text" class="form-control border px-2" id="validationCustom03" required><?= $menuItem[0]['description'] ?></textarea>
+                                                    <textarea name="description" type="text" class="form-control border px-2" id="validationCustom03" required><?= old('description') ?? $menuItem[0]['description'] ?></textarea>
                                                     <div class="valid-feedback">
                                                         Looks good!
                                                     </div>
-                                                    <?php if (isset($errors['description'])): ?>
-                                                        <ul class="m-0 p-0" style="list-style: none;">
-                                                            <?php foreach ($errors['description'] as $error): ?>
-                                                                <li class="text-danger"><?= htmlspecialchars($error) ?></li>
-                                                            <?php endforeach; ?>
-                                                        </ul>
-                                                    <?php endif; ?>
+                                                    <?php error('description') ?>
                                                 </div>
                                                 <div class="col-12">
                                                     <label for="validationCustom04" class="form-label">Availability</label>

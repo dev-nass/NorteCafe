@@ -118,3 +118,9 @@ if ($errors) {
     return $this->redirect("add-ons-update-admin?id={$data['add_on_id']}");
 }
 ```
+
+# April 26, 2025
+### Admin side design
+- Design on the admin side is starting to like user side,
+### Rejecting all pending transactions
+- Add additional functionality on `transaction queue` to reject all pending transactions. The idea behind this to reset transaction queue everytime the shop closses.

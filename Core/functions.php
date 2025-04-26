@@ -64,7 +64,7 @@ function error($input)
 
     $errors = Core\Session::get('__flash', 'data')['errors'][$input] ?? '';
 
-    if (isset($_SESSION['__flash']['data']['errors'])) {
+    if (isset($_SESSION['__flash']['data']['errors'][$input])) {
         echo "<ul class='m-0 p-0' style='list-style: none;'>";
         foreach ($errors as $error) {
             echo "<li class='text-danger'>" . htmlspecialchars($error) . "</li>";

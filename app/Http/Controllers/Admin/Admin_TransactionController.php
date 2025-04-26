@@ -39,7 +39,22 @@ class Admin_TransactionController extends Controller
      */
     public function queue()
     {
-        return $this->view('admin/transaction/queue.view.php');
+
+        $transactionObj = new Transaction;
+        $transactionObj->iniDB();
+
+        $pending_transactions = $transactionObj->query("SELECT transactions.*, CONCAT(users.first_name, ' ', users.last_name) AS fulllname, users.username, users.email, users.contact_number
+        FROM transactions
+        INNER JOIN users ON transactions.user_id = users.user_id
+        WHERE transactions.status = :pending OR transactions.status = :rejected_rider
+        ORDER BY transactions.transaction_id DESC;", [
+            "pending" => "Pending",
+            "rejected_rider" => "Rejected by Rider"
+        ])->get();
+
+        return $this->view('admin/transaction/queue.view.php', [
+            'pending_transactions' => $pending_transactions
+        ]);
     }
 
     /**
@@ -48,9 +63,9 @@ class Admin_TransactionController extends Controller
      */
     public function show()
     {
-        
+
         $transaction_id = $_GET['transaction_id'];
-        
+
         $transactionObj = new Transaction;
         $transactions = $transactionObj->getOrdersTransaction($transaction_id);
         $previousTransactions = $transactionObj->getPreviousTransactions($transactions[0]['user_id'], "DESC");
@@ -115,7 +130,7 @@ class Admin_TransactionController extends Controller
 
             $transactionObj = new Transaction;
             $current_date = date("Y-m-d H:i:s");
-            $updatedStatus = $transactionObj->update($data["transaction_id"], [
+            $updatedStatus = $transactionObj->update($data['transaction_id'], [
                 "status" => $data["status"],
                 "confirmed_at" => $current_date,
             ]);
@@ -123,6 +138,32 @@ class Admin_TransactionController extends Controller
             if ($updatedStatus) {
                 Session::set('__flash', 'status_changed', $data['status']);
                 return $this->redirect("transaction-pending-show-admin?id={$data['transaction_id']}");
+            }
+        }
+    }
+
+    public function reject_all()
+    {
+        
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $data = [
+                'status' => $this->getInput('status'),
+                'transaction_ids' => $this->getInput('transaction-ids')
+            ];
+
+            $transactionObj = new Transaction;
+            $current_date = date("Y-m-d H:i:s");
+            foreach($data['transaction_ids'] as $id) {
+                $updatedStatus = $transactionObj->update($id, [
+                    "status" => $data["status"],
+                    "confirmed_at" => $current_date,
+                ]);
+            }
+            
+            if ($updatedStatus) {
+                Session::set('__flash', 'reject_all', 'Successfully rejected all');
+                return $this->redirect("transaction-queue-admin");
             }
         }
     }
@@ -144,8 +185,8 @@ class Admin_TransactionController extends Controller
                 "rider_id" => $_POST['rider_id'],
                 "status" => "Approved by Employee",
             ]);
-        
-            if($assignedRider) {
+
+            if ($assignedRider) {
                 Session::set('__flash', 'rider_assigned', 'Approved by Employee');
                 return $this->redirect("transaction-show-admin?transaction_id={$_POST['transaction_id']}");
             }

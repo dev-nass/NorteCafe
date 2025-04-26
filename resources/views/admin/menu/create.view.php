@@ -13,20 +13,14 @@
                         <div class="row">
                             <div class="col-12 mb-3">
                                 <label for="validationCustom01" class="form-label">Item Name</label>
-                                <input type="text" class="form-control border border-dark px-2" id="validationCustom01" name="menu_name" placeholder="Chocolate Frappe" required>
+                                <input type="text" class="form-control border border-dark px-2" id="validationCustom01" name="menu_name" placeholder="Chocolate Frappe" value="<?= old('menu_name') ?? '' ?>" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                                 <div class="invalid-feedback">
                                     Enter a valid Item Name!
                                 </div>
-                                <?php if (isset($errors['menu_name'])): ?>
-                                    <ul class="m-0 p-0" style="list-style: none;">
-                                        <?php foreach ($errors['menu_name'] as $error): ?>
-                                            <li class="text-danger"><?= htmlspecialchars($error) ?></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                <?php endif; ?>
+                                <?php error('menu_name') ?>
                             </div>
                             <div class="col-4 mb-3">
                                 <label for="validationCustom02" class="form-label">Size</label>
@@ -65,20 +59,14 @@
                                     class="form-control border border-dark px-2"
                                     id="validationCustom05"
                                     name="menu_description"
-                                    placeholder="Masarap kahit walang sauce..." maxlength="200" rows="5" required></textarea>
+                                    placeholder="Masarap kahit walang sauce..." maxlength="200" rows="5" required><?= old('menu_description' ?? '') ?></textarea>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                                 <div class="invalid-feedback">
                                     Enter a valid Description!
                                 </div>
-                                <?php if (isset($errors['menu_description'])): ?>
-                                    <ul class="m-0 p-0" style="list-style: none;">
-                                        <?php foreach ($errors['menu_description'] as $error): ?>
-                                            <li class="text-danger"><?= htmlspecialchars($error) ?></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                <?php endif; ?>
+                                <?php error('menu_description') ?>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end mt-2">

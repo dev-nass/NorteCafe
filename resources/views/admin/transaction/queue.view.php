@@ -7,9 +7,29 @@
         <div class="row">
             <div class="col-md-12 mt-4">
                 <div class="card" aria-hidden="true">
-                    <div class="card-header pb-0 px-3">
-                        <h6 class="mb-0">Pending Transaction Queue</h6>
-                        <p class="text-sm mb-0">Status: Pending and Reject by Rider</p>
+                    <div class="card-header pb-0 px-3 d-flex justify-content-between">
+                        <div>
+                            <h6 class="mb-0">Pending Transaction Queue (empty before the day ends)</h6>
+                            <p class="text-sm mb-0">Status: Pending and Reject by Rider</p>
+                        </div>
+                        <div>
+                            <form action="transaction-reject-all-admin" method="POST">  
+                                <?php foreach($pending_transactions as $pending) : ?>
+                                <input 
+                                    class="d-none"
+                                    type="text"
+                                    name="status"
+                                    value="Rejected by Employee">
+                                <input 
+                                    class="d-none"
+                                    type="text"
+                                    name="transaction-ids[]"
+                                    value="<?= $pending['transaction_id'] ?>"
+                                    readonly>
+                                <?php endforeach ; ?>
+                                <button class="btn btn-outline-danger" <?= $pending_transactions ? '' : 'disabled' ?> >Reject All</button>
+                            </form>
+                        </div>
                     </div>
                     <div class="card-body pt-4 p-3">
                         <div id="order-queue-container" class="row">
@@ -47,5 +67,20 @@
     </div>
 
 </main>
+
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<?php if (isset($_SESSION['__flash']['reject_all'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Successfully rejected all pending transactions!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php endif ; ?>
 
 <?php require base_path('resources/views/components/admin_foot.php') ?>

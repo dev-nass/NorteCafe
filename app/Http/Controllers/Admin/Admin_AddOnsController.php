@@ -65,28 +65,26 @@ class Admin_AddOnsController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $data = [
-                "addOn_name" => $this->getInput('add_on_name'),
-                "addOn_category" => $this->getInput('add_on_category'),
-                "addOn_price" => $this->getInput('add_on_price'),
+                "add_on_name" => $this->getInput('add_on_name'),
+                "add_on_category" => $this->getInput('add_on_category'),
+                "add_on_price" => $this->getInput('add_on_price'),
             ];
 
             // validation
             $errors = $this->validate($data, [
-                "addOn_name" => "required|unique:add_ons,name,0"
+                "add_on_name" => "required|unique:add_ons,name,0"
             ]);
 
             if ($errors) {
-                return $this->view('Admin/AddOns/create.view.php', [
-                    "errors" => $errors,
-                ]);
+                return $this->redirect('add-ons-create-admin');
             }
 
             // insert new add ons
             $addOns_obj = new AddOns;
             $newAddOns = $addOns_obj->insert([
-                "name" => $data['addOn_name'],
-                "category" => strtoupper($data['addOn_category']),
-                "price" => number_format($data['addOn_price'], '2', '.', ''),
+                "name" => $data['add_on_name'],
+                "category" => strtoupper($data['add_on_category']),
+                "price" => number_format($data['add_on_price'], '2', '.', ''),
             ]);
 
             // redirect them to its show

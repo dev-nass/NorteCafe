@@ -96,9 +96,7 @@ class Admin_MenuController extends Controller
 
             // redirect if there's errors
             if ($errors) {
-                return $this->view('Admin/menu/create.view.php', [
-                    "errors" => $errors,
-                ]);
+                return $this->redirect('menu-create-admin');
             }
 
             $menuItemsObj = new MenuItem;

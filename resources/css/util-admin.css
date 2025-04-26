@@ -1,0 +1,33 @@
+:root {
+    /* --clr-white: #f7f4ef; */
+    --clr-white: #f5f5f5;
+    --clr-beige: #e8dacd;
+    --clr-pale-white: #e1cdbc;
+    --clr-dark: #543a35;
+    --clr-choco: #8f6b61;
+    --clr-darkest: #29190e;
+
+    --clr-vanilla: #dfbf91;
+}
+
+.choco-gradient-bg {
+    background: linear-gradient(to left, var(--clr-choco) 30%, var(--clr-darkest)) !important;
+}
+
+/* Especial Btn that has box shadow */
+.choco-btn {
+    background-color: var(--clr-choco) !important;
+    border: none;
+    box-shadow: 6px 6px 0 -1px var(--clr-darkest);
+    color: var(--clr-white) !important;
+    font-weight: 500;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: ease all .3s;
+}
+
+.choco-btn:hover {
+    background-color: var(--clr-darkest) !important;
+    box-shadow: 5px 5px 0 -2px var(--clr-choco) !important;
+}

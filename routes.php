@@ -81,6 +81,7 @@ $router->get('transaction-queue-admin', 'Admin\Admin_TransactionController', 'qu
 $router->get('transaction-pending-show-admin', 'Admin\Admin_TransactionController', 'pending_show');
 $router->get('transaction-show-admin', 'Admin\Admin_TransactionController', 'show')->only('auth', 'Admin');
 $router->post('transaction-update-admin', 'Admin\Admin_TransactionController', 'update')->only('auth', 'Admin'); // (Admin/transactions/pending-show) change status "Approved" or "Rejected"
+$router->post('transaction-reject-all-admin', 'Admin\Admin_TransactionController', 'reject_all')->only('auth', 'Admin'); // (Admin/transactions/pending-show) change status to "Rejected" (all pending)
 $router->post('transaction-assign-admin', 'Admin\Admin_TransactionController', 'assign')->only('auth', 'Admin');
 $router->get('transaction-table-admin', 'Admin\Admin_TransactionController', 'index');
 $router->post('transaction-archive-admin', 'Admin\Admin_TransactionController', 'delete');
@@ -99,7 +100,7 @@ $router->post('size-store-admin', 'Admin\Admin_MenuSizeController', 'store');
 $router->get('add-ons-table-admin', 'Admin\Admin_AddOnsController', 'index');
 $router->get('add-ons-show-admin', 'Admin\Admin_AddOnsController', 'show');
 $router->get('add-ons-create-admin', 'Admin\Admin_AddOnsController', 'create');
-$router->post('add-ons-create-admin', 'Admin\Admin_AddOnsController', 'store');
+$router->post('add-ons-store-admin', 'Admin\Admin_AddOnsController', 'store');
 $router->post('add-ons-update-admin', 'Admin\Admin_AddOnsController', 'update');
 $router->post('add-ons-delete-admin', 'Admin\Admin_AddOnsController', 'delete');
 $router->post('add-ons-change-availability-admin', 'Admin\Admin_AddOnsController',  'change_availability');

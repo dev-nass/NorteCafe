@@ -5,7 +5,7 @@
     <?php require base_path('resources/views/components/admin_navbar.php') ?>
     <div class="container-fluid py-2 pt-3">
 
-        <form id="addOn_store" class="needs-validation" action="add-ons-upload-admin" method="POST" enctype="multipart/form-data" novalidate>
+        <form id="addOn_store" class="needs-validation" action="add-ons-store-admin" method="POST" enctype="multipart/form-data" novalidate>
             <div class="row">
                 <div class="col-12">
                     <div class="bg-white py-4 px-4 shadow-sm rounded">
@@ -13,20 +13,14 @@
                         <div class="row">
                             <div class="col-12 mb-3">
                                 <label for="validationCustom01" class="form-label">Add On Name</label>
-                                <input type="text" class="form-control border border-dark px-2" id="validationCustom01" name="add_on_name" placeholder="Honey Syrup" required>
+                                <input type="text" class="form-control border border-dark px-2" id="validationCustom01" name="add_on_name" placeholder="Honey Syrup" value="<?= old('add_on_name' ?? '') ?>" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                                 <div class="invalid-feedback">
                                     Enter a valid Add On Name!
                                 </div>
-                                <?php if (isset($errors['add_on_name'])): ?>
-                                    <ul class="m-0 p-0" style="list-style: none;">
-                                        <?php foreach ($errors['add_on_name'] as $error): ?>
-                                            <li class="text-danger"><?= htmlspecialchars($error) ?></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                <?php endif; ?>
+                                <?php error('add_on_name') ?>
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="validationCustom02" class="form-label">Category</label>
