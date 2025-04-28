@@ -101,4 +101,20 @@ class Transaction extends Model
 
         return $previousTransactions;
     }
+
+    /**
+     * Reserve for Rider Profile Page
+     * 
+     * Return a collection of handled transactions by a
+     * certain Employee
+     * 
+     * status: all / whatever
+    */
+    public function getHandledTransactions()
+    {
+
+        $this->iniDB();
+
+        $transactions = $this->query("SELECT * FROM transactions WHERE ");
+    }
 }

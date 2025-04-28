@@ -114,3 +114,5 @@ $router->post('discount-delete-admin', 'Admin\Admin_DiscountController', 'delete
 
 $router->get('customer-table-admin', 'Admin\Admin_CustomerController', 'index');
 $router->get('customer-show-admin', 'Admin\Admin_CustomerController', 'show');
+
+$router->get('profile-admin', 'Admin\Admin_ProfileController', 'index');

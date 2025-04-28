@@ -16,8 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Create a gradient (top to bottom)
             const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-            gradient.addColorStop(0, 'rgba(117, 62, 233, 0.5)');
-            gradient.addColorStop(1, 'rgba(117, 62, 233, 0)');
+            // gradient.addColorStop(0, 'rgba(117, 62, 233, 0.5)');
+            // gradient.addColorStop(1, 'rgba(117, 62, 233, 0)');
+            gradient.addColorStop(0, 'rgba(143, 107, 97, 1)');
+            gradient.addColorStop(1, 'rgba(45, 29, 18, 0.2)');
 
             // Generate the ChartJS
             chartInstance = new Chart(ctx, {
@@ -29,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             label: 'Monthly',
                             data: data.map(row => row.total_transactions),
                             backgroundColor: gradient,
-                            borderColor: 'rgb(91, 48, 181)  ',
                             borderWidth: 1,
                             fill: true
                         }

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     let chartInstance = null;
-    let currentPeriod = 'today';
+    let currentPeriod = 'annual';
 
     async function renderRevenueGraph(period) {
         let total_revenue = 0.00;
@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Create a gradient (top to bottom)
             const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-            gradient.addColorStop(0, 'rgba(117, 62, 233, 0.5)');
-            gradient.addColorStop(1, 'rgba(117, 62, 233, 0)');
+            gradient.addColorStop(0, 'rgba(143, 107, 97, 1)');
+            gradient.addColorStop(1, 'rgba(45, 29, 18, 0.2)');
 
             // Generate the ChartJS
             chartInstance = new Chart(ctx, {
@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             label: `Sales (${period.charAt(0).toUpperCase() + period.slice(1)})`,
                             data: data.map(row => row.total_sales),
                             backgroundColor: gradient,
-                            borderColor: 'rgb(91, 48, 181)  ',
                             borderWidth: 1,
                             fill: true,
                         }
