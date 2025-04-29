@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Core\Database;
 use Core\Controller;
+use Core\Session;
 use App\Models\User;
 use App\Models\Transaction;
 use App\Models\Cart;
@@ -25,7 +26,7 @@ class Admin_CustomerController extends Controller
             "role" => "Customer"
         ])->get();
 
-        return $this->view('Admin/customer/table.view.php', [
+        return $this->view('Admin/customer/index.view.php', [
             "customers" => $customers
         ]);
     }
@@ -79,5 +80,19 @@ class Admin_CustomerController extends Controller
 
     public function update() {}
 
-    public function delete() {}
+    public function delete() 
+    {
+
+        $data = [
+            'user_id' => $this->getInput('user_id'),
+        ];
+
+        $userObj = new User;
+        $deleted_user = $userObj->delete($data['user_id']);
+
+        if ($deleted_user) {
+            Session::set('__flash', 'account_deleted', 'Deleted successfully');
+            return $this->redirect('customer-table-admin');
+        }
+    }
 }

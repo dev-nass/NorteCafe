@@ -5,12 +5,17 @@
     <?php require base_path('resources/views/components/admin_navbar.php') ?>
     <div class="container-fluid px-2 px-md-4">
         <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-dark me-2" data-bs-toggle="modal" data-bs-target="#manageProfileModal">
+            <button type="button" class="btn btn-outline-dark me-2" data-bs-toggle="modal" data-bs-target="#manageProfileModal">
                 Edit Profile<i class="material-symbols-rounded text-lg fs-5 align-middle me-1 ms-1">manage_accounts</i>
             </button>
-            <a href="change-pass" class="btn btn-outline-success me-2">Change Password</a>
-            <form action="logout" method="POST">
-                <button class="btn btn-outline-danger mb-0">Logout</button>
+            <form action="rider-delete-admin" method="POST">
+                <input
+                    class="d-none"
+                    name="user_id"
+                    value="<?= $user['user_id'] ?>"
+                    type="text"
+                    readonly>
+                <button class="btn btn-danger">Archive</button>
             </form>
 
             <!-- Modal -->
@@ -22,7 +27,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body p-5">
-                            <form id="profile-update" class="row g-3 needs-validation" action="profile-update-admin" method="POST" enctype="multipart/form-data" novalidate>
+                            <form id="profile-update" class="row g-3 needs-validation" action="rider-update-admin" method="POST" enctype="multipart/form-data" novalidate>
                                 <div class="row">
                                     <div class="col-3 mb-3">Profile Picture</div>
                                     <div class="col-9 mb-3" style="width: 500px; height: 500px">
@@ -64,7 +69,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <label for="validationCustom03" class="form-label">Email</label>
-                                                <input type="email" class="form-control border border-dark px-2" id="validationCustom03" name="email" value="<?= old('email') ?? $user['email'] ?>" placeholder="juanDelaCruz@gmail.com" required>
+                                                <input type="email" class="form-control border border-dark px-2" id="validationCustom03" name="email" value="<?= $user['email'] ?>" placeholder="juanDelaCruz@gmail.com" required>
                                                 <div class="valid-feedback">
                                                     Looks good!
                                                 </div>
@@ -100,8 +105,8 @@
                                                 <label for="validationServer07" class="form-label">Gender</label>
                                                 <select class="form-select form-control border border-dark px-2" id="validationServer07" name="gender" aria-describedby="validationServer07Feedback" required>
                                                     <option selected disabled>Choose...</option>
-                                                    <option <?= $user['gender'] === "Male" ? "selected" : "" ?>>Male</option>
-                                                    <option <?= $user['gender'] === "Female" ? "selected" : "" ?>>Female</option>
+                                                    <option <?= $user['gender'] === "Male" ? "selected" : "" ?> >Male</option>
+                                                    <option <?= $user['gender'] === "Female" ? "selected" : "" ?> >Female</option>
                                                 </select>
                                                 <div id="validationServer07Feedback" class="valid-feedback">
                                                     Looks good!
@@ -267,7 +272,7 @@
     </div>
 </main>
 
-<script>
+<!-- <script>
     (() => {
         'use strict'
 
@@ -286,7 +291,7 @@
             }, false)
         })
     })()
-</script>
+</script> -->
 
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

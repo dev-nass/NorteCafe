@@ -114,5 +114,17 @@ $router->post('discount-delete-admin', 'Admin\Admin_DiscountController', 'delete
 
 $router->get('customer-table-admin', 'Admin\Admin_CustomerController', 'index');
 $router->get('customer-show-admin', 'Admin\Admin_CustomerController', 'show');
+$router->post('customer-delete-admin', 'Admin\Admin_CustomerController', 'delete');
+
+$router->get('employee-table-admin', 'Admin\Admin_EmployeeController', 'index');
+$router->get('employee-show-admin', 'Admin\Admin_EmployeeController', 'show');
+$router->post('employee-update-admin', 'Admin\Admin_EmployeeController', 'update');
+$router->post('employee-delete-admin', 'Admin\Admin_EmployeeController', 'delete');
+
+$router->get('rider-table-admin', 'Admin\Admin_RiderController', 'index');
+$router->get('rider-show-admin', 'Admin\Admin_RiderController', 'show');
+$router->post('rider-update-admin', 'Admin\Admin_RiderController', 'update');
+$router->post('rider-delete-admin', 'Admin\Admin_RiderController', 'delete');
 
 $router->get('profile-admin', 'Admin\Admin_ProfileController', 'index');
+$router->post('profile-update-admin', 'Admin\Admin_ProfileController', 'update');

@@ -1,56 +1,58 @@
 <?php
 
-namespace App\Http\Controllers\Customer;
+namespace App\Http\Controllers\Admin;
 
 use Core\Database;
 use Core\Controller;
 use Core\Session;
 use App\Models\User;
-use App\Models\Transaction;
 
-class ProfileController extends Controller
+class Admin_EmployeeController extends Controller
 {
 
     /**
-     * Load the view for the profiling page
+     * Used for loading the table view for
+     * Employee table
      */
     public function index()
     {
 
-        // current user transactions count
-        $currentUserId = Session::get('__currentUser', 'credentials')['user_id'];
-
-        $transactionObj = new Transaction;
-
-        // we count the tranactions the user made
-        $transactionCount = $transactionObj->countWhere('user_id',  [
-            "user_id" => $currentUserId,
-        ]);
-
-        Session::set('__currentUserTransactions', 'transaction_count', $transactionCount);
-
         $db = new Database;
         $db->iniDB();
 
-        $currentTransaction = $transactionObj->getCurrentTransactions($currentUserId, 'DESC', 1);
-        $previousTransaction = $transactionObj->getPreviousTransactions($currentUserId, 'DESC', 1);
+        $employees = $db->query("SELECT user_id, CONCAT(first_name, ' ', last_name) AS employee_name, username, email, contact_number, age, date_of_birth, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.provience, ', ', users.region, ', ', users.postal_code) AS address, gender FROM users WHERE role = :role", [
+            "role" => "Employee"
+        ])->get();
 
-        return $this->view('profiling/index.view.php', [
-            "title" => "Profile",
-            "errors" => [],
-            "currentTransaction" => $currentTransaction[0] ?? NULL,
-            "previousTransaction" => $previousTransaction[0] ?? NULL,
+        return $this->view('Admin/employee/index.view.php', [
+            "employees" => $employees
         ]);
     }
 
-    public function show() {}
+    /**
+     * Used for showing a specific Employee
+     */
+    public function show()
+    {
+
+        $employee_id = $_GET['employee_id'];
+
+        // User details
+        $userObj = new User;
+        $user = $userObj->findUserOr([
+            "user_id" =>  $employee_id,
+        ]);
+
+        return $this->view('Admin/employee/show.view.php', [
+            "user" => $user,
+        ]);
+    }
 
     public function create() {}
-
     public function store() {}
 
     /**
-     * Update a record on users table
+     * Updates a specific employee
      */
     public function update()
     {
@@ -88,7 +90,7 @@ class ProfileController extends Controller
             ]);
 
             if ($errors) {
-                return $this->redirect('profile');
+                return $this->redirect("employee-show-admin?employee_id={$data['user_id']}");
             }
 
             $user = new User;
@@ -121,14 +123,28 @@ class ProfileController extends Controller
                 $user->uploadFile($image_dir);
             }
 
-            // this needs to be repeated, so the sessions can update (not just on login)
-            $authUser = $user->findUserOr(['email' => $data["email"]]);
-            Session::set('__currentUser', 'credentials', $authUser);
 
-            Session::set('__flash', 'profile_updated', 'updated successfully');
-            return $this->redirect('profile');
+            Session::set('__flash', 'profile_updated', 'Profile updated successfully');
+            return $this->redirect("employee-show-admin?employee_id={$data['user_id']}");
         }
     }
 
-    public function delete() {}
+    /**
+     * Delete a specific employee
+    */
+    public function delete()
+    {
+
+        $data = [
+            'user_id' => $this->getInput('user_id'),
+        ];
+
+        $userObj = new User;
+        $deleted_user = $userObj->delete($data['user_id']);
+
+        if ($deleted_user) {
+            Session::set('__flash', 'account_deleted', 'Deleted successfully');
+            return $this->redirect('employee-table-admin');
+        }
+    }
 }

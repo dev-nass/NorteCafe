@@ -48,8 +48,6 @@ class RegistrationController extends Controller
                 "password_confirmation" => $this->getInput("password_confirmation")
             ];
 
-            Session::set('__flash', 'credentials', $data);
-
             // validate
             $errors = $this->validate($data, [
                 "username" => "required|min:5|max:255|unique:users,username,0",
@@ -59,10 +57,7 @@ class RegistrationController extends Controller
 
             // redirect if there's errors
             if ($errors) {
-                return $this->view('auth/registration.view.php', [
-                    'title' => $this->title,
-                    'errors' => $errors,
-                ]);
+                return $this->redirect('registration');
             }
 
             // Store

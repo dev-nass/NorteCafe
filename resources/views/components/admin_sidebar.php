@@ -70,6 +70,18 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link <?= urlIs('employee-table-admin') ? 'active choco-gradient-bg text-light' : 'text-dark' ?>" href="employee-table-admin">
+                    <i class="material-symbols-rounded opacity-5">badge</i>
+                    <span class="nav-link-text ms-1">Employees</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= urlIs('rider-table-admin') ? 'active choco-gradient-bg text-light' : 'text-dark' ?>" href="rider-table-admin">
+                    <i class="material-symbols-rounded opacity-5">moped</i>
+                    <span class="nav-link-text ms-1">Riders</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link <?= urlIs('menu-table-admin') ? 'active choco-gradient-bg text-light' : 'text-dark' ?>" href="menu-table-admin">
                     <i class="material-symbols-rounded opacity-5">shopping_cart</i>
                     <span class="nav-link-text ms-1">Menu Items</span>

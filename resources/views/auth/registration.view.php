@@ -37,13 +37,7 @@
                                                 <label for="username">Enter Username...</label>
                                                 <div class="invalid-feedback">Missing Username...</div>
                                             </div>
-                                            <?php if (isset($errors['username'])): ?>
-                                                <ul class="m-0 p-0" style="list-style: none;">
-                                                    <?php foreach ($errors['username'] as $error): ?>
-                                                        <li class="text-danger"><?= htmlspecialchars($error) ?></li>
-                                                    <?php endforeach; ?>
-                                                </ul>
-                                            <?php endif; ?>
+                                            <?php error('username') ?>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="email">E-Mail</label>
@@ -52,13 +46,7 @@
                                                 <label for="email">Enter E-Mail...</label>
                                                 <div class="invalid-feedback">Invalid E-Mail...</div>
                                             </div>
-                                            <?php if (isset($errors['email'])): ?>
-                                                <ul class="m-0 p-0" style="list-style: none;">
-                                                    <?php foreach ($errors['email'] as $error): ?>
-                                                        <li class="text-danger"><?= htmlspecialchars($error) ?></li>
-                                                    <?php endforeach; ?>
-                                                </ul>
-                                            <?php endif; ?>
+                                            <?php error('email') ?>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="password">Password</label>
@@ -67,13 +55,7 @@
                                                 <label for="password">Enter Password...</label>
                                                 <div class="invalid-feedback">Missing Password...</div>
                                             </div>
-                                            <?php if (isset($errors['password'])): ?>
-                                                <ul class="m-0 p-0" style="list-style: none;">
-                                                    <?php foreach ($errors['password'] as $error): ?>
-                                                        <li class="text-danger"><?= htmlspecialchars($error) ?></li>
-                                                    <?php endforeach; ?>
-                                                </ul>
-                                            <?php endif; ?>
+                                            <?php error('password')?>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="confirm-password">Re-Enter Password</label>

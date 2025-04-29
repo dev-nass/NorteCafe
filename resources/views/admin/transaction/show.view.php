@@ -9,28 +9,25 @@
                 <div class="row">
                     <div class="col-xl-6 mb-xl-0 mb-4">
                         <div class="card bg-transparent shadow-xl">
-                            <div class="overflow-hidden position-relative border-radius-xl">
-                                <img src="../../resources/assets/img/illustrations/pattern-tree.svg" class="position-absolute opacity-2 start-0 top-0 w-100 z-index-1 h-100" alt="pattern-tree">
-                                <span class="mask bg-gradient-dark opacity-10"></span>
-                                <div class="card-body position-relative z-index-1 p-3">
-                                    <h5 class="text-white mt-4">Transaction ID: <?= $transactions[0]['transaction_id'] ?></h5>
+                            <div class="overflow-hidden position-relative border-radius-xl choco-gradient-bg-v2">
+                                <img src="../../resources/assets/img/illustrations/pattern-tree.svg" class="position-absolute opacity-3 start-0 top-0 w-100 z-index-1 h-100" alt="pattern-tree">
+                                <div class="card-body position-relative z-index-1 px-3">
+                                    <h5 class="text-white mt-2">Transaction ID: <?= $transactions[0]['transaction_id'] ?></h5>
                                     <div class="pb-4">
                                         <p class="text-white text-sm opacity-8 mb-0">Status: <span class="text-white mb-0"><?= $transactions[0]['status'] ?></span></p>
                                     </div>
-                                    <div class="d-flex flex-column" style="padding-top: 1rem;">
-                                        <div class="d-flex mb-3">
-                                            <div class="me-4">
-                                                <p class="text-white text-xs opacity-8 mb-0">Customer Name</p>
-                                                <h6 class="text-white mb-0 text-xs"><?= $transactions[0]['fullname'] ?></h6>
+                                    <div class="d-flex" style="padding-top: 1rem;">
+                                        <div class="">
+                                            <div class="mb-2">
+                                                <p class="text-white text-sm mb-0">Customer Name: <span class="fw-light"><?= $transactions[0]['username'] ?></span></p>
+                                                <h6 class="text-white mb-0"></h6>
+                                            </div>
+                                            <div class="mb-2">
+                                                <p class="text-white text-sm mb-0">Placed At: <span class="fw-light"><?= date("F d, Y \a\\t h:i A", strtotime($transactions[0]['created_at']));  ?></span></p>
                                             </div>
                                             <div>
-                                                <p class="text-white text-xs opacity-8 mb-0">Placed At</p>
-                                                <h6 class="text-white mb-0 text-xs"><?= date("F d, Y \a\\t h:i A", strtotime($transactions[0]['created_at']));  ?></h6>
+                                                <h6 class="mb-lg-1 text-white text-sm">Address: <span class="fw-light"><?= $transactions[0]['location'] ?></span></h6>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-lg-1 text-white text-xs opacity-8 d-inline">Address: </h6>
-                                            <span class="text-white text-sm d-inline"><?= $transactions[0]['location'] ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +39,7 @@
                             <div class="col-md-6 col-6">
                                 <div class="card">
                                     <div class="card-header mx-4 p-3 text-center">
-                                        <div class="icon icon-shape icon-lg bg-gradient-dark shadow text-center border-radius-lg">
+                                        <div class="icon icon-shape icon-lg choco-gradient-bg-v2 shadow text-center border-radius-lg">
                                             <i class="material-symbols-rounded opacity-10">payments</i>
                                         </div>
                                     </div>
@@ -57,7 +54,7 @@
                             <div class="col-md-6 col-6">
                                 <div class="card">
                                     <div class="card-header mx-4 p-3 text-center">
-                                        <div class="icon icon-shape icon-lg bg-gradient-dark shadow text-center border-radius-lg">
+                                        <div class="icon icon-shape icon-lg choco-gradient-bg-v2 shadow text-center border-radius-lg">
                                             <i class="material-symbols-rounded opacity-10">delivery_truck_speed</i>
                                         </div>
                                     </div>
@@ -90,8 +87,8 @@
                                             </div>
 
                                             <div>
-                                                <button title="Proof of Payment" type="button" class="btn choco-gradient-bg" data-bs-toggle="modal" data-bs-target="#proofOfPaymentModal">
-                                                    <div class="icon icon-shape icon-lg bg-gradient-dark shadow text-center border-radius-lg d-flex align-items-center justify-content-center rounded">
+                                                <button title="Proof of Payment" type="button" class="btn choco-gradient-bg-v2" data-bs-toggle="modal" data-bs-target="#proofOfPaymentModal">
+                                                    <div class="icon icon-shape icon-lg shadow text-center border-radius-lg d-flex align-items-center justify-content-center rounded">
                                                         <i class="material-symbols-rounded opacity-10 text-white">photo_library</i>
                                                     </div>
                                                 </button>
@@ -257,6 +254,6 @@
             allowOutsideClick: false,
         });
     </script>
-<?php endif ; ?>
+<?php endif; ?>
 
 <?php require base_path('resources/views/components/admin_foot.php') ?>

@@ -34,9 +34,7 @@
                                                 <label for="email">Username or E-Mail...</label>
                                                 <div class="invalid-feedback">Missing Username or E-Mail...</div>
                                             </div>
-                                            <?php if (isset($errors['email'])) : ?>
-                                                <div class="text-danger"><?= $errors['email'] ?></div>
-                                            <?php endif; ?>
+                                            <?php error('emailOrUsername')?>
                                         </div>
                                         <div class="mb-3">
                                             <div class="d-flex justify-content-between">

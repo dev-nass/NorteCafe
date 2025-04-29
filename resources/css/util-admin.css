@@ -14,6 +14,10 @@
     background: linear-gradient(to left, var(--clr-choco) 30%, var(--clr-darkest)) !important;
 }
 
+.choco-gradient-bg-v2 {
+    background: linear-gradient(180deg, var(--clr-choco) 30%, var(--clr-darkest)) !important;
+}
+
 /* Especial Btn that has box shadow */
 .choco-btn {
     background-color: var(--clr-choco) !important;

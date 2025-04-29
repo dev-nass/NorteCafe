@@ -3,6 +3,18 @@
 
 <main class="main-content position-relative max-height-vh-100 h-100">
     <?php require base_path('resources/views/components/admin_navbar.php') ?>
+    <div class="d-flex justify-content-end">
+        <form action="customer-delete-admin" method="POST">
+            <input
+                class="d-none"
+                name="user_id"
+                value="<?= $user['user_id'] ?>"
+                readonlys
+                type="text">
+
+                <button class="btn btn-danger mb-0">Archive<button>
+        </form>
+    </div>
     <div class="container-fluid px-2 px-md-4">
         <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
             <span class="mask bg-gradient-dark opacity-6"></span>
@@ -11,7 +23,7 @@
             <div class="row gx-4 mb-2 px-4">
                 <div class="col-auto">
                     <div class="avatar avatar-xl position-relative">
-                        <img src="<?= $user['profile_dir'] ?>" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                        <img src="<?= $user['profile_dir'] ?? '../../storage/frontend/user/img/index/default-pfp.jpg' ?>" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                     </div>
                 </div>
                 <div class="col-auto my-auto">
@@ -55,7 +67,7 @@
                                     <div class="card-body p-3">
                                         <ul class="list-group">
                                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> <?= $user['first_name'] . ' ' . $user['last_name'] ?></li>
-                                            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Usermae:</strong> <?= $user['email'] ?></li>
+                                            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Username:</strong> <?= $user['username'] ?></li>
                                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Gender:</strong> <?= $user['gender'] ?></li>
                                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Date of Birth:</strong> <?= $user['date_of_birth'] ?></li>
                                         </ul>

@@ -120,6 +120,9 @@
                             <p class="opacity-10 text-xs mb-1">Available Today: <?= $available_riders_count ?></p>
                             <h3 class="revenue-amount-header"></h3>
                         </div>
+                        <div class="d-flex align-items-center">
+                            <a href="rider-table-admin" title="View riders table"><i class="material-symbols-rounded opacity-10">grid_view</i></a>
+                        </div>
                     </div>
                     <div class="row">
                         <?php foreach ($available_riders as $rider) : ?>

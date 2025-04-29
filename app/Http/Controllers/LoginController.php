@@ -26,7 +26,6 @@ class LoginController extends Controller
 
         return $this->view('auth/login.view.php', [
             'title' => $this->title,
-            'errors' => [],
         ]);
     }
 
@@ -54,27 +53,28 @@ class LoginController extends Controller
                 // current user cart count (need here for navbar)
                 $cartObj = new Cart;
                 $cartObj->updateCartCount('user_id');
-                
+
                 $userModel = new User;
                 $userModel->loadRoleView();
             }
 
-            $errors['email'] = "Account does not exist";
-            Session::set('__flash', 'credentials', $data);
+            // Added here because can't be added on controller
+            // bcz the validation is happening above
+            $errors['emailOrUsername'] = ['Account does not exist'];
+            $flashData = [
+                'old' => $data,
+                'errors' => $errors,
+            ];
+            Session::set('__flash', 'data', $flashData);
 
-            if ($errors) {
-                return $this->view('auth/login.view.php', [
-                    'title' => $this->title,
-                    'errors' => $errors,
-                ]);
-            }
+            return $this->redirect('login');
         }
     }
 
     /**
      * Handle the submit of 
      * Logout Form
-    */
+     */
     public function logout()
     {
         $auth = new Authenticator;

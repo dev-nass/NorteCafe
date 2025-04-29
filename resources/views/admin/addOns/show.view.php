@@ -144,7 +144,7 @@
         Swal.fire({
             icon: "success",
             title: "Success",
-            text: "Add ons created successfully!",
+            text: "Add ons updated successfully!",
             allowOutsideClick: false,
         });
     </script>
