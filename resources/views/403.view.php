@@ -7,8 +7,8 @@
             <div class="col-12 col-lg-6">
                 <div class="text-center d-flex flex-column justify-content-center align-items-center h-100">
                     <h1 class="section-header">403 PAGE</h1>
-                    <p class="fs-5">Sorry! Looks like this page is inaccessible. Try refreshing the page or sign up</p>
-                    <a class="choco-btn text-center" href="login">Sign In</a>
+                    <p class="fs-5">Sorry! Looks like this page is inaccessible. Try refreshing the page or go back to home page</p>
+                    <a class="choco-btn text-center" href="index">Home</a>
                 </div>
             </div>
             <div class="col-12 col-lg-6 mt-5 mt-lg-0">

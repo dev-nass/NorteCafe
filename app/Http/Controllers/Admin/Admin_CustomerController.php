@@ -27,6 +27,7 @@ class Admin_CustomerController extends Controller
         ])->get();
 
         return $this->view('Admin/customer/index.view.php', [
+            'title' => 'Customers Table',
             "customers" => $customers
         ]);
     }
@@ -67,6 +68,7 @@ class Admin_CustomerController extends Controller
 
 
         return $this->view('Admin/customer/show.view.php', [
+            'title' => "Customer Show {$customer_id}",
             "user" => $user,
             "cart_count" => $cartCount,
             "transaction_count" => $transactionCount,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Core\Database;
 use Core\Controller;
 use Core\Session;
+use Core\Mailer;
 use App\Models\User;
 
 class Admin_RiderController extends Controller
@@ -25,6 +26,7 @@ class Admin_RiderController extends Controller
         ])->get();
 
         return $this->view('Admin/rider/index.view.php', [
+            'title' => 'Riders Table',
             "riders" => $riders
         ]);
     }
@@ -44,12 +46,56 @@ class Admin_RiderController extends Controller
         ]);
 
         return $this->view('Admin/rider/show.view.php', [
+            'title' => "Rider Show {$rider_id}",
             "user" => $user,
         ]);
     }
 
-    public function create() {}
-    public function store() {}
+
+    /**
+     * Used for loading the form to
+     * input the Rider email and
+     * send email too
+    */
+    public function create() 
+    {
+
+        return $this->view('admin/rider/create.view.php', [
+            'title' => 'Create Employee',
+        ]);
+    }
+    
+
+    /**
+     * Used for sending an email to
+     * the Rider
+    */
+    public function store() 
+    {
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $data = [
+                "email" => $this->getInput('email')
+            ];
+
+            $errors = $this->validate($data, [
+                'email' => "email|unique:users,email,0",
+            ]);
+
+            if($errors) {
+                return $this->redirect('rider-create-admin');
+            }
+
+            $mailerObj = new Mailer;
+            $emailSent = $mailerObj->emailStaff($data['email'], 'rider');
+
+            if($emailSent) {
+                Session::set('__flash', 'email_sent', 'Email sent successfully');
+                return $this->redirect('rider-create-admin');
+            }
+        }
+    }
 
     /**
      * Updates a specific rider

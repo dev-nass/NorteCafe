@@ -23,6 +23,7 @@ class Admin_MenuController extends Controller
         $menuItems = $menuItemsObj->findAll();
 
         return $this->view('Admin/menu/index.view.php', [
+            'title' => 'Menu Items Table',
             "menuItems" => $menuItems,
         ]);
     }
@@ -50,6 +51,7 @@ class Admin_MenuController extends Controller
         $addOns = $addOnsObj->findAll();
 
         return $this->view('Admin/menu/show.view.php', [
+            'title' => "Menu Item {$menu_item_id}",
             "menuItem" => $menuItem,
             "menuSizes" => $menuSizes,
             "addOns" => $addOns,
@@ -63,6 +65,7 @@ class Admin_MenuController extends Controller
     {
 
         return $this->view('Admin/menu/create.view.php', [
+            'title' => 'Create Menu Item',
             "errors" => [],
         ]);
     }

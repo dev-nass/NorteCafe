@@ -79,6 +79,15 @@
             allowOutsideClick: false,
         });
     </script>
+<?php elseif (isset($_SESSION['__flash']['staff_registered'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "You are now registered!",
+            text: "Please login using your credentials",
+            allowOutsideClick: false,
+        });
+    </script>
 <?php endif; ?>
 
 <!-- js for validating -->

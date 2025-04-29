@@ -10,8 +10,6 @@ use Core\Session;
 class RegistrationController extends Controller
 {
 
-    protected $title = 'Registration';
-
     public function index() {}
 
     public function show() {}
@@ -24,7 +22,7 @@ class RegistrationController extends Controller
     {
 
         $this->view('auth/registration.view.php', [
-            'title' => $this->title,
+            'title' => "Registration | Norte Cafe",
             'errors' => [],
         ]);
     }

@@ -29,6 +29,7 @@ class Admin_TransactionController extends Controller
 
 
         return $this->view('admin/transaction/index.view.php', [
+            'title' => 'Transactions Table',
             "transactions" => $transactions,
         ]);
     }
@@ -53,6 +54,7 @@ class Admin_TransactionController extends Controller
         ])->get();
 
         return $this->view('admin/transaction/queue.view.php', [
+            'title' => 'Transaction Queue',
             'pending_transactions' => $pending_transactions
         ]);
     }
@@ -72,6 +74,7 @@ class Admin_TransactionController extends Controller
 
 
         return $this->view('admin/transaction/show.view.php', [
+            'title' => "Transaction Show {$transaction_id}",
             'transactions' => $transactions,
             'previousTransactions' => $previousTransactions,
         ]);
@@ -104,6 +107,7 @@ class Admin_TransactionController extends Controller
         ])->get();
 
         return $this->view('admin/transaction/pending-show.view.php', [
+            'title' => "Pending Transaction Show {$transaction_id}",
             'transactions' => $transactions,
             'previousTransactions' => $previousTransactions,
             'availableRiders' => $availableRiders,
@@ -142,6 +146,9 @@ class Admin_TransactionController extends Controller
         }
     }
 
+    /**
+     * Used for rejecting all transactions on queue
+    */
     public function reject_all()
     {
         

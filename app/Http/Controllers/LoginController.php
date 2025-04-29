@@ -11,8 +11,6 @@ use App\Models\Cart;
 class LoginController extends Controller
 {
 
-    protected $title = 'Login';
-
     public function index() {}
 
     public function show() {}
@@ -25,7 +23,7 @@ class LoginController extends Controller
     {
 
         return $this->view('auth/login.view.php', [
-            'title' => $this->title,
+            'title' => 'Login | Norte Cafe',
         ]);
     }
 

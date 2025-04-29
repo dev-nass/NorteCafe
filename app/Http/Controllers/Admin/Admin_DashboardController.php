@@ -6,7 +6,7 @@ use Core\Database;
 use Core\Controller;
 use App\Models\Rider;
 
-class Admin_AdminController
+class Admin_DashboardController
 {
 
     /**
@@ -58,6 +58,7 @@ class Admin_AdminController
             LIMIT 10")->get();
 
         view('Admin/index.view.php', [
+            'title' => 'Dashboard | Norte Cafe',
             'total_revenue' => $total_revenue['total_sales'],
             'total_transactions' => $total_transactions['COUNT(*)'],
             'total_customers' => $total_customers['COUNT(*)'],
@@ -144,7 +145,7 @@ class Admin_AdminController
 
     /**
      * API for fetching top sales
-     * depending on the category (top sales, ... by age, ... gender)
+     * depending on the category (top sales overall, ... by age, ... gender)
     */
     public function top_sales()
     {

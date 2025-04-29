@@ -9,13 +9,17 @@ class General
      * For general webpages, and dont allow access if
      * there's a session and the credentials is not of customer's role
      * 
-     * In short prevent Admin/Customer/Rider from accessing
-    */
+     * In short prevent Admin/Employee/Rider from accessing
+     */
     public static function handle($role)
     {
-        if(! empty($_SESSION['__currentUser']) && $_SESSION['__currentUser']['credentials']['role'] !== $role) {
-            header('location: 403');
-            exit();
+
+        $distinctRoles = explode(',', $role);
+        foreach ($distinctRoles as $eachRole) {
+            if (! empty($_SESSION['__currentUser']) && $_SESSION['__currentUser']['credentials']['role'] !== $eachRole) {
+                header('location: 403');
+                exit();
+            }
         }
     }
 }

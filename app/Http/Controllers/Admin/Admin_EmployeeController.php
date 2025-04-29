@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Core\Database;
 use Core\Controller;
 use Core\Session;
+use Core\Mailer;
 use App\Models\User;
 
 class Admin_EmployeeController extends Controller
@@ -25,6 +26,7 @@ class Admin_EmployeeController extends Controller
         ])->get();
 
         return $this->view('Admin/employee/index.view.php', [
+            'title' => "Employees Table",
             "employees" => $employees
         ]);
     }
@@ -44,12 +46,54 @@ class Admin_EmployeeController extends Controller
         ]);
 
         return $this->view('Admin/employee/show.view.php', [
+            'title' => "Employee Show {$employee_id}",
             "user" => $user,
         ]);
     }
 
-    public function create() {}
-    public function store() {}
+    /**
+     * Used for loading the form to
+     * input the Employee email and
+     * send email too
+    */
+    public function create() 
+    {
+
+        return $this->view('admin/employee/create.view.php', [
+            'title' => 'Create Employee',
+        ]);
+    }
+
+    /**
+     * Used for sending an email to
+     * the Employee
+    */
+    public function store() 
+    {
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $data = [
+                "email" => $this->getInput('email')
+            ];
+
+            $errors = $this->validate($data, [
+                'email' => "email|unique:users,email,0",
+            ]);
+
+            if($errors) {
+                return $this->redirect('employee-create-admin');
+            }
+
+            $mailerObj = new Mailer;
+            $emailSent = $mailerObj->emailStaff($data['email'], 'employee');
+
+            if($emailSent) {
+                Session::set('__flash', 'email_sent', 'Email sent successfully');
+                return $this->redirect('employee-create-admin');
+            }
+        }
+    }
 
     /**
      * Updates a specific employee

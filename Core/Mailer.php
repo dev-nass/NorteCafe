@@ -35,7 +35,7 @@ class Mailer
      * Used for sending email to forgot password request
      * $recipient -  where the email will be sent
      * $url - will contain the link for the href and used for containing the
-     *  token_valite and token_selector
+     *  token_validate and token_selector
      */
     public function forgotPassword($recipient, $url)
     {
@@ -72,6 +72,29 @@ class Mailer
         $this->mail->Subject = "{$subject}";
         $this->mail->Body    = "{$message}";
     
+        return $this->mail->send() ?? false;
+    }
+
+
+    /**
+     * Will contain the HTML and the <a> that
+     * sends an email and redirect to Staff Registration
+    */
+    public function emailStaff($recipient, $role)
+    {
+
+        $mod_role = ucfirst($role); // caps the firt letter
+
+        $this->mailerSettings();
+
+        $this->mail->setFrom($this->username, 'Norte Cafe');
+        $this->mail->addAddress($recipient);
+        
+        $this->mail->isHTML(true);                                  //Set email format to HTML
+        $this->mail->Subject = "{$mod_role} Registration";
+        $this->mail->Body    = '<p>Your application has been accepted. Please click the link below to register your account to our system</p>';
+        $this->mail->Body    .= "<a class='btn btn-primary' href='http://localhost/PHP%202025/Norte%20Cafe/public/index.php/staff-create-{$role}'>{$mod_role} Registration</a>";
+
         return $this->mail->send() ?? false;
     }
 }

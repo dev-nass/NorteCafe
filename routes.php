@@ -72,10 +72,10 @@ $router->post('transaction-update', 'Customer\TransactionController', 'update')-
 /**
  * Admin side 
 */
-$router->get('dashboard', 'Admin\Admin_AdminController', 'index');
-$router->get('dashboard-analytics', 'Admin\Admin_AdminController', 'admin_dashboard');
-$router->get('total-transactions', 'Admin\Admin_AdminController', 'total_transactions');
-$router->get('top-sales', 'Admin\Admin_AdminController', 'top_sales');
+$router->get('dashboard', 'Admin\Admin_DashboardController', 'index')->only('staff', 'Admin,Employee');
+$router->get('dashboard-analytics', 'Admin\Admin_DashboardController', 'admin_dashboard');
+$router->get('total-transactions', 'Admin\Admin_DashboardController', 'total_transactions');
+$router->get('top-sales', 'Admin\Admin_DashboardController', 'top_sales');
 
 $router->get('transaction-queue-admin', 'Admin\Admin_TransactionController', 'queue');
 $router->get('transaction-pending-show-admin', 'Admin\Admin_TransactionController', 'pending_show');
@@ -118,11 +118,19 @@ $router->post('customer-delete-admin', 'Admin\Admin_CustomerController', 'delete
 
 $router->get('employee-table-admin', 'Admin\Admin_EmployeeController', 'index');
 $router->get('employee-show-admin', 'Admin\Admin_EmployeeController', 'show');
+$router->get('employee-create-admin', 'Admin\Admin_EmployeeController', 'create');
+$router->post('employee-store-admin', 'Admin\Admin_EmployeeController', 'store');
 $router->post('employee-update-admin', 'Admin\Admin_EmployeeController', 'update');
 $router->post('employee-delete-admin', 'Admin\Admin_EmployeeController', 'delete');
 
+$router->get('staff-create-employee', 'Admin\Admin_StaffController', 'createEmployee');
+$router->get('staff-create-rider', 'Admin\Admin_StaffController', 'createRider');
+$router->post('staff-store', 'Admin\Admin_StaffController', 'store');
+
 $router->get('rider-table-admin', 'Admin\Admin_RiderController', 'index');
 $router->get('rider-show-admin', 'Admin\Admin_RiderController', 'show');
+$router->get('rider-create-admin', 'Admin\Admin_RiderController', 'create');
+$router->post('rider-store-admin', 'Admin\Admin_RiderController', 'store');
 $router->post('rider-update-admin', 'Admin\Admin_RiderController', 'update');
 $router->post('rider-delete-admin', 'Admin\Admin_RiderController', 'delete');
 

@@ -23,14 +23,14 @@ class UserController extends Controller
     public function index()
     {
         return $this->view('Customer/index.view.php', [
-            "title" => "Norte Cafe"
+            "title" => "Home | Norte Cafe"
         ]);
     }
 
     public function contactUs()
     {
         return $this->view('Customer/contactUs.view.php', [
-            "title" => "Contact Us"
+            "title" => "Contact Us | Norte Cafe"
         ]);
     }
 
@@ -76,14 +76,14 @@ class UserController extends Controller
     public function findStore()
     {
         return $this->view('Customer/findStore.view.php', [
-            "title" => "Find Store"
+            "title" => "Find Store | Norte Cafe"
         ]);
     }
 
     public function faqs()
     {
         return $this->view('Customer/faqs.view.php', [
-            "title" => "FAQs - Norte Cafe"
+            "title" => "FAQs | Norte Cafe"
         ]);
     }
 

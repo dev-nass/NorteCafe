@@ -20,6 +20,7 @@ class Admin_DiscountController extends Controller
         $dicounts = $discountObj->findAll();
 
         return $this->view('admin/discount/index.view.php', [
+            'title' => 'Discounts Table',
             'discounts' => $dicounts,
         ]);
     }
@@ -38,6 +39,7 @@ class Admin_DiscountController extends Controller
         ]);
 
         return $this->view('admin/discount/show.view.php', [
+            'title' => "Discount Show {$discount_id}",
             'discount' => $dicount
         ]);
     }
@@ -49,7 +51,9 @@ class Admin_DiscountController extends Controller
     public function create() 
     {
 
-        return $this->view('admin/discount/create.view.php');
+        return $this->view('admin/discount/create.view.php', [
+            'title' => 'Create Discount',
+        ]);
     }
 
     /**

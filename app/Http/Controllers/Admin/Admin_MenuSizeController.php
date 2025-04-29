@@ -18,7 +18,9 @@ class Admin_MenuSizeController extends Controller
     */
     public function create()
     {
-        return $this->view('Admin/size/create.view.php');
+        return $this->view('Admin/size/create.view.php', [
+            'title' => 'Create Menu Item Size',
+        ]);
     }
 
     /**

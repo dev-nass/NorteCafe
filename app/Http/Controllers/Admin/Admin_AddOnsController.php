@@ -20,6 +20,7 @@ class Admin_AddOnsController extends Controller
         $addOns = $addOnsObj->findAll();
 
         return $this->view('Admin/AddOns/index.view.php', [
+            'title' => 'Add-Ons Table',
             'addOns' => $addOns,
         ]);
     }
@@ -39,6 +40,7 @@ class Admin_AddOnsController extends Controller
         ]);
 
         view('admin/addOns/show.view.php', [
+            'title' => "Add-Ons Show {$add_on_id}",
             "addOns" => $addOns,
             "errors" => [],
         ]);
@@ -51,6 +53,7 @@ class Admin_AddOnsController extends Controller
     {
 
         return $this->view('Admin/AddOns/create.view.php', [
+            'title' => 'Create Add-Ons',
             "errors" => [],
         ]);
     }
@@ -157,6 +160,10 @@ class Admin_AddOnsController extends Controller
         }
     }
 
+    /**
+     * Used for changing availability
+     * of all Add-Ons at once
+    */
     public function change_availability()
     {
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
