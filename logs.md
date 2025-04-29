@@ -124,3 +124,13 @@ if ($errors) {
 - Design on the admin side is starting to like user side,
 ### Rejecting all pending transactions
 - Add additional functionality on `transaction queue` to reject all pending transactions. The idea behind this to reset transaction queue everytime the shop closses.
+
+# April 28, 2025
+- Did the view for admin/employee front-end
+
+# April 29, 2025
+### Employee & Rider
+- Read, update delete operation for employee and rider on admin side
+### Admin-side Profiling
+- Updating opearation are done
+

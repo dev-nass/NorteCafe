@@ -13,10 +13,12 @@
                             <div class="d-none">
                                 <input
                                     class="d-none"
+                                    name="selector"
                                     value="<?= $token_selector ?>"
                                     type="text">
                                 <input
                                     class="d-none"
+                                    name="validator"
                                     value="<?= $token_reset ?>"
                                     type="text">
                             </div>
@@ -27,6 +29,7 @@
                                     <label for="new_password">Enter New Password...</label>
                                     <div class="invalid-feedback">Missing New Password...</div>
                                 </div>
+                                <?php error('new_password') ?>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="new_password_confirmation">Confirm New Password</label>
@@ -35,21 +38,8 @@
                                     <label for="new_password_confirmation">Re-Enter New Password...</label>
                                     <div class="invalid-feedback">Passwords do not match...</div>
                                 </div>
+                                <?php error('request_error') ?>
                             </div>
-                            <?php if (isset($errors['new_password'])): ?>
-                                <ul class="m-0 p-0" style="list-style: none;">
-                                    <?php foreach ($errors['new_password'] as $error): ?>
-                                        <li class="text-danger"><?= htmlspecialchars($error) ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            <?php endif; ?>
-                            <?php if (isset($errors['request_error'])): ?>
-                                <ul class="m-0 p-0" style="list-style: none;">
-                                    <?php foreach ($errors['request_error'] as $error): ?>
-                                        <li class="text-danger"><?= htmlspecialchars($error) ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            <?php endif; ?>
                             <div class="mb-3">
                                 <button class="Cpass-btn w-100 mt-3" type="submit">Reset Password</button>
                             </div>

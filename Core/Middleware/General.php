@@ -13,7 +13,7 @@ class General
     */
     public static function handle($role)
     {
-        if(! empty($_SESSION) && $_SESSION['__currentUser']['credentials']['role'] !== $role) {
+        if(! empty($_SESSION['__currentUser']) && $_SESSION['__currentUser']['credentials']['role'] !== $role) {
             header('location: 403');
             exit();
         }

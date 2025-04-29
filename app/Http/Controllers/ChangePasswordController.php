@@ -35,9 +35,9 @@ class ChangePasswordController extends Controller
 
             $data = [
                 "email" => $this->getInput("email"),
-                "old_password" => $this->getInput("old-password"),
-                "new_password" => $this->getInput("new-password"),
-                "new_password_confirmation" => $this->getInput("new-pasword-confirmation")
+                "old_password" => $this->getInput("old_password"),
+                "new_password" => $this->getInput("new_password"),
+                "new_password_confirmation" => $this->getInput("new_pasword_confirmation")
             ];
 
             $errors = $this->validate($data, [
@@ -45,35 +45,40 @@ class ChangePasswordController extends Controller
                 "new_password" => "required|min:8|max:255|confirmed",
             ]);
 
-            $userObj = new User;
+            // redirect
+            if($errors) {
+                return $this->redirect('change-pass');
+            }
 
-            // verify if the user exist using email and 
+            $userObj = new User;
             $chck_user_exists = $userObj->firstWhere([
                 "email" => $data["email"]
             ]);
-
+            
+            // verify if the user exist using email and ...
             if(! $chck_user_exists) {
-                $errors['old_password'][] =  "No account found";
+                $customErrors['old_password'] =  ["No account found"];
+                $flashData = [
+                    'errors' => $customErrors,
+                ];
+
+                Session::set('__flash', 'data', $flashData);
+                return $this->redirect('change-pass');
             }
 
-            if($errors) {
-                return $this->view('auth/change-pass.view.php', [
-                    "errors" => $errors
-                ]);
-            }
-
-            // ... password matching
+            // ... password matching (retrieved user password & old password given)
             if(! password_verify($data['old_password'], $chck_user_exists['password'])) {
-                $errors['old_password'][] =  "Invalid Password";
-            }
+                $customErrors['old_password'] =  ["Invalid Password"];
+                $flashData = [
+                    'errors' => $customErrors,
+                ];
 
-            if($errors) {
-                return $this->view('auth/change-pass.view.php', [
-                    "errors" => $errors
-                ]);
+                Session::set('__flash', 'data', $flashData);
+                // redirect if it doesn't match
+                return $this->redirect('change-pass');
             }
             
-            // we can update the password
+            // We can update the password
             $user_pass_updated = $userObj->query('UPDATE users SET password = :password WHERE email = :email', [
                 "email" => $data["email"],
                 "password" => password_hash($data["new_password"], PASSWORD_BCRYPT),

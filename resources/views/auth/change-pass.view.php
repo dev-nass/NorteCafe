@@ -17,40 +17,29 @@
                             <div class="mb-3">
                                 <label class="form-label" for="old-password">Old Password</label>
                                 <div class="form-floating">
-                                    <input class="form-control" name="old-password" type="password" id="old-password" placeholder="Old Password" required>
+                                    <input class="form-control" name="old_password" type="password" id="old-password" placeholder="Old Password" required>
                                     <label for="old-password">Enter Old Password...</label>
                                     <div class="invalid-feedback">Missing Old Password...</div>
                                 </div>
-                                <?php if (isset($errors['old_password'])) : ?>
-                                    <ul class="m-0 p-0" style="list-style: none;">
-                                        <?php foreach ($errors['old_password'] as $error): ?>
-                                            <li class="error-li text-danger"><?= htmlspecialchars($error) ?></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                <?php endif; ?>
+                                <?php error('old_password') ?>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="new-password">New Password</label>
                                 <div class="form-floating">
-                                    <input class="form-control" name="new-password" type="password" id="new-password" placeholder="New Password" required>
+                                    <input class="form-control" name="new_password" type="password" id="new-password" placeholder="New Password" required>
                                     <label for="new-password">Enter New Password...</label>
                                     <div class="invalid-feedback">Missing New Password...</div>
                                 </div>
-                                <?php if (isset($errors['new_password'])) : ?>
-                                    <ul class="m-0 p-0" style="list-style: none;">
-                                        <?php foreach ($errors['new_password'] as $error): ?>
-                                            <li class="error-li text-danger"><?= htmlspecialchars($error) ?></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                <?php endif; ?>
+                                <?php error('new_password') ?>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="confirm-password">Confirm New Password</label>
                                 <div class="form-floating">
-                                    <input class="form-control" name="new-pasword-confirmation" type="password" id="confirm-password" placeholder="Confirm New Password" required>
+                                    <input class="form-control" name="new_pasword_confirmation" type="password" id="confirm-password" placeholder="Confirm New Password" required>
                                     <label for="confirm-password">Re-Enter New Password...</label>
                                     <div class="invalid-feedback">Passwords do not match...</div>
                                 </div>
+                                <?php error('new_pasword_confirmation') ?>
                             </div>
                             <div class="mb-3">
                                 <button class="Cpass-btn w-100 mt-3" type="submit">Change Password</button>
