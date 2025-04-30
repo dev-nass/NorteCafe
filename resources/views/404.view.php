@@ -8,7 +8,8 @@
                 <div class="text-center d-flex flex-column justify-content-center align-items-center h-100">
                     <h1 class="section-header">404 PAGE</h1>
                     <p class="fs-5">Sorry! Page Not Found. The requested URL was not found on the server</p>
-                    <a class="choco-btn text-center" href="index">Home</a>
+                    <a class="choco-btn text-center" 
+                        href="<?= dynamic_http_response($_SESSION['__currentUser']['credentials']['role']) ?>">Home</a>
                 </div>
             </div>
             <div class="col-12 col-lg-6 mt-5 mt-lg-0">

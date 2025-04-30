@@ -82,6 +82,7 @@ class User extends Model
         $routes = [
             'Admin' => 'dashboard',
             'Employee' => 'dashboard',
+            'Rider' => 'assigned-transaction-queue-rider',
             'Customer' => 'index',
         ];
 

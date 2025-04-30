@@ -136,3 +136,14 @@ $router->post('rider-delete-admin', 'Admin\Admin_RiderController', 'delete');
 
 $router->get('profile-admin', 'Admin\Admin_ProfileController', 'index');
 $router->post('profile-update-admin', 'Admin\Admin_ProfileController', 'update');
+
+
+/**
+ * Rider Side
+*/
+$router->get('assigned-transaction-queue-rider', 'Rider\Rider_TransactionController', 'queue');
+$router->get('fetch-assigned-transaction', 'Rider\Rider_TransactionController', 'assignedTrans');
+$router->get('assigned-transaction-rider', 'Rider\Rider_TransactionController', 'assigned_show');
+$router->get('transaction-show-rider', 'Rider\Rider_TransactionController', 'show');
+$router->post('transaction-update-rider', 'Rider\Rider_TransactionController', 'update');
+$router->post('transaction-reject-all-rider', 'Rider\Rider_TransactionController', 'reject_all');

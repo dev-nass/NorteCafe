@@ -83,6 +83,23 @@ function abort($code = 404)
 }
 
 /**
+ * Added so 404, and 403 home link is
+ * updated depending on the $_SESSION role
+*/
+function dynamic_http_response($role)
+{
+
+    $route =  match($role) {
+        'Customer' => 'index',
+        'Employee' => 'dashboard',
+        'Admin' => 'dashboard',
+        'Rider' => 'assigned-transaction-queue-rider'
+    };
+
+    return $route;
+}
+
+/**
  * Used for checking if the shop is open or closed
  */
 function isOrderingTime()

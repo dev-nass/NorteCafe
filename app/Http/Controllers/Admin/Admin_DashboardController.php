@@ -57,7 +57,7 @@ class Admin_DashboardController
             ORDER BY sale_count DESC
             LIMIT 10")->get();
 
-        view('Admin/index.view.php', [
+        view('Admin/dashboard.view.php', [
             'title' => 'Dashboard | Norte Cafe',
             'total_revenue' => $total_revenue['total_sales'],
             'total_transactions' => $total_transactions['COUNT(*)'],

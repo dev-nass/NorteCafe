@@ -81,8 +81,10 @@ class Admin_TransactionController extends Controller
     }
 
     /**
-     * Used for loading/showing the specificity of each 
-     * pending transactions
+     * Used for loading/showing resource on 
+     * Admin/transaction/pending-show.view.php
+     * 
+     * Transaction Status: Pending
      */
     public function pending_show()
     {
