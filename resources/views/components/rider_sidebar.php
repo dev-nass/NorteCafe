@@ -18,7 +18,13 @@
             <li class="nav-item">
                 <a class="nav-link <?= urlIs('assigned-transaction-queue-rider') ? 'active choco-gradient-bg' : 'text-dark' ?>" href="assigned-transaction-queue-rider">
                     <i class="material-symbols-rounded opacity-5">dashboard</i>
-                    <span class="nav-link-text ms-1">Assign</span>
+                    <span class="nav-link-text ms-1">Assigned Trans.</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= urlIs('current-transaction-queue-rider') ? 'active choco-gradient-bg' : 'text-dark' ?>" href="current-transaction-queue-rider">
+                    <i class="material-symbols-rounded opacity-5">calendar_today</i>
+                    <span class="nav-link-text ms-1">Current Trans.</span>
                 </a>
             </li>
             <li class="nav-item">

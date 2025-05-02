@@ -145,7 +145,7 @@
                         </ul>
 
                         <div class="p-0 border h-100">
-                            <img class="w-100 responsive-height" style="object-fit: cover;" src="<?= $transactions[0]['payment_proof_dir'] ?>" alt="delivery-proof">
+                            <img class="w-100 responsive-height" style="object-fit: cover;" src="<?= $transactions[0]['delivery_proof_dir'] ?>" alt="delivery-proof">
                         </div>
 
                         <ul class="list-group">
@@ -155,8 +155,8 @@
                                         <span class="mb-1 text-xs" style="font-size: .8rem">Delivery At: </span>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Discount: <span class="text-dark"><?= $transactions[0]['discount_name'] ?></span></h6>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Due: <span class="text-dark">₱<?= $transactions[0]['amount_due'] ?></span></h6>
-                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Tendered: <span class="text-dark"></span></h6>
-                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Change: <span class="text-dark"></span></h6>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Tendered: <span class="text-dark">₱<?= $transactions[0]['amount_tendered'] ?></span></h6>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Change: <span class="text-dark">₱<?= $transactions[0]['change'] ?></span></h6>
                                     </div>
                                 </div>
                             </li>
@@ -171,6 +171,67 @@
                 <div class="card">
                     <div class="card-header pb-0 px-3 d-flex justify-content-between">
                         <h6 class="mb-0">Order Details</h6>
+                        <?php if (is_null($transactions[0]['change']) || is_null($transactions[0]['amount_tendered'])) : ?>
+                            <button title="Compute Change" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#computeChange">
+                                Compute Change
+                            </button>
+                        <?php endif; ?>
+
+
+                        <!-- Compute Change Modal -->
+                        <div class="modal fade" id="computeChange" tabindex="-1" aria-labelledby="computeChangeModal" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Compute Change</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="border h-100">
+                                            <form id="calculate-change" class="border border-0 needs-validation" action="transaction-calculate-change" method="POST" enctype="multipart/form-data" novalidate>
+                                                <input
+                                                    class="d-none"
+                                                    name="transaction_id"
+                                                    value="<?= $transactions[0]['transaction_id'] ?>"
+                                                    type="text">
+                                                <input
+                                                    class="d-none"
+                                                    name="amount_due"
+                                                    value="<?= $transactions[0]['amount_due'] ?>"
+                                                    type="text">
+                                                <div class="col-12">
+                                                    <label for="validationCustom01" class="form-label">Amount Tendered</label>
+                                                    <input type="text" class="form-control border border-dark px-2" id="validationCustom01" name="amount_tendered" value="<?= old('amount_tendered') ?? '' ?>" required>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Enter amount first!
+                                                    </div>
+                                                    <?php error('amount_tendered') ?>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label for="validationCustom02" class="form-label">Delivery Proof</label>
+                                                    <input type="file" class="form-control border border-dark px-2" id="validationCustom02" name="delivery_proof" required>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <div class="invalid-feedback">
+                                                        Enter amount first!
+                                                    </div>
+                                                    <?php error('amount_tendered') ?>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button form="calculate-change" type="submit" class="btn btn-primary">Compute</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="card-body pt-4 p-3">
                         <?php foreach ($transactions as $transaction) : ?>
@@ -201,15 +262,56 @@
 
 </main>
 
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
+
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<?php if (isset($_SESSION['__flash']['rider_approved'])) : ?>
+<?php if (isset($_SESSION['__flash']['rider_changed_status']) && $_SESSION['__flash']['rider_changed_status'] === 'Approved by Rider successfully') : ?>
     <script>
         Swal.fire({
             icon: "success",
             title: "Success",
-            text: "Approved successfully!",
+            text: "Approved transaction successfully!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php elseif (isset($_SESSION['__flash']['rider_changed_status']) && $_SESSION['__flash']['rider_changed_status'] === 'Rejected by Rider successfully') : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Rejected transaction successfully!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php elseif (isset($_SESSION['__flash']['errors'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Please double check the delivery modal",
             allowOutsideClick: false,
         });
     </script>

@@ -142,8 +142,11 @@ $router->post('profile-update-admin', 'Admin\Admin_ProfileController', 'update')
  * Rider Side
 */
 $router->get('assigned-transaction-queue-rider', 'Rider\Rider_TransactionController', 'queue');
-$router->get('fetch-assigned-transaction', 'Rider\Rider_TransactionController', 'assignedTrans');
+$router->get('fetch-assigned-transaction', 'Rider\Rider_TransactionController', 'assignedTrans'); // API
 $router->get('assigned-transaction-rider', 'Rider\Rider_TransactionController', 'assigned_show');
-$router->get('transaction-show-rider', 'Rider\Rider_TransactionController', 'show');
 $router->post('transaction-update-rider', 'Rider\Rider_TransactionController', 'update');
 $router->post('transaction-reject-all-rider', 'Rider\Rider_TransactionController', 'reject_all');
+
+$router->get('current-transaction-queue-rider', 'Rider\Rider_TransactionController', 'current');
+$router->get('transaction-show-rider', 'Rider\Rider_TransactionController', 'show');
+$router->post('transaction-calculate-change', 'Rider\Rider_TransactionController', 'calculateChange');

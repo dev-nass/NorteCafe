@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const formattedDate = createdAt.toLocaleString('en-US', options);
 
                 orderQueueContainer.innerHTML +=
-                    `<div id="order-queue-container" class="col-12 col-md-6">
+                `<div class="col-12 col-md-6">
                     <ul class="list-group">
                         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                             <div class="row w-100">
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         </li>
                     </ul>
-                </div`
+                </div>`
             });
 
         } catch (error) {
