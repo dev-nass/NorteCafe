@@ -227,13 +227,13 @@ class Rider_TransactionController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            $delivery_proof = $_FILES['delivery_proof'];
             $data = [
                 'transaction_id' => $this->getInput('transaction_id'),
                 'amount_due' => $this->getInput('amount_due'),
                 'amount_tendered' => number_format($this->getInput('amount_tendered'), '2', '.', ''),
             ];
 
-            $delivery_proof = $_FILES['delivery_proof'];
 
             if($data['amount_tendered'] < $data['amount_due']) {
                 $errors['amount_tendered'] = ['Insufficient amount tendered'];
@@ -252,10 +252,11 @@ class Rider_TransactionController extends Controller
             $updateChange = $transObj->update($data['transaction_id'], [
                 "amount_tendered" => number_format($data['amount_tendered'], '2', '.', ''),
                 "`change`" => number_format($change, '2', '.', ''),
+                "delivery_proof_dir" => "../../storage/backend/img/delivery_proof/" . $delivery_proof['name'],
                 "status" => "Delivered"
             ]);
 
-            $transObj->update($delivery_proof);
+            $transObj->uploadFile($delivery_proof);
 
             if($updateChange) {
                 Session::set('__flash', 'transaction_delivered', 'Delivered Successfully');

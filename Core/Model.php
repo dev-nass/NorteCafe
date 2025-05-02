@@ -99,7 +99,6 @@ class Model extends Database
         $keys = array_keys($param);
         $values = array_values($param);
         $columns = implode(" = ?, ", $keys) . " = ?";
-
         $table = substr($this->table, 0, -1);
 
         $sql = "UPDATE $this->table SET $columns WHERE {$table}_id = ?";

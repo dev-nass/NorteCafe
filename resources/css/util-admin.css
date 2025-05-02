@@ -39,3 +39,15 @@
 .choco-text {
     color: var(--clr-choco) !important;
 }
+
+.responsive-height {
+    height: 100% !important;
+}
+
+/* xL */
+/* 1280 but change to 1225 for customer/transaction.show */
+@media (min-width: 1225px) {
+    .responsive-height {
+        max-height: 200px !important;
+    }
+}
