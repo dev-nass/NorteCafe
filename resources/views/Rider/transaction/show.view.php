@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="card-body pt-0 p-3 text-center">
                                         <h6 class="text-center mb-0">Amount Due</h6>
-                                        <span class="text-xs">To be paid by the customer</span>
+                                        <span class="text-sm">To be paid by the customer</span>
                                         <hr class="horizontal dark my-3">
                                         <h5 class="mb-0">₱<?= $transactions[0]['amount_due'] ?></h5>
                                     </div>
@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="card-body pt-0 p-3 text-center">
                                         <h6 class="text-center mb-0">Shipping Fee</h6>
-                                        <span class="text-xs">Default fee each order</span>
+                                        <span class="text-sm">Default fee each order</span>
                                         <hr class="horizontal dark my-3">
                                         <h5 class="mb-0">₱50.00</h5>
                                     </div>
@@ -110,7 +110,6 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Save changes</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -152,7 +151,7 @@
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                 <div class="d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column">
-                                        <span class="mb-1 text-xs" style="font-size: .8rem">Delivery At: </span>
+                                        <span class="mb-1 text-xs" style="font-size: .8rem">Delivery At: <?= date("F d, Y \a\\t h:i A", strtotime($transactions[0]['delivered_at'])) ?></span>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Discount: <span class="text-dark"><?= $transactions[0]['discount_name'] ?></span></h6>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Due: <span class="text-dark">₱<?= $transactions[0]['amount_due'] ?></span></h6>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Tendered: <span class="text-dark">₱<?= $transactions[0]['amount_tendered'] ?></span></h6>
@@ -303,6 +302,15 @@
             icon: "success",
             title: "Success",
             text: "Rejected transaction successfully!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php elseif (isset($_SESSION['__flash']['transaction_delivered'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Orders Delivered",
             allowOutsideClick: false,
         });
     </script>

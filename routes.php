@@ -147,6 +147,14 @@ $router->get('assigned-transaction-rider', 'Rider\Rider_TransactionController', 
 $router->post('transaction-update-rider', 'Rider\Rider_TransactionController', 'update');
 $router->post('transaction-reject-all-rider', 'Rider\Rider_TransactionController', 'reject_all');
 
-$router->get('current-transaction-queue-rider', 'Rider\Rider_TransactionController', 'current');
+$router->get('current-transaction-queue-rider', 'Rider\Rider_TransactionController', 'current_queue');
 $router->get('transaction-show-rider', 'Rider\Rider_TransactionController', 'show');
 $router->post('transaction-calculate-change', 'Rider\Rider_TransactionController', 'calculateChange');
+
+$router->get('delivered-transaction-queue-rider', 'Rider\Rider_TransactionController', 'delivered_queue');
+
+$router->get('contact-shop-rider', 'Rider\Rider_ContactShopController', 'index');
+$router->post('contact-shop-send-rider', 'Rider\Rider_ContactShopController', 'sendMessageRider');
+
+$router->get('profile-rider', 'Rider\Rider_ProfileController', 'index');
+$router->post('profile-update-rider', 'Rider\Rider_ProfileController', 'update');

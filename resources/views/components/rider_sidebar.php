@@ -28,19 +28,19 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= urlIs('') ? 'active choco-gradient-bg' : 'text-dark' ?>" href="#">
+                <a class="nav-link <?= urlIs('delivered-transaction-queue-rider') ? 'active choco-gradient-bg' : 'text-dark' ?>" href="delivered-transaction-queue-rider">
                     <i class="material-symbols-rounded opacity-5">local_shipping</i>
                     <span class="nav-link-text ms-1">Delivered</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= urlIs('') ? 'active choco-gradient-bg' : 'text-dark' ?>" href="#">
+                <a class="nav-link <?= urlIs('contact-shop-rider') ? 'active choco-gradient-bg' : 'text-dark' ?>" href="contact-shop-rider">
                     <i class="material-symbols-rounded opacity-5">call</i>
                     <span class="nav-link-text ms-1">Contact Shop</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= urlIs('') ? 'active choco-gradient-bg text-light' : 'text-dark' ?>" href="#">
+                <a class="nav-link <?= urlIs('profile-rider') ? 'active choco-gradient-bg text-light' : 'text-dark' ?>" href="profile-rider">
                     <i class="material-symbols-rounded opacity-5">person</i>
                     <span class="nav-link-text ms-1">Profile</span>
                 </a>

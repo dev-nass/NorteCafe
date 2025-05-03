@@ -14,7 +14,7 @@ class Rider_TransactionController extends Controller
 
     /**
      * Used for loading the view for 
-     * Rider/assigned/transaction/queue
+     * Rider/transaction/assigned-trans-queue.view.php
      */
     public function queue()
     {
@@ -74,6 +74,10 @@ class Rider_TransactionController extends Controller
      * Show a specific assigned transaction
      * with status of "Approved by Employee"
      * and assigned to the current rider
+     * 
+     *  ... or
+     * 
+     * Rider/transaction/assigned-show.view.php
      */
     public function assigned_show()
     {
@@ -117,13 +121,10 @@ class Rider_TransactionController extends Controller
 
         $transactionObj = new Transaction;
         $transactions = $transactionObj->getOrdersTransaction($transaction_id);
-        $previousTransactions = $transactionObj->getPreviousTransactions($transactions[0]['user_id'], "DESC");
-
 
         return $this->view('rider/transaction/show.view.php', [
             'title' => "Transaction Show {$transaction_id}",
             'transactions' => $transactions,
-            'previousTransactions' => $previousTransactions,
         ]);
     }
 
@@ -199,9 +200,9 @@ class Rider_TransactionController extends Controller
 
     /**
      * Used for loading view to
-     * Rider/tansaction/current-trans
+     * Rider/tansaction/current-trans.view.php
      */
-    public function current()
+    public function current_queue()
     {
 
         $transObj = new Transaction;
@@ -220,7 +221,7 @@ class Rider_TransactionController extends Controller
 
     /**
      * Used for listening to submit form,
-     * and calculate the change
+     * and calculate the change & take proof of delivery
      */
     public function calculateChange()
     {
@@ -233,6 +234,7 @@ class Rider_TransactionController extends Controller
                 'amount_due' => $this->getInput('amount_due'),
                 'amount_tendered' => number_format($this->getInput('amount_tendered'), '2', '.', ''),
             ];
+            $current_date = date("Y-m-d H:i:s");
 
 
             if($data['amount_tendered'] < $data['amount_due']) {
@@ -253,7 +255,8 @@ class Rider_TransactionController extends Controller
                 "amount_tendered" => number_format($data['amount_tendered'], '2', '.', ''),
                 "`change`" => number_format($change, '2', '.', ''),
                 "delivery_proof_dir" => "../../storage/backend/img/delivery_proof/" . $delivery_proof['name'],
-                "status" => "Delivered"
+                "status" => "Delivered",
+                "delivered_at" => $current_date,
             ]);
 
             $transObj->uploadFile($delivery_proof);
@@ -263,5 +266,26 @@ class Rider_TransactionController extends Controller
                 return $this->redirect("transaction-show-rider?transaction_id={$data['transaction_id']}");
             }
         }
+    }
+
+    /**
+     * Used for showing the queue of the
+     * delivered transactions
+    */
+    public function delivered_queue()
+    {
+
+        $transObj = new Transaction;
+        $transObj->iniDB();
+        $delivered_transactions = $transObj->query("SELECT transactions.*, transactions.created_at AS trans_created_at, users.* FROM transactions LEFT JOIN users ON transactions.user_id = users.user_id
+            WHERE transactions.rider_id = :rider_id AND transactions.status = :status", [
+            "rider_id" => $_SESSION['__currentUser']['credentials']['user_id'],
+            "status" => "Delivered"
+        ])->get();
+
+        return $this->view('Rider/transaction/delivered-transaction-queue.view.php', [
+            'title' => 'Delivered Transactions Queue',
+            'delivered_transactions' => $delivered_transactions,
+        ]);
     }
 }

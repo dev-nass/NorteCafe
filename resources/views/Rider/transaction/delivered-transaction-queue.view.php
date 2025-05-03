@@ -10,13 +10,13 @@
                 <div class="card" aria-hidden="true">
                     <div class="card-header pb-0 px-3 d-flex justify-content-between">
                         <div>
-                            <h6 class="mb-0">Assigned Transaction Queue</h6>
-                            <p class="text-sm mb-0">Status: Approved by Rider</p>
+                            <h6 class="mb-0">Delivered Transaction Queue</h6>
+                            <p class="text-sm mb-0">Status: Delivered</p>
                         </div>
                     </div>
                     <div class="card-body pt-4 p-3">
                         <div class="row">
-                            <?php foreach ($current_transactions as $trans) : ?>
+                            <?php foreach ($delivered_transactions as $trans) : ?>
                                 <div class="col-12 col-md-6">
                                     <ul class="list-group">
                                         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">

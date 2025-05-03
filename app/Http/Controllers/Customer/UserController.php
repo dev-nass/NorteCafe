@@ -54,7 +54,7 @@ class UserController extends Controller
 
             if($mailSent) {
                 Session::set('__flash', 'contactUs_notif', 'Message Sent');
-                $this->redirect('contactUs');
+                return $this->redirect('contactUs');
             }
         }
     }
