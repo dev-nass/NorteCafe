@@ -89,6 +89,10 @@ function abort($code = 404)
 function dynamic_http_response($role)
 {
 
+    if ($_SESSION['__currentUser']['credentials'] === NULL) {
+        return false;
+    }
+
     $route =  match($role) {
         'Customer' => 'index',
         'Employee' => 'dashboard',
@@ -106,7 +110,7 @@ function isOrderingTime()
 {
     $now = new DateTime('now', new DateTimeZone('Asia/Manila')); // Adjust timezone as needed
     $start = new DateTime('today 10:00:00', new DateTimeZone('Asia/Manila'));
-    $end = new DateTime('today 24:45:00', new DateTimeZone('Asia/Manila')); // 9 PM = 21:00
+    $end = new DateTime('today 20:45:00', new DateTimeZone('Asia/Manila')); // 9 PM = 21:00
 
     if ($now >= $start && $now < $end) {
         return true;

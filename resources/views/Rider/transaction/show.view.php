@@ -151,7 +151,7 @@
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                 <div class="d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column">
-                                        <span class="mb-1 text-xs" style="font-size: .8rem">Delivery At: <?= date("F d, Y \a\\t h:i A", strtotime($transactions[0]['delivered_at'])) ?></span>
+                                        <span class="mb-1 text-xs" style="font-size: .8rem">Delivered At: <?= date("F d, Y \a\\t h:i A", strtotime($transactions[0]['delivered_at'])) ?></span>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Discount: <span class="text-dark"><?= $transactions[0]['discount_name'] ?></span></h6>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Due: <span class="text-dark">₱<?= $transactions[0]['amount_due'] ?></span></h6>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Tendered: <span class="text-dark">₱<?= $transactions[0]['amount_tendered'] ?></span></h6>
@@ -216,9 +216,8 @@
                                                         Looks good!
                                                     </div>
                                                     <div class="invalid-feedback">
-                                                        Enter amount first!
+                                                        Include an image first!
                                                     </div>
-                                                    <?php error('amount_tendered') ?>
                                                 </div>
                                             </form>
                                         </div>
@@ -314,7 +313,7 @@
             allowOutsideClick: false,
         });
     </script>
-<?php elseif (isset($_SESSION['__flash']['errors'])) : ?>
+<?php elseif (isset($_SESSION['__flash']['data']['errors'])) : ?>
     <script>
         Swal.fire({
             icon: "error",

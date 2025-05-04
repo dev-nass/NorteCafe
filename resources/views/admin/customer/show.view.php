@@ -3,7 +3,7 @@
 
 <main class="main-content position-relative max-height-vh-100 h-100">
     <?php require base_path('resources/views/components/admin_navbar.php') ?>
-    <div class="d-flex justify-content-end">
+    <div class="d-flex justify-content-end px-4">
         <form action="customer-delete-admin" method="POST">
             <input
                 class="d-none"
@@ -11,8 +11,7 @@
                 value="<?= $user['user_id'] ?>"
                 readonlys
                 type="text">
-
-                <button class="btn btn-danger mb-0">Archive<button>
+                <button class="btn btn-danger mb-0">Archive</button>
         </form>
     </div>
     <div class="container-fluid px-2 px-md-4">

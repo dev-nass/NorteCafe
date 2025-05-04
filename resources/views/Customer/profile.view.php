@@ -146,19 +146,19 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="validationCustom12" class="form-label">City</label>
-                                                        <input type="text" class="form-control border border-dark px-2" id="validationCustom12" name="city" value="<?= $_SESSION['__currentUser']['credentials']['city'] ?>" required>
+                                                        <input type="text" class="form-control border border-dark px-2" id="validationCustom12" name="city" value="Dasmariñas" readonly required>
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="validationServer13" class="form-label">Provience</label>
-                                                        <input type="text" class="form-control border border-dark px-2" id="validationCustom13" name="provience" value="<?= $_SESSION['__currentUser']['credentials']['provience'] ?>" required>
+                                                        <input type="text" class="form-control border border-dark px-2" id="validationCustom13" name="provience" value="Cavite" readonly required>
                                                     </div>
                                                     <div class="col-4">
                                                         <label for="validationServer14" class="form-label">Region</label>
-                                                        <input type="text" class="form-control border border-dark px-2" id="validationCustom14" name="region" value="<?= $_SESSION['__currentUser']['credentials']['region'] ?>" required>
+                                                        <input type="text" class="form-control border border-dark px-2" id="validationCustom14" name="region" value="4A" readonly required>
                                                     </div>
                                                     <div class="col-4">
                                                         <label for="validationServer15" class="form-label">Postal Code</label>
-                                                        <input type="text" class="form-control border border-dark px-2" id="validationCustom15" name="postal_code" value="<?= $_SESSION['__currentUser']['credentials']['postal_code'] ?>" required>
+                                                        <input type="text" class="form-control border border-dark px-2" id="validationCustom15" name="postal_code" value="4114" readonly required>
                                                     </div>
                                                 </div>
                                             </div>

@@ -9,7 +9,7 @@
                     <h1 class="section-header">403 PAGE</h1>
                     <p class="fs-5">Sorry! Looks like this page is inaccessible. Try refreshing the page or go back to home page</p>
                     <a class="choco-btn text-center" 
-                        href="<?= dynamic_http_response($_SESSION['__currentUser']['credentials']['role']) ?>">Home</a>
+                        href="<?= isset($_SESSION['__currentUser']['credentials']) ? dynamic_http_response($_SESSION['__currentUser']['credentials']['role']) : "index" ?>">Home</a>
                 </div>
             </div>
             <div class="col-12 col-lg-6 mt-5 mt-lg-0">

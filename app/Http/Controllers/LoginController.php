@@ -48,11 +48,17 @@ class LoginController extends Controller
 
             if ($authUser) {
 
+
                 // current user cart count (need here for navbar)
                 $cartObj = new Cart;
                 $cartObj->updateCartCount('user_id');
 
                 $userModel = new User;
+                if ($_SESSION['__currentUser']['credentials']['role'] === 'Rider') {
+                    $userModel->update($_SESSION['__currentUser']['credentials']['user_id'], [
+                        'available' => true,
+                    ]);
+                }
                 $userModel->loadRoleView();
             }
 
@@ -75,6 +81,14 @@ class LoginController extends Controller
      */
     public function logout()
     {
+
+        $userModel = new User;
+        if ($_SESSION['__currentUser']['credentials']['role'] === 'Rider') {
+            $userModel->update($_SESSION['__currentUser']['credentials']['user_id'], [
+                'available' => 0,
+            ]);
+        }
+
         $auth = new Authenticator;
         $auth->logout();
 

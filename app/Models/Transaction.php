@@ -110,12 +110,16 @@ class Transaction extends Model
      * 
      * status: all / whatever
     */
-    public function getHandledTransactions()
+    public function getHandledTransactions($id)
     {
 
         $this->iniDB();
 
-        $transactions = $this->query("SELECT * FROM transactions WHERE ");
+        $transactions = $this->query("SELECT * FROM transactions WHERE rider_id = :rider_id", [
+            "rider_id" => $id,
+        ])->get();
+
+        return $transactions;
     }
 
 

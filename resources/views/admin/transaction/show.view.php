@@ -151,11 +151,11 @@
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                 <div class="d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column">
-                                        <span class="mb-1 text-xs" style="font-size: .8rem">Delivery At: </span>
+                                        <span class="mb-1 text-xs" style="font-size: .8rem">Delivered At: <?= date("F d, Y \a\\t h:i A", strtotime($transactions[0]['delivered_at'])) ?></span>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Discount: <span class="text-dark"><?= $transactions[0]['discount_name'] ?></span></h6>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Due: <span class="text-dark">₱<?= $transactions[0]['amount_due'] ?></span></h6>
-                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Tendered: <span class="text-dark"></span></h6>
-                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Change: <span class="text-dark"></span></h6>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Tendered: <span class="text-dark">₱<?= $transactions[0]['amount_tendered'] ?></span></h6>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Change: <span class="text-dark">₱<?= $transactions[0]['change'] ?></span></h6>
                                     </div>
                                 </div>
                             </li>

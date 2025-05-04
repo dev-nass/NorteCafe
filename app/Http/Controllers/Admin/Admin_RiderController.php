@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Transaction;
 use Core\Database;
 use Core\Controller;
 use Core\Session;
@@ -45,9 +46,14 @@ class Admin_RiderController extends Controller
             "user_id" =>  $rider_id,
         ]);
 
+        // Handled transactions
+        $transactionObj = new Transaction;
+        $handledTransactions = $transactionObj->getHandledTransactions($rider_id);
+
         return $this->view('Admin/rider/show.view.php', [
             'title' => "Rider Show {$rider_id}",
             "user" => $user,
+            "handledTransactions" => $handledTransactions,
         ]);
     }
 

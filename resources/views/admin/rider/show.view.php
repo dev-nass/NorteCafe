@@ -208,7 +208,7 @@
             </div>
             <div class="row pe-0">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 col-xl-8">
                         <div class="row">
                             <div class="col-6">
                                 <div class="card card-plain h-100">
@@ -263,6 +263,31 @@
                                         </ul>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-4">
+                        <div class="card card-plain h-100 rounded-3" style="background-color: #f5f5f5;">
+                            <div class="card-header pb-0 p-3" style="background-color: #f5f5f5;">
+                                <h6 class="mb-0">Handled Transactions</h6>
+                            </div>
+                            <div class="card-body pe-0">
+                                <ul class="list-group">
+                                    <?php foreach ($handledTransactions as $trans) : ?>
+                                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg" style="background-color: #f5f5f5;">
+                                            <div class="d-flex align-items-center">
+                                                <a class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 p-3 btn-sm d-flex align-items-center justify-content-center" href="transaction-show-admin?transaction_id=<?= $trans['transaction_id'] ?>"><i class="material-symbols-rounded text-lg">info_i</i></a>
+                                                <div class="d-flex flex-column">
+                                                    <h6 class="mb-1 text-dark text-sm">Transaction ID: <?= $trans['transaction_id'] ?></h6>
+                                                    <span class="text-xs"><?= date("F d, Y", strtotime($trans['created_at'])); ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
+                                                ₱<?= $trans['amount_due'] ?>
+                                            </div>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
                             </div>
                         </div>
                     </div>

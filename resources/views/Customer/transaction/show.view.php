@@ -109,7 +109,6 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Save changes</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -144,7 +143,7 @@
                         </ul>
 
                         <div class="p-0 border h-100">
-                            <img class="w-100 responsive-height" style="object-fit: cover;" src="<?= $transactions[0]['payment_proof_dir'] ?>" alt="delivery-proof">
+                            <img class="w-100 responsive-height" style="object-fit: cover;" src="<?= $transactions[0]['delivery_proof_dir'] ?>" alt="delivery-proof">
                         </div>
 
                         <ul class="list-group">
