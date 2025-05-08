@@ -47,14 +47,13 @@ class Database
         try {
             $this->statement = $this->connection->prepare($query);
             $this->statement->execute($param);
-    
+
             // $this->statement - is for pagination
             // $this - is only for normal usage, which returns the whole instance of this all, everything this has to over. DD to understand.
             return $paginate ? $this->statement : $this;
         } catch (PDOException $e) {
             dd('Query error ' . $e->getMessage());
         }
-        
     }
 
     /**
@@ -71,6 +70,26 @@ class Database
     public function find()
     {
         return $this->statement->fetch();
+    }
+
+    /**
+     * Counts table columns
+     * ...
+     * added for backup_db
+     */
+    public function columnCount()
+    {
+        return $this->statement->columnCount();
+    }
+
+    /**
+     * Counts table rows
+     * ...
+     * added for backup_db
+     */
+    public function rowCount()
+    {
+        return $this->statement->rowCount();
     }
 
     /**

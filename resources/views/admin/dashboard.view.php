@@ -6,6 +6,12 @@
     <div class="container-fluid py-2 overflow-hidden">
 
         <div class="row">
+            <form action="backup" method="POST">
+                <button class="btn btn-primary">Backup</button>
+            </form>
+        </div>
+
+        <div class="row">
             <div class="col-6 col-lg-3 mb-3 mb-lg-0">
                 <div class="bg-white rounded shadow p-3 d-flex justify-content-between">
                     <div>

@@ -76,6 +76,7 @@ $router->get('dashboard', 'Admin\Admin_DashboardController', 'index')->only('sta
 $router->get('dashboard-analytics', 'Admin\Admin_DashboardController', 'admin_dashboard');
 $router->get('total-transactions', 'Admin\Admin_DashboardController', 'total_transactions');
 $router->get('top-sales', 'Admin\Admin_DashboardController', 'top_sales');
+$router->post('backup', 'Admin\Admin_DashboardController', 'backup_db');
 
 $router->get('transaction-queue-admin', 'Admin\Admin_TransactionController', 'queue');
 $router->get('transaction-pending-show-admin', 'Admin\Admin_TransactionController', 'pending_show');
