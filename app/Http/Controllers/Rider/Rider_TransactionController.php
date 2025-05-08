@@ -89,23 +89,10 @@ class Rider_TransactionController extends Controller
         // and each of those orders are rendered into their own row/records
         $transactionObj = new Transaction;
         $transactions = $transactionObj->getOrdersTransaction($transaction_id);
-        $previousTransactions = $transactionObj->getPreviousTransactions($transactions[0]['user_id']);
-
-        // available rider query
-        $db = new Database;
-        $db->iniDB();
-        $availableRiders = $db->query("SELECT users.user_id, CONCAT(users.first_name, ' ', users.last_name) AS fullname, users.username, users.email, users.contact_number, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.provience, ', ', users.region, ', ', users.postal_code) AS address, users.available
-            FROM users 
-            WHERE role = :role AND available = :available", [
-            "role" => "Rider",
-            "available" => 1,
-        ])->get();
 
         return $this->view('rider/transaction/assigned-show.view.php', [
             'title' => "Pending Transaction Show {$transaction_id}",
-            'transactions' => $transactions,
-            'previousTransactions' => $previousTransactions,
-            'availableRiders' => $availableRiders,
+            'transactions' => $transactions
         ]);
     }
 

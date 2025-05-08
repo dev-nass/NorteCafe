@@ -21,7 +21,7 @@ class Admin_EmployeeController extends Controller
         $db = new Database;
         $db->iniDB();
 
-        $employees = $db->query("SELECT user_id, CONCAT(first_name, ' ', last_name) AS employee_name, username, email, contact_number, age, date_of_birth, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.provience, ', ', users.region, ', ', users.postal_code) AS address, gender FROM users WHERE role = :role", [
+        $employees = $db->query("SELECT user_id, CONCAT(first_name, ' ', last_name) AS employee_name, username, email, contact_number, age, date_of_birth, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.province, ', ', users.region, ', ', users.postal_code) AS address, gender FROM users WHERE role = :role", [
             "role" => "Employee"
         ])->get();
 
@@ -122,7 +122,7 @@ class Admin_EmployeeController extends Controller
                 "street" => $this->getInput("street"),
                 "barangay" => $this->getInput("barangay"),
                 "city" => $this->getInput("city"),
-                "provience" => $this->getInput("provience"),
+                "province" => $this->getInput("province"),
                 "region" => $this->getInput("region"),
                 "postal_code" => $this->getInput("postal_code"),
             ];
@@ -152,7 +152,7 @@ class Admin_EmployeeController extends Controller
                 "street" => $data["street"],
                 "barangay" => $data["barangay"],
                 "city" => $data["city"],
-                "provience" => $data["provience"],
+                "province" => $data["province"],
                 "region" => $data["region"],
                 "postal_code" => $data["postal_code"],
                 "verified" => true

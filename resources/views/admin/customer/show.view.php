@@ -105,7 +105,7 @@
                                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Street:</strong> <?= $user['street'] ?></li>
                                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Barangay:</strong> <?= $user['barangay'] ?></li>
                                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">City:</strong> <?= $user['city'] ?></li>
-                                            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Provience:</strong> <?= $user['provience'] ?></li>
+                                            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">province:</strong> <?= $user['province'] ?></li>
                                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Region:</strong> <?= $user['region'] ?></li>
                                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Postal Code:</strong> <?= $user['postal_code'] ?></li>
                                         </ul>

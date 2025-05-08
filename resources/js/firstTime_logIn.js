@@ -7,6 +7,7 @@ if (userVerifiedInput.value == 0) {
         icon: "success",
         title: "Login Sucessfully!",
         text: "First time logging in? Please complete your profile information before placing an order",
+        footer: "<a href='profile'>Complete Profile?</a>",
         allowOutsideClick: false,
     });
 }

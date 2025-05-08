@@ -4,6 +4,7 @@
 <section class="secion-container py-5">
     <div class="container py-5">
         <h1 class="hero-header"><?= $_SESSION['__currentUser']['credentials']['username'] ?>'s Cart</h1>
+        <p><span class="fw-bold">Notice:</span> You can only place order when the sub total is equal or greater than 150 PHP, ordering time must be 10:00am to 8:45pm, and the account must be fully verified</p>
         <hr>
         <div class="row">
             <!-- Cards -->
@@ -252,6 +253,7 @@
 
                             <!-- Proof of Payment Input -->
                             <div id="paymentMethodContainer" class="mt-2 d-none">
+                                <p><span class="fw-bold">Recipient:</span> 09507373644</p>
                                 <div class="input-group mb-3">
                                     <input id="file-input" name="proof_of_payment" type="file" class="form-control" id="inputGroupFile02" accept="image/*">
                                 </div>
@@ -267,7 +269,7 @@
                                     $_SESSION['__currentUser']['credentials']['street'],
                                     $_SESSION['__currentUser']['credentials']['barangay'],
                                     $_SESSION['__currentUser']['credentials']['city'],
-                                    $_SESSION['__currentUser']['credentials']['provience'],
+                                    $_SESSION['__currentUser']['credentials']['province'],
                                     $_SESSION['__currentUser']['credentials']['region'],
                                     $_SESSION['__currentUser']['credentials']['postal_code'],
                                 ];
@@ -276,7 +278,7 @@
                                 <textarea
                                     class="form-control"
                                     name="location"
-                                    placeholder="House number, Street, Barangay, City, Provience, Region, Postal Code..."
+                                    placeholder="House number, Street, Barangay, City, province, Region, Postal Code..."
                                     rows="3"
                                     aria-label="Address"><?= htmlspecialchars($address) ?></textarea>
                             </div>
@@ -397,7 +399,20 @@
             if (result.isConfirmed) {
                 window.location.href = "http://localhost/PHP%202025/Norte%20Cafe/public/index.php/menu";
             } else if (result.isDenied) {
-
+                Swal.fire({
+                    icon: "question",
+                    title: "Head to your profile?",
+                    text: "To view your current transactions",
+                    allowOutsideClick: false,
+                    showConfirmButton: true,
+                    showDenyButton: true,
+                }).then((resultv2) => {
+                    if(resultv2.isConfirmed) {
+                        window.location.href = "http://localhost/PHP%202025/Norte%20Cafe/public/index.php/profile";
+                    } else if (resultv2.isDenied) {
+                        // ... nothing here, yet
+                    }
+                });
             }
         });
     <?php endif; ?>

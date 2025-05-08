@@ -104,7 +104,7 @@
                     </ul>
                 </li>
                 <li class="nav-item d-flex align-items-center">
-                    <a href="profile-admin" class="nav-link text-body font-weight-bold px-0">
+                    <a href="<?= $_SESSION['__currentUser']['credentials']['role'] === 'Admin' ? 'profile-admin' : 'profile-rider' ?>" class="nav-link text-body font-weight-bold px-0">
                         <i class="material-symbols-rounded">account_circle</i>
                     </a>
                 </li>

@@ -41,8 +41,8 @@ $router->get('403', 'ResponseController', 'http_403');
 /**
  * Specific Web Pages
 */
-$router->get('search-filter', 'Customer\FilterController', 'search');
-$router->get('category-filter', 'Customer\FilterController', 'category');
+$router->get('search-filter', 'Customer\FilterController', 'search')->only('auth', 'Customer');
+$router->get('category-filter', 'Customer\FilterController', 'category')->only('auth', 'Customer');
 
 $router->get('menu', 'Customer\MenuController', 'index')->only('auth', 'Customer');
 

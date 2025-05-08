@@ -17,7 +17,7 @@
                                 class="form-control"
                                 placeholder="Caramel Macchiato...">
                             <button form="search-filter" class="choco-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                            <button class="ms-3 choco-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-solid fa-filter"></i></button>
+                            <button class="ms-3 choco-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-solid fa-filter me-2"></i>Filter</button>
                         </div>
                     </form>
 

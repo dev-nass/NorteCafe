@@ -56,7 +56,7 @@
                     <div class="col-6 mt-2">
                         <div class="d-flex">
                             <div class="square"><i class="fa-solid fa-truck h4 square-icon"></i></div>
-                            <div class="ms-2">Online <br> Delivery</div>
+                            <div class="ms-2">Online Delivery <br> (Dasma Only)</div>
                         </div>
                     </div>
                 </div>

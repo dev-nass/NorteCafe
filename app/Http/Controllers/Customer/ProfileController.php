@@ -73,10 +73,10 @@ class ProfileController extends Controller
                 "date_of_birth" => $this->getInput('date_of_birth'),
                 "gender" => $this->getInput('gender'),
                 "house_number" => $this->getInput("house_number"),
-                "street" => $this->getInput("street"),
+                "street" => $this->getInput("street") === "" ? NULL : $this->getInput('street'),
                 "barangay" => $this->getInput("barangay"),
                 "city" => $this->getInput("city"),
-                "provience" => $this->getInput("provience"),
+                "province" => $this->getInput("province"),
                 "region" => $this->getInput("region"),
                 "postal_code" => $this->getInput("postal_code"),
             ];
@@ -106,7 +106,7 @@ class ProfileController extends Controller
                 "street" => $data["street"],
                 "barangay" => $data["barangay"],
                 "city" => $data["city"],
-                "provience" => $data["provience"],
+                "province" => $data["province"],
                 "region" => $data["region"],
                 "postal_code" => $data["postal_code"],
                 "verified" => true

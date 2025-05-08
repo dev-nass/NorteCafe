@@ -132,7 +132,7 @@
                                                     </div>
                                                     <div class="col-4">
                                                         <label for="validationCustom10" class="form-label">Street</label>
-                                                        <input type="text" class="form-control border border-dark px-2" id="validationCustom10" name="street" value="<?= $_SESSION['__currentUser']['credentials']['street'] ?>" placeholder="" required>
+                                                        <input type="text" class="form-control border border-dark px-2" id="validationCustom10" name="street" value="<?= $_SESSION['__currentUser']['credentials']['street'] === "" ? NULL :  $_SESSION['__currentUser']['credentials']['street'] ?>" placeholder="Fatima Rd">
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
@@ -149,8 +149,8 @@
                                                         <input type="text" class="form-control border border-dark px-2" id="validationCustom12" name="city" value="Dasmariñas" readonly required>
                                                     </div>
                                                     <div class="col-6">
-                                                        <label for="validationServer13" class="form-label">Provience</label>
-                                                        <input type="text" class="form-control border border-dark px-2" id="validationCustom13" name="provience" value="Cavite" readonly required>
+                                                        <label for="validationServer13" class="form-label">Psrovince</label>
+                                                        <input type="text" class="form-control border border-dark px-2" id="validationCustom13" name="province" value="Cavite" readonly required>
                                                     </div>
                                                     <div class="col-4">
                                                         <label for="validationServer14" class="form-label">Region</label>
@@ -281,8 +281,8 @@
                                     <p><?= $_SESSION['__currentUser']['credentials']['city'] ?? "NULL" ?></p>
                                 </div>
                                 <div class="d-flex justify-content-between">
-                                    <span class="text-secondary">Provience: </span>
-                                    <p><?= $_SESSION['__currentUser']['credentials']['provience'] ?? "NULL" ?></p>
+                                    <span class="text-secondary">province: </span>
+                                    <p><?= $_SESSION['__currentUser']['credentials']['province'] ?? "NULL" ?></p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <span class="text-secondary">Region: </span>

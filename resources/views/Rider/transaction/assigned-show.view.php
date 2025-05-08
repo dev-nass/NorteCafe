@@ -133,7 +133,36 @@
                     </div>
                     <div class="card-body p-3 pb-0">
                         <ul class="list-group">
-                            
+                            <li class="list-group">
+                                <div>
+                                    <p><span class="fw-bold">House Number:</span> <?= $transactions[0]['user_house_number'] ?></p>
+                                </div>
+                            </li>
+                            <li class="list-group">
+                                <div>
+                                    <p><span class="fw-bold">Barangay:</span> <?= $transactions[0]['user_barangay'] ?></p>
+                                </div>
+                            </li>
+                            <li class="list-group">
+                                <div>
+                                    <p><span class="fw-bold">City:</span> <?= $transactions[0]['user_city'] ?></p>
+                                </div>
+                            </li>
+                            <li class="list-group">
+                                <div>
+                                    <p><span class="fw-bold">Province:</span> <?= $transactions[0]['user_province'] ?></p>
+                                </div>
+                            </li>
+                            <li class="list-group">
+                                <div>
+                                    <p><span class="fw-bold">Region:</span> <?= $transactions[0]['user_region'] ?></p>
+                                </div>
+                            </li>
+                            <li class="list-group">
+                                <div>
+                                    <p><span class="fw-bold">Postal Code:</span> <?= $transactions[0]['user_postal_code'] ?></p>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>

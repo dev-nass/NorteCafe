@@ -21,7 +21,7 @@ class Transaction extends Model
         // this is get() instead of find() because of the menu item that are part of a single record each
         // so in order to fetch all records that belongs to a single transaction we use get()
         $transactions = $this->query("SELECT transactions.*, 
-            users.user_id, CONCAT(users.first_name, ' ', users.last_name) AS fullname, users.username, users.email, users.contact_number, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.provience, ', ', users.region, ', ', users.postal_code) AS address,
+            users.user_id, CONCAT(users.first_name, ' ', users.last_name) AS fullname, users.username, users.email, users.contact_number, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.province, ', ', users.region, ', ', users.postal_code) AS address, users.house_number as user_house_number, users.street as user_street, users.barangay as user_barangay, users.city as user_city, users.province as user_province, users.region as user_region, users.postal_code as user_postal_code,
             riders.user_id, CONCAT(riders.first_name, ' ', riders.last_name) as rider_name, riders.contact_number,
             orders.order_id, orders.transaction_id, orders.cart_id, orders.total_price, 
             carts.*, 
@@ -55,7 +55,7 @@ class Transaction extends Model
         $this->iniDB();
 
         $currentTransactions = $this->query(
-            "SELECT transactions.*, users.user_id, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.provience, ', ', users.region, ', ', users.postal_code) AS address, users.username, users.email, users.contact_number
+            "SELECT transactions.*, users.user_id, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.province, ', ', users.region, ', ', users.postal_code) AS address, users.username, users.email, users.contact_number
                 FROM transactions
                 LEFT JOIN users AS users ON users.user_id = transactions.user_id
                 WHERE transactions.user_id = :user_id AND 
@@ -84,7 +84,7 @@ class Transaction extends Model
         $this->iniDB();
 
         $previousTransactions = $this->query(
-            "SELECT transactions.*, users.user_id, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.provience, ', ', users.region, ', ', users.postal_code) AS address, users.username, users.email, users.contact_number
+            "SELECT transactions.*, users.user_id, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.province, ', ', users.region, ', ', users.postal_code) AS address, users.username, users.email, users.contact_number
                 FROM transactions
                 LEFT JOIN users AS users ON users.user_id = transactions.user_id
                 WHERE transactions.user_id = :user_id AND 

@@ -136,8 +136,8 @@
                                                     <input type="text" class="form-control border border-dark px-2" id="validationCustom12" name="city" value="<?= old('city') ?>" required>
                                                 </div>
                                                 <div class="col-6">
-                                                    <label for="validationServer13" class="form-label">Provience</label>
-                                                    <input type="text" class="form-control border border-dark px-2" id="validationCustom13" name="provience" value="<?= old('provience') ?>" required>
+                                                    <label for="validationServer13" class="form-label">province</label>
+                                                    <input type="text" class="form-control border border-dark px-2" id="validationCustom13" name="province" value="<?= old('province') ?>" required>
                                                 </div>
                                                 <div class="col-4">
                                                     <label for="validationServer14" class="form-label">Region</label>

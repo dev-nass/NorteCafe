@@ -22,7 +22,7 @@ class Admin_RiderController extends Controller
         $db = new Database;
         $db->iniDB();
 
-        $riders = $db->query("SELECT user_id, CONCAT(first_name, ' ', last_name) AS rider_name, username, email, contact_number, age, date_of_birth, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.provience, ', ', users.region, ', ', users.postal_code) AS address, gender FROM users WHERE role = :role", [
+        $riders = $db->query("SELECT user_id, CONCAT(first_name, ' ', last_name) AS rider_name, username, email, contact_number, age, date_of_birth, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.province, ', ', users.region, ', ', users.postal_code) AS address, gender FROM users WHERE role = :role", [
             "role" => "Rider"
         ])->get();
 
@@ -95,7 +95,7 @@ class Admin_RiderController extends Controller
 
             $mailerObj = new Mailer;
             $emailSent = $mailerObj->emailStaff($data['email'], 'rider');
-
+            dd($emailSent);
             if($emailSent) {
                 Session::set('__flash', 'email_sent', 'Email sent successfully');
                 return $this->redirect('rider-create-admin');
@@ -130,7 +130,7 @@ class Admin_RiderController extends Controller
                 "street" => $this->getInput("street"),
                 "barangay" => $this->getInput("barangay"),
                 "city" => $this->getInput("city"),
-                "provience" => $this->getInput("provience"),
+                "province" => $this->getInput("province"),
                 "region" => $this->getInput("region"),
                 "postal_code" => $this->getInput("postal_code"),
             ];
@@ -160,7 +160,7 @@ class Admin_RiderController extends Controller
                 "street" => $data["street"],
                 "barangay" => $data["barangay"],
                 "city" => $data["city"],
-                "provience" => $data["provience"],
+                "province" => $data["province"],
                 "region" => $data["region"],
                 "postal_code" => $data["postal_code"],
                 "verified" => true
