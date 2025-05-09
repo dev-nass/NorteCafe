@@ -78,6 +78,9 @@ $router->get('total-transactions', 'Admin\Admin_DashboardController', 'total_tra
 $router->get('top-sales', 'Admin\Admin_DashboardController', 'top_sales');
 $router->post('backup', 'Admin\Admin_DashboardController', 'backup_db');
 
+$router->get('generate-report', 'Admin\Admin_GenerateReportController', 'create');
+$router->post('generate-report', 'Admin\Admin_GenerateReportController', 'generate');
+
 $router->get('transaction-queue-admin', 'Admin\Admin_TransactionController', 'queue');
 $router->get('transaction-pending-show-admin', 'Admin\Admin_TransactionController', 'pending_show');
 $router->get('transaction-show-admin', 'Admin\Admin_TransactionController', 'show')->only('auth', 'Admin');

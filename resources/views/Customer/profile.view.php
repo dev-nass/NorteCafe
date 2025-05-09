@@ -2,7 +2,7 @@
 <?php require base_path('resources/views/components/navbar.php') ?>
 
 <section class="section-container">
-    <div class="container py-5">
+    <div class="container py-5" >
         <div class="d-flex justify-content-between">
             <h5 class="hero-header fs-2 ms-lg-3">Profiling Page</h5>
             <div class="d-flex justify-content-end mb-4">
@@ -183,7 +183,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8 mb-3">

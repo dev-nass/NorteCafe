@@ -22,6 +22,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link <?= urlIs('generate-report') ? 'active choco-gradient-bg' : 'text-dark' ?>" href="generate-report">
+                    <i class="material-symbols-rounded opacity-5">show_chart</i>
+                    <span class="nav-link-text ms-1">Generate Report</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link <?= urlIs('transaction-queue-admin') ? 'active choco-gradient-bg' : 'text-dark' ?>" href="transaction-queue-admin">
                     <i class="material-symbols-rounded opacity-5">receipt_long</i>
                     <span class="nav-link-text ms-1">Transaction Queue</span>

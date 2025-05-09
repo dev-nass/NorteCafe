@@ -6,7 +6,7 @@
     <div class="container-fluid py-2 overflow-hidden">
 
         <div class="row">
-            <form action="backup" method="POST">
+            <form class="d-flex justify-content-end" action="backup" method="POST">
                 <button class="btn btn-primary">Backup</button>
             </form>
         </div>

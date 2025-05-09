@@ -253,9 +253,11 @@
 
                             <!-- Proof of Payment Input -->
                             <div id="paymentMethodContainer" class="mt-2 d-none">
-                                <p><span class="fw-bold">Recipient:</span> 09507373644</p>
                                 <div class="input-group mb-3">
                                     <input id="file-input" name="proof_of_payment" type="file" class="form-control" id="inputGroupFile02" accept="image/*">
+                                </div>
+                                <div class="alert alert-success">
+                                    <p class="mb-0"><span class="fw-bold">Recipient:</span> (+63) 0950-737-3644</p>
                                 </div>
                             </div>
 
@@ -389,7 +391,8 @@
 <script>
     <?php if (isset($_SESSION['__flash']['placed_order_notif'])) : ?>
         Swal.fire({
-            icon: "success",
+            imageUrl: '../../storage/frontend/user/img/index/order-placed.png',
+            imageHeight: 200,
             title: "Order Placed Successfully!",
             text: "Make another purchase?",
             allowOutsideClick: false,
@@ -400,14 +403,15 @@
                 window.location.href = "http://localhost/PHP%202025/Norte%20Cafe/public/index.php/menu";
             } else if (result.isDenied) {
                 Swal.fire({
-                    icon: "question",
+                    imageUrl: '../../storage/frontend/user/img/index/question.png',
+                    imageHeight: 200,
                     title: "Head to your profile?",
                     text: "To view your current transactions",
                     allowOutsideClick: false,
                     showConfirmButton: true,
                     showDenyButton: true,
                 }).then((resultv2) => {
-                    if(resultv2.isConfirmed) {
+                    if (resultv2.isConfirmed) {
                         window.location.href = "http://localhost/PHP%202025/Norte%20Cafe/public/index.php/profile";
                     } else if (resultv2.isDenied) {
                         // ... nothing here, yet
