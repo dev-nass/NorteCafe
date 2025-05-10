@@ -117,6 +117,7 @@ $router->post('discount-update-admin', 'Admin\Admin_DiscountController', 'update
 $router->post('discount-delete-admin', 'Admin\Admin_DiscountController', 'delete');
 
 $router->get('customer-table-admin', 'Admin\Admin_CustomerController', 'index');
+$router->get('customer-archived-table-admin', 'Admin\Admin_CustomerController', 'index_archived');
 $router->get('customer-show-admin', 'Admin\Admin_CustomerController', 'show');
 $router->post('customer-delete-admin', 'Admin\Admin_CustomerController', 'delete');
 

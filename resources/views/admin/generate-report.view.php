@@ -5,7 +5,7 @@
     <?php require base_path('resources/views/components/admin_navbar.php') ?>
     <div class="container-fluid py-2 pt-3">
 
-        <form id="generate_report" class="needs-validation my-6" action="generate-report" method="POST" enctype="multipart/form-data" novalidate>
+        <form id="generate_report" class="needs-validation my-6" action="generate-report" method="POST" enctype="multipart/form-data" target="_blank" novalidate>
             <div class="row justify-content-center">
                 <div class="col-8">
                     <div class="bg-white py-4 px-4 shadow-sm rounded">
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end mt-2">
-                            <button class="mt-3 btn btn-primary">Submit</button>
+                            <button class="mt-3 btn btn-primary" target="blank">Submit</button>
                         </div>
                     </div>
 

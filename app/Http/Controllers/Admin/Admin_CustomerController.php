@@ -8,6 +8,7 @@ use Core\Session;
 use App\Models\User;
 use App\Models\Transaction;
 use App\Models\Cart;
+use App\Models\UserArchive;
 
 class Admin_CustomerController extends Controller
 {
@@ -15,6 +16,8 @@ class Admin_CustomerController extends Controller
     /**
      * Loads the table view of
      * Customer Records
+     * 
+     * Status: Active
     */
     public function index()
     {
@@ -22,12 +25,36 @@ class Admin_CustomerController extends Controller
         $db = new Database;
         $db->iniDB();
 
-        $customers = $db->query("SELECT user_id, CONCAT(first_name, ' ', last_name) AS customer_name, username, email, contact_number, age, date_of_birth, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.province, ', ', users.region, ', ', users.postal_code) AS address, gender FROM users WHERE role = :role", [
-            "role" => "Customer"
+        $customers = $db->query("SELECT user_id, CONCAT(first_name, ' ', last_name) AS customer_name, username, email, contact_number, age, date_of_birth, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.province, ', ', users.region, ', ', users.postal_code) AS address, gender FROM users WHERE role = :role AND status = :status", [
+            "role" => "Customer",
+            "status" => 1,
         ])->get();
 
         return $this->view('Admin/customer/index.view.php', [
             'title' => 'Customers Table',
+            "customers" => $customers
+        ]);
+    }
+
+    /**
+     * Loads the table view of
+     * Customer Records
+     * 
+     * Status: Archived
+    */
+    public function index_archived()
+    {
+
+        $db = new Database;
+        $db->iniDB();
+
+        $customers = $db->query("SELECT user_id, CONCAT(first_name, ' ', last_name) AS customer_name, username, email, contact_number, age, date_of_birth, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.province, ', ', users.region, ', ', users.postal_code) AS address, gender FROM users WHERE role = :role AND status = :status", [
+            "role" => "Customer",
+            "status" => 0,
+        ])->get();
+
+        return $this->view('Admin/customer/index-archived.view.php', [
+            'title' => 'Customers Archived Table',
             "customers" => $customers
         ]);
     }
@@ -43,7 +70,7 @@ class Admin_CustomerController extends Controller
         // User details
         $userObj = new User;
         $user = $userObj->findUserOr([
-            "user_id" =>  $customer_id,
+            "user_id" =>  $customer_id
         ]);
 
         $db = new Database;
@@ -82,6 +109,9 @@ class Admin_CustomerController extends Controller
 
     public function update() {}
 
+    /**
+     * Archive the user
+    */
     public function delete() 
     {
 
@@ -89,12 +119,16 @@ class Admin_CustomerController extends Controller
             'user_id' => $this->getInput('user_id'),
         ];
 
+        $current_date = date("Y-m-d H:i:s"); // for updated_at
         $userObj = new User;
-        $deleted_user = $userObj->delete($data['user_id']);
+        $archived_user = $userObj->update($data['user_id'], [
+            "status" => 0,
+            "updated_at" => $current_date,
+        ]);
 
-        if ($deleted_user) {
+        if ($archived_user) {
             Session::set('__flash', 'account_deleted', 'Deleted successfully');
-            return $this->redirect('customer-table-admin');
+            return $this->redirect('customer-archived-table-admin');
         }
     }
 }

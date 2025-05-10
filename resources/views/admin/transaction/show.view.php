@@ -19,7 +19,7 @@
                                     <div class="d-flex" style="padding-top: 1rem;">
                                         <div class="">
                                             <div class="mb-2">
-                                                <p class="text-white text-sm mb-0">Customer Name: <span class="fw-light"><?= $transactions[0]['username'] ?></span></p>
+                                                <p class="text-white text-sm mb-0">Customer Name: <a class="fw-light text-light text-decoration-underline" href="customer-show-admin?customer_id=<?= $transactions[0]['user_id'] ?>"><?= $transactions[0]['username'] ?></a></p>
                                                 <h6 class="text-white mb-0"></h6>
                                             </div>
                                             <div class="mb-2">
