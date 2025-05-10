@@ -15,15 +15,35 @@ class Admin_MenuController extends Controller
     /**
      * Used for loading the table view
      * for menu items
+     * 
+     * Status Active
      */
     public function index()
     {
 
         $menuItemsObj = new MenuItem;
-        $menuItems = $menuItemsObj->findAll();
+        $menuItems = $menuItemsObj->activeMenuItems();
 
         return $this->view('Admin/menu/index.view.php', [
             'title' => 'Menu Items Table',
+            "menuItems" => $menuItems,
+        ]);
+    }
+
+    /**
+     * Used for loading the table view
+     * for menu items
+     * 
+     * Status Archived
+     */
+    public function index_archived()
+    {
+
+        $menuItemsObj = new MenuItem;
+        $menuItems = $menuItemsObj->archivedMenuItems();
+
+        return $this->view('Admin/menu/index-archived.view.php', [
+            'title' => 'Menu Items Archive Table',
             "menuItems" => $menuItems,
         ]);
     }
@@ -122,7 +142,7 @@ class Admin_MenuController extends Controller
             ]);
 
             // redirect and show success alert
-            if($new_menuItem && $new_menuItemSize) {
+            if ($new_menuItem && $new_menuItemSize) {
                 Session::set('__flash', 'menu_item_uploaded', 'menu item uploaded successfully');
                 return $this->redirect("menu-show-admin?menu_item_id={$new_menuItem['menu_item_id']}");
             }
@@ -230,22 +250,43 @@ class Admin_MenuController extends Controller
         }
     }
 
-    /**
-     * Used for deleting a specific menu item
-    */
-    public function delete() 
+    public function reactivate()
     {
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $menu_item_id = $this->getInput('menu_item_id');
 
             $menuItemObj = new MenuItem;
-            $deleted_menuItem = $menuItemObj->delete($menu_item_id);
+            $reActivated_menuItem = $menuItemObj->update($menu_item_id, [
+                "status" => 1
+            ]);
 
-            if($deleted_menuItem) {
-                Session::set('__flash', 'menu_item_deleted', 'deleted successfully');
+            if ($reActivated_menuItem) {
+                Session::set('__flash', 'menu_item_reactivate', 'deleted successfully');
                 return $this->redirect('menu-table-admin');
+            }
+        }
+    }
+
+    /**
+     * Used for deleting a specific menu item
+     */
+    public function delete()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $menu_item_id = $this->getInput('menu_item_id');
+
+            $menuItemObj = new MenuItem;
+            $archived_menuItem = $menuItemObj->update($menu_item_id, [
+                "status" => 0,
+            ]);
+
+            if ($archived_menuItem) {
+                Session::set('__flash', 'menu_item_deleted', 'deleted successfully');
+                return $this->redirect('menu-archive-table-admin');
             }
         }
     }

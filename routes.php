@@ -91,10 +91,12 @@ $router->get('transaction-table-admin', 'Admin\Admin_TransactionController', 'in
 $router->post('transaction-archive-admin', 'Admin\Admin_TransactionController', 'delete');
 
 $router->get('menu-table-admin', 'Admin\Admin_MenuController', 'index');
+$router->get('menu-archive-table-admin', 'Admin\Admin_MenuController', 'index_archived');
 $router->get('menu-show-admin', 'Admin\Admin_MenuController', 'show');
 $router->get('menu-create-admin', 'Admin\Admin_MenuController', 'create');
 $router->post('menu-store-admin', 'Admin\Admin_MenuController', 'store');
 $router->post('menu-update-admin', 'Admin\Admin_MenuController', 'update');
+$router->post('menu-reactivate-admin', 'Admin\Admin_MenuController', 'reactivate');
 $router->post('menu-delete-admin', 'Admin\Admin_MenuController', 'delete');
 $router->post('menu-change-availability-admin', 'Admin\Admin_MenuController', 'change_availability');
 

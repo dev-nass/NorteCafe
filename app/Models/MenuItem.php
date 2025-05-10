@@ -9,6 +9,30 @@ class MenuItem extends Model
 
     protected $table = "menu_items";
 
+    public function activeMenuItems()
+    {
+
+        $this->iniDB();
+
+        $menuItems = $this->query("SELECT * FROM $this->table WHERE status = :status", [
+            "status" => 1,
+        ])->get();
+
+        return $menuItems;
+    }
+
+    public function archivedMenuItems()
+    {
+
+        $this->iniDB();
+
+        $menuItems = $this->query("SELECT * FROM $this->table WHERE status = :status", [
+            "status" => 0,
+        ])->get();
+
+        return $menuItems;
+    }
+
     /**
      * Used within Admin_Menu/show() controller,
      * to abstract the sql query

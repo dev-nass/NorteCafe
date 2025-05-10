@@ -126,6 +126,12 @@
                     <span class="nav-link-text ms-1">Customers</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link <?= urlIs('menu-archive-table-admin') ? 'active choco-gradient-bg text-light' : 'text-dark' ?>" href="menu-archive-table-admin">
+                    <i class="material-symbols-rounded opacity-5">shopping_cart</i>
+                    <span class="nav-link-text ms-1">Menu Items</span>
+                </a>
+            </li>
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Account pages</h6>
             </li>

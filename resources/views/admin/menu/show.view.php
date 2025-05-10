@@ -21,7 +21,10 @@
                             <div class="card-header pb-0 px-3 d-flex justify-content-between">
                                 <div>
                                     <h3 class="mb-0"><?= $menuItem[0]['name'] ?></h3>
-                                    <p class="<?= $menuItem[0]['available'] ? 'text-success' : 'text-danger' ?>"><?= $menuItem[0]['available'] ? "Availabble" : "Not Available" ?></p>
+                                    <p class="mb-0 <?= $menuItem[0]['available'] ? 'text-success' : 'text-danger' ?>"><?= $menuItem[0]['available'] ? "Availabble" : "Not Available" ?></p>
+                                    <p class="mb-0 font-weight-normal text-dark">
+                                        Status: <span class="<?= $menuItem[0]['status'] ===  1 ? 'text-success' : 'text-danger' ?>"><?= $menuItem[0]['status'] ===  1 ? 'Active' : 'Archived'  ?></span>
+                                    </p>
                                 </div>
                                 <div>
                                     <button class="btn btn-primary p-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
@@ -110,19 +113,25 @@
                                                         </div>
                                                     </div>
                                                 <?php endforeach; ?>
-                                                <div class="col-12">
+                                                <div class="col-12 d-flex justify-content-between">
                                                     <button class="btn btn-primary" type="submit">Update Item</button>
-                                                    <button form="menu_item_delete" class="btn btn-outline-warning">Delete</button>
+                                                    <div class="d-flex">
+                                                        <?php if($menuItem[0]['status'] === 1) : ?>
+                                                            <button form="menu_item_delete" type="submit" class="btn btn-outline-warning me-2">Archive</button>
+                                                        <?php elseif($menuItem[0]['status'] === 0) : ?>
+                                                            <button form="menu_item_reactivate" type="submit" class="btn btn-outline-success">Reactivate</button>
+                                                        <?php endif ; ?>
+                                                    </div>
                                                 </div>
                                             </form>
+
                                             <form id="menu_item_delete" action="menu-delete-admin" method="POST">
-                                                <input 
-                                                    class="d-none"
-                                                    name="menu_item_id"
-                                                    value="<?= $menuItem[0]['menu_item_id'] ?>"
-                                                    type="text"
-                                                    readonly>
+                                                <input type="hidden" name="menu_item_id" value="<?= $menuItem[0]['menu_item_id'] ?>">
                                             </form>
+                                            <form id="menu_item_reactivate" action="menu-reactivate-admin" method="POST">
+                                                <input type="hidden" name="menu_item_id" value="<?= $menuItem[0]['menu_item_id'] ?>">
+                                            </form>
+
                                         </div>
                                     </div>
                                 </div>
