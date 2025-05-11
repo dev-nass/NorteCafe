@@ -26,8 +26,8 @@ class Mailer
             $this->mail->Password   = $this->password;                               //SMTP password
             $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $this->mail->Port       = 465;
-            $this->mail->SMTPDebug = 2; // Set to 2 for detailed output
-            $this->mail->Debugoutput = 'html';                               //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            // $this->mail->SMTPDebug = 2; // Set to 2 for detailed output
+            // $this->mail->Debugoutput = 'html';                               //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}";
         }

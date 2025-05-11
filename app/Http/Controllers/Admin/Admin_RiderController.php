@@ -95,7 +95,7 @@ class Admin_RiderController extends Controller
 
             $mailerObj = new Mailer;
             $emailSent = $mailerObj->emailStaff($data['email'], 'rider');
-            dd($emailSent);
+            
             if($emailSent) {
                 Session::set('__flash', 'email_sent', 'Email sent successfully');
                 return $this->redirect('rider-create-admin');

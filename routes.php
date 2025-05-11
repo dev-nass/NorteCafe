@@ -81,49 +81,49 @@ $router->post('backup', 'Admin\Admin_DashboardController', 'backup_db');
 $router->get('generate-report', 'Admin\Admin_GenerateReportController', 'create');
 $router->post('generate-report', 'Admin\Admin_GenerateReportController', 'generate');
 
-$router->get('transaction-queue-admin', 'Admin\Admin_TransactionController', 'queue');
+$router->get('transaction-queue-admin', 'Admin\Admin_TransactionController', 'queue')->only('staff', 'Admin,Employee');
 $router->get('transaction-pending-show-admin', 'Admin\Admin_TransactionController', 'pending_show');
-$router->get('transaction-show-admin', 'Admin\Admin_TransactionController', 'show')->only('auth', 'Admin');
-$router->post('transaction-update-admin', 'Admin\Admin_TransactionController', 'update')->only('auth', 'Admin'); // (Admin/transactions/pending-show) change status "Approved" or "Rejected"
-$router->post('transaction-reject-all-admin', 'Admin\Admin_TransactionController', 'reject_all')->only('auth', 'Admin'); // (Admin/transactions/pending-show) change status to "Rejected" (all pending)
-$router->post('transaction-assign-admin', 'Admin\Admin_TransactionController', 'assign')->only('auth', 'Admin');
-$router->get('transaction-table-admin', 'Admin\Admin_TransactionController', 'index');
+$router->get('transaction-show-admin', 'Admin\Admin_TransactionController', 'show');
+$router->post('transaction-update-admin', 'Admin\Admin_TransactionController', 'update'); // (Admin/transactions/pending-show) change status "Approved" or "Rejected"
+$router->post('transaction-reject-all-admin', 'Admin\Admin_TransactionController', 'reject_all'); // (Admin/transactions/pending-show) change status to "Rejected" (all pending)
+$router->post('transaction-assign-admin', 'Admin\Admin_TransactionController', 'assign');
+$router->get('transaction-table-admin', 'Admin\Admin_TransactionController', 'index')->only('staff', 'Admin,Employee');
 $router->post('transaction-archive-admin', 'Admin\Admin_TransactionController', 'delete');
 
-$router->get('menu-table-admin', 'Admin\Admin_MenuController', 'index');
-$router->get('menu-archive-table-admin', 'Admin\Admin_MenuController', 'index_archived');
+$router->get('menu-table-admin', 'Admin\Admin_MenuController', 'index')->only('staff', 'Admin,Employee');
+$router->get('menu-archive-table-admin', 'Admin\Admin_MenuController', 'index_archived')->only('staff', 'Admin,Employee');
 $router->get('menu-show-admin', 'Admin\Admin_MenuController', 'show');
-$router->get('menu-create-admin', 'Admin\Admin_MenuController', 'create');
+$router->get('menu-create-admin', 'Admin\Admin_MenuController', 'create')->only('staff', 'Admin,Employee');
 $router->post('menu-store-admin', 'Admin\Admin_MenuController', 'store');
 $router->post('menu-update-admin', 'Admin\Admin_MenuController', 'update');
 $router->post('menu-reactivate-admin', 'Admin\Admin_MenuController', 'reactivate');
 $router->post('menu-delete-admin', 'Admin\Admin_MenuController', 'delete');
 $router->post('menu-change-availability-admin', 'Admin\Admin_MenuController', 'change_availability');
 
-$router->get('size-create-admin', 'Admin\Admin_MenuSizeController', 'create');
+$router->get('size-create-admin', 'Admin\Admin_MenuSizeController', 'create')->only('staff', 'Admin,Employee');
 $router->post('size-store-admin', 'Admin\Admin_MenuSizeController', 'store');
 
-$router->get('add-ons-table-admin', 'Admin\Admin_AddOnsController', 'index');
+$router->get('add-ons-table-admin', 'Admin\Admin_AddOnsController', 'index')->only('staff', 'Admin,Employee');
 $router->get('add-ons-show-admin', 'Admin\Admin_AddOnsController', 'show');
-$router->get('add-ons-create-admin', 'Admin\Admin_AddOnsController', 'create');
+$router->get('add-ons-create-admin', 'Admin\Admin_AddOnsController', 'create')->only('staff', 'Admin,Employee');
 $router->post('add-ons-store-admin', 'Admin\Admin_AddOnsController', 'store');
 $router->post('add-ons-update-admin', 'Admin\Admin_AddOnsController', 'update');
 $router->post('add-ons-delete-admin', 'Admin\Admin_AddOnsController', 'delete');
 $router->post('add-ons-change-availability-admin', 'Admin\Admin_AddOnsController',  'change_availability');
 
-$router->get('discount-table-admin', 'Admin\Admin_DiscountController', 'index');
+$router->get('discount-table-admin', 'Admin\Admin_DiscountController', 'index')->only('staff', 'Admin,Employee');
 $router->get('discount-show-admin', 'Admin\Admin_DiscountController', 'show');
-$router->get('discount-create-admin', 'Admin\Admin_DiscountController', 'create');
+$router->get('discount-create-admin', 'Admin\Admin_DiscountController', 'create')->only('staff', 'Admin,Employee');
 $router->post('discount-store-admin', 'Admin\Admin_DiscountController', 'store');
 $router->post('discount-update-admin', 'Admin\Admin_DiscountController', 'update');
 $router->post('discount-delete-admin', 'Admin\Admin_DiscountController', 'delete');
 
-$router->get('customer-table-admin', 'Admin\Admin_CustomerController', 'index');
-$router->get('customer-archived-table-admin', 'Admin\Admin_CustomerController', 'index_archived');
+$router->get('customer-table-admin', 'Admin\Admin_CustomerController', 'index')->only('staff', 'Admin,Employee');
+$router->get('customer-archived-table-admin', 'Admin\Admin_CustomerController', 'index_archived')->only('staff', 'Admin,Employee');
 $router->get('customer-show-admin', 'Admin\Admin_CustomerController', 'show');
 $router->post('customer-delete-admin', 'Admin\Admin_CustomerController', 'delete');
 
-$router->get('employee-table-admin', 'Admin\Admin_EmployeeController', 'index');
+$router->get('employee-table-admin', 'Admin\Admin_EmployeeController', 'index')->only('auth', 'Admin');
 $router->get('employee-show-admin', 'Admin\Admin_EmployeeController', 'show');
 $router->get('employee-create-admin', 'Admin\Admin_EmployeeController', 'create');
 $router->post('employee-store-admin', 'Admin\Admin_EmployeeController', 'store');
@@ -134,34 +134,34 @@ $router->get('staff-create-employee', 'Admin\Admin_StaffController', 'createEmpl
 $router->get('staff-create-rider', 'Admin\Admin_StaffController', 'createRider');
 $router->post('staff-store', 'Admin\Admin_StaffController', 'store');
 
-$router->get('rider-table-admin', 'Admin\Admin_RiderController', 'index');
+$router->get('rider-table-admin', 'Admin\Admin_RiderController', 'index')->only('staff', 'Admin,Employee');
 $router->get('rider-show-admin', 'Admin\Admin_RiderController', 'show');
-$router->get('rider-create-admin', 'Admin\Admin_RiderController', 'create');
+$router->get('rider-create-admin', 'Admin\Admin_RiderController', 'create')->only('auth', 'Admin');
 $router->post('rider-store-admin', 'Admin\Admin_RiderController', 'store');
 $router->post('rider-update-admin', 'Admin\Admin_RiderController', 'update');
 $router->post('rider-delete-admin', 'Admin\Admin_RiderController', 'delete');
 
-$router->get('profile-admin', 'Admin\Admin_ProfileController', 'index');
+$router->get('profile-admin', 'Admin\Admin_ProfileController', 'index')->only('staff', 'Admin,Employee');
 $router->post('profile-update-admin', 'Admin\Admin_ProfileController', 'update');
 
 
 /**
  * Rider Side
 */
-$router->get('assigned-transaction-queue-rider', 'Rider\Rider_TransactionController', 'queue');
+$router->get('assigned-transaction-queue-rider', 'Rider\Rider_TransactionController', 'queue')->only('auth', 'Rider');
 $router->get('fetch-assigned-transaction', 'Rider\Rider_TransactionController', 'assignedTrans'); // API
 $router->get('assigned-transaction-rider', 'Rider\Rider_TransactionController', 'assigned_show');
 $router->post('transaction-update-rider', 'Rider\Rider_TransactionController', 'update');
 $router->post('transaction-reject-all-rider', 'Rider\Rider_TransactionController', 'reject_all');
 
-$router->get('current-transaction-queue-rider', 'Rider\Rider_TransactionController', 'current_queue');
+$router->get('current-transaction-queue-rider', 'Rider\Rider_TransactionController', 'current_queue')->only('auth', 'Rider');
 $router->get('transaction-show-rider', 'Rider\Rider_TransactionController', 'show');
 $router->post('transaction-calculate-change', 'Rider\Rider_TransactionController', 'calculateChange');
 
-$router->get('delivered-transaction-queue-rider', 'Rider\Rider_TransactionController', 'delivered_queue');
+$router->get('delivered-transaction-queue-rider', 'Rider\Rider_TransactionController', 'delivered_queue')->only('auth', 'Rider');
 
-$router->get('contact-shop-rider', 'Rider\Rider_ContactShopController', 'index');
+$router->get('contact-shop-rider', 'Rider\Rider_ContactShopController', 'index')->only('auth', 'Rider');
 $router->post('contact-shop-send-rider', 'Rider\Rider_ContactShopController', 'sendMessageRider');
 
-$router->get('profile-rider', 'Rider\Rider_ProfileController', 'index');
+$router->get('profile-rider', 'Rider\Rider_ProfileController', 'index')->only('auth', 'Rider');
 $router->post('profile-update-rider', 'Rider\Rider_ProfileController', 'update');

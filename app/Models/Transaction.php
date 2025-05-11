@@ -21,8 +21,8 @@ class Transaction extends Model
         // this is get() instead of find() because of the menu item that are part of a single record each
         // so in order to fetch all records that belongs to a single transaction we use get()
         $transactions = $this->query("SELECT transactions.*, 
-            users.user_id, CONCAT(users.first_name, ' ', users.last_name) AS fullname, users.username, users.email, users.contact_number, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.province, ', ', users.region, ', ', users.postal_code) AS address, users.house_number as user_house_number, users.street as user_street, users.barangay as user_barangay, users.city as user_city, users.province as user_province, users.region as user_region, users.postal_code as user_postal_code,
-            riders.user_id, CONCAT(riders.first_name, ' ', riders.last_name) as rider_name, riders.contact_number,
+            users.user_id, CONCAT(users.first_name, ' ', users.last_name) AS fullname, users.username, users.email, users.contact_number as user_contact_number, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.province, ', ', users.region, ', ', users.postal_code) AS address, users.house_number as user_house_number, users.street as user_street, users.barangay as user_barangay, users.city as user_city, users.province as user_province, users.region as user_region, users.postal_code as user_postal_code,
+            riders.user_id, CONCAT(riders.first_name, ' ', riders.last_name) as rider_name, riders.contact_number as rider_contact_number,
             orders.order_id, orders.transaction_id, orders.cart_id, orders.total_price, 
             carts.*, 
             menu_items.menu_item_id, menu_items.name as menu_item_name, menu_items.category, menu_items.image_dir, 

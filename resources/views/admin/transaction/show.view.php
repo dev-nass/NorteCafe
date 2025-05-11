@@ -137,7 +137,7 @@
                                 <div class="d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column">
                                         <h4 class="mb-1 text-dark font-weight-bold"><?= $transactions[0]['rider_name'] ?></h4>
-                                        <span class="text-xs"><?= $transactions[0]['contact_number'] ?></span>
+                                        <span class="text-xs"><?= $transactions[0]['rider_contact_number'] ?></span>
                                     </div>
                                 </div>
                             </li>
@@ -151,7 +151,7 @@
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                 <div class="d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column">
-                                        <span class="mb-1 text-xs" style="font-size: .8rem">Delivered At: <?= date("F d, Y \a\\t h:i A", strtotime($transactions[0]['delivered_at'])) ?></span>
+                                        <span class="mb-1 text-xs" style="font-size: .8rem">Delivered At: <?= !empty($transactions[0]['delivered_at']) ? date("F d, Y \a\\t h:i A", strtotime($transactions[0]['delivered_at'])) : '' ?></span>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Discount: <span class="text-dark"><?= $transactions[0]['discount_name'] ?></span></h6>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Due: <span class="text-dark">₱<?= $transactions[0]['amount_due'] ?></span></h6>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Tendered: <span class="text-dark">₱<?= $transactions[0]['amount_tendered'] ?></span></h6>

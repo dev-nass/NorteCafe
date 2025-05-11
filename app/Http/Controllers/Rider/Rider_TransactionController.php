@@ -194,7 +194,9 @@ class Rider_TransactionController extends Controller
 
         $transObj = new Transaction;
         $transObj->iniDB();
-        $current_transactions = $transObj->query("SELECT transactions.*, transactions.created_at AS trans_created_at, users.* FROM transactions LEFT JOIN users ON transactions.user_id = users.user_id
+        $current_transactions = $transObj->query("SELECT transactions.*, transactions.status as transaction_status, transactions.created_at AS trans_created_at, users.* 
+            FROM transactions 
+            LEFT JOIN users ON transactions.user_id = users.user_id
             WHERE transactions.rider_id = :rider_id AND transactions.status = :status", [
             "rider_id" => $_SESSION['__currentUser']['credentials']['user_id'],
             "status" => "Approved by Rider"

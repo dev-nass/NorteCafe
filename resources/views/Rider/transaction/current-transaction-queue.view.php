@@ -35,7 +35,7 @@
                                                             <span class="mb-1 text-xs text-end">Placed At: <?= date("F d, Y \a\\t h:i A", strtotime($trans['trans_created_at'])) ?></span>
                                                         </div>
                                                         <div class="text-end">
-                                                            <span class="mb-1 text-xs">Status: <?= $trans['status'] ?></span>
+                                                            <span class="mb-1 text-xs">Status: <?= $trans['transaction_status'] ?></span>
                                                         </div>
                                                     </div>
                                                     <div>

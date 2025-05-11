@@ -4,7 +4,7 @@
 <section class="secion-container py-5">
     <div class="container py-5">
         <h1 class="hero-header"><?= $_SESSION['__currentUser']['credentials']['username'] ?>'s Cart</h1>
-        <p><span class="fw-bold">Notice:</span> You can only place order when the sub total is equal or greater than 150 PHP, ordering time must be 10:00am to 8:45pm, and the account must be fully verified</p>
+        <p><span class="fw-bold">Notice:</span> You can only place order when the sub total is equal or greater than 150 PHP, ordering time must be 10:00am to 8:45pm, and the account must be fully verified. <a class="text-decoration-underline" href="findStore">Find out estimated delivery time.</a></p>
         <hr>
         <div class="row">
             <!-- Cards -->

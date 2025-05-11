@@ -20,7 +20,8 @@
                         </div>
                     </a>
                 </li>
-                <li class="nav-item dropdown pe-3 d-flex align-items-center">
+                <!-- Notifications -->
+                <!-- <li class="nav-item dropdown pe-3 d-flex align-items-center">
                     <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="material-symbols-rounded">notifications</i>
@@ -102,9 +103,9 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="nav-item d-flex align-items-center">
-                    <a href="<?= $_SESSION['__currentUser']['credentials']['role'] === 'Admin' ? 'profile-admin' : 'profile-rider' ?>" class="nav-link text-body font-weight-bold px-0">
+                    <a href="<?= in_array($_SESSION['__currentUser']['credentials']['role'], ['Admin', 'Employee']) ? 'profile-admin' : 'profile-rider' ?>" class="nav-link text-body font-weight-bold px-0">
                         <i class="material-symbols-rounded">account_circle</i>
                     </a>
                 </li>

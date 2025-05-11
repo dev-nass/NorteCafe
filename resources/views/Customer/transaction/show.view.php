@@ -13,7 +13,7 @@
                                 <div class="card-body position-relative z-index-1 px-3">
                                     <h5 class="text-white mt-2">Transaction ID: <?= $transactions[0]['transaction_id'] ?></h5>
                                     <div class="pb-4">
-                                        <p class="text-white text-sm opacity-8 mb-0">Status: <span class="text-white mb-0"><?= $transactions[0]['status'] ?></span></p>
+                                        <p class="text-white opacity-8 mb-0">Status: <span class="text-white mb-0"><?= $transactions[0]['status'] ?></span></p>
                                     </div>
                                     <div class="d-flex" style="padding-top: 1rem;">
                                         <div class="">
@@ -43,9 +43,9 @@
                                         </div>
                                     </div>
                                     <div class="card-body pt-0 p-3 text-center">
-                                        <h6 class="text-center mb-0">Amount Due</h6>
+                                        <h6 class="text-center my-2">Amount Due</h6>
                                         <span class="text-xs">To be paid by the customer</span>
-                                        <hr class="horizontal dark my-3">
+                                        <hr class="horizontal dark mb-0">
                                         <h5 class="mb-0">₱<?= $transactions[0]['amount_due'] ?></h5>
                                     </div>
                                 </div>
@@ -81,7 +81,7 @@
                                     <div class="col-12 mb-md-0 mb-4">
                                         <div class="card card-body border card-plain border-radius-lg d-flex align-items-center justify-content-between flex-row">
                                             <div>
-                                                <h6 class="mb-0">Phone Number: 09071055556</h6>
+                                                <h6 class="mb-0">Phone Number: <?= $transactions[0]['user_contact_number'] ?></h6>
                                                 <span class="">Method: <?= $transactions[0]['payment_method'] ?></span>
                                             </div>
 
@@ -135,8 +135,8 @@
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                 <div class="d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column">
-                                        <h4 class="mb-1 text-dark font-weight-bold">Aruthuro Velaskes</h4>
-                                        <span class="text-xs">09507373644</span>
+                                        <h4 class="mb-1 text-dark font-weight-bold"><?= $transactions[0]['rider_name'] ?></h4>
+                                        <span class="text-xs"><?= $transactions[0]['rider_contact_number'] ?></span>
                                     </div>
                                 </div>
                             </li>
@@ -150,11 +150,11 @@
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                 <div class="d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column">
-                                        <span class="mb-1" style="font-size: .8rem">Delivery At: </span>
+                                        <span class="mb-1" style="font-size: .8rem">Delivery At: <?= !empty($transactions[0]['delivered_at']) ? date("F d, Y \a\\t h:i A", strtotime($transactions[0]['delivered_at'])) : '' ?></span>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Discount: <span class="text-dark"><?= $transactions[0]['discount_name'] ?></span></h6>
                                         <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Due: <span class="text-dark">₱<?= $transactions[0]['amount_due'] ?></span></h6>
-                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Tendered: <span class="text-dark"></span></h6>
-                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Change: <span class="text-dark"></span></h6>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Tendered: <span class="text-dark">₱<?= $transactions[0]['amount_tendered'] ?></span></h6>
+                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Change: <span class="text-dark">₱<?= $transactions[0]['change'] ?></span></h6>
                                     </div>
                                 </div>
                             </li>
