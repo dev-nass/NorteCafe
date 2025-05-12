@@ -33,6 +33,8 @@ $router->post('reset-pass', 'ResetPasswordController', 'update');
 $router->get('change-pass', 'ChangePasswordController', 'create');
 $router->post('change-pass', 'ChangePasswordController', 'store');
 
+$router->post('deactivate-customer', 'DeactivateController', 'update');
+
 /**
  * HTTP Response Web Page
 */

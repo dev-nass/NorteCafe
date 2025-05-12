@@ -57,7 +57,7 @@ class ResetPasswordController extends Controller
                 "new_password" => "required|min:8|max:255|confirmed"
             ]);
 
-            // redirect if there's error
+            // redirect if there's error (can't be set to redirect, due to selector and validator token)
             if($errors) {
                 return $this->view("auth/reset-pass.view.php", [
                     "title" => "Reset Password",
@@ -96,9 +96,10 @@ class ResetPasswordController extends Controller
                 "email" => $user_who_request['email'],
             ])->find();
 
-            $db->query("UPDATE users SET password = :password WHERE email = :email", [
+            $db->query("UPDATE users SET password = :password, status = :status WHERE email = :email", [
                 "password" => password_hash($data["new_password"], PASSWORD_BCRYPT),
-                "email" => $user_to_update['email'],
+                "status" => true,
+                "email" => $user_to_update['email']
             ]);
 
             // Every after a successful update we delete the token on the database

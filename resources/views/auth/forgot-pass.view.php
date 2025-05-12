@@ -7,7 +7,7 @@
                 <div class="card overflow-hidden">
                     <div class="card-body p-4 form-section-bg">
                         <h1 class="fs-3 text-center">Forgot your password?</h1>
-                        <p class="text-center">Enter your email and we'll send you a reset link.</p>
+                        <p class="text-center">This also be used for deactivated accounts recovery. Enter your email and we'll send you a reset link.</p>
 
                         <!-- form section -->
                         <!-- pa configure nalang pag i bbackend na -->

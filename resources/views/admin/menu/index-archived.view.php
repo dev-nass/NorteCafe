@@ -46,7 +46,7 @@
         Swal.fire({
             icon: "success",
             title: "Success",
-            text: "Menu item deleted successfully!",
+            text: "Menu item archived successfully!",
             allowOutsideClick: false,
         });
     </script>

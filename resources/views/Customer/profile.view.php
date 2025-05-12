@@ -174,6 +174,16 @@
                     </div>
                 </div>
                 <div class="me-3">
+                    <form id="deactivate-form" action="deactivate-customer" method="POST">
+                        <input
+                            class="d-none"
+                            name="user_id"
+                            value="<?= $_SESSION['__currentUser']['credentials']['user_id'] ?>"
+                            type="text">
+                        <button form="deactivate-form" class="btn btn-warning">Deactivate</button>
+                    </form>
+                </div>
+                <div class="me-3">
                     <a class="btn btn-outline-success" href="change-pass">Change Password</a>
                 </div>
                 <div class="">
