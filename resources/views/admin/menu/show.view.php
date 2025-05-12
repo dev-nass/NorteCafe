@@ -116,9 +116,9 @@
                                                 <div class="col-12 d-flex justify-content-between">
                                                     <button class="btn btn-primary" type="submit">Update Item</button>
                                                     <div class="d-flex">
-                                                        <?php if($menuItem[0]['status'] === 1) : ?>
+                                                        <?php if($menuItem[0]['status'] == 1) : ?>
                                                             <button form="menu_item_delete" type="submit" class="btn btn-outline-warning me-2">Archive</button>
-                                                        <?php elseif($menuItem[0]['status'] === 0) : ?>
+                                                        <?php elseif($menuItem[0]['status'] == 0) : ?>
                                                             <button form="menu_item_reactivate" type="submit" class="btn btn-outline-success">Reactivate</button>
                                                         <?php endif ; ?>
                                                     </div>

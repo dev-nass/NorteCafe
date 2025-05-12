@@ -4,7 +4,7 @@
 <main class="main-content position-relative max-height-vh-100 h-100">
     <?php require base_path('resources/views/components/admin_navbar.php') ?>
     <div class="d-flex justify-content-end px-4">
-        <?php if($user['status'] === 1) : ?>
+        <?php if($user['status'] == 1) : ?>
         <form action="customer-delete-admin" method="POST">
             <input
                 class="d-none"

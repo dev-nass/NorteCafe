@@ -21,7 +21,7 @@ class Authenticator
             "username" => $emailOrUsername,
         ]);
 
-        if ($user && $user['status'] === 1) {
+        if ($user && $user['status'] == 1) {
             if (password_verify($password, $user['password'])) {
 
                 $this->login($user);
