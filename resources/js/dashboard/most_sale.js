@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = JSON.parse(text);
             console.log('Parsed data:', data);
 
+            console.log(data);
+
             // Generate the Revenue 
             data.forEach((param) => {
                 saleRow.innerHTML += 
@@ -27,7 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <img src="${param.image_dir}" alt="item-img" style="height: 50px">
                                     <div class="ms-3">
                                         <h6 class="mb-0 text-md">${param.name}</h6>
-                                        <span class="mb-0 text-sm ${param.age || param.gender ? '' : 'd-none'}">${param.age ? 'Age:' : 'Gender:'} ${param.age ?? param.gender ?? ''}</span>
+                                        <span class="mb-0 text-sm ${param.age_range || param.gender ? '' : 'd-none'}">
+                                            ${param.age_range ? 'Age Range:' : 'Gender:'} ${param.age_range ?? param.gender ?? ''}
+                                        </span>
+
                                     </div>
                                 </div>
                                 <div class="col-2 d-flex align-items-center">

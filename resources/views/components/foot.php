@@ -44,10 +44,10 @@
                 <div class="col-12 col-md-6 col-lg-3 mt-3">
                     <h3 class="footer-header">Work With Us</h3>
                     <div class="mt-4">
-                        <a href="#" style="color: #f7f4ef; text-decoration: none;">Advertise</a>
+                        <a href="https://www.facebook.com/mariaschoiceest2021?rdid=Ejme0X4kCc13RjMl&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1FkVE9Snhh" style="color: #f7f4ef; text-decoration: none;">Advertise</a>
                     </div>
                     <div class="mt-2">
-                        <a href="#" style="color: #f7f4ef; text-decoration: none;">Terms and Conditions</a>
+                        <a href="terms-and-conditions" style="color: #f7f4ef; text-decoration: none;">Terms and Conditions</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
     <script src="../../resources/js/menu/selectOnlyOneAddOn.js" defer></script>
 
     <script src="../../resources/js/cart/selectDiscount.js" defer></script>
-    <script src="../../resources/js/cart/paymentMethod.js" defer></script>    
+    <script src="../../resources/js/cart/paymentMethod.js" defer></script>
     <script src="../../resources/js/cart/placeOrderConfirmation.js" defer></script>
 
     <script src="../../resources/js/profiling/errorAlert.js" defer></script>
@@ -77,7 +77,8 @@
 
 
     <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="../../resources/js/bootstrap.bundle.min.js" defer></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
     <!-- Sweet Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>

@@ -74,7 +74,7 @@ class Admin_StaffController extends Controller
 
             if ($errors) {
                 $mod_role = strtolower($data['role']);
-                return $this->redirect("staff-create-rider");
+                return $this->redirect("staff-create-" . strtolower($data['role']));
             }
 
             $user = new User;

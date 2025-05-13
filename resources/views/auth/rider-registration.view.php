@@ -78,7 +78,7 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <label for="validationCustom06" class="form-label">Age</label>
-                                                    <input type="text" class="form-control border border-dark px-2" id="validationCustom06" name="age" value="<?= old('age') ?? '' ?>" placeholder="69" maxlength="11" required>
+                                                    <input type="text" class="form-control border border-dark px-2" id="validationCustom06" name="age" value="<?= old('age') ?? '' ?>" placeholder="63" maxlength="11" required>
                                                     <div class="valid-feedback">
                                                         Looks good!
                                                     </div>
@@ -160,6 +160,7 @@
                                                     <div class="valid-feedback">
                                                         Looks good!
                                                     </div>
+                                                <?php error('password') ?>
                                                 </div>
                                                 <div class="col-6">
                                                     <label for="validationServer17" class="form-label">Confirm Password</label>

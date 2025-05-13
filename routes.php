@@ -15,6 +15,7 @@ $router->get('findStore', 'Customer\UserController', 'findStore');
 $router->get('faqs', 'Customer\UserController', 'faqs');
 $router->get('delivery-details', 'Customer\UserController', 'deliveryDetails');
 
+$router->get('terms-and-conditions', 'Customer\UserController', 'termsAndConditions');
 /**
  * Auth Web Pages
 */

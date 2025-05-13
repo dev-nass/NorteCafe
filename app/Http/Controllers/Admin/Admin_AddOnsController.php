@@ -93,7 +93,7 @@ class Admin_AddOnsController extends Controller
             // redirect them to its show
             if ($newAddOns) {
                 Session::set('__flash', 'add_ons_uploaded', 'Add ons uploadedd successfully');
-                return $this->redirect('add-ons-upload-admin');
+                return $this->redirect('add-ons-create-admin');
             }
         }
     }

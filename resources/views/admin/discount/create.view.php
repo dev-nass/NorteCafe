@@ -34,7 +34,7 @@
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="validationCustom03" class="form-label">Discount Value</label>
-                                <input type="text" class="form-control border border-dark px-2" id="validationCustom03" name="discount_value" placeholder="10.00" value="<?= old('discount_value') ?>" required>
+                                <input type="text" class="form-control border border-dark px-2" id="validationCustom03" name="discount_value" placeholder="10.00 / 0.010" value="<?= old('discount_value') ?>" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>

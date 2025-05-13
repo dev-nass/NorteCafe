@@ -48,7 +48,6 @@ class LoginController extends Controller
 
             if ($authUser) {
 
-
                 // current user cart count (need here for navbar)
                 $cartObj = new Cart;
                 $cartObj->updateCartCount('user_id');
@@ -59,6 +58,7 @@ class LoginController extends Controller
                         'available' => true,
                     ]);
                 }
+                
                 $userModel->loadRoleView();
             }
 

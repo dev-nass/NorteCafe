@@ -170,13 +170,23 @@ class Admin_DashboardController
                     LIMIT 10")->get();
                 break;
             case 'most-sale-age':
-                $top_sales = $db->query("SELECT COUNT(menu_items.menu_item_id) as sale_count, users.age, menu_items.name, menu_items.image_dir
+                $top_sales = $db->query("SELECT COUNT(*) AS sale_count,
+                    CASE 
+                        WHEN users.age BETWEEN 18 AND 21 THEN '18-21'
+                        WHEN users.age BETWEEN 22 AND 25 THEN '22-25'
+                        WHEN users.age BETWEEN 26 AND 30 THEN '26-30'
+                        WHEN users.age BETWEEN 31 AND 40 THEN '31-40'
+                        WHEN users.age > 40 THEN '41+'
+                        ELSE 'Unknown'
+                        END AS age_range,
+                        menu_items.name,
+                        menu_items.image_dir
                     FROM transactions
                     LEFT JOIN users ON transactions.user_id = users.user_id
                     LEFT JOIN orders ON transactions.transaction_id = orders.transaction_id
                     LEFT JOIN carts ON orders.cart_id = carts.cart_id
                     LEFT JOIN menu_items ON carts.menu_item_id = menu_items.menu_item_id
-                    GROUP BY users.age, menu_items.name, menu_items.image_dir
+                    GROUP BY age_range, menu_items.name, menu_items.image_dir
                     ORDER BY sale_count DESC
                     LIMIT 10")->get();
                 break;

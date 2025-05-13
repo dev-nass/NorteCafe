@@ -50,7 +50,7 @@
                     <div class="col-6 mt-2">
                         <div class="d-flex">
                             <div class="square"><i class="fa-solid fa-utensils h4 square-icon"></i></div>
-                            <div class="ms-2">For <br> Dine In</div>
+                            <div class="ms-2">For Dine In &<br> Take Out</div>
                         </div>
                     </div>
                     <div class="col-6 mt-2">

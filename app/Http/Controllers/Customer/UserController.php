@@ -93,4 +93,12 @@ class UserController extends Controller
             "title" => "Delivery Details"
         ]);
     }
+
+    public function termsAndConditions()
+    {
+
+        return $this->view('auth/terms&condition.view.php', [
+            'title' => 'Terms & Conditions'
+        ]);
+    }
 }

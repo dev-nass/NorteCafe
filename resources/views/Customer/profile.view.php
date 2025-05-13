@@ -90,7 +90,7 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="validationCustom06" class="form-label">Age</label>
-                                                        <input type="text" class="form-control border border-dark px-2" id="validationCustom06" name="age" value="<?= $_SESSION['__currentUser']['credentials']['age'] ?>" placeholder="69" maxlength="11" required>
+                                                        <input type="text" class="form-control border border-dark px-2" id="validationCustom06" name="age" value="<?= $_SESSION['__currentUser']['credentials']['age'] ?>" placeholder="63" maxlength="11" required>
                                                         <div class="valid-feedback">
                                                             Looks good!
                                                         </div>
