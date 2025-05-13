@@ -4,17 +4,7 @@
 <main class="main-content position-relative max-height-vh-100 h-100">
     <?php require base_path('resources/views/components/admin_navbar.php') ?>
     <div class="d-flex justify-content-end px-4">
-        <?php if($user['status'] == 1) : ?>
-        <form action="customer-delete-admin" method="POST">
-            <input
-                class="d-none"
-                name="user_id"
-                value="<?= $user['user_id'] ?>"
-                readonlys
-                type="text">
-                <button class="btn btn-danger mb-0">Archive</button>
-        </form>
-        <?php endif ; ?>
+        <!-- Button can be put here -->
     </div>
     <div class="container-fluid px-2 px-md-4">
         <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">

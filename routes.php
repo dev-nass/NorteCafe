@@ -123,7 +123,6 @@ $router->post('discount-delete-admin', 'Admin\Admin_DiscountController', 'delete
 $router->get('customer-table-admin', 'Admin\Admin_CustomerController', 'index')->only('staff', 'Admin,Employee');
 $router->get('customer-archived-table-admin', 'Admin\Admin_CustomerController', 'index_archived')->only('staff', 'Admin,Employee');
 $router->get('customer-show-admin', 'Admin\Admin_CustomerController', 'show');
-$router->post('customer-delete-admin', 'Admin\Admin_CustomerController', 'delete');
 
 $router->get('employee-table-admin', 'Admin\Admin_EmployeeController', 'index')->only('auth', 'Admin');
 $router->get('employee-show-admin', 'Admin\Admin_EmployeeController', 'show');

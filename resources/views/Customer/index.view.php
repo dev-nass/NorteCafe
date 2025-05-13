@@ -1,13 +1,13 @@
-<?php require base_path('resources/views/components/head.php')?>
-<?php require base_path('resources/views/components/navbar.php')?>
+<?php require base_path('resources/views/components/head.php') ?>
+<?php require base_path('resources/views/components/navbar.php') ?>
 
 <!-- Added for 1st time account log-in -->
-<?php if(isset($_SESSION['__currentUser']['credentials']['verified'])) : ?>
+<?php if (isset($_SESSION['__currentUser']['credentials']['verified'])) : ?>
     <input
-    class="d-none"
-    id="user_verified_status"
-    value="<?= $_SESSION['__currentUser']['credentials']['verified'] ?>">
-<?php endif ; ?>
+        class="d-none"
+        id="user_verified_status"
+        value="<?= $_SESSION['__currentUser']['credentials']['verified'] ?>">
+<?php endif; ?>
 
 
 <!-- SECTION 1 (Hero Section) -->
@@ -254,7 +254,26 @@
 </section>
 
 <script>
-    fetch('https://api.counterapi.dev/v1/local/norte-cafe/up');
+    fetch('https://letscountapi.com/norte_cafe/homepage_visit/increment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-API-Key': 'obHTQn4SKpx-JMplIoktnGWx__dcKwfWvmtw6vS8F6k' // replace with your real key
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Counter incremented:', data);
+        })
+        .catch(error => {
+            console.error('Error incrementing counter:', error);
+        });
 </script>
 
-<?php require base_path('resources/views/components/foot.php')?>
+
+<?php require base_path('resources/views/components/foot.php') ?>

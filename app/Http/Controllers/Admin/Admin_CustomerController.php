@@ -112,23 +112,5 @@ class Admin_CustomerController extends Controller
     /**
      * Archive the user
     */
-    public function delete() 
-    {
-
-        $data = [
-            'user_id' => $this->getInput('user_id'),
-        ];
-
-        $current_date = date("Y-m-d H:i:s"); // for updated_at
-        $userObj = new User;
-        $archived_user = $userObj->update($data['user_id'], [
-            "status" => 0,
-            "updated_at" => $current_date,
-        ]);
-
-        if ($archived_user) {
-            Session::set('__flash', 'account_deleted', 'Deleted successfully');
-            return $this->redirect('customer-archived-table-admin');
-        }
-    }
+    public function delete() {}
 }
