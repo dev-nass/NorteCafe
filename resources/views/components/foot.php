@@ -49,6 +49,9 @@
                     <div class="mt-2">
                         <a href="terms-and-conditions" style="color: #f7f4ef; text-decoration: none;">Terms and Conditions</a>
                     </div>
+                    <div class="mt-2">
+                        <a href="privacy-policy" style="color: #f7f4ef; text-decoration: none;">Privacy Policy</a>
+                    </div>
                 </div>
             </div>
         </div>

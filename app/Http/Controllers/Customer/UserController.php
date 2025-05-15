@@ -101,4 +101,12 @@ class UserController extends Controller
             'title' => 'Terms & Conditions'
         ]);
     }
+
+    public function privacyPolicyController()
+    {
+
+        return $this->view('auth/privacy-policy.view.php', [
+            'title' => 'Privacy Policy',
+        ]);
+    }
 }
