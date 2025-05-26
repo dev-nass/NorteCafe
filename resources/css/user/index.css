@@ -1,7 +1,6 @@
-
 /* SECTION 1 */
 .hero-grid {
-    height: 420px;
+    height: 320px;
 }
 
 .hero-blob {
@@ -12,6 +11,10 @@
     font-family: "Alegreya", sans-serif;
     font-size: 2.4rem;
     line-height: 40px;
+}
+
+.hero-features-text {
+    font-size: 13.4px;
 }
 
 /* 4 square at the HERO section */
@@ -36,16 +39,21 @@
 }
 
 .delivery-logo {
-    height: 300px;
+    margin-top: 2rem;
+    height: 250px;
 }
 
 .our-story-img {
     box-shadow: 0 0 10px var(--clr-darkest);
-    height: 380px;
+    height: 340px;
 }
 
 /* md */
 @media (min-width: 768px) {
+    .hero-grid {
+        height: 430px;
+    }
+
     .hero-blob {
         height: 300px;
         width: 320px;
@@ -53,6 +61,21 @@
 
     .hero-header {
         font-size: 2.5rem;
+    }
+
+    .hero-features-text {
+        font-size: 16px;
+    }
+
+    /* Section 3 */
+    .delivery-logo {
+        margin-top: 0;
+        height: 300px;
+    }
+
+    /* Section 5 */
+    .our-story-img {
+        height: 380px;
     }
 }
 
@@ -74,9 +97,7 @@
 }
 
 /* xL */
-@media (min-width: 1280px) {
-}
+@media (min-width: 1280px) {}
 
 /* 2xL */
-@media (min-width: 1536px) {
-}
+@media (min-width: 1536px) {}

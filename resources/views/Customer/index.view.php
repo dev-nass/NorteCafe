@@ -37,26 +37,26 @@
                 <div class="row">
                     <div class="col-6 mt-2">
                         <div class="d-flex">
-                            <div class="square"><i class="fa-solid fa-door-open h4 square-icon"></i></div>
-                            <div class="ms-2">Open Everday <br> (Except Holidays)</div>
+                            <div><i class="fa-solid fa-door-open h4 square-icon square py-3"></i></div>
+                            <div class="ms-2 hero-features-text">Open Everday <br> (Except Holidays)</div>
                         </div>
                     </div>
                     <div class="col-6 mt-2">
                         <div class="d-flex">
-                            <div class="square"><i class="fa-solid fa-clock h4 square-icon"></i></div>
-                            <div class="ms-2">Open From <br> 10am-9pm</div>
+                            <div><i class="fa-solid fa-clock h4 square-icon square py-3"></i></div>
+                            <div class="ms-2 hero-features-text">Open From <br> 10am-9pm</div>
                         </div>
                     </div>
                     <div class="col-6 mt-2">
                         <div class="d-flex">
-                            <div class="square"><i class="fa-solid fa-utensils h4 square-icon"></i></div>
-                            <div class="ms-2">For Dine In &<br> Take Out</div>
+                            <div><i class="fa-solid fa-utensils h4 square-icon square py-3"></i></div>
+                            <div class="ms-2 hero-features-text">For Dine In &<br> Take Out</div>
                         </div>
                     </div>
                     <div class="col-6 mt-2">
                         <div class="d-flex">
-                            <div class="square"><i class="fa-solid fa-truck h4 square-icon"></i></div>
-                            <div class="ms-2">Online Delivery <br> (Dasma Only)</div>
+                            <div><i class="fa-solid fa-truck h4 square-icon square py-3"></i></div>
+                            <div class="ms-2 hero-features-text">Online Delivery <br> (Dasma Only)</div>
                         </div>
                     </div>
                 </div>
@@ -77,10 +77,10 @@
             <div class="col-12 col-lg-6 d-flex justify-content-center container-interval-slide">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
-                        <div class="col-4">
+                        <div class="d-none d-sm-block col-md-4">
                             <img src="../../storage/frontend/user/img/index/croffle.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
-                        <div class="col-8 choco-bg">
+                        <div class="col-12 col-md-8 choco-bg">
                             <div class="card-body">
                                 <h5 class="card-title">Croffle</h5>
                                 <p class="card-text mt-2 mb-4">A crispy, flaky croissant pressed like a waffle, sweet or savory.</p>
@@ -93,14 +93,14 @@
             <div class="col-12 col-lg-6 d-flex justify-content-center container-interval-slide">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
-                        <div class="col-8 choco-bg">
+                        <div class="col-12 col-md-8 choco-bg">
                             <div class="card-body">
                                 <h5 class="card-title">Sandwhich & Nachos</h5>
                                 <p class="card-text mt-2 mb-4">Crunchy nachos and hearty sandwiches, packed with flavors.</p>
                                 <a href="category-filter?search=NACHOS" class="white-choco-btn">View Product</a>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="d-none d-sm-block col-md-4">
                             <img src="../../storage/frontend/user/img/index/sandwhich-nachos.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
                     </div>
@@ -112,10 +112,10 @@
             <div class="col-12 col-lg-6 d-flex justify-content-center container-interval-slide">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
-                        <div class="col-4">
+                        <div class="d-none d-sm-block col-md-4">
                             <img src="../../storage/frontend/user/img/index/coffee.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
-                        <div class="col-8 dark-bg">
+                        <div class="col-12 col-md-8 dark-bg">
                             <div class="card-body">
                                 <h5 class="card-title">Coffee</h5>
                                 <p class="card-text mt-2 mb-4">Rich, aromatic coffee brewed to perfection for a delightful experience for everybody.</p>
@@ -128,14 +128,14 @@
             <div class="col-12 col-lg-6 d-flex justify-content-center container-interval-slide">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
-                        <div class="col-8 dark-bg">
+                        <div class="col-12 col-md-8 dark-bg">
                             <div class="card-body">
                                 <h5 class="card-title">Milktea</h5>
                                 <p class="card-text mt-2 mb-4">Creamy, flavorful, savoring milk tea with chewy boba for a refreshing treat.</p>
                                 <a href="category-filter?search=MILKTEA" class="white-choco-btn">View Product</a>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="d-none d-sm-block col-md-4">
                             <img src="../../storage/frontend/user/img/index/milktea.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
                     </div>

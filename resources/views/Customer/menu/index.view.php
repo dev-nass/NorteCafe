@@ -61,7 +61,7 @@
         <!-- Menu Item -->
         <div class="row">
             <?php foreach ($menu_items as $item) : ?>
-                <div class="col-6 col-xxl-4">
+                <div class="col-12 col-md-6 col-xxl-4">
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-12 col-md-4">
@@ -92,7 +92,8 @@
                                             <p class="card-text mt-2 <?= $item['available'] ? 'text-success' : 'text-danger' ?>"><?= $item['available'] ? 'Available' : 'Not Available' ?></p>
                                         </div>
                                         <div>
-                                            <button class="<?= $item['available'] ? 'choco-btn' : 'choco-btn-disabled opacity-50' ?>" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling-id<?= $item['menu_item_id'] ?>" aria-controls="offcanvasScrolling" <?= $item['available'] ? '' : 'disabled' ?>><i class="fa-solid fa-cart-plus"></i></button>
+                                            <?php $isVerified = isVerified() ?>
+                                            <button class="<?= $item['available'] && $isVerified ? 'choco-btn' : 'choco-btn-disabled opacity-50' ?>" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling-id<?= $item['menu_item_id'] ?>" aria-controls="offcanvasScrolling" <?= $item['available'] && $isVerified ? '' : 'disabled' ?>><i class="fa-solid fa-cart-plus"></i></button>
 
                                             <!-- Off canvas (before adding to cart) -->
                                             <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling-id<?= $item['menu_item_id'] ?>" aria-labelledby="offcanvasScrollingLabel">

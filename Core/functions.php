@@ -24,6 +24,17 @@ function urlIs($value)
     return $_SERVER['REQUEST_URI'] === "/PHP%202025/Norte%20Cafe/public/index.php/{$value}";
 }
 
+function isVerified()
+{
+
+    
+    if(isset($_SESSION['__currentUser']['credentials']['verified']) === true) {
+        return true;
+    }
+
+    return false;
+}
+
 function base_path($path)
 {
     return str_replace('\\', '/', BASE_PATH . $path);

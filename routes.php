@@ -48,7 +48,7 @@ $router->get('403', 'ResponseController', 'http_403');
 $router->get('search-filter', 'Customer\FilterController', 'search')->only('auth', 'Customer');
 $router->get('category-filter', 'Customer\FilterController', 'category')->only('auth', 'Customer');
 
-$router->get('menu', 'Customer\MenuController', 'index')->only('auth', 'Customer');
+$router->get('menu', 'Customer\MenuController', 'index');
 
 $router->get('cart', 'Customer\CartController', 'index')->only('auth', 'Customer');
 $router->post('cart-store', 'Customer\CartController', 'store');
