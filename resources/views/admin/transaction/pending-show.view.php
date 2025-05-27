@@ -140,7 +140,7 @@
                                         <span class="text-xs text-success"><?= $rider['available'] ? "Available" : "" ?></span>
                                     </div>
                                     <div class="d-flex align-items-center text-sm">
-                                        <form action="transaction-assign-admin" method="POST">
+                                        <form class="assign-transaction" action="transaction-assign-admin" method="POST">
                                             <input
                                                 class="d-none"
                                                 name="transaction_id"
@@ -149,7 +149,12 @@
                                                 class="d-none"
                                                 name="rider_id"
                                                 value="<?= $rider['user_id'] ?>">
-                                            <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4" <?= $transactions[0]['status'] == "Approved by Employee" ? "" : "disabled" ?>><i class="material-symbols-rounded text-lg position-relative me-1">assignment_add</i>Assign</button>
+                                            <!-- added because the status now contains the name -->
+                                            <?php
+                                            $status = $transactions[0]['status'];
+                                            $disabled = str_starts_with($status, "Approved by Employee") ? "" : "disabled";
+                                            ?>
+                                            <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4" <?= $disabled ?>><i class="material-symbols-rounded text-lg position-relative me-1">assignment_add</i>Assign</button>
                                         </form>
                                     </div>
                                 </li>
@@ -210,6 +215,10 @@
                                     class="d-none"
                                     name="status"
                                     value="Rejected by Employee">
+                                <input
+                                    id="cancel-reason"
+                                    class="d-none"
+                                    name="cancel-reason">
                                 <button form="status-reject" title="Reject" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-symbols-rounded text-lg">close</i></button>
                             </form>
                         </div>
@@ -308,6 +317,128 @@
 
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const approvedForm = document.querySelector('#status-approve');
+
+    approvedForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure?",
+            text: "You really want to approve this transaction",
+            allowOutsideClick: false,
+            confirmButtonText: "Yes",
+            showCancelButton: true
+        }).then((sureOrNot) => {
+            // console.log(sureOrNot);
+            if (sureOrNot.isConfirmed) {
+                approvedForm.submit();
+            }
+        });
+    });
+</script>
+
+<script>
+    const rejectForm = document.querySelector('#status-reject');
+    const reasonInput = document.querySelector('#cancel-reason');
+
+    rejectForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Cancellation alert
+        Swal.fire({
+                icon: "question",
+                title: "Cancellation",
+                text: "Do you want to cancel this transaction?",
+                showDenyButton: true,
+                confirmButtonText: "Yes",
+                denyButtonText: `No`,
+                allowOutsideClick: false
+            })
+
+            // Alert with Input
+            .then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                            icon: "question",
+                            title: "Please send us your reason",
+                            allowOutsideClick: false,
+                            input: "textarea",
+                            inputPlaceholder: "Type your message here...",
+                            inputAttributes: {
+                                "aria-label": "Type your message here"
+                            },
+                            inputValidator: (value) => {
+                                if (!value) {
+                                    return "This field is required!";
+                                }
+                            },
+                            confirmButtonText: "Send",
+                            showCancelButton: true // Optional: adds a cancel button
+                        })
+
+                        // "Are you sure?" alert
+                        .then((submit_with_reason) => {
+                            console.log(submit_with_reason);
+                            if (submit_with_reason.isConfirmed) {
+                                // console.log(submit_with_reason);
+                                Swal.fire({
+                                    icon: "question",
+                                    title: "Are you sure?",
+                                    text: "You really want to cancel this transaction",
+                                    allowOutsideClick: false,
+                                    confirmButtonText: "Yes",
+                                    showCancelButton: true
+                                }).then((sureOrNot) => {
+                                    reasonInput.value = submit_with_reason.value
+                                    // console.log(sureOrNot);
+                                    if (sureOrNot.isConfirmed) {
+                                        rejectForm.submit();
+                                        Swal.fire({
+                                            title: 'Sending...',
+                                            text: 'Please wait while we send your reason to customer email.',
+                                            allowOutsideClick: false,
+                                            didOpen: () => {
+                                                Swal.showLoading(); // Show loading spinner
+                                            }
+                                        });
+                                    } else if (sureOrNot.isDismissed) {
+                                        Swal.fire("Changes are not saved", "", "info");
+                                    }
+                                });
+                            }
+                        })
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                }
+            });
+    });
+</script>
+
+<script>
+    // Select all forms with class "assign-transaction"
+    const assignForms = document.querySelectorAll('form.assign-transaction');
+
+    // Loop through each and attach a submit listener
+    assignForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // prevent default submission
+
+            // You can add SweetAlert here, AJAX, or confirmation logic
+            Swal.fire({
+                title: 'Assign this rider?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, assign',
+            }).then(result => {
+                if (result.isConfirmed) {
+                    form.submit(); // manually submit if confirmed
+                }
+            });
+        });
+    });
+</script>
 
 
 <?php if (isset($_SESSION['__flash']['status_changed'])) : ?>

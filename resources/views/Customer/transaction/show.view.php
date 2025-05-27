@@ -250,7 +250,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<?php if ($_SESSION['__flash']['cancellation'] === 'Email sent') : ?>
+<?php if (isset($_SESSION['__flash']['cancellation']) && $_SESSION['__flash']['cancellation'] === 'Email sent') : ?>
     <script>
         Swal.fire({
             icon: "info",
@@ -260,7 +260,7 @@
             allowOutsideClick: false,
         });
     </script>
-<?php elseif ($_SESSION['__flash']['cancellation'] === 'Email not sent') : ?>
+<?php elseif (isset($_SESSION['__flash']['cancellation']) && $_SESSION['__flash']['cancellation'] === 'Email not sent') : ?>
     <script>
         Swal.fire({
             icon: "error",
@@ -328,6 +328,14 @@
                                     // console.log(sureOrNot);
                                     if (sureOrNot.isConfirmed) {
                                         form.submit();
+                                        Swal.fire({
+                                            title: 'Sending...',
+                                            text: 'Please wait while we send your reason to shop email.',
+                                            allowOutsideClick: false,
+                                            didOpen: () => {
+                                                Swal.showLoading(); // Show loading spinner
+                                            }
+                                        });
                                     } else if (sureOrNot.isDismissed) {
                                         Swal.fire("Changes are not saved", "", "info");
                                     }

@@ -12,7 +12,7 @@ class Transaction extends Model
      * Used to get a very detailed collection of records,
      * and return every order thats under a single
      * tranaction id (used for transaction/show())
-    */
+     */
     public function getOrdersTransaction($transaction_id)
     {
 
@@ -49,7 +49,7 @@ class Transaction extends Model
      * Return a collection of current transactions
      * status: (Pending, Approved, Cancellation)
      * Cancellation is done by either Customer and Staff
-    */
+     */
     public function getCurrentTransactions($user_id, $order_by = "ASC", $limit = 9999)
     {
 
@@ -71,7 +71,8 @@ class Transaction extends Model
                 "approved_status_rider" => "Approved by Rider",
                 "rejected_status_rider" => "Rejected by Rider",
                 "in_transit" => "In Transit",
-            ])->get();
+            ]
+        )->get();
 
         return $currentTransactions;
     }
@@ -79,7 +80,7 @@ class Transaction extends Model
     /**
      * Return a collection of previous transactions
      * status: (Delivered, Cancelled, Rejected)
-    */
+     */
     public function getPreviousTransactions($user_id, $order_by = "ASC", $limit = 9999)
     {
 
@@ -90,16 +91,22 @@ class Transaction extends Model
                 FROM transactions
                 LEFT JOIN users AS users ON users.user_id = transactions.user_id
                 WHERE transactions.user_id = :user_id AND 
-                (transactions.status = :cancelled_status OR transactions.status = :rejected_status OR transactions.status = :delivered_status OR transactions.status = :failed_delivery)
+                (
+                    transactions.status = :cancelled_status OR 
+                    transactions.status LIKE :rejected_status OR 
+                    transactions.status = :delivered_status OR 
+                    transactions.status = :failed_delivery
+                )
                 ORDER BY transaction_id $order_by
                 LIMIT $limit",
             [
                 "user_id" => $user_id,
                 "cancelled_status" => "Cancelled",
-                "rejected_status" => "Rejected by Employee",
+                "rejected_status" => "Rejected by Employee%",
                 "delivered_status" => "Delivered",
                 "failed_delivery" => "Failed Delivery",
-            ])->get();
+            ]
+        )->get();
 
         return $previousTransactions;
     }
@@ -111,7 +118,7 @@ class Transaction extends Model
      * certain Employee
      * 
      * status: all / whatever
-    */
+     */
     public function getHandledTransactions($id)
     {
 
@@ -127,7 +134,7 @@ class Transaction extends Model
 
     /**
      * Used for uploading delivery proof
-    */
+     */
     public function uploadFile($file)
     {
         $target_dir = BASE_PATH . "storage/backend/img/delivery_proof/";

@@ -13,21 +13,31 @@
                             <p class="text-sm mb-0">Status: Pending and Reject by Rider</p>
                         </div>
                         <div>
-                            <form action="transaction-reject-all-admin" method="POST">  
-                                <?php foreach($pending_transactions as $pending) : ?>
-                                <input 
+                            <form id="reject-all-pending" action="transaction-reject-all-admin" method="POST">
+                                <input
+                                    id="cancel-reason"
                                     class="d-none"
-                                    type="text"
-                                    name="status"
-                                    value="Rejected by Employee">
-                                <input 
-                                    class="d-none"
-                                    type="text"
-                                    name="transaction-ids[]"
-                                    value="<?= $pending['transaction_id'] ?>"
-                                    readonly>
-                                <?php endforeach ; ?>
-                                <button class="btn btn-outline-danger" <?= $pending_transactions ? '' : 'disabled' ?> >Reject All</button>
+                                    name="cancel-reason">
+                                <?php foreach ($pending_transactions as $pending) : ?>
+                                    <input
+                                        class="d-none"
+                                        type="text"
+                                        name="status"
+                                        value="Rejected by Employee">
+                                    <input
+                                        class="d-none"
+                                        type="text"
+                                        name="transaction-ids[]"
+                                        value="<?= $pending['transaction_id'] ?>"
+                                        readonly>
+                                    <input
+                                        class="d-none"
+                                        type="text"
+                                        name="user-ids[]"
+                                        value="<?= $pending['user_id'] ?>"
+                                        readonly>
+                                <?php endforeach; ?>
+                                <button class="btn btn-outline-danger" <?= $pending_transactions ? '' : 'disabled' ?>>Reject All</button>
                             </form>
                         </div>
                     </div>
@@ -57,7 +67,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            
+
                         </div>
 
                     </div>
@@ -72,6 +82,56 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
+<script>
+    const form = document.querySelector('#reject-all-pending');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure?",
+            text: "You want to reject all pending transactions",
+            allowOutsideClick: false,
+            showConfirmButton: true,
+            showCancelButton: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: "question",
+                    title: "Send customer your reason",
+                    allowOutsideClick: false,
+                    input: "textarea",
+                    inputPlaceholder: "Type your message here...",
+                    inputAttributes: {
+                        "aria-label": "Type your message here"
+                    },
+                    inputValidator: (value) => {
+                        if (!value) {
+                            return "This field is required!";
+                        }
+                    },
+                    confirmButtonText: "Send",
+                    showCancelButton: true // Optional: adds a cancel button
+                }).then((resultv2) => {
+                    document.querySelector('#cancel-reason').value = resultv2.value
+                    if (resultv2.isConfirmed) {
+                        form.submit();
+                        Swal.fire({
+                            title: 'Sending...',
+                            text: 'Please wait while we send your reason to customers email.',
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading(); // Show loading spinner
+                            }
+                        });
+                    }
+                })
+            }
+        });
+    });
+</script>
+
+
 <?php if (isset($_SESSION['__flash']['reject_all'])) : ?>
     <script>
         Swal.fire({
@@ -81,6 +141,6 @@
             allowOutsideClick: false,
         });
     </script>
-<?php endif ; ?>
+<?php endif; ?>
 
 <?php require base_path('resources/views/components/admin_foot.php') ?>

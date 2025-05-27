@@ -122,6 +122,23 @@
 
 <?php require base_path('resources/views/components/foot.php') ?>
 
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const form = document.querySelector('#contact-form');
+    form.addEventListener("submit", () => {
+        Swal.fire({
+            title: 'Sending...',
+            text: 'Please wait while we send your email.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading(); // Show loading spinner
+            }
+        });
+    });
+</script>
+
 <?php if (isset($_SESSION['__flash']['contactUs_notif'])) : ?>
     <script>
         Swal.fire({

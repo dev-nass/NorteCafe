@@ -2,7 +2,7 @@
 <?php require base_path('resources/views/components/navbar.php') ?>
 
 <section class="section-container">
-    <div class="container py-5" >
+    <div class="container py-5">
         <div class="d-flex justify-content-between">
             <h5 class="hero-header fs-2 ms-lg-3">Profiling Page</h5>
             <div class="d-flex justify-content-end mb-4">
@@ -27,12 +27,16 @@
                                             <div class="col-9 mb-3" style="width: 500px; height: 500px">
                                                 <div class="bg-white p-4 rounded h-100">
                                                     <label id="drop-area" class="form-control w-100 h-100" for="input-upload-item">
-                                                        <input class="d-none" name="user-profile-img" type="file" accept="image/*" id="input-upload-item">
+                                                        <input class="d-none" name="user-profile-img" type="file" accept="image/*" id="input-upload-item" required>
                                                         <div id="image-view-container" class="rounded d-flex flex-column align-items-center justify-content-center h-100" style="border: 1px dashed black; object-fit: cover; background-position: center; background-image: url(<?= $_SESSION['__currentUser']['credentials']['profile_dir'] ?>);">
                                                             <img class="<?= $_SESSION['__currentUser']['credentials']['profile_dir'] ? 'w-100 h-100' : 'w-25' ?>" src="<?= $_SESSION['__currentUser']['credentials']['profile_dir'] ?? '../../storage/frontend/admin/transaction/upload-logo.png" alt="upload-logo' ?> ">
                                                             <p class="text-center text-md mb-0"><?= $_SESSION['__currentUser']['credentials']['profile_dir'] ? '' : 'Click here to upload image' ?></p>
                                                         </div>
+                                                        <div class="invalid-feedback mt-2">
+                                                            Upload a photo!
+                                                        </div>
                                                     </label>
+
                                                 </div>
                                             </div>
 

@@ -253,6 +253,15 @@
             allowOutsideClick: false,
         });
     </script>
+<?php elseif(isset($_SESSION['__flash']['status_changed']) && $_SESSION['__flash']['status_changed'] === 'Rejected by Employee') :  ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Transaction rejected!",
+            allowOutsideClick: false,
+        });
+    </script>
 <?php endif; ?>
 
 <?php require base_path('resources/views/components/admin_foot.php') ?>

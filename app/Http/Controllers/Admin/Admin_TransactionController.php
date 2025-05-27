@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Transaction;
 use Core\Database;
 use Core\Controller;
+use Core\Mailer;
 use Core\Session;
-use App\Models\Order;
+use App\Models\Transaction;
+use App\Models\User;
 
 class Admin_TransactionController extends Controller
 {
@@ -38,7 +39,7 @@ class Admin_TransactionController extends Controller
      * Used for loading the view of the transactions queue;
      * the file within folder 'Request' is responsible for the data and AJAX call
      */
-    public function queue()
+    public function pending_queue()
     {
 
         $transactionObj = new Transaction;
@@ -54,7 +55,7 @@ class Admin_TransactionController extends Controller
             "rejected_rider" => "Rejected by Rider"
         ])->get();
 
-        return $this->view('admin/transaction/queue.view.php', [
+        return $this->view('admin/transaction/pending-queue.view.php', [
             'title' => 'Transaction Queue',
             'pending_transactions' => $pending_transactions
         ]);
@@ -70,8 +71,8 @@ class Admin_TransactionController extends Controller
         $transactionObj = new Transaction;
         $transactionObj->iniDB();
 
-        // added for reject all
-        $pending_transactions = $transactionObj->query("SELECT transactions.*, CONCAT(users.first_name, ' ', users.last_name) AS fulllname, users.username, users.email, users.contact_number
+        // added for approve all
+        $cancellation_transactions = $transactionObj->query("SELECT transactions.*, CONCAT(users.first_name, ' ', users.last_name) AS fulllname, users.username, users.email, users.contact_number
         FROM transactions
         INNER JOIN users ON transactions.user_id = users.user_id
         WHERE transactions.status = :cancellation
@@ -81,7 +82,7 @@ class Admin_TransactionController extends Controller
 
         return $this->view('admin/transaction/cancellation-queue.view.php', [
             'title' => 'Transaction Cancellation Queue',
-            'pending_transactions' => $pending_transactions
+            'cancellation_transactions' => $cancellation_transactions
         ]);
     }
 
@@ -189,17 +190,34 @@ class Admin_TransactionController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            // gets the current employee
+            $employee = Session::get('__currentUser', 'credentials');
+
             $data = [
                 'status' => $this->getInput('status'),
-                'transaction_id' => $this->getInput('transaction-id')
+                'transaction_id' => $this->getInput('transaction-id'),
+                'reason' => $this->getInput('cancel-reason'),
             ];
+
 
             $transactionObj = new Transaction;
             $current_date = date("Y-m-d H:i:s");
             $updatedStatus = $transactionObj->update($data['transaction_id'], [
-                "status" => $data["status"],
+                "status" => $data["status"] . ' ' . $employee['last_name'],
                 "confirmed_at" => $current_date,
             ]);
+
+            if ($data['status'] === 'Rejected by Employee') {
+                $userObj = new User;
+                $transaction = $transactionObj->firstWhere(['transaction_id' => $data['transaction_id']]);
+                $customer = $userObj->findUserOr(['user_id' => $transaction['user_id']]);
+
+                $mail = new Mailer;
+                $mail->contactThem('Norte Cafe', 'nortecafe7@gmail.com', $customer['email'], 'Cancellation', $data['reason']);
+
+                Session::set('__flash', 'status_changed', $data['status']);
+                return $this->redirect("transaction-show-admin?transaction_id={$data['transaction_id']}");
+            }
 
             if ($updatedStatus) {
                 Session::set('__flash', 'status_changed', $data['status']);
@@ -233,7 +251,7 @@ class Admin_TransactionController extends Controller
             if ($updatedStatus) {
                 Session::set('__flash', 'status_changed', $data['status']);
 
-                if($data['status'] === 'Cancelled') {
+                if ($data['status'] === 'Cancelled') {
                     return $this->redirect("transaction-show-admin?transaction_id={$data['transaction_id']}");
                 }
 
@@ -250,9 +268,51 @@ class Admin_TransactionController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            // gets the current employee
+            $employee = Session::get('__currentUser', 'credentials');
+
             $data = [
                 'status' => $this->getInput('status'),
-                'transaction_ids' => $this->getInput('transaction-ids')
+                'transaction_ids' => $this->getInput('transaction-ids'),
+                'user_ids' => $this->getInput('user-ids'),
+                'cancellation_reason' => $this->getInput('cancel-reason'),
+            ];
+
+            $transactionObj = new Transaction;
+            $current_date = date("Y-m-d H:i:s");
+            foreach ($data['transaction_ids'] as $id) {
+                $updatedStatus = $transactionObj->update($id, [
+                    "status" => $data["status"] . ' ' . $employee['last_name'],
+                    "confirmed_at" => $current_date,
+                ]);
+            }
+
+            // sends gmail to every customer who's transaction is caught up on "Reject All"
+            $userObj = new User;
+            $mail = new Mailer;
+            foreach ($data['user_ids'] as $id) {
+                $customer = $userObj->findUserOr(['user_id' => $id]);
+                $mail->contactThem('Norte Cafe', 'nortecafe7@gmail.com', $customer['email'], 'Cancellation', $data['cancellation_reason']);
+            }
+
+            if ($updatedStatus) {
+                Session::set('__flash', 'reject_all', 'Successfully rejected all');
+                return $this->redirect("transaction-queue-admin");
+            }
+        }
+    }
+
+    /**
+     * Used for approving all cancellation records
+     */
+    public function approve_all()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $data = [
+                'status' => $this->getInput('status'),
+                'transaction_ids' => $this->getInput('transaction-ids'),
             ];
 
             $transactionObj = new Transaction;
@@ -265,8 +325,8 @@ class Admin_TransactionController extends Controller
             }
 
             if ($updatedStatus) {
-                Session::set('__flash', 'reject_all', 'Successfully rejected all');
-                return $this->redirect("transaction-queue-admin");
+                Session::set('__flash', 'approved_all', 'Successfully approved all');
+                return $this->redirect("transaction-cancellation-queue-admin");
             }
         }
     }
@@ -283,10 +343,13 @@ class Admin_TransactionController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
+            // gets the current employee
+            $employee = Session::get('__currentUser', 'credentials');
+
             $transactionObj = new Transaction;
             $assignedRider = $transactionObj->update($_POST['transaction_id'], [
                 "rider_id" => $_POST['rider_id'],
-                "status" => "Approved by Employee",
+                "status" => "Approved by Employee {$employee['last_name']}",
             ]);
 
             if ($assignedRider) {

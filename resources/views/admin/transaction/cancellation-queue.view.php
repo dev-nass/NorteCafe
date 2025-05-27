@@ -10,24 +10,24 @@
                     <div class="card-header pb-0 px-3 d-flex justify-content-between">
                         <div>
                             <h6 class="mb-0">Cancellation Transactions Queue (empty before the day ends)</h6>
-                            <p class="text-sm mb-0">Status: Pending and Reject by Rider</p>
+                            <p class="text-sm mb-0">Status: Cancellation</p>
                         </div>
                         <div>
-                            <form action="transaction-reject-all-admin" method="POST">  
-                                <?php foreach($pending_transactions as $pending) : ?>
+                            <form action="transaction-cancellation-approve-all-admin" method="POST">  
+                                <?php foreach($cancellation_transactions as $trans) : ?>
                                 <input 
                                     class="d-none"
                                     type="text"
                                     name="status"
-                                    value="Rejected by Employee">
+                                    value="Cancelled">
                                 <input 
                                     class="d-none"
                                     type="text"
                                     name="transaction-ids[]"
-                                    value="<?= $pending['transaction_id'] ?>"
+                                    value="<?= $trans['transaction_id'] ?>"
                                     readonly>
                                 <?php endforeach ; ?>
-                                <button class="btn btn-outline-danger" <?= $pending_transactions ? '' : 'disabled' ?> >Reject All</button>
+                                <button class="btn btn-outline-success" <?= $cancellation_transactions ? '' : 'disabled' ?> >Approve All</button>
                             </form>
                         </div>
                     </div>
@@ -70,3 +70,17 @@
 
 
 <?php require base_path('resources/views/components/admin_foot.php') ?>
+
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<?php if (isset($_SESSION['__flash']['approve_all'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Successfully approved all cancellation transactions!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php endif; ?>

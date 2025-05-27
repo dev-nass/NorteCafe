@@ -59,7 +59,7 @@ class Mailer
      * Used for sending email to the norte_cafe if the customers
      * have conerns
      * &
-     * For transaction cancellation
+     * For transaction cancellation (customer side)
      */
     public function contactUs($sender_name, $sender_email, $subject, $message)
     {
@@ -71,6 +71,29 @@ class Mailer
 
         // Add recipient (your company's email)
         $this->mail->addAddress($this->username);
+
+        $this->mail->isHTML(true);
+        $this->mail->Subject = "{$subject}";
+        $this->mail->Body    = "{$message}";
+
+        return $this->mail->send() ?? false;
+    }
+
+    /**
+     * Cancellation (Admin/Employee Side)
+     * 
+     * $recipient should be an email
+    */
+    public function contactThem($sender_name, $sender_email, $recipient, $subject, $message)
+    {
+        $this->mailerSettings();
+
+        // Use SMTP-authenticated email for "From" address
+        $this->mail->setFrom($this->username, $sender_name);  // Use SMTP-authenticated email
+        $this->mail->addReplyTo($sender_email, $sender_name); // Set the sender's email as the reply-to address
+
+        // Add recipient (your company's email)
+        $this->mail->addAddress($recipient);
 
         $this->mail->isHTML(true);
         $this->mail->Subject = "{$subject}";
