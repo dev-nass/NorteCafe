@@ -85,14 +85,22 @@ $router->post('backup', 'Admin\Admin_DashboardController', 'backup_db');
 $router->get('generate-report', 'Admin\Admin_GenerateReportController', 'create');
 $router->post('generate-report', 'Admin\Admin_GenerateReportController', 'generate');
 
+
 $router->get('transaction-queue-admin', 'Admin\Admin_TransactionController', 'queue')->only('staff', 'Admin,Employee');
 $router->get('transaction-pending-show-admin', 'Admin\Admin_TransactionController', 'pending_show');
+
+$router->get('transaction-cancellation-queue-admin', 'Admin\Admin_TransactionController', 'cancellation_queue')->only('staff', 'Admin,Employee');
+$router->get('transaction-cancellation-queue-show-admin', 'Admin\Admin_TransactionController', 'cancellation_show')->only('staff', 'Admin,Employee');
+$router->post('transaction-cancellation-update-admin', 'Admin\Admin_TransactionController', 'cancellation_update');
+
 $router->get('transaction-show-admin', 'Admin\Admin_TransactionController', 'show');
 $router->post('transaction-update-admin', 'Admin\Admin_TransactionController', 'update'); // (Admin/transactions/pending-show) change status "Approved" or "Rejected"
 $router->post('transaction-reject-all-admin', 'Admin\Admin_TransactionController', 'reject_all'); // (Admin/transactions/pending-show) change status to "Rejected" (all pending)
 $router->post('transaction-assign-admin', 'Admin\Admin_TransactionController', 'assign');
 $router->get('transaction-table-admin', 'Admin\Admin_TransactionController', 'index')->only('staff', 'Admin,Employee');
 $router->post('transaction-archive-admin', 'Admin\Admin_TransactionController', 'delete');
+// API CALLS
+$router->get('transaction-get-cancellation', 'Admin\Admin_TransactionController', 'get_cancellation')->only('staff', 'Admin,Employee');
 
 $router->get('menu-table-admin', 'Admin\Admin_MenuController', 'index')->only('staff', 'Admin,Employee');
 $router->get('menu-archive-table-admin', 'Admin\Admin_MenuController', 'index_archived')->only('staff', 'Admin,Employee');

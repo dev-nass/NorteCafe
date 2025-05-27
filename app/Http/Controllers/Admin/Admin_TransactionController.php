@@ -44,6 +44,7 @@ class Admin_TransactionController extends Controller
         $transactionObj = new Transaction;
         $transactionObj->iniDB();
 
+        // query added for reject all
         $pending_transactions = $transactionObj->query("SELECT transactions.*, CONCAT(users.first_name, ' ', users.last_name) AS fulllname, users.username, users.email, users.contact_number
         FROM transactions
         INNER JOIN users ON transactions.user_id = users.user_id
@@ -55,6 +56,31 @@ class Admin_TransactionController extends Controller
 
         return $this->view('admin/transaction/queue.view.php', [
             'title' => 'Transaction Queue',
+            'pending_transactions' => $pending_transactions
+        ]);
+    }
+
+    /**
+     * Used for loading the view of the transaction with cancellation status;
+     * API used for the AJAX request is at the buttom
+     */
+    public function cancellation_queue()
+    {
+
+        $transactionObj = new Transaction;
+        $transactionObj->iniDB();
+
+        // added for reject all
+        $pending_transactions = $transactionObj->query("SELECT transactions.*, CONCAT(users.first_name, ' ', users.last_name) AS fulllname, users.username, users.email, users.contact_number
+        FROM transactions
+        INNER JOIN users ON transactions.user_id = users.user_id
+        WHERE transactions.status = :cancellation
+        ORDER BY transactions.transaction_id DESC;", [
+            "cancellation" => "Cancellation",
+        ])->get();
+
+        return $this->view('admin/transaction/cancellation-queue.view.php', [
+            'title' => 'Transaction Cancellation Queue',
             'pending_transactions' => $pending_transactions
         ]);
     }
@@ -116,6 +142,40 @@ class Admin_TransactionController extends Controller
         ]);
     }
 
+    /**
+     * Used for loading/showing resources on
+     * Admin/transaction/cancellation-show.view.php
+     */
+    public function cancellation_show()
+    {
+
+        $transaction_id = $_GET['id'];
+
+        // this variable will contain an array [] each one with repeating transacton_id but different col value next to it.
+        // we use ->get() here instead of ->find() because each transactions can have multipe orders on them,
+        // and each of those orders are rendered into their own row/records
+        $transactionObj = new Transaction;
+        $transactions = $transactionObj->getOrdersTransaction($transaction_id);
+        $previousTransactions = $transactionObj->getPreviousTransactions($transactions[0]['user_id']);
+
+        // available rider query
+        $db = new Database;
+        $db->iniDB();
+        $availableRiders = $db->query("SELECT users.user_id, CONCAT(users.first_name, ' ', users.last_name) AS fullname, users.username, users.email, users.contact_number, CONCAT(users.house_number, ', ', users.street, ', ', users.barangay, ', ', users.city, ', ', users.province, ', ', users.region, ', ', users.postal_code) AS address, users.available
+            FROM users 
+            WHERE role = :role AND available = :available", [
+            "role" => "Rider",
+            "available" => 1,
+        ])->get();
+
+        return $this->view('admin/transaction/cancellation-show.view.php', [
+            'title' => "Pending Transaction Show {$transaction_id}",
+            'transactions' => $transactions,
+            'previousTransactions' => $previousTransactions,
+            'availableRiders' => $availableRiders,
+        ]);
+    }
+
     public function create() {}
 
     public function store() {}
@@ -149,12 +209,46 @@ class Admin_TransactionController extends Controller
     }
 
     /**
+     * Used for updating status of tranasction (Cancellation)
+     * Approved: Cancelled
+     * Rejected: Pending
+     */
+    public function cancellation_update()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $data = [
+                'status' => $this->getInput('status'),
+                'transaction_id' => $this->getInput('transaction-id')
+            ];
+
+            $transactionObj = new Transaction;
+            $current_date = date("Y-m-d H:i:s");
+            $updatedStatus = $transactionObj->update($data['transaction_id'], [
+                "status" => $data["status"],
+                "confirmed_at" => $current_date,
+            ]);
+
+            if ($updatedStatus) {
+                Session::set('__flash', 'status_changed', $data['status']);
+
+                if($data['status'] === 'Cancelled') {
+                    return $this->redirect("transaction-show-admin?transaction_id={$data['transaction_id']}");
+                }
+
+                return $this->redirect("transaction-pending-show-admin?id={$data['transaction_id']}");
+            }
+        }
+    }
+
+    /**
      * Used for rejecting all transactions on queue
-    */
+     */
     public function reject_all()
     {
-        
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $data = [
                 'status' => $this->getInput('status'),
@@ -163,13 +257,13 @@ class Admin_TransactionController extends Controller
 
             $transactionObj = new Transaction;
             $current_date = date("Y-m-d H:i:s");
-            foreach($data['transaction_ids'] as $id) {
+            foreach ($data['transaction_ids'] as $id) {
                 $updatedStatus = $transactionObj->update($id, [
                     "status" => $data["status"],
                     "confirmed_at" => $current_date,
                 ]);
             }
-            
+
             if ($updatedStatus) {
                 Session::set('__flash', 'reject_all', 'Successfully rejected all');
                 return $this->redirect("transaction-queue-admin");
@@ -222,5 +316,31 @@ class Admin_TransactionController extends Controller
                 return $this->redirect('transaction-table-admin');
             }
         }
+    }
+
+
+    /**
+     * API CALLS
+     */
+    public function get_cancellation()
+    {
+
+        $db = new Database;
+        $db->iniDB();
+
+        $orders =
+            $db->query("SELECT transactions.*, CONCAT(users.first_name, ' ', users.last_name) AS fulllname, users.username, users.email, users.contact_number
+        FROM transactions
+        INNER JOIN users ON transactions.user_id = users.user_id
+        WHERE transactions.status = :cancellation
+        ORDER BY transactions.transaction_id DESC;", [
+                "cancellation" => "Cancellation"
+            ])->get();
+
+        $reponse = [
+            "orders" => $orders,
+        ];
+
+        echo json_encode($reponse);
     }
 }

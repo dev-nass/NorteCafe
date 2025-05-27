@@ -1,31 +1,32 @@
-<?php require base_path('resources/views/components/head.php') ?>
-<?php require base_path('resources/views/components/navbar.php') ?>
+<?php require base_path('resources/views/components/admin_head.php') ?>
+<?php require base_path('resources/views/components/admin_sidebar.php') ?>
 
-<section class="section-container">
-    <div class="container py-5">
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <?php require base_path('resources/views/components/admin_navbar.php') ?>
+    <div class="container-fluid py-2">
         <div class="row">
             <div class="col-lg-8">
                 <div class="row">
                     <div class="col-xl-6 mb-xl-0 mb-4">
-                        <div class="card bg-transparent shadow">
-                            <div class="overflow-hidden position-relative border-radius-xl choco-gradient-bg">
-                                <img src="../../resources/assets/img/illustrations/pattern-tree.svg" class="position-absolute opacity-25 start-0 top-0 w-100 z-index-1 h-100" alt="pattern-tree">
+                        <div class="card bg-transparent shadow-xl">
+                            <div class="overflow-hidden position-relative border-radius-xl choco-gradient-bg-v2">
+                                <img src="../../resources/assets/img/illustrations/pattern-tree.svg" class="position-absolute opacity-3 start-0 top-0 w-100 z-index-1 h-100" alt="pattern-tree">
                                 <div class="card-body position-relative z-index-1 px-3">
                                     <h5 class="text-white mt-2">Transaction ID: <?= $transactions[0]['transaction_id'] ?></h5>
                                     <div class="pb-4">
-                                        <p class="text-white opacity-8 mb-0">Status: <span class="text-white mb-0"><?= $transactions[0]['status'] ?></span></p>
+                                        <p class="text-white text-sm opacity-8 mb-0">Status: <span class="text-white mb-0"><?= $transactions[0]['status'] ?></span></p>
                                     </div>
                                     <div class="d-flex" style="padding-top: 1rem;">
                                         <div class="">
                                             <div class="mb-2">
-                                                <p class="text-white text-xs opacity-8 mb-0">Customer Name: <span class="fw-light"><?= $transactions[0]['username'] ?></span></p>
+                                                <p class="text-white text-sm mb-0">Customer Name: <a class="fw-light text-light text-decoration-underline" href="customer-show-admin?customer_id=<?= $transactions[0]['user_id'] ?>"><?= $transactions[0]['username'] ?></a></p>
                                                 <h6 class="text-white mb-0"></h6>
                                             </div>
                                             <div class="mb-2">
-                                                <p class="text-white text-xs opacity-8 mb-0">Placed At: <span class="fw-light"><?= date("F d, Y \a\\t h:i A", strtotime($transactions[0]['created_at']));  ?></span></p>
+                                                <p class="text-white text-sm mb-0">Placed At: <span class="fw-light"><?= date("F d, Y \a\\t h:i A", strtotime($transactions[0]['created_at']));  ?></span></p>
                                             </div>
                                             <div>
-                                                <h6 class="mb-lg-1 text-white">Address: <span class="fw-light"><?= $transactions[0]['location'] ?></span></h6>
+                                                <h6 class="mb-lg-1 text-white text-sm">Address: <span class="fw-light"><?= $transactions[0]['location'] ?></span></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -36,25 +37,25 @@
                     <div class="col-xl-6">
                         <div class="row">
                             <div class="col-md-6 col-6">
-                                <div class="card p-3 shadow-sm">
-                                    <div class="card-header mx-4 p-3 text-center choco-gradient-bg mb-2 rounded">
-                                        <div class="icon icon-shape text-center">
-                                            <i class="material-symbols-rounded opacity-10 text-center text-white">payments</i>
+                                <div class="card">
+                                    <div class="card-header mx-4 p-3 text-center">
+                                        <div class="icon icon-shape icon-lg choco-gradient-bg-v2 shadow text-center border-radius-lg">
+                                            <i class="material-symbols-rounded opacity-10">payments</i>
                                         </div>
                                     </div>
                                     <div class="card-body pt-0 p-3 text-center">
-                                        <h6 class="text-center my-2">Amount Due</h6>
+                                        <h6 class="text-center mb-0">Amount Due</h6>
                                         <span class="text-xs">To be paid by the customer</span>
-                                        <hr class="horizontal dark mb-0">
+                                        <hr class="horizontal dark my-3">
                                         <h5 class="mb-0">₱<?= $transactions[0]['amount_due'] ?></h5>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-6">
-                                <div class="card p-3 shadow-sm">
-                                    <div class="card-header mx-4 p-3 text-center choco-gradient-bg mb-2 rounded">
-                                        <div class="icon icon-shape icon-lg text-center">
-                                            <i class="material-symbols-rounded opacity-10 text-white">delivery_truck_speed</i>
+                                <div class="card">
+                                    <div class="card-header mx-4 p-3 text-center">
+                                        <div class="icon icon-shape icon-lg choco-gradient-bg-v2 shadow text-center border-radius-lg">
+                                            <i class="material-symbols-rounded opacity-10">delivery_truck_speed</i>
                                         </div>
                                     </div>
                                     <div class="card-body pt-0 p-3 text-center">
@@ -79,15 +80,15 @@
                             <div class="card-body p-3">
                                 <div class="row">
                                     <div class="col-12 mb-md-0 mb-4">
-                                        <div class="card card-body border card-plain border-radius-lg d-flex align-items-center justify-content-between flex-row">
+                                        <div class="card card-body border card-plain border-radius-lg pb-2 d-flex align-items-center justify-content-between flex-row">
                                             <div>
-                                                <h6 class="mb-0">Phone Number: <?= $transactions[0]['user_contact_number'] ?></h6>
+                                                <h6 class="mb-0">Phone Number: 09071055556</h6>
                                                 <span class="">Method: <?= $transactions[0]['payment_method'] ?></span>
                                             </div>
 
                                             <div>
-                                                <button title="Proof of Payment" type="button" class="btn choco-gradient-bg" data-bs-toggle="modal" data-bs-target="#proofOfPaymentModal">
-                                                    <div class="icon icon-shape icon-lg bg-gradient-dark shadow text-center border-radius-lg p-2 rounded">
+                                                <button title="Proof of Payment" type="button" class="btn choco-gradient-bg-v2" data-bs-toggle="modal" data-bs-target="#proofOfPaymentModal">
+                                                    <div class="icon icon-shape icon-lg shadow text-center border-radius-lg d-flex align-items-center justify-content-center rounded">
                                                         <i class="material-symbols-rounded opacity-10 text-white">photo_library</i>
                                                     </div>
                                                 </button>
@@ -121,41 +122,59 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="card shadow-sm h-100">
-                    <div class="pb-0 p-3 white-bg">
+            <div class="col-lg-4 d-flex flex-column">
+                <div class="card mb-3 shadow-sm" style="max-height: 350px; min-height: 350px; overflow-y: auto;">
+                    <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-6 d-flex align-items-center">
-                                <h6 class="mb-0">Rider Details</h6>
+                                <h6 class="mb-0">Available Riders</h6>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body p-3 pb-0 d-flex flex-column justify-content-between">
+                    <div class="card-body p-3 pb-0">
                         <ul class="list-group">
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex flex-column justify-content-between">
+                            <?php foreach ($availableRiders as $rider) : ?>
+                                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                     <div class="d-flex flex-column">
-                                        <h4 class="mb-1 text-dark font-weight-bold"><?= $transactions[0]['rider_name'] ?></h4>
-                                        <span class="text-xs"><?= $transactions[0]['rider_contact_number'] ?></span>
+                                        <h6 class="mb-1 text-dark font-weight-bold text-sm"><?= $rider['fullname'] ?></h6>
+                                        <span class="text-xs text-success"><?= $rider['available'] ? "Available" : "" ?></span>
                                     </div>
-                                </div>
-                            </li>
+                                    <div class="d-flex align-items-center text-sm">
+                                        <form action="transaction-assign-admin" method="POST">
+                                            <input
+                                                class="d-none"
+                                                name="transaction_id"
+                                                value="<?= $transactions[0]['transaction_id'] ?>">
+                                            <input
+                                                class="d-none"
+                                                name="rider_id"
+                                                value="<?= $rider['user_id'] ?>">
+                                            <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4" <?= $transactions[0]['status'] == "Approved by Employee" ? "" : "disabled" ?>><i class="material-symbols-rounded text-lg position-relative me-1">assignment_add</i>Assign</button>
+                                        </form>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
+                    </div>
+                </div>
 
-                        <div class="p-0 border h-100">
-                            <img class="w-100 responsive-height" style="object-fit: cover;" src="<?= $transactions[0]['delivery_proof_dir'] ?>" alt="delivery-proof">
+                <div class="card shadow-sm">
+                    <div class="card-header pb-0 p-3">
+                        <div class="row">
+                            <div class="col-6 d-flex align-items-center">
+                                <h6 class="mb-0">Discount</h6>
+                            </div>
                         </div>
-
+                    </div>
+                    <div class="card-body p-3 pb-0">
                         <ul class="list-group">
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex flex-column justify-content-between">
-                                    <div class="d-flex flex-column">
-                                        <span class="mb-1" style="font-size: .8rem">Delivery At: <?= !empty($transactions[0]['delivered_at']) ? date("F d, Y \a\\t h:i A", strtotime($transactions[0]['delivered_at'])) : '' ?></span>
-                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Discount: <span class="text-dark"><?= $transactions[0]['discount_name'] ?></span></h6>
-                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Due: <span class="text-dark">₱<?= $transactions[0]['amount_due'] ?></span></h6>
-                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Amount Tendered: <span class="text-dark">₱<?= $transactions[0]['amount_tendered'] ?></span></h6>
-                                        <h6 class="mb-md-2 mb-lg-1 text-secondary">Change: <span class="text-dark">₱<?= $transactions[0]['change'] ?></span></h6>
-                                    </div>
+                                <div class="d-flex flex-column">
+                                    <h6 class="mb-1 text-dark font-weight-bold text-sm"><?= $transactions[0]['discount_name'] ?? "No Discount Selected" ?></h6>
+                                    <span class="text-xs">Min amount: <?= $transactions[0]['min_amount'] ?></span>
+                                </div>
+                                <div class="d-flex align-items-center text-sm">
+                                    <?= $transactions[0]['type'] ?>
                                 </div>
                             </li>
                         </ul>
@@ -165,13 +184,13 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-lg-7 mt-4">
-                <div class="card shadow-sm">
-                    <div class="pt-4 px-4 d-flex justify-content-between align-items-center white-bg">
+            <div class="col-md-7 mt-4">
+                <div class="card">
+                    <div class="card-header pb-0 px-3 d-flex justify-content-between">
                         <h6 class="mb-0">Order Details</h6>
                         <div class="d-flex align-items-center">
-                            <span class="me-2 text-sm">Cancel </span>
-                            <form id="transaction-update" action="transaction-update" method="POST">
+                            <span class="me-2 text-sm">Status: </span>
+                            <form id="status-approve" action="transaction-cancellation-update-admin" method="POST">
                                 <input
                                     class="d-none"
                                     name="transaction-id"
@@ -179,17 +198,24 @@
                                 <input
                                     class="d-none"
                                     name="status"
-                                    value="Cancellation">
+                                    value="Cancelled">
+                                <button id="status-approve" title="Approve cancellation" class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-symbols-rounded text-lg">check</i></button>
+                            </form>
+                            <form id="status-reject" action="transaction-cancellation-update-admin" method="POST">
                                 <input
-                                    id="cancel-reason"
                                     class="d-none"
-                                    name="cancel-reason">
-                                <button id="close-btn" form="transaction-update" class="btn btn-circle btn-outline-danger mb-0 p-2 btn-sm d-flex align-items-center justify-content-center"><i class="material-symbols-rounded fs-6">close</i></button>
+                                    name="transaction-id"
+                                    value="<?= $transactions[0]['transaction_id'] ?>">
+                                <input
+                                    class="d-none"
+                                    name="status"
+                                    value="Pending">
+                                <button form="status-reject" title="Reject cancellation" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-symbols-rounded text-lg">close</i></button>
                             </form>
                         </div>
 
                     </div>
-                    <div class="card-body pt-2 px-3">
+                    <div class="card-body pt-4 p-3">
                         <?php foreach ($transactions as $transaction) : ?>
                             <ul class="list-group">
                                 <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
@@ -213,21 +239,22 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-5 mt-4">
-                <div class="card h-100 mb-4 shadow-sm">
-                    <div class="pt-4 px-4 white-bg">
+            <div class="col-md-5 mt-4">
+                <div class="card h-100 mb-4">
+                    <div class="card-header pb-0 px-3">
                         <div class="row">
                             <div class="col-12">
-                                <h6 class="mb-0">Previous Transactions (Newest)</h6>
+                                <h6 class="mb-0">Previous Transactions</h6>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body pt-4 p-3">
+                        <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Newest</h6>
                         <ul class="list-group">
                             <?php foreach ($previousTransactions as $previous) : ?>
                                 <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                     <div class="d-flex align-items-center">
-                                        <a class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 p-2 btn-sm d-flex align-items-center justify-content-center btn-circle" href="transaction-show?id=<?= $previous['transaction_id'] ?>"><i class="material-symbols-rounded fs-6">info_i</i></a>
+                                        <a class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 p-3 btn-sm d-flex align-items-center justify-content-center" href="transaction-show-admin?transaction_id=<?= $previous['transaction_id'] ?>"><i class="material-symbols-rounded text-lg">info_i</i></a>
                                         <div class="d-flex flex-column">
                                             <h6 class="mb-1 text-dark text-sm">Transaction ID: <?= $previous['transaction_id'] ?></h6>
                                             <span class="text-xs"><?= date("F d, Y \a\\t h:i A", strtotime($previous['created_at'])); ?></span>
@@ -243,100 +270,44 @@
                 </div>
             </div>
         </div>
+        <footer class="footer py-4  ">
+            <div class="container-fluid">
+                <div class="row align-items-center justify-content-lg-between">
+                    <div class="col-lg-6 mb-lg-0 mb-4">
+                        <div class="copyright text-center text-sm text-muted text-lg-start">
+                            © <script>
+                                document.write(new Date().getFullYear())
+                            </script>,
+                            made with <i class="fa fa-heart"></i> by
+                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
+                            for a better web.
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
-</section>
 
-<?php require base_path('resources/views/components/foot.php') ?>
+</main>
 
+<!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<?php if ($_SESSION['__flash']['cancellation'] === 'Email sent') : ?>
-    <script>
-        Swal.fire({
-            icon: "info",
-            title: "Email sent",
-            text: "Please wait for our staff confirmation of your order's cancellation, please check your email",
-            confirmButtonText: "Ok",
-            allowOutsideClick: false,
-        });
-    </script>
-<?php elseif ($_SESSION['__flash']['cancellation'] === 'Email not sent') : ?>
-    <script>
-        Swal.fire({
-            icon: "error",
-            title: "Email not sent",
-            text: "An error occured while sending the email",
-            confirmButtonText: "Ok",
-            allowOutsideClick: false,
-        });
-    </script>
-<?php endif; ?>
 
-<script>
-    const closeBtn = document.querySelector('#close-btn');
-    const form = document.querySelector('#transaction-update');
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Cancellation alert
-        Swal.fire({
-                icon: "question",
-                title: "Cancellation",
-                text: "Do you want to cancel this transaction?",
-                showDenyButton: true,
-                confirmButtonText: "Yes",
-                denyButtonText: `No`,
-                allowOutsideClick: false
-            })
-
-            // Alert with Input
-            .then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                            icon: "question",
-                            title: "Please send us your reason",
-                            allowOutsideClick: false,
-                            input: "textarea",
-                            inputPlaceholder: "Type your message here...",
-                            inputAttributes: {
-                                "aria-label": "Type your message here"
-                            },
-                            inputValidator: (value) => {
-                                if (!value) {
-                                    return "This field is required!";
-                                }
-                            },
-                            confirmButtonText: "Send",
-                            showCancelButton: true // Optional: adds a cancel button
-                        })
-
-                        // "Are you sure?" alert
-                        .then((submit_with_reason) => {
-                            console.log(submit_with_reason);
-                            if (submit_with_reason.isConfirmed) {
-                                // console.log(submit_with_reason);
-                                Swal.fire({
-                                    icon: "question",
-                                    title: "Are you sure?",
-                                    text: "You really want to cancel this transaction",
-                                    allowOutsideClick: false,
-                                    confirmButtonText: "Yes",
-                                    showCancelButton: true
-                                }).then((sureOrNot) => {
-                                    document.querySelector('#cancel-reason').value = submit_with_reason.value
-                                    // console.log(sureOrNot);
-                                    if (sureOrNot.isConfirmed) {
-                                        form.submit();
-                                    } else if (sureOrNot.isDismissed) {
-                                        Swal.fire("Changes are not saved", "", "info");
-                                    }
-                                });
-                            }
-                        })
-                } else if (result.isDenied) {
-                    Swal.fire("Changes are not saved", "", "info");
-                }
-            });
-    });
-</script>
+<?php require base_path('resources/views/components/admin_foot.php') ?>

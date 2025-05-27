@@ -58,6 +58,8 @@ class Mailer
     /**
      * Used for sending email to the norte_cafe if the customers
      * have conerns
+     * &
+     * For transaction cancellation
      */
     public function contactUs($sender_name, $sender_email, $subject, $message)
     {

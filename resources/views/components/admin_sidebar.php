@@ -33,6 +33,12 @@
                     <span class="nav-link-text ms-1">Transaction Queue</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link <?= urlIs('transaction-cancellation-queue-admin') ? 'active choco-gradient-bg' : 'text-dark' ?>" href="transaction-cancellation-queue-admin">
+                    <i class="material-symbols-rounded opacity-5">receipt_long</i>
+                    <span class="nav-link-text ms-1">Cancellation Queue</span>
+                </a>
+            </li>
 
 
 

@@ -1,20 +1,19 @@
 
+
 /**
  * Receives the for the
- * Pending Transactions
+ * Cancellation Transactions
 */ 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const orderQueueContainer = document.querySelector('#order-queue-container');
+    const orderQueueContainer = document.querySelector('#order-cancellation-queue-container');
 
     async function fetchOrders() {
         try {
-            const response = await fetch("../../app/Request/PendingOrderQueue.php");
+            const response = await fetch("transaction-get-cancellation");
             const text = await response.text(); // Get raw response
 
-            // console.log("Raw Response:", text); // Check if it's JSON or has errors
             const data = JSON.parse(text); // Manually parse JSON
-            // console.log("Parsed Data:", data); // See what gets parsed
 
             orderQueueContainer.innerHTML = "";
 
@@ -53,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <a class="mb-2 choco-btn text-dark px-3 mb-0 text-sm" href="transaction-pending-show-admin?id=${data.transaction_id}">View Order</a>
+                                        <a class="mb-2 choco-btn text-dark px-3 mb-0 text-sm" href="transaction-cancellation-queue-show-admin?id=${data.transaction_id}">View Order</a>
                                     </div>
                                 </div>
                             </div>

@@ -47,7 +47,8 @@ class Transaction extends Model
 
     /**
      * Return a collection of current transactions
-     * status: (Pending, Approved)
+     * status: (Pending, Approved, Cancellation)
+     * Cancellation is done by either Customer and Staff
     */
     public function getCurrentTransactions($user_id, $order_by = "ASC", $limit = 9999)
     {
@@ -59,12 +60,13 @@ class Transaction extends Model
                 FROM transactions
                 LEFT JOIN users AS users ON users.user_id = transactions.user_id
                 WHERE transactions.user_id = :user_id AND 
-                (transactions.status = :pending_status OR transactions.status = :approved_status_employee OR transactions.status = :approved_status_rider OR transactions.status = :rejected_status_rider OR transactions.status = :in_transit)
+                (transactions.status = :pending_status OR transactions.status = :cancellation OR transactions.status = :approved_status_employee OR transactions.status = :approved_status_rider OR transactions.status = :rejected_status_rider OR transactions.status = :in_transit)
                 ORDER BY transaction_id $order_by
                 LIMIT $limit",
             [
                 "user_id" => $user_id,
                 "pending_status" => "Pending",
+                "cancellation" => "Cancellation",
                 "approved_status_employee" => "Approved by Employee",
                 "approved_status_rider" => "Approved by Rider",
                 "rejected_status_rider" => "Rejected by Rider",

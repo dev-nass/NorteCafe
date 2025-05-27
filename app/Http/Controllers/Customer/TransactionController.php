@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Customer;
 
 use Core\Controller;
 use Core\Database;
+use Core\Session;
+use Core\Mailer;
 use App\Models\Transaction;
 
 class TransactionController extends Controller
@@ -56,7 +58,7 @@ class TransactionController extends Controller
     /**
      * Loads a view contaning details about
      * a specific transactions
-    */
+     */
     public function show()
     {
 
@@ -80,7 +82,7 @@ class TransactionController extends Controller
     /**
      * Will be trigger everytime the user
      * decides to `cancel` the transactions
-    */
+     */
     public function update()
     {
 
@@ -92,17 +94,36 @@ class TransactionController extends Controller
             // USE THIS AFTER CONFIRMING THAT THE confimed_at should be change???
             $current_date = date("Y-m-d H:i:s");
 
+            // Added for email sending
+            $sender_name = $_SESSION['__currentUser']['credentials']['first_name'] .  $_SESSION['__currentUser']['credentials']['last_name'];
+            $sender_email =  $_SESSION['__currentUser']['credentials']['email'];
+
+            // dd($_POST);
             $data = [
                 "transaction_id" => $this->getInput("transaction-id"),
                 "status" => $this->getInput("status"),
+                "cancellation-reason" => $this->getInput("cancel-reason"),
             ];
-            
+
+            $mail = new Mailer;
+            $subject =
+                "Customer {$sender_email} sent a cancellation request for their transaction with ID of {$data['transaction_id']} \n
+                Cancellation Reason: \n
+                {$data['cancellation-reason']}";
+            $mailsent = $mail->contactUs($sender_name, $sender_email, 'Cancellation', $subject);
+
+            if (! $mailsent) {
+                Session::set('__flash', 'cancellation', 'Email not sent');
+                return $this->redirect("transaction-show?id={$_POST['transaction-id']}");
+            }
+
             $transactionObj = new Transaction;
             $updatedStatus = $transactionObj->update($data["transaction_id"], [
                 "status" => $data["status"]
             ]);
 
             if ($updatedStatus) {
+                Session::set('__flash', 'cancellation', 'Email sent');
                 return $this->redirect("transaction-show?id={$_POST['transaction-id']}");
             }
         }

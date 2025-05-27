@@ -44,6 +44,7 @@
 <!-- My Personal JS -->
 <script src="../../js/app.js" type="module"></script>
 <script src="../../resources/js/transaction/transactionQueueAJAX.js" defer></script>
+<script src="../../resources/js/transaction/cancellationQueueAJAX.js" defer></script>
 <script src="../../resources/js/menu/drag&DropMenuImg.js" defer></script>
 <!-- Dashboard -->
 <script src="../../resources/js/dashboard/fetch_visit.js" defer></script>
