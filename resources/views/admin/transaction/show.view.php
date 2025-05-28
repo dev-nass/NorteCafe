@@ -244,6 +244,27 @@
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script>
+    const archiveForm = document.querySelector('#transaction-archive');
+
+    archiveForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure",
+            text: "You really want to archive this transaction record?",
+            allowOutsideClick: false,
+            confirmButtonText: "Yes",
+            showCancelButton: true
+        }).then((sureOrNot) => {
+            // console.log(sureOrNot);
+            if (sureOrNot.isConfirmed) {
+                archiveForm.submit();
+            }
+        });
+    });
+</script>
+
 <?php if (isset($_SESSION['__flash']['rider_assigned'])) : ?>
     <script>
         Swal.fire({
@@ -253,12 +274,21 @@
             allowOutsideClick: false,
         });
     </script>
-<?php elseif(isset($_SESSION['__flash']['status_changed']) && $_SESSION['__flash']['status_changed'] === 'Rejected by Employee') :  ?>
+<?php elseif (isset($_SESSION['__flash']['rejected'])) :  ?>
     <script>
         Swal.fire({
             icon: "success",
             title: "Success",
             text: "Transaction rejected!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php elseif (isset($_SESSION['__flash']['cancellation']) && $_SESSION['__flash']['cancellation'] === 'Cancelled') :  ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Transaction cancelled!",
             allowOutsideClick: false,
         });
     </script>

@@ -62,7 +62,7 @@
                         </div>
                         <div class="d-flex justify-content-end mt-2">
                             <button class="mt-3 btn btn-primary" value="id<?= $addOns['add_on_id'] ?>">Submit</button>
-                            <button form="addOns_delete" class="btn btn-outline-warning mt-3 ms-2">Delete</button>
+                            <button form="addOns_delete" class="btn btn-outline-warning mt-3 ms-2">Archive</button>
                         </div>
                     </div>
                 </div>
@@ -138,6 +138,28 @@
 
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const formArchive = document.querySelector('#addOns_delete');
+
+    formArchive.addEventListener('submit', (e) => {
+        e.preventDefault();
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure",
+            text: "You really want to archive this add on?",
+            allowOutsideClick: false,
+            confirmButtonText: "Yes",
+            showCancelButton: true
+        }).then((sureOrNot) => {
+            // console.log(sureOrNot);
+            if (sureOrNot.isConfirmed) {
+                formArchive.submit();
+            }
+        });
+
+    });
+</script>
 
 <?php if (isset($_SESSION['__flash']['add_ons_uploaded'])) : ?>
     <script>

@@ -204,6 +204,50 @@
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script>
+    const formArchive = document.querySelector('#menu_item_delete');
+
+    formArchive.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure",
+            text: "You really want to archive this menu item?",
+            allowOutsideClick: false,
+            confirmButtonText: "Yes",
+            showCancelButton: true
+        }).then((sureOrNot) => {
+            // console.log(sureOrNot);
+            if (sureOrNot.isConfirmed) {
+                formArchive.submit();
+            }
+        });
+    });
+</script>
+
+<script>
+    const formReaactivate = document.querySelector('#menu_item_reactivate');
+
+    formReaactivate.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure",
+            text: "You really want to reactivate this menu item?",
+            allowOutsideClick: false,
+            confirmButtonText: "Yes",
+            showCancelButton: true
+        }).then((sureOrNot) => {
+            // console.log(sureOrNot);
+            if (sureOrNot.isConfirmed) {
+                formReaactivate.submit();
+            }
+        });
+    });
+</script>
+
 
 <?php if (isset($_SESSION['__flash']['menu_item_uploaded'])) : ?>
     <script>

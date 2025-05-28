@@ -306,8 +306,52 @@
 
 </main>
 
-<!-- Sweet Alert -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
 <?php require base_path('resources/views/components/admin_foot.php') ?>
+
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const formApprove = document.querySelector('#status-approve');
+
+    formApprove.addEventListener("submit", (e) => {
+        e.preventDefault();
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure?",
+            text: "You really want to approve this transaction cancellation request",
+            allowOutsideClick: false,
+            confirmButtonText: "Yes",
+            showCancelButton: true
+        }).then((sureOrNot) => {
+            // console.log(sureOrNot);
+            if (sureOrNot.isConfirmed) {
+                formApprove.submit();
+            }
+        });
+    });
+</script>
+
+<script>
+    const formReject = document.querySelector('#status-reject');
+
+    formReject.addEventListener("submit", (e) => {
+        e.preventDefault();
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure?",
+            text: "You really want to reject this transaction cancellation request",
+            allowOutsideClick: false,
+            confirmButtonText: "Yes",
+            showCancelButton: true
+        }).then((sureOrNot) => {
+            // console.log(sureOrNot);
+            if (sureOrNot.isConfirmed) {
+                formReject.submit();
+            }
+        });
+    });
+</script>

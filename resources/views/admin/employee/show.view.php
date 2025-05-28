@@ -8,7 +8,7 @@
             <button type="button" class="btn btn-outline-dark me-2" data-bs-toggle="modal" data-bs-target="#manageProfileModal">
                 Edit Profile<i class="material-symbols-rounded text-lg fs-5 align-middle me-1 ms-1">manage_accounts</i>
             </button>
-            <form action="employee-delete-admin" method="POST">
+            <form id="archive-form" action="employee-delete-admin" method="POST">
                 <input
                     class="d-none"
                     name="user_id"
@@ -295,6 +295,27 @@
 
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+<script>
+    const archiveForm = document.querySelector('#archive-form');
+
+    archiveForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure",
+            text: "You really want to archive this employee record?",
+            allowOutsideClick: false,
+            confirmButtonText: "Yes",
+            showCancelButton: true
+        }).then((sureOrNot) => {
+            // console.log(sureOrNot);
+            if (sureOrNot.isConfirmed) {
+                archiveForm.submit();
+            }
+        });
+    });
+</script>
 
 <?php if (isset($_SESSION['__flash']['profile_updated'])) : ?>
     <script>

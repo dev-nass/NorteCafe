@@ -13,7 +13,7 @@
                             <p class="text-sm mb-0">Status: Cancellation</p>
                         </div>
                         <div>
-                            <form action="transaction-cancellation-approve-all-admin" method="POST">  
+                            <form id="approve-all-cancellation" action="transaction-cancellation-approve-all-admin" method="POST">  
                                 <?php foreach($cancellation_transactions as $trans) : ?>
                                 <input 
                                     class="d-none"
@@ -73,6 +73,27 @@
 
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const approveAllForm = document.querySelector('#approve-all-cancellation');
+
+    approveAllForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure?",
+            text: "You really want to approve all of these transaction cancellation request?",
+            allowOutsideClick: false,
+            confirmButtonText: "Yes",
+            showCancelButton: true
+        }).then((sureOrNot) => {
+            // console.log(sureOrNot);
+            if (sureOrNot.isConfirmed) {
+                approveAllForm.submit();
+            }
+        });
+    });
+</script>
 
 <?php if (isset($_SESSION['__flash']['approve_all'])) : ?>
     <script>

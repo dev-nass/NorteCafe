@@ -141,7 +141,7 @@ class Admin_AddOnsController extends Controller
     }
 
     /**
-     * Delete a single Add Ons
+     * Archive a single Add Ons
     */
     public function delete() 
     {
@@ -151,7 +151,9 @@ class Admin_AddOnsController extends Controller
             $add_on_id = $this->getInput('add_ons_id');
 
             $addOnsObj = new AddOns;
-            $deleted_addOns = $addOnsObj->delete($add_on_id);
+            $deleted_addOns = $addOnsObj->update($add_on_id, [
+                'status' => 0,
+            ]);
 
             if($deleted_addOns) {
                 Session::set('__flash', 'addOns_deleted', 'deleted successfully');

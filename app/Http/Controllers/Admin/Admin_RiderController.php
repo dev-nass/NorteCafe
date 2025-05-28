@@ -192,7 +192,9 @@ class Admin_RiderController extends Controller
         ];
 
         $userObj = new User;
-        $deleted_user = $userObj->delete($data['user_id']);
+        $deleted_user = $userObj->update($data['user_id'], [
+            'status' => 0
+        ]);
 
         if ($deleted_user) {
             Session::set('__flash', 'account_deleted', 'Deleted successfully');

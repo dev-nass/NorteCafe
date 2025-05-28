@@ -6,7 +6,7 @@
     <div class="container-fluid py-2 px-1">
         <div class="d-flex justify-content-start align-items-center pe-2">
             <p class="me-2 fw-bold">Change all item availability:</p>
-            <form class="d-flex" action="add-ons-change-availability-admin" method="POST">
+            <form id="change-availability-form" class="d-flex" action="add-ons-change-availability-admin" method="POST">
                 <?php foreach ($addOns as $addOn) : ?>
                     <input
                         class="d-none"
@@ -14,8 +14,8 @@
                         value="<?= $addOn["add_on_id"] ?>"
                         type="text">
                 <?php endforeach; ?>
-                <input class="btn btn-outline-success me-2" name="availability" value="Available" type="submit">
-                <input class="btn btn-outline-danger" name="availability" value="Not Available" type="submit">
+                <input id="available" class="btn btn-outline-success me-2" name="availability" value="Available" type="submit">
+                <input id="not-available" class="btn btn-outline-danger" name="availability" value="Not Available" type="submit">
             </form>
         </div>
         <div class="responsive-table">
@@ -32,16 +32,18 @@
                 </thead>
                 <tbody>
                     <?php foreach ($addOns as $addOn): ?>
-                        <tr>
-                            <th scope="row"><?= $addOn['add_on_id'] ?></th>
-                            <td><?= $addOn['name'] ?></td>
-                            <td><?= strtoupper($addOn['category']) ?></td>
-                            <td>₱<?= number_format($addOn['price'], '2', '.', '') ?></td>
-                            <td><?= $addOn['available'] == 1 ? "Available" : "Not Available" ?></td>
-                            <td>
-                                <a class="btn btn-dark" href="add-ons-show-admin?id=<?= $addOn['add_on_id'] ?>">Edit</a>
-                            </td>
-                        </tr>
+                        <?php if ($addOn['status'] === 1) : ?>
+                            <tr>
+                                <th scope="row"><?= $addOn['add_on_id'] ?></th>
+                                <td><?= $addOn['name'] ?></td>
+                                <td><?= strtoupper($addOn['category']) ?></td>
+                                <td>₱<?= number_format($addOn['price'], '2', '.', '') ?></td>
+                                <td><?= $addOn['available'] == 1 ? "Available" : "Not Available" ?></td>
+                                <td>
+                                    <a class="btn btn-dark" href="add-ons-show-admin?id=<?= $addOn['add_on_id'] ?>">Edit</a>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
 
                     <?php endforeach; ?>
                 </tbody>
@@ -77,6 +79,45 @@
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script>
+    const form = document.querySelector('#change-availability-form');
+    const availableBtn = document.querySelector('#available');
+    const notAvailableBtn = document.querySelector('#not-available');
+    let availability = "";
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure",
+            text: `You really want to change all item availability to ${availability}`,
+            allowOutsideClick: false,
+            confirmButtonText: "Yes",
+            showCancelButton: true
+        }).then((sureOrNot) => {
+            // console.log(sureOrNot);
+            if (sureOrNot.isConfirmed) {
+                // added because the form action is being intercepted by JS
+                // so the original 2 <input name="availablity" is not being read on dd($_POST)
+                const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = 'availability';
+                hiddenInput.value = `${availability}`;
+                form.appendChild(hiddenInput);
+                form.submit();
+            }
+        });
+    });
+
+    notAvailableBtn.addEventListener('click', () => {
+        availability = notAvailableBtn.value;
+    });
+
+    availableBtn.addEventListener('click', () => {
+        availability = availableBtn.value;
+    });
+</script>
 
 <?php if (isset($_SESSION['__flash']['addOns_updated'])) : ?>
     <script>
@@ -92,7 +133,7 @@
         Swal.fire({
             icon: "success",
             title: "Success",
-            text: "Add on deleted successfully!",
+            text: "Add on archived successfully!",
             allowOutsideClick: false,
         });
     </script>

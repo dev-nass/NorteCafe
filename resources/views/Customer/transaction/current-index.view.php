@@ -4,7 +4,7 @@
 <section class="section-container">
     <div class="container py-5">
         <h5 class="hero-header fs-2 ms-lg-3">Current Transactions</h5>
-        <p class="ms-3">(Pending & Approved)</p>
+        <p class="ms-3">(Pending, Cancellation & Approved)</p>
         <div class="row gx-5">
             <?php if (! $currentTransactions) : ?>
                 <p class="ms-3">An empty void found!</p>

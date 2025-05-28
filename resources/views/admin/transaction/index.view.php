@@ -44,3 +44,17 @@
 </main>
 
 <?php require base_path('resources/views/components/admin_foot.php') ?>
+
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<?php if (isset($_SESSION['__flash']['archived'])) :  ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Transaction archived!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php endif ; ?>

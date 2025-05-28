@@ -207,6 +207,7 @@ class Admin_TransactionController extends Controller
                 "confirmed_at" => $current_date,
             ]);
 
+            // if rejected, we send customer an email of explanation
             if ($data['status'] === 'Rejected by Employee') {
                 $userObj = new User;
                 $transaction = $transactionObj->firstWhere(['transaction_id' => $data['transaction_id']]);
@@ -215,7 +216,7 @@ class Admin_TransactionController extends Controller
                 $mail = new Mailer;
                 $mail->contactThem('Norte Cafe', 'nortecafe7@gmail.com', $customer['email'], 'Cancellation', $data['reason']);
 
-                Session::set('__flash', 'status_changed', $data['status']);
+                Session::set('__flash', 'rejected', $data['status']);
                 return $this->redirect("transaction-show-admin?transaction_id={$data['transaction_id']}");
             }
 
@@ -228,8 +229,8 @@ class Admin_TransactionController extends Controller
 
     /**
      * Used for updating status of tranasction (Cancellation)
-     * Approved: Cancelled
-     * Rejected: Pending
+     * if Approved changed to Cancelled
+     * .. ... Rejected to Pending
      */
     public function cancellation_update()
     {
@@ -249,12 +250,13 @@ class Admin_TransactionController extends Controller
             ]);
 
             if ($updatedStatus) {
-                Session::set('__flash', 'status_changed', $data['status']);
 
                 if ($data['status'] === 'Cancelled') {
+                    Session::set('__flash', 'cancellation', $data['status']);
                     return $this->redirect("transaction-show-admin?transaction_id={$data['transaction_id']}");
                 }
 
+                Session::set('__flash', 'status_changed', $data['status']);
                 return $this->redirect("transaction-pending-show-admin?id={$data['transaction_id']}");
             }
         }
@@ -376,6 +378,7 @@ class Admin_TransactionController extends Controller
             ]);
 
             if ($archivedTransaction || $archivedOrders) {
+                Session::set('__flash', 'archived', 'Transaction archived');
                 return $this->redirect('transaction-table-admin');
             }
         }

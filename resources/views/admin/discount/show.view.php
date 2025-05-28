@@ -139,6 +139,28 @@
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script>
+    const formArchive = document.querySelector('#discount_delete');
+
+    formArchive.addEventListener('submit', (e) => {
+        e.preventDefault();
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure",
+            text: "You really want to delete this discount?",
+            allowOutsideClick: false,
+            confirmButtonText: "Yes",
+            showCancelButton: true
+        }).then((sureOrNot) => {
+            // console.log(sureOrNot);
+            if (sureOrNot.isConfirmed) {
+                formArchive.submit();
+            }
+        });
+
+    });
+</script>
+
 <?php if (isset($_SESSION['__flash']['add_ons_uploaded'])) : ?>
     <script>
         Swal.fire({

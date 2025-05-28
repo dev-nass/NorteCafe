@@ -152,7 +152,7 @@
                                                             <p>Choose One: </p>
                                                             <?php $firstv2 = false; ?>
                                                             <?php foreach ($add_ons as $add_on) : ?>
-                                                                <?php if ($item['category'] === $add_on['category'] && $add_on['available'] == true) : ?>
+                                                                <?php if ($item['category'] === $add_on['category'] && $add_on['available'] == true && $add_on['status'] == true) : ?>
                                                                     <?php $firstv2 = true; ?>
                                                                     <input
                                                                         type="radio"
