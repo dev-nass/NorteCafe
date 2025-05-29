@@ -219,6 +219,11 @@
                                     class="d-none"
                                     name="status"
                                     value="Rejected by Rider">
+                                <input
+                                    id="cancel-reason"
+                                    class="d-none"
+                                    name="reason"
+                                    type="text">
                                 <button form="status-reject" title="Reject" class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 p-3 btn-sm d-flex align-items-center justify-content-center"><i class="material-symbols-rounded text-lg">close</i></button>
                             </form>
                         </div>
@@ -288,16 +293,105 @@
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<!-- For accepting -->
+<script>
+    const approvedForm = document.querySelector('#status-approve');
 
-<?php if (isset($_SESSION['__flash']['status_changed'])) : ?>
-    <script>
+    approvedForm.addEventListener("submit", (e) => {
+        e.preventDefault();
         Swal.fire({
-            icon: "success",
-            title: "Success",
-            text: "Status changed to <?= $_SESSION['__flash']['status_changed'] ?>!",
+            icon: "question",
+            title: "Are you sure?",
+            text: "You really want to accept this transaction",
             allowOutsideClick: false,
+            confirmButtonText: "Yes",
+            showCancelButton: true
+        }).then((sureOrNot) => {
+            // console.log(sureOrNot);
+            if (sureOrNot.isConfirmed) {
+                approvedForm.submit();
+            }
         });
-    </script>
-<?php endif; ?>
+    });
+</script>
+
+<!-- For rejecting -->
+<script>
+    const rejectForm = document.querySelector('#status-reject');
+    const reasonInput = document.querySelector('#cancel-reason');
+
+    rejectForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Cancellation alert
+        Swal.fire({
+                icon: "question",
+                title: "Cancellation",
+                text: "Do you want to reject this assgined transaction?",
+                showDenyButton: true,
+                confirmButtonText: "Yes",
+                denyButtonText: `No`,
+                allowOutsideClick: false
+            })
+
+            // Alert with Input
+            .then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                            icon: "question",
+                            title: "Please send us your reason",
+                            allowOutsideClick: false,
+                            input: "textarea",
+                            inputPlaceholder: "Type your message here...",
+                            inputAttributes: {
+                                "aria-label": "Type your message here"
+                            },
+                            inputValidator: (value) => {
+                                if (!value) {
+                                    return "This field is required!";
+                                }
+                            },
+                            confirmButtonText: "Send",
+                            showCancelButton: true // Optional: adds a cancel button
+                        })
+
+                        // "Are you sure?" alert
+                        .then((submit_with_reason) => {
+                            console.log(submit_with_reason);
+                            if (submit_with_reason.isConfirmed) {
+                                // console.log(submit_with_reason);
+                                Swal.fire({
+                                    icon: "question",
+                                    title: "Are you sure?",
+                                    text: "You really want to reject this assgined transaction",
+                                    allowOutsideClick: false,
+                                    confirmButtonText: "Yes",
+                                    showCancelButton: true
+                                }).then((sureOrNot) => {
+                                    reasonInput.value = submit_with_reason.value
+                                    // console.log(sureOrNot);
+                                    if (sureOrNot.isConfirmed) {
+                                        rejectForm.submit();
+                                        Swal.fire({
+                                            title: 'Sending...',
+                                            text: 'Please wait while we send your email.',
+                                            allowOutsideClick: false,
+                                            didOpen: () => {
+                                                Swal.showLoading(); // Show loading spinner
+                                            }
+                                        });
+                                    } else if (sureOrNot.isDismissed) {
+                                        Swal.fire("Changes are not saved", "", "info");
+                                    }
+                                });
+                            }
+                        })
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                }
+            });
+    });
+</script>
+
 
 <?php require base_path('resources/views/components/rider_foot.php') ?>

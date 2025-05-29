@@ -14,7 +14,12 @@
                             <p class="text-sm mb-0">Status: Assigned to you</p>
                         </div>
                         <div>
-                            <form action="transaction-reject-all-rider" method="POST">
+                            <form id="reject-all-assigned" action="transaction-reject-all-rider" method="POST">
+                                <input
+                                    id="cancel-reason"
+                                    class="d-none"
+                                    type="text"
+                                    name="reason">
                                 <?php foreach ($assigned_transactions as $assigned) : ?>
                                     <input
                                         class="d-none"
@@ -64,6 +69,54 @@
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script>
+    const form = document.querySelector('#reject-all-assigned');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure?",
+            text: "You want to reject all assigned transactions",
+            allowOutsideClick: false,
+            showConfirmButton: true,
+            showCancelButton: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: "question",
+                    title: "Send customer your reason",
+                    allowOutsideClick: false,
+                    input: "textarea",
+                    inputPlaceholder: "Type your message here...",
+                    inputAttributes: {
+                        "aria-label": "Type your message here"
+                    },
+                    inputValidator: (value) => {
+                        if (!value) {
+                            return "This field is required!";
+                        }
+                    },
+                    confirmButtonText: "Send",
+                    showCancelButton: true // Optional: adds a cancel button
+                }).then((resultv2) => {
+                    document.querySelector('#cancel-reason').value = resultv2.value
+                    if (resultv2.isConfirmed) {
+                        form.submit();
+                        Swal.fire({
+                            title: 'Sending...',
+                            text: 'Please wait while we send your email.',
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading(); // Show loading spinner
+                            }
+                        });
+                    }
+                })
+            }
+        });
+    });
+</script>
 
 <?php if (isset($_SESSION['__flash']['reject_all'])) : ?>
     <script>
@@ -74,6 +127,15 @@
             allowOutsideClick: false,
         });
     </script>
-<?php endif ; ?>
+<?php elseif (isset($_SESSION['__flash']['rider_changed_status'])) : ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Status changed to <?= $_SESSION['__flash']['rider_changed_status'] ?>!",
+            allowOutsideClick: false,
+        });
+    </script>
+<?php endif; ?>
 
 <?php require base_path('resources/views/components/rider_foot.php') ?>

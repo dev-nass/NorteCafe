@@ -10,7 +10,7 @@ Here are the panels suggestions during the supposedly 45mins presentation that t
 [ ] If a transaction is cancelled it can still be access using this
 http://localhost/PHP%202025/Norte%20Cafe/public/index.php/transaction-pending-show-admin?id=102
 [x] Explore the admin side for tomorrow and view some things to improve their too.
-[ ] Archive table for Add ons since we added status.
+[x] Archive table for Add ons since we added status.
 
 # Issues:
 [ ] Discount doesn't have archive functionality, it only has complete deletion.

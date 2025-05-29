@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Rider;
 
 use Core\Controller;
 use Core\Database;
+use Core\Mailer;
 use Core\Session;
 use App\Models\Transaction;
 
@@ -25,9 +26,9 @@ class Rider_TransactionController extends Controller
         $assigned_transactions = $transactionObj->query("SELECT transactions.*, CONCAT(users.first_name, ' ', users.last_name) AS fulllname, users.username, users.email, users.contact_number
         FROM transactions
         INNER JOIN users ON transactions.user_id = users.user_id
-        WHERE transactions.status = :approved AND transactions.rider_id = :rider_id
+        WHERE transactions.status LIKE :approved AND transactions.rider_id = :rider_id
         ORDER BY transactions.transaction_id DESC;", [
-            "approved" => "Approved by Employee",
+            "approved" => "Approved by Employee%",
             "rider_id" => $_SESSION['__currentUser']['credentials']['user_id']
         ])->get();
 
@@ -57,9 +58,9 @@ class Rider_TransactionController extends Controller
             $db->query("SELECT transactions.*, CONCAT(users.first_name, ' ', users.last_name) AS fulllname, users.username, users.email, users.contact_number
                 FROM transactions
                 INNER JOIN users ON transactions.user_id = users.user_id
-                WHERE transactions.status = :approved AND transactions.rider_id = :rider_id
+                WHERE transactions.status LIKE :approved AND transactions.rider_id = :rider_id
                 ORDER BY transactions.transaction_id DESC;", [
-                "approved" => "Approved by Employee",
+                "approved" => "Approved by Employee%",
                 "rider_id" => $rider_id,
             ])->get();
 
@@ -127,17 +128,26 @@ class Rider_TransactionController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            // added for emailing
+            $rider_name = $_SESSION['__currentUser']['credentials']['first_name'] . ' ' . $_SESSION['__currentUser']['credentials']['last_name'];
+            $rider_email = $_SESSION['__currentUser']['credentials']['email'];
+
+
             $data = [
                 'status' => $this->getInput('status'),
-                'transaction_id' => $this->getInput('transaction-id')
+                'transaction_id' => $this->getInput('transaction-id'),
+                'reason' => $this->getInput('reason'),
             ];
 
             $transactionObj = new Transaction;
+            
             if ($data['status'] == 'Approved by Rider') {
                 $updatedStatus = $transactionObj->update($data['transaction_id'], [
                     "status" => $data["status"],
                 ]);
+
                 Session::set('__flash', 'rider_changed_status', "{$data['status']} successfully");
+                return $this->redirect("transaction-show-rider?transaction_id={$data['transaction_id']}");
             }
 
 
@@ -146,12 +156,16 @@ class Rider_TransactionController extends Controller
                     "rider_id" => null,
                     "status" => $data["status"],
                 ]);
-                Session::set('__flash', 'rider_changed_status', "{$data['status']} successfully");
-            }
 
-            if ($updatedStatus) {
-                return $this->redirect("transaction-show-rider?transaction_id={$data['transaction_id']}");
+                Session::set('__flash', 'rider_changed_status', "{$data['status']} successfully");
+
+                $message = "Rider {$rider_name} rejected their assgined transaction with the following ID of {$data['transaction_id']} due to reason of: {$data['reason']}.";
+                $mail = new Mailer;
+                $emailSent = $mail->contactUs($rider_name, $rider_email, 'Assigned transaction cancellation', $message);
+
+                return $this->redirect("assigned-transaction-queue-rider");
             }
+        
         }
     }
 
@@ -163,10 +177,18 @@ class Rider_TransactionController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            // added for emailing
+            $rider_name = $_SESSION['__currentUser']['credentials']['first_name'] . ' ' . $_SESSION['__currentUser']['credentials']['last_name'];
+            $rider_email = $_SESSION['__currentUser']['credentials']['email'];
+
             $data = [
                 'status' => $this->getInput('status'),
-                'transaction_ids' => $this->getInput('transaction-ids')
+                'transaction_ids' => $this->getInput('transaction-ids'),
+                'reason' => $this->getInput('reason')
             ];
+
+            // added so transac ID are included within the EMAIL
+            $ids = implode(',', $data['transaction_ids']);
 
             $transactionObj = new Transaction;
             foreach ($data['transaction_ids'] as $id) {
@@ -176,7 +198,12 @@ class Rider_TransactionController extends Controller
                 ]);
             }
 
-            if ($updatedStatus) {
+
+            $message = "Rider {$rider_name} rejected their assgined transaction with the following ID of {$ids} due to reason of: {$data['reason']}.";
+            $mail = new Mailer;
+            $emailSent = $mail->contactUs($rider_name, $rider_email, 'Assigned transaction cancellation', $message);
+
+            if ($updatedStatus && $emailSent) {
                 Session::set('__flash', 'reject_all', 'Successfully rejected all');
                 return $this->redirect("assigned-transaction-queue-rider");
             }
@@ -226,7 +253,7 @@ class Rider_TransactionController extends Controller
             $current_date = date("Y-m-d H:i:s");
 
 
-            if($data['amount_tendered'] < $data['amount_due']) {
+            if ($data['amount_tendered'] < $data['amount_due']) {
                 $errors['amount_tendered'] = ['Insufficient amount tendered'];
                 $flashData = [
                     "old" => $data,
@@ -250,7 +277,7 @@ class Rider_TransactionController extends Controller
 
             $transObj->uploadFile($delivery_proof);
 
-            if($updateChange) {
+            if ($updateChange) {
                 Session::set('__flash', 'transaction_delivered', 'Delivered Successfully');
                 return $this->redirect("transaction-show-rider?transaction_id={$data['transaction_id']}");
             }
@@ -260,7 +287,7 @@ class Rider_TransactionController extends Controller
     /**
      * Used for showing the queue of the
      * delivered transactions
-    */
+     */
     public function delivered_queue()
     {
 

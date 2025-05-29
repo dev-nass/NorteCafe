@@ -15,7 +15,7 @@
                             <!-- Your name -->
                             <div class="col-md-6">
                                 <label for="validationCustom01" class="form-label">Your Name</label>
-                                <input name="name" type="text" class="form-control border border-dark px-2" id="validationCustom01" placeholder="Juan Dela Cruz" required>
+                                <input name="name" type="text" class="form-control border border-dark px-2" id="validationCustom01" value="<?= $_SESSION['__currentUser']['credentials']['first_name'] . ' ' . $_SESSION['__currentUser']['credentials']['last_name'] ?>" readonly>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -26,7 +26,7 @@
                             <!-- Email -->
                             <div class="col-md-6">
                                 <label for="validationCustom02" class="form-label">Email</label>
-                                <input name="email" type="email" class="form-control border border-dark px-2" id="validationCustom02" placeholder="juancruz@gmail.com" required>
+                                <input name="email" type="email" class="form-control border border-dark px-2" id="validationCustom02" value="<?= $_SESSION['__currentUser']['credentials']['email'] ?>" readonly>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -95,6 +95,20 @@
 
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const form = document.querySelector('#contact-form');
+    form.addEventListener("submit", () => {
+        Swal.fire({
+            title: 'Sending...',
+            text: 'Please wait while we send your email.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading(); // Show loading spinner
+            }
+        });
+    });
+</script>
 
 <?php if (isset($_SESSION['__flash']['contactShop_notif'])) : ?>
     <script>
