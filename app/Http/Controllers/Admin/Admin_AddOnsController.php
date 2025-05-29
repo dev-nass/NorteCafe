@@ -25,6 +25,18 @@ class Admin_AddOnsController extends Controller
         ]);
     }
 
+    public function index_archived()
+    {
+
+        $addOnsObj = new AddOns;
+        $addOns = $addOnsObj->archivedAddOns();
+
+        return $this->view('Admin/addOns/index-archived.view.php', [
+            'title' => 'Add Ons Archive Table',
+            "addOns" => $addOns,
+        ]);
+    }
+
     /**
      * Used for showing a specific
      * Add Ons record
@@ -142,11 +154,11 @@ class Admin_AddOnsController extends Controller
 
     /**
      * Archive a single Add Ons
-    */
-    public function delete() 
+     */
+    public function delete()
     {
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $add_on_id = $this->getInput('add_ons_id');
 
@@ -155,8 +167,27 @@ class Admin_AddOnsController extends Controller
                 'status' => 0,
             ]);
 
-            if($deleted_addOns) {
+            if ($deleted_addOns) {
                 Session::set('__flash', 'addOns_deleted', 'deleted successfully');
+                return $this->redirect('add-ons-archive-table-admin');
+            }
+        }
+    }
+
+    public function reactivate()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $addOn_id = $this->getInput('add_ons_id');
+
+            $addOnsObj = new AddOns;
+            $addOnsUpdated = $addOnsObj->update($addOn_id, [
+                'status' => 1,
+            ]);
+
+            if ($addOnsUpdated) {
+                Session::set('__flash', 'addOns_reactivated', 'Add Ons reactivated');
                 return $this->redirect('add-ons-table-admin');
             }
         }
@@ -165,7 +196,7 @@ class Admin_AddOnsController extends Controller
     /**
      * Used for changing availability
      * of all Add-Ons at once
-    */
+     */
     public function change_availability()
     {
         if ($_SERVER['REQUEST_METHOD'] === "POST") {

@@ -157,6 +157,12 @@
                     <span class="nav-link-text ms-1">Menu Items</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link <?= urlIs('add-ons-archive-table-admin') ? 'active choco-gradient-bg text-light' : 'text-dark' ?>" href="add-ons-archive-table-admin">
+                    <i class="material-symbols-rounded opacity-5">menu</i>
+                    <span class="nav-link-text ms-1">Add On</span>
+                </a>
+            </li>
 
 
 

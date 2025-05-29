@@ -128,12 +128,12 @@
             allowOutsideClick: false,
         });
     </script>
-<?php elseif (isset($_SESSION['__flash']['addOns_deleted'])) : ?>
+<?php elseif (isset($_SESSION['__flash']['addOns_reactivated'])) : ?>
     <script>
         Swal.fire({
             icon: "success",
             title: "Success",
-            text: "Add on archived successfully!",
+            text: "Add on reactivateds successfully!",
             allowOutsideClick: false,
         });
     </script>

@@ -62,20 +62,35 @@
                         </div>
                         <div class="d-flex justify-content-end mt-2">
                             <button class="mt-3 btn btn-primary" value="id<?= $addOns['add_on_id'] ?>">Submit</button>
-                            <button form="addOns_delete" class="btn btn-outline-warning mt-3 ms-2">Archive</button>
+                            <?php if ($addOns['status'] == 1) : ?>
+                                <button form="addOns_delete" class="btn btn-outline-warning mt-3 ms-2">Archive</button>
+                            <?php elseif ($addOns['status'] == 0) : ?>
+                                <button form="addOns_reactivate" class="btn btn-outline-success mt-3 ms-2">Reactivate</button>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
-        <form id="addOns_delete" action="add-ons-delete-admin" method="POST">
-            <input
-                class="d-none"
-                name="add_ons_id"
-                value="<?= $addOns['add_on_id'] ?>"
-                type="text"
-                readonly>
-        </form>
+        <?php if ($addOns['status'] == 1) : ?>
+            <form id="addOns_delete" action="add-ons-delete-admin" method="POST">
+                <input
+                    class="d-none"
+                    name="add_ons_id"
+                    value="<?= $addOns['add_on_id'] ?>"
+                    type="text"
+                    readonly>
+            </form>
+        <?php elseif ($addOns['status'] == 0) : ?>
+            <form id="addOns_reactivate" action="add-ons-reactivate-admin" method="POST">
+                <input
+                    class="d-none"
+                    name="add_ons_id"
+                    value="<?= $addOns['add_on_id'] ?>"
+                    type="text"
+                    readonly>
+            </form>
+        <?php endif; ?>
     </div>
 
 
@@ -155,6 +170,28 @@
             // console.log(sureOrNot);
             if (sureOrNot.isConfirmed) {
                 formArchive.submit();
+            }
+        });
+
+    });
+</script>
+
+<script>
+    const formReactivate = document.querySelector('#addOns_reactivate');
+
+    formReactivate.addEventListener('submit', (e) => {
+        e.preventDefault();
+        Swal.fire({
+            icon: "question",
+            title: "Are you sure",
+            text: "You really want to reactivate this add on?",
+            allowOutsideClick: false,
+            confirmButtonText: "Yes",
+            showCancelButton: true
+        }).then((sureOrNot) => {
+            // console.log(sureOrNot);
+            if (sureOrNot.isConfirmed) {
+                formReactivate.submit();
             }
         });
 

@@ -117,11 +117,13 @@ $router->get('size-create-admin', 'Admin\Admin_MenuSizeController', 'create')->o
 $router->post('size-store-admin', 'Admin\Admin_MenuSizeController', 'store');
 
 $router->get('add-ons-table-admin', 'Admin\Admin_AddOnsController', 'index')->only('staff', 'Admin,Employee');
+$router->get('add-ons-archive-table-admin', 'Admin\Admin_AddOnsController', 'index_archived')->only('staff', 'Admin,Employee');
 $router->get('add-ons-show-admin', 'Admin\Admin_AddOnsController', 'show');
 $router->get('add-ons-create-admin', 'Admin\Admin_AddOnsController', 'create')->only('staff', 'Admin,Employee');
 $router->post('add-ons-store-admin', 'Admin\Admin_AddOnsController', 'store');
 $router->post('add-ons-update-admin', 'Admin\Admin_AddOnsController', 'update');
 $router->post('add-ons-delete-admin', 'Admin\Admin_AddOnsController', 'delete');
+$router->post('add-ons-reactivate-admin', 'Admin\Admin_AddOnsController', 'reactivate');
 $router->post('add-ons-change-availability-admin', 'Admin\Admin_AddOnsController',  'change_availability');
 
 $router->get('discount-table-admin', 'Admin\Admin_DiscountController', 'index')->only('staff', 'Admin,Employee');
