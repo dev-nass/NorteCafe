@@ -87,6 +87,7 @@ $router->post('generate-report', 'Admin\Admin_GenerateReportController', 'genera
 
 // transactions
 $router->get('transaction-queue-admin', 'Admin\Admin_TransactionController', 'pending_queue')->only('staff', 'Admin,Employee');
+$router->get('transaction-fetch-pending-admin', 'Admin\Admin_TransactionController', 'fetch_pending');
 $router->get('transaction-pending-show-admin', 'Admin\Admin_TransactionController', 'pending_show');
 
 $router->get('transaction-cancellation-queue-admin', 'Admin\Admin_TransactionController', 'cancellation_queue')->only('staff', 'Admin,Employee');

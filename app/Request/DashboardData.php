@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * NOT USED ANYMORE
+*/
+
 namespace App\Request;
 
 use Core\Database;

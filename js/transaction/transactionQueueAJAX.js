@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function fetchOrders() {
         try {
-            const response = await fetch("../../app/Request/PendingOrderQueue.php");
+            const response = await fetch("transaction-fetch-pending-admin");
             const text = await response.text(); // Get raw response
 
             // console.log("Raw Response:", text); // Check if it's JSON or has errors
