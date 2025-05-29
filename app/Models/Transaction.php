@@ -137,7 +137,7 @@ class Transaction extends Model
      */
     public function uploadFile($file)
     {
-        $target_dir = BASE_PATH . "storage/backend/img/delivery_proof/";
+        $target_dir = BASE_PATH . "uploads/backend/img/delivery_proof/";
         $target_path = $target_dir . basename($file['name']);
 
         // Ensure the directory exists

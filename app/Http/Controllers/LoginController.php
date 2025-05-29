@@ -92,7 +92,7 @@ class LoginController extends Controller
         $auth = new Authenticator;
         $auth->logout();
 
-        return $this->redirect('index');
+        return $this->redirect('/');
     }
 
     public function update() {}

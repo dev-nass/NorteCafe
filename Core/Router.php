@@ -78,18 +78,14 @@ class Router
      */
     public function route($uri, $method)
     {
-        // dd($this->routes);
+
         foreach ($this->routes as $route) {
-            // DUMP IDEAAAA (this allows item/show/{id})
-            // $uriPattern = preg_replace('#\{[a-zA-Z0-9_]+\}#', '([0-9]+)', $route['uri']);
-            // preg_match("#^$uriPattern$#", $uri, $matches);
-            // // dd($matches);
 
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
 
                 Middleware::resolve($route['middleware'], $route['middleware_role']);
 
-                $controllerClass = 'app\Http\Controllers\\' . $route['controller_class'];
+                $controllerClass = 'App\Http\Controllers\\' . $route['controller_class'];
                 $controllerInstance = new $controllerClass();
                 $controllerMethods = get_class_methods($controllerInstance);
 

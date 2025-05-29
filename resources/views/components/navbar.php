@@ -3,7 +3,7 @@
         <div class="container">
 
             <!-- Brand Name/logo -->
-            <a id="brand" href="index">
+            <a id="brand" href="/">
                 <h4 class="mb-0"><span class="logo-text-1">Norte</span> <span class="logo-text-2">Cafe</span></h4>
             </a>
 
@@ -11,7 +11,7 @@
             <div id="navbar-collapse-toggle" class="collapse navbar-collapse justify-content-end">
                 <ul class="navbar-nav mx-auto">
                     <li>
-                        <a href="index" class="nav-link">Home</a>
+                        <a href="/" class="nav-link">Home</a>
                     </li>
                     <li>
                         <a href="menu" class="nav-link">Menu</a>

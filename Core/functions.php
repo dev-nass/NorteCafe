@@ -105,7 +105,7 @@ function dynamic_http_response($role)
     }
 
     $route =  match($role) {
-        'Customer' => 'index',
+        'Customer' => '/',
         'Employee' => 'dashboard',
         'Admin' => 'dashboard',
         'Rider' => 'assigned-transaction-queue-rider'

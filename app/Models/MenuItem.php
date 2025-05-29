@@ -59,7 +59,7 @@ class MenuItem extends Model
      */
     public function uploadFile($file)
     {
-        $target_dir = BASE_PATH . "storage/backend/img/menu_testing/";
+        $target_dir = BASE_PATH . "uploads/backend/img/menu_testing/";
         $target_path = $target_dir . basename($file['name']);
 
         // Ensure the directory exists

@@ -6,7 +6,7 @@ $router->post('test-store', 'TestController', 'store');
 /**
  * General Web-Pages
 */
-$router->get('index', 'Customer\UserController', 'index')->only('general', 'Customer');
+$router->get('/', 'Customer\UserController', 'index')->only('general', 'Customer');
 $router->get('contactUs', 'Customer\UserController', 'contactUs');
 $router->post('contactUs', 'Customer\UserController', 'sendMessage');
 $router->get('aboutUsNorteCafe', 'Customer\UserController', 'aboutUsNorteCafe');

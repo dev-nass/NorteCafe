@@ -83,7 +83,7 @@ class User extends Model
             'Admin' => 'dashboard',
             'Employee' => 'dashboard',
             'Rider' => 'assigned-transaction-queue-rider',
-            'Customer' => 'index',
+            'Customer' => '/',
         ];
 
         redirect($routes[$role] ?? 'index');
@@ -95,7 +95,7 @@ class User extends Model
      */
     public function uploadFile($file)
     {
-        $target_dir = BASE_PATH . "storage/backend/img/profiling/";
+        $target_dir = BASE_PATH . "uploads/backend/img/profiling/";
         $target_path = $target_dir . basename($file['name']);
 
         // Ensure the directory exists

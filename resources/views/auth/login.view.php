@@ -12,7 +12,7 @@
                                 <!-- pa link nalang sa homepage -->
                                 <div class="z-2 px-3 py-3 h-100 d-flex flex-column align-items-center justify-content-center">
                                     <img style="height: 150px; width: 150px;" src="/uploads/frontend/user/img/index/rabbit-reg.png" alt="">
-                                    <a href="index" class="no-underline">
+                                    <a href="/" class="no-underline">
                                         <h2 class="link-light fw-bolder">NORTE CAFE' BY CB</h2>
                                     </a>
                                     <p>
