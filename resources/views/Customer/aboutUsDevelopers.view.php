@@ -13,7 +13,7 @@
                 </div>
                 <div id="logo-square-container" class="col-sm-12 col-lg-6 d-flex justify-content-center right-slide">
                     <div class="card" style="width: 23rem;">
-                        <img src="../../storage/frontend/user/img/aboutUs/logo.jpg" alt="logo">
+                        <img src="/uploads/frontend/user/img/aboutUs/logo.jpg" alt="logo">
                     </div>
                 </div>
             </div>
@@ -32,9 +32,9 @@
             <div class="row row-cols-1 row-cols-md-2 g-4">
                 <div class="col down-slide">
                     <div class="card shadow">
-                        <img class="member-bg" src="../../storage/frontend/user/img/aboutUs/bg-1.jpg" class="card-img-top" alt="...">
+                        <img class="member-bg" src="/uploads/frontend/user/img/aboutUs/bg-1.jpg" class="card-img-top" alt="...">
                         <div class="card-body pr">
-                            <img class="member" src="../../storage/frontend/user/img/aboutUs/jonas.jpg" alt="">
+                            <img class="member" src="/uploads/frontend/user/img/aboutUs/jonas.jpg" alt="">
                             <h5 class="card-title pt-5 text-center">Jonas Vince Macawile</h5>
                             <p class="card-text text-center">Admin-side Developer & Database</p>
                         </div>
@@ -42,9 +42,9 @@
                 </div>
                 <div class="col down-slide">
                     <div class="card shadow">
-                        <img class="member-bg" src="../../storage/frontend/user/img/aboutUs/bg-2.jpg" class="card-img-top" alt="...">
+                        <img class="member-bg" src="/uploads/frontend/user/img/aboutUs/bg-2.jpg" class="card-img-top" alt="...">
                         <div class="card-body pr">
-                            <img class="member" src="../../storage/frontend/user/img/aboutUs/uddon.jpg" alt="">
+                            <img class="member" src="/uploads/frontend/user/img/aboutUs/uddon.jpg" alt="">
                             <h5 class="card-title pt-5 text-center">John Mike Uddon</h5>
                             <p class="card-text text-center">Business Process Manager</p>
                         </div>
@@ -52,9 +52,9 @@
                 </div>
                 <div class="col down-slide">
                     <div class="card shadow">
-                        <img class="member-bg" src="../../storage/frontend/user/img/aboutUs/bg-3.jpg" class="card-img-top" alt="...">
+                        <img class="member-bg" src="/uploads/frontend/user/img/aboutUs/bg-3.jpg" class="card-img-top" alt="...">
                         <div class="card-body pr">
-                            <img class="member" src="../../storage/frontend/user/img/aboutUs/noel.jpg" alt="">
+                            <img class="member" src="/uploads/frontend/user/img/aboutUs/noel.jpg" alt="">
                             <h5 class="card-title pt-5 text-center">Neol Guerrero Jr</h5>
                             <p class="card-text text-center">Back-End Developer</p>
                         </div>
@@ -62,9 +62,9 @@
                 </div>
                 <div class="col down-slide">
                     <div class="card shadow">
-                        <img class="member-bg" src="../../storage/frontend/user/img/aboutUs/bg-4.jpg" class="card-img-top" alt="...">
+                        <img class="member-bg" src="/uploads/frontend/user/img/aboutUs/bg-4.jpg" class="card-img-top" alt="...">
                         <div class="card-body pr">
-                            <img class="member" src="../../storage/frontend/user/img/aboutUs/martin.jpg" alt="">
+                            <img class="member" src="/uploads/frontend/user/img/aboutUs/martin.jpg" alt="">
                             <h5 class="card-title pt-5 text-center">Martin Greg Taguiad</h5>
                             <p class="card-text text-center">Documentation</p>
                         </div>
@@ -73,9 +73,9 @@
 
                 <div class="col down-slide">
                     <div class="card shadow">
-                        <img class="member-bg" src="../../storage/frontend/user/img/aboutUs/bg-5.jpg" class="card-img-top" alt="...">
+                        <img class="member-bg" src="/uploads/frontend/user/img/aboutUs/bg-5.jpg" class="card-img-top" alt="...">
                         <div class="card-body pr">
-                            <img class="member" src="../../storage/frontend/user/img/aboutUs/she.jpg" alt="">
+                            <img class="member" src="/uploads/frontend/user/img/aboutUs/she.jpg" alt="">
                             <h5 class="card-title pt-5 text-center">Sheree Maquirang</h5>
                             <p class="card-text text-center">Documentation</p>
                         </div>
@@ -84,9 +84,9 @@
 
                 <div class="col down-slide">
                     <div class="card shadow">
-                        <img class="member-bg" src="../../storage/frontend/user/img/aboutUs/bg-1.jpg" class="card-img-top" alt="...">
+                        <img class="member-bg" src="/uploads/frontend/user/img/aboutUs/bg-1.jpg" class="card-img-top" alt="...">
                         <div class="card-body pr">
-                            <img class="member" src="../../storage/frontend/user/img/aboutUs/alien.jpg" alt="">
+                            <img class="member" src="/uploads/frontend/user/img/aboutUs/alien.jpg" alt="">
                             <h5 class="card-title pt-5 text-center">Niño Marco Tampol</h5>
                             <p class="card-text text-center">Front-end Developer</p>
                         </div>

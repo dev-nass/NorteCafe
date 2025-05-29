@@ -6,7 +6,7 @@
                 <!-- LOGO Column Kamote nanaman -->
                 <div class="col-12 col-md-6 col-lg-3 mt-3">
                     <div>
-                        <img src="../../storage/frontend/user/img/index/norte-cafe-footer.png">
+                        <img src="/uploads/frontend/user/img/index/norte-cafe-footer.png">
                     </div>
                 </div>
 
@@ -65,22 +65,22 @@
     </footer>
 
     <!-- User Side -->
-    <script src="../../resources/js/scrollReveal.min.js" defer></script>
-    <script src="../../resources/js/firstTime_logIn.js" defer></script>
+    <script src="/js/scrollReveal.min.js" defer></script>
+    <script src="/js/firstTime_logIn.js" defer></script>
 
-    <script src="../../resources/js/menu/quantityUpdate.js" defer></script>
-    <script src="../../resources/js/menu/selectOnlyOneAddOn.js" defer></script>
+    <script src="/js/menu/quantityUpdate.js" defer></script>
+    <script src="/js/menu/selectOnlyOneAddOn.js" defer></script>
 
-    <script src="../../resources/js/cart/selectDiscount.js" defer></script>
-    <script src="../../resources/js/cart/paymentMethod.js" defer></script>
-    <script src="../../resources/js/cart/placeOrderConfirmation.js" defer></script>
+    <script src="/js/cart/selectDiscount.js" defer></script>
+    <script src="/js/cart/paymentMethod.js" defer></script>
+    <script src="/js/cart/placeOrderConfirmation.js" defer></script>
 
-    <script src="../../resources/js/profiling/errorAlert.js" defer></script>
-    <script src="../../resources/js/profiling/drag&DropProfileImg.js" defer></script>
+    <script src="/js/profiling/errorAlert.js" defer></script>
+    <script src="/js/profiling/drag&DropProfileImg.js" defer></script>
 
 
     <!-- Bootstrap -->
-    <script src="../../resources/js/bootstrap.bundle.min.js" defer></script>
+    <script src="/js/bootstrap.bundle.min.js" defer></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
     <!-- Sweet Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -9,7 +9,7 @@
                     <div class="col-xl-6 mb-xl-0 mb-4">
                         <div class="card bg-transparent shadow">
                             <div class="overflow-hidden position-relative border-radius-xl choco-gradient-bg">
-                                <img src="../../resources/assets/img/illustrations/pattern-tree.svg" class="position-absolute opacity-25 start-0 top-0 w-100 z-index-1 h-100" alt="pattern-tree">
+                                <img src="../../uploads/assets/img/illustrations/pattern-tree.svg" class="position-absolute opacity-25 start-0 top-0 w-100 z-index-1 h-100" alt="pattern-tree">
                                 <div class="card-body position-relative z-index-1 px-3">
                                     <h5 class="text-white mt-2">Transaction ID: <?= $transactions[0]['transaction_id'] ?></h5>
                                     <div class="pb-4">

@@ -32,25 +32,25 @@
 </footer> -->
 
 <!--   Assests/Core JS Files   -->
-<script src="../../resources/assets/js/core/popper.min.js"></script>
-<script src="../../resources/assets/js/core/bootstrap.min.js"></script>
-<script src="../../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
-<script src="../../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
-<!-- <script src="../../resources/assets/js/plugins/chartjs.min.js"></script> -->
+<script src="../../uploads/assets/js/core/popper.min.js"></script>
+<script src="../../uploads/assets/js/core/bootstrap.min.js"></script>
+<script src="../../uploads/assets/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="../../uploads/assets/js/plugins/smooth-scrollbar.min.js"></script>
+<!-- <script src="../../uploads/assets/js/plugins/chartjs.min.js"></script> -->
 
 <!-- Chart JS -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
 <!-- My Personal JS -->
 <script src="../../js/app.js" type="module"></script>
-<script src="../../resources/js/transaction/transactionQueueAJAX.js" defer></script>
-<script src="../../resources/js/transaction/cancellationQueueAJAX.js" defer></script>
-<script src="../../resources/js/menu/drag&DropMenuImg.js" defer></script>
+<script src="../../uploads/js/transaction/transactionQueueAJAX.js" defer></script>
+<script src="../../uploads/js/transaction/cancellationQueueAJAX.js" defer></script>
+<script src="../../uploads/js/menu/drag&DropMenuImg.js" defer></script>
 <!-- Dashboard -->
-<script src="../../resources/js/dashboard/fetch_visit.js" defer></script>
-<script src="../../resources/js/dashboard/revenue_graph.js" defer></script>
-<script src="../../resources/js/dashboard/transaction_bar.js" defer></script>
-<script src="../../resources/js/dashboard/most_sale.js" defer></script>
+<script src="../../uploads/js/dashboard/fetch_visit.js" defer></script>
+<script src="../../uploads/js/dashboard/revenue_graph.js" defer></script>
+<script src="../../uploads/js/dashboard/transaction_bar.js" defer></script>
+<script src="../../uploads/js/dashboard/most_sale.js" defer></script>
 
 
 <!-- Data Table -->
@@ -59,14 +59,14 @@
 <!-- If using Bootstrap styling for DataTables: -->
 <!-- <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>  -->
 <script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
-<script src="../../resources/js/transaction/dataTable.js" defer></script>
+<script src="../../uploads/js/transaction/dataTable.js" defer></script>
 
 
 
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="../../resources/assets/js/material-dashboard.min.js?v=3.2.0"></script>
+<script src="../../uploads/assets/js/material-dashboard.min.js?v=3.2.0"></script>
 </body>
 
 </html>

@@ -18,23 +18,23 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../../resources/assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../resources/assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../uploads/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../../uploads/assets/img/favicon.png">
     <title>
         <?= $title ?>
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
     <!-- Nucleo Icons -->
-    <link href="../../resources/assets/" rel="stylesheet" />
-    <link href="../../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="../../uploads/assets/" rel="stylesheet" />
+    <link href="../../uploads/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- Material Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="../../resources/assets/css/material-dashboard.css?v=3.2.0" rel="stylesheet" />
-    <link rel="stylesheet" href="../../resources/css/util-admin.css">
+    <link id="pagestyle" href="../../uploads/assets/css/material-dashboard.css?v=3.2.0" rel="stylesheet" />
+    <link rel="stylesheet" href="../../uploads/css/util-admin.css">
     <!-- Table Data -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.3/css/responsive.dataTables.css" />

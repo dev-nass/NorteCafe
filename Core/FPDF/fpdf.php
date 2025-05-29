@@ -1548,7 +1548,7 @@ protected function _putpage($n)
 		$this->_put(sprintf('/MediaBox [0 0 %.2F %.2F]',$this->PageInfo[$n]['size'][0],$this->PageInfo[$n]['size'][1]));
 	if(isset($this->PageInfo[$n]['rotation']))
 		$this->_put('/Rotate '.$this->PageInfo[$n]['rotation']);
-	$this->_put('/Resources 2 0 R');
+	$this->_put('/uploads 2 0 R');
 	if(!empty($this->PageLinks[$n]))
 	{
 		$s = '/Annots [';

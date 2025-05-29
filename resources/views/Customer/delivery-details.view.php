@@ -20,7 +20,7 @@
             </div>
             <div class="col-12 col-lg-6 mt-5 mt-lg-0">
                 <div class="d-flex justify-content-center">
-                    <img src="../../storage/frontend/user/img/index/delivery-page.png">
+                    <img src="/uploads/frontend/user/img/index/delivery-page.png">
                 </div>
             </div>
         </div>

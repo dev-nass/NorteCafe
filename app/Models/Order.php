@@ -50,7 +50,7 @@ class Order extends Model
             "location" => $this->location,
             "payment_method" => $payment_details['payment_method'],
             "payment_proof_dir" => isset($this->proof_of_payment['error']) && $this->proof_of_payment['error'] === 0
-                ? "../../storage/backend/img/proof_of_payment/" . $this->proof_of_payment['name']
+                ? "/uploads/backend/img/proof_of_payment/" . $this->proof_of_payment['name']
                 : NULL,
         ]);
 

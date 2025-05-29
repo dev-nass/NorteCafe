@@ -103,7 +103,7 @@ class Admin_ProfileController extends Controller
             // We are only updating the 'profile_dir' column if the $image_dir is not empty
             if ($image_dir['full_path'] !== "") {
                 $user->update($data["user_id"], [
-                    "profile_dir" => "../../storage/backend/img/profiling/" . $image_dir['name'],
+                    "profile_dir" => "/uploads/backend/img/profiling/" . $image_dir['name'],
                 ]);
 
                 $user->uploadFile($image_dir);

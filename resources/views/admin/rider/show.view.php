@@ -35,7 +35,7 @@
                                             <label id="drop-area" class="form-control w-100 h-100" for="input-upload-item">
                                                 <input class="d-none" name="user-profile-img" type="file" accept="image/*" id="input-upload-item">
                                                 <div id="image-view-container" class="rounded d-flex flex-column align-items-center justify-content-center h-100" style="border: 1px dashed black; object-fit: cover; background-position: center; background-image: url(<?= $_SESSION['__currentUser']['credentials']['profile_dir'] ?>);">
-                                                    <img class="<?= $user['profile_dir'] ? 'w-100 h-100' : 'w-25' ?>" src="<?= $user['profile_dir'] ?? '../../storage/frontend/admin/transaction/upload-logo.png" alt="upload-logo' ?> ">
+                                                    <img class="<?= $user['profile_dir'] ? 'w-100 h-100' : 'w-25' ?>" src="<?= $user['profile_dir'] ?? '/uploads/frontend/admin/transaction/upload-logo.png" alt="upload-logo' ?> ">
                                                     <p class="text-center text-md mb-0"><?= $user['profile_dir'] ? '' : 'Click here to upload image' ?></p>
                                                 </div>
                                             </label>
@@ -189,7 +189,7 @@
             <div class="row gx-4 mb-2 px-4">
                 <div class="col-auto">
                     <div class="avatar avatar-xl position-relative">
-                        <img src="<?= $user['profile_dir'] ?? '../../storage/frontend/user/img/index/default-pfp.jpg' ?>" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                        <img src="<?= $user['profile_dir'] ?? '/uploads/frontend/user/img/index/default-pfp.jpg' ?>" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                     </div>
                 </div>
                 <div class="col-auto my-auto">

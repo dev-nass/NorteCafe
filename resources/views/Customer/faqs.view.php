@@ -173,7 +173,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-5 d-flex justify-content-center align-items-center">
-                <img class="faq-img" src="../../storage/frontend/user/img/tampol-pages/faqs-img.png" alt="faq-image">
+                <img class="faq-img" src="/uploads/frontend/user/img/tampol-pages/faqs-img.png" alt="faq-image">
             </div>
             <div class="col-12 col-lg-7">
                 <h2>Welcome to our FAQ page!</h2>

@@ -16,7 +16,7 @@
         <div class="row">
 
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center hero-left">
-                <img src="../../storage/frontend/user/img/index/hero-icon-white.png" class="hero-grid" />
+                <img src="/uploads/frontend/user/img/index/hero-icon-white.png" class="hero-grid" />
             </div>
 
             <div class="col-12 col-md-6 py-4 hero-right">
@@ -78,7 +78,7 @@
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="d-none d-sm-block col-md-4">
-                            <img src="../../storage/frontend/user/img/index/croffle.jpg" class="img-fluid rounded-start h-100" alt="...">
+                            <img src="/uploads/frontend/user/img/index/croffle.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
                         <div class="col-12 col-md-8 choco-bg">
                             <div class="card-body">
@@ -101,7 +101,7 @@
                             </div>
                         </div>
                         <div class="d-none d-sm-block col-md-4">
-                            <img src="../../storage/frontend/user/img/index/sandwhich-nachos.jpg" class="img-fluid rounded-start h-100" alt="...">
+                            <img src="/uploads/frontend/user/img/index/sandwhich-nachos.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="d-none d-sm-block col-md-4">
-                            <img src="../../storage/frontend/user/img/index/coffee.jpg" class="img-fluid rounded-start h-100" alt="...">
+                            <img src="/uploads/frontend/user/img/index/coffee.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
                         <div class="col-12 col-md-8 dark-bg">
                             <div class="card-body">
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                         <div class="d-none d-sm-block col-md-4">
-                            <img src="../../storage/frontend/user/img/index/milktea.jpg" class="img-fluid rounded-start h-100" alt="...">
+                            <img src="/uploads/frontend/user/img/index/milktea.jpg" class="img-fluid rounded-start h-100" alt="...">
                         </div>
                     </div>
                 </div>
@@ -157,7 +157,7 @@
             </div>
             <div class="col-12 col-md-6 mt-sm-5 mt-md-4 d-flex justify-content-center align-items-center right-slide">
                 <div>
-                    <img src="../../storage/frontend/user/img/index/delivery-logo.png" class="delivery-logo" />
+                    <img src="/uploads/frontend/user/img/index/delivery-logo.png" class="delivery-logo" />
                 </div>
             </div>
         </div>
@@ -230,7 +230,7 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center left-slide">
-                <img src="../../storage/frontend/user/img/index/our-story.jpg" class="our-story-img w-sm-50" />
+                <img src="/uploads/frontend/user/img/index/our-story.jpg" class="our-story-img w-sm-50" />
             </div>
 
             <div class="col-12 col-md-6 py-4 right-slide">

@@ -29,7 +29,7 @@
                                                     <label id="drop-area" class="form-control w-100 h-100" for="input-upload-item">
                                                         <input class="d-none" name="user-profile-img" type="file" accept="image/*" id="input-upload-item" required>
                                                         <div id="image-view-container" class="rounded d-flex flex-column align-items-center justify-content-center h-100" style="border: 1px dashed black; object-fit: cover; background-position: center; background-image: url(<?= $_SESSION['__currentUser']['credentials']['profile_dir'] ?>);">
-                                                            <img class="<?= $_SESSION['__currentUser']['credentials']['profile_dir'] ? 'w-100 h-100' : 'w-25' ?>" src="<?= $_SESSION['__currentUser']['credentials']['profile_dir'] ?? '../../storage/frontend/admin/transaction/upload-logo.png" alt="upload-logo' ?> ">
+                                                            <img class="<?= $_SESSION['__currentUser']['credentials']['profile_dir'] ? 'w-100 h-100' : 'w-25' ?>" src="<?= $_SESSION['__currentUser']['credentials']['profile_dir'] ?? '/uploads/frontend/admin/transaction/upload-logo.png" alt="upload-logo' ?> ">
                                                             <p class="text-center text-md mb-0"><?= $_SESSION['__currentUser']['credentials']['profile_dir'] ? '' : 'Click here to upload image' ?></p>
                                                         </div>
                                                         <div class="invalid-feedback mt-2">
@@ -205,7 +205,7 @@
                     <div class="col-12 col-md-6 border white-bg shadow-sm">
                         <div class="d-flex flex-column justify-content-center h-100">
                             <div class="d-flex justify-content-center mb-3">
-                                <img src="<?= $_SESSION['__currentUser']['credentials']['profile_dir'] != NULL ? $_SESSION['__currentUser']['credentials']['profile_dir'] : "../../storage/frontend/user/img/index/default-pfp.jpg" ?>" alt="profile" style="border-radius: 40px; height: 250px; width: 230px;">
+                                <img src="<?= $_SESSION['__currentUser']['credentials']['profile_dir'] != NULL ? $_SESSION['__currentUser']['credentials']['profile_dir'] : "/uploads/frontend/user/img/index/default-pfp.jpg" ?>" alt="profile" style="border-radius: 40px; height: 250px; width: 230px;">
                             </div>
                             <?php if ($_SESSION['__currentUser']['credentials']['verified'] == 1) : ?>
                                 <div class="text-center">

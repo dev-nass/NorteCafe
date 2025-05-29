@@ -19,7 +19,7 @@
 
             <div id="logo-square-container" class="col-md-6 d-flex justify-content-center right-slide">
                 <div class="card" style="width: 23rem;">
-                    <img src="../../storage/frontend/user/img/aboutUs/logo.jpg" alt="logo">
+                    <img src="/uploads/frontend/user/img/aboutUs/logo.jpg" alt="logo">
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
     <section class="container py-5">
         <div class="row align-items-center">
             <div class="col-md-5 text-center left-slide">
-                <img src="../../storage/frontend/user/img/aboutUs/milktea.jpg" alt="Our Mission" class="img-fluid" id="milktea-img">
+                <img src="/uploads/frontend/user/img/aboutUs/milktea.jpg" alt="Our Mission" class="img-fluid" id="milktea-img">
             </div>
 
             <div class="col-md-1"></div>
@@ -66,7 +66,7 @@
             <div class="col-md-1"></div>
 
             <div class="col-md-6 text-center right-slide">
-                <img src="../../storage/frontend/user/img/aboutUs/background.jpg" alt="Our story" class="img-fluid" id="story-img">
+                <img src="/uploads/frontend/user/img/aboutUs/background.jpg" alt="Our story" class="img-fluid" id="story-img">
             </div>
         </div>
     </section>

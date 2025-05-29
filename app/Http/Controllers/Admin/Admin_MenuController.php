@@ -127,7 +127,7 @@ class Admin_MenuController extends Controller
                 "name" => $data['menu_name'],
                 "category" => strtoupper($data['menu_category']),
                 "description" => $data['menu_description'],
-                "image_dir" => "../../storage/backend/img/menu_testing/" . $image_dir['name'],
+                "image_dir" => "/uploads/backend/img/menu_testing/" . $image_dir['name'],
                 "available" => true,
             ]);
 
@@ -209,7 +209,7 @@ class Admin_MenuController extends Controller
             // check if image_dir should be updated
             if ($image_dir['full_path'] !== "") {
                 $menuItemObj->update($data["menu_item_id"], [
-                    "image_dir" => "../../storage/backend/img/menu_testing/" . $image_dir['name'],
+                    "image_dir" => "/uploads/backend/img/menu_testing/" . $image_dir['name'],
                 ]);
                 $menuItemObj->uploadFile($image_dir);
             }

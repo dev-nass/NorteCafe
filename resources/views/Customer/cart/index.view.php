@@ -391,7 +391,7 @@
 <script>
     <?php if (isset($_SESSION['__flash']['placed_order_notif'])) : ?>
         Swal.fire({
-            imageUrl: '../../storage/frontend/user/img/index/order-placed.png',
+            imageUrl: '/uploads/frontend/user/img/index/order-placed.png',
             imageHeight: 200,
             title: "Order Placed Successfully!",
             text: "Make another purchase?",
@@ -403,7 +403,7 @@
                 window.location.href = "http://localhost/PHP%202025/Norte%20Cafe/public/index.php/menu";
             } else if (result.isDenied) {
                 Swal.fire({
-                    imageUrl: '../../storage/frontend/user/img/index/question.png',
+                    imageUrl: '/uploads/frontend/user/img/index/question.png',
                     imageHeight: 200,
                     title: "Head to your profile?",
                     text: "To view your current transactions",

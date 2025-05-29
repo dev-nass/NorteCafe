@@ -45,7 +45,7 @@
                                                         <label class="drop-area h-100 w-100 form-control" for="input-upload-item">
                                                             <input class="input-upload-item d-none" name="menu-item-img" type="file" accept="image/*" id="input-upload-item">
                                                             <div class="image-view-container rounded d-flex flex-column align-items-center justify-content-center h-100" style="border: 1px dashed black; object-fit: cover; background-position: center;">
-                                                                <img class="w-25" src="../../storage/frontend/admin/transaction/upload-logo.png" alt="upload-logo">
+                                                                <img class="w-25" src="/uploads/frontend/admin/transaction/upload-logo.png" alt="upload-logo">
                                                                 <p class="opacity-4 m-0">500x500</p>
                                                                 <p class="text-center text-md mb-0">Click here to upload image</p>
                                                             </div>

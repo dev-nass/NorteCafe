@@ -12,7 +12,7 @@
                             <div class="col-md-5 text-center info-section-bg text-white d-flex flex-column position-relative">
                                 <!-- pa link nalang sa homepage -->
                                 <div class="z-2 px-3 h-100 d-flex flex-column align-items-center justify-content-center">
-                                    <img style="height: 150px; width: 150px;" src="../../storage/frontend/user/img/index/rabbit-reg.png" alt="">
+                                    <img style="height: 150px; width: 150px;" src="/uploads/frontend/user/img/index/rabbit-reg.png" alt="">
                                     <a href="index" class="no-underline">
                                         <h2 class="link-light fw-bolder">NORTE CAFE' BY CB</h2>
                                     </a>
@@ -21,7 +21,7 @@
                                     </p>
                                 </div>
 
-                                <img class="z-1 w-100 h-100 opacity-25 position-absolute" src="../../storage/frontend/user/img/index/registration-side.jpg" alt="">
+                                <img class="z-1 w-100 h-100 opacity-25 position-absolute" src="/uploads/frontend/user/img/index/registration-side.jpg" alt="">
                             </div>
 
                             <!-- form section -->
@@ -110,5 +110,5 @@
     });
 </script>
 
-<script src="../../resources/js/registration.js" defer></script>
+<script src="../../uploads/js/registration.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -14,7 +14,7 @@
             <div class="row gx-4 mb-2 px-4">
                 <div class="col-auto">
                     <div class="avatar avatar-xl position-relative">
-                        <img src="<?= $user['profile_dir'] ?? '../../storage/frontend/user/img/index/default-pfp.jpg' ?>" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                        <img src="<?= $user['profile_dir'] ?? '/uploads/frontend/user/img/index/default-pfp.jpg' ?>" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                     </div>
                 </div>
                 <div class="col-auto my-auto">

@@ -16,7 +16,7 @@
                                         <label id="drop-area" class="form-control w-100 h-100" for="input-upload-item">
                                             <input class="d-none" name="user-profile-img" type="file" accept="image/*" id="input-upload-item">
                                             <div id="image-view-container" class="rounded d-flex flex-column align-items-center justify-content-center h-100" style="border: 1px dashed black; object-fit: cover; background-position: center; background-image: url();">
-                                                <img class="w-25" src="../../storage/frontend/admin/transaction/upload-logo.png">
+                                                <img class="w-25" src="/uploads/frontend/admin/transaction/upload-logo.png">
                                                 <p class="text-center text-md mb-0">Click here to upload image</p>
                                             </div>
                                         </label>
@@ -208,4 +208,4 @@
     });
 </script>
 
-<script src="../../resources/js/profiling/drag&DropProfileImg.js" defer></script>
+<script src="../../uploads/js/profiling/drag&DropProfileImg.js" defer></script>

@@ -36,20 +36,19 @@ class Router
     {
         $this->routes[] = [
             'method' => $method,
-            'uri' => "/PHP%202025/Norte%20Cafe/public/index.php/{$uri}",
+            'uri' => '/' . ltrim($uri, '/'), // <-- Path only
             'controller_class' => $controllerClass,
             'controller_method' => $controllerMethod,
             'middleware' => null,
             'middleware_role' => null,
         ];
 
-        // Added for middleware
         return $this;
     }
 
     /**
      * Used for accessing a page; clicking <a> / clicking a link, traversing the URL
-    */
+     */
     public function get($uri, $controllerClass, $controllerMethod)
     {
         return $this->add('GET', $uri, $controllerClass, $controllerMethod);
@@ -57,7 +56,7 @@ class Router
 
     /**
      * Used for every submit of form; create, update, delete
-    */
+     */
     public function post($uri, $controllerClass, $controllerMethod)
     {
         return $this->add('POST', $uri, $controllerClass, $controllerMethod);
@@ -79,8 +78,8 @@ class Router
      */
     public function route($uri, $method)
     {
+        // dd($this->routes);
         foreach ($this->routes as $route) {
-
             // DUMP IDEAAAA (this allows item/show/{id})
             // $uriPattern = preg_replace('#\{[a-zA-Z0-9_]+\}#', '([0-9]+)', $route['uri']);
             // preg_match("#^$uriPattern$#", $uri, $matches);

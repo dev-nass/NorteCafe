@@ -270,7 +270,7 @@ class Rider_TransactionController extends Controller
             $updateChange = $transObj->update($data['transaction_id'], [
                 "amount_tendered" => number_format($data['amount_tendered'], '2', '.', ''),
                 "`change`" => number_format($change, '2', '.', ''),
-                "delivery_proof_dir" => "../../storage/backend/img/delivery_proof/" . $delivery_proof['name'],
+                "delivery_proof_dir" => "/uploads/backend/img/delivery_proof/" . $delivery_proof['name'],
                 "status" => "Delivered",
                 "delivered_at" => $current_date,
             ]);

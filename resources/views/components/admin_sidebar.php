@@ -5,7 +5,7 @@
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand px-4 py-3 m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
             target="_blank">
-            <img src="../../storage/frontend/user/img/index/rabbit-admin.png" class="navbar-brand-img" width="30" height="30" alt="main_logo">
+            <img src="/uploads/frontend/user/img/index/rabbit-admin.png" class="navbar-brand-img" width="30" height="30" alt="main_logo">
             <span class="ms-1 text-sm text-dark">Norte Cafe</span>
         </a>
     </div>
