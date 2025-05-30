@@ -21,7 +21,7 @@ function dd($value)
  */
 function urlIs($value)
 {
-    return $_SERVER['REQUEST_URI'] === "/PHP%202025/Norte%20Cafe/public/index.php/{$value}";
+    return trim($_SERVER['REQUEST_URI'], '/') === trim($value, '/');
 }
 
 function isVerified()
