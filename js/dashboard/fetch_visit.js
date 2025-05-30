@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             visitHeader.textContent = data.current_value ?? data.current_value ?? 'N/A';
         } catch (error) {
             console.error('Fetch failed:', error);

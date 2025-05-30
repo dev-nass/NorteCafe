@@ -14,8 +14,8 @@ discountBtn.forEach((btn) => {
             ? fiexDiscountCompt(totalPriceValue, btn.getAttribute("data-value"))
             : percentageDiscountCompt(totalPriceValue, btn.getAttribute("data-value"));
 
-        console.log("Voucher type:", btn.getAttribute("data-type"));
-        console.log("Amount after dis:", discountedTotal.toFixed(2));
+        // console.log("Voucher type:", btn.getAttribute("data-type"));
+        // console.log("Amount after dis:", discountedTotal.toFixed(2));
 
         selectedVoucherHeader.textContent = btn.getAttribute("data-name");
         totalPriceElem.textContent = discountedTotal.toFixed(2);

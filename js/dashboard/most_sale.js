@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
             const text = await response.text();
-            console.log('Raw response:', text);
+            // console.log('Raw response:', text);
             const data = JSON.parse(text);
-            console.log('Parsed data:', data);
+            // console.log('Parsed data:', data);
 
-            console.log(data);
+            // console.log(data);
 
             // Generate the Revenue 
             data.forEach((param) => {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.updateSalesShow = function (category) {
-        console.log(category);
+        // console.log(category);
         renderTopSales(category);
     };
 

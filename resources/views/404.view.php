@@ -1,3 +1,4 @@
+<title>404</title>
 <?php require base_path('resources/views/components/head.php') ?>
 
 
@@ -14,7 +15,7 @@
             </div>
             <div class="col-12 col-lg-6 mt-5 mt-lg-0">
                 <div class="d-flex justify-content-center">
-                    <img src="/uploads/frontend/user/img/index/404.png" style="height: 420px;" alt="403-img">
+                    <img src="uploads/frontend/user/img/index/404.png" style="height: 420px;" alt="403-img">
                 </div>
             </div>
         </div>

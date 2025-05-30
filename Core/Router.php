@@ -79,6 +79,7 @@ class Router
     public function route($uri, $method)
     {
 
+        // dd($this->routes);
         foreach ($this->routes as $route) {
 
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
