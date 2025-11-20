@@ -5,7 +5,7 @@ $router->post('test-store', 'TestController', 'store');
 
 /**
  * General Web-Pages
-*/
+ */
 $router->get('index', 'Customer\UserController', 'index')->only('general', 'Customer');
 $router->get('contactUs', 'Customer\UserController', 'contactUs');
 $router->post('contactUs', 'Customer\UserController', 'sendMessage');
@@ -19,7 +19,7 @@ $router->get('terms-and-conditions', 'Customer\UserController', 'termsAndConditi
 $router->get('privacy-policy', 'Customer\UserController', 'privacyPolicyController');
 /**
  * Auth Web Pages
-*/
+ */
 // Registration & Login
 $router->get('registration', 'RegistrationController', 'create')->only('guest');
 $router->post('registration', 'RegistrationController', 'store');
@@ -39,12 +39,12 @@ $router->post('deactivate-customer', 'DeactivateController', 'update');
 
 /**
  * HTTP Response Web Page
-*/
+ */
 $router->get('403', 'ResponseController', 'http_403');
 
 /**
  * Specific Web Pages
-*/
+ */
 $router->get('search-filter', 'Customer\FilterController', 'search')->only('auth', 'Customer');
 $router->get('category-filter', 'Customer\FilterController', 'category')->only('auth', 'Customer');
 
@@ -60,13 +60,13 @@ $router->post('order-store', 'Customer\OrderController', 'store');
 
 /**
  * Profiling
-*/
+ */
 $router->get('profile', 'Customer\ProfileController', 'index')->only('auth', 'Customer');
 $router->post('profile', 'Customer\ProfileController', 'update');
 
 /**
  * Customer Transsaction
-*/
+ */
 $router->get('current-transactions', 'Customer\TransactionController', 'currentTransactions')->only('auth', 'Customer');
 $router->get('previous-transactions', 'Customer\TransactionController', 'previousTransactions')->only('auth', 'Customer');
 $router->get('transaction-show', 'Customer\TransactionController', 'show')->only('auth', 'Customer');
@@ -75,8 +75,9 @@ $router->post('transaction-update', 'Customer\TransactionController', 'update')-
 
 /**
  * Admin side 
-*/
-$router->get('dashboard', 'Admin\Admin_DashboardController', 'index')->only('staff', 'Admin,Employee');
+ */
+$router->get('dashboard', 'Admin\Admin_DashboardController', 'index');
+// ->only('staff', 'Admin,Employee');
 $router->get('dashboard-analytics', 'Admin\Admin_DashboardController', 'admin_dashboard');
 $router->get('total-transactions', 'Admin\Admin_DashboardController', 'total_transactions');
 $router->get('top-sales', 'Admin\Admin_DashboardController', 'top_sales');
@@ -124,7 +125,7 @@ $router->post('add-ons-store-admin', 'Admin\Admin_AddOnsController', 'store');
 $router->post('add-ons-update-admin', 'Admin\Admin_AddOnsController', 'update');
 $router->post('add-ons-delete-admin', 'Admin\Admin_AddOnsController', 'delete');
 $router->post('add-ons-reactivate-admin', 'Admin\Admin_AddOnsController', 'reactivate');
-$router->post('add-ons-change-availability-admin', 'Admin\Admin_AddOnsController',  'change_availability');
+$router->post('add-ons-change-availability-admin', 'Admin\Admin_AddOnsController', 'change_availability');
 
 $router->get('discount-table-admin', 'Admin\Admin_DiscountController', 'index')->only('staff', 'Admin,Employee');
 $router->get('discount-show-admin', 'Admin\Admin_DiscountController', 'show');
@@ -161,7 +162,7 @@ $router->post('profile-update-admin', 'Admin\Admin_ProfileController', 'update')
 
 /**
  * Rider Side
-*/
+ */
 $router->get('assigned-transaction-queue-rider', 'Rider\Rider_TransactionController', 'queue')->only('auth', 'Rider');
 $router->get('fetch-assigned-transaction', 'Rider\Rider_TransactionController', 'assignedTrans'); // API
 $router->get('assigned-transaction-rider', 'Rider\Rider_TransactionController', 'assigned_show');

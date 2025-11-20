@@ -7,7 +7,7 @@ use Core\Controller;
 use App\Models\Rider;
 use PDO;
 
-class Admin_DashboardController
+class Admin_DashboardController extends Controller
 {
 
     /**
@@ -16,8 +16,10 @@ class Admin_DashboardController
     public function index()
     {
 
+
         $db = new Database;
         $db->iniDB();
+
 
         $total_revenue =
             $db->query("SELECT SUM(amount_due) as total_sales 
@@ -58,7 +60,8 @@ class Admin_DashboardController
             ORDER BY sale_count DESC
             LIMIT 10")->get();
 
-        view('Admin/dashboard.view.php', [
+
+        return $this->view('admin/dashboard.view.php', [
             'title' => 'Dashboard | Norte Cafe',
             'total_revenue' => $total_revenue['total_sales'],
             'total_transactions' => $total_transactions['COUNT(*)'],
@@ -299,5 +302,24 @@ class Admin_DashboardController
 
         // Output the backup
         echo $backup;
+    }
+
+    public function edit()
+    {
+    }
+    public function show()
+    {
+    }
+    public function create()
+    {
+    }
+    public function store()
+    {
+    }
+    public function update()
+    {
+    }
+    public function delete()
+    {
     }
 }

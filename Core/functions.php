@@ -21,14 +21,14 @@ function dd($value)
  */
 function urlIs($value)
 {
-    return $_SERVER['REQUEST_URI'] === "/PHP%202025/Norte%20Cafe/public/index.php/{$value}";
+    return $_SERVER['REQUEST_URI'] === "/Projects2025/NorteCafe/public/index.php/{$value}";
 }
 
 function isVerified()
 {
 
-    
-    if(isset($_SESSION['__currentUser']['credentials']['verified']) === true) {
+
+    if (isset($_SESSION['__currentUser']['credentials']['verified']) === true) {
         return true;
     }
 
@@ -69,7 +69,7 @@ function old($input)
 
 /**
  * Simplify the display of errors
-*/
+ */
 function error($input)
 {
 
@@ -96,7 +96,7 @@ function abort($code = 404)
 /**
  * Added so 404, and 403 home link is
  * updated depending on the $_SESSION role
-*/
+ */
 function dynamic_http_response($role)
 {
 
@@ -104,7 +104,7 @@ function dynamic_http_response($role)
         return false;
     }
 
-    $route =  match($role) {
+    $route = match ($role) {
         'Customer' => 'index',
         'Employee' => 'dashboard',
         'Admin' => 'dashboard',

@@ -8,7 +8,7 @@ use Core\Session;
 
 /**
  * This is the Userv2
-*/
+ */
 class User extends Model
 {
 
@@ -18,23 +18,25 @@ class User extends Model
     /**
      * Gets all records of a user based on their roles
      * (Useful for subclasses, Customer.php, Rider.php)
-    */
+     */
     public function getUsersByRole($available = true, $verified = true)
     {
         $this->iniDB();
 
         $users = $this
-            ->query("SELECT user_id, first_name, last_name, username, email, contact_number, age, role, available, profile_dir FROM users WHERE role = ? AND available = ? AND verified = ?", 
-                [$this->role, $available, $verified])
+            ->query(
+                "SELECT user_id, first_name, last_name, username, email, contact_number, age, role, available, profile_dir FROM users WHERE role = ? AND available = ? AND verified = ?",
+                [$this->role, $available, $verified]
+            )
             ->get();
 
         return $users ?? null;
     }
-    
+
     /**
      * Get a single user record
      * (Useful for direct class access, not on subclasses)
-    */
+     */
     public function findUserOr($param)
     {
         $this->iniDB();
@@ -53,7 +55,7 @@ class User extends Model
     /**
      * Stricker version of OR above
      * and uses the operator AND
-    */
+     */
     public function findUserAnd($param)
     {
         $this->iniDB();
@@ -74,7 +76,7 @@ class User extends Model
      * Used for logged-in user and redirect them to their proper
      * default pages
      * ...(Create the same view for Admin and Employee upon logging in)
-    */
+     */
     public function loadRoleView()
     {
         $role = $_SESSION['__currentUser']['credentials']['role'];

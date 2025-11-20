@@ -36,7 +36,7 @@ class Router
     {
         $this->routes[] = [
             'method' => $method,
-            'uri' => "/PHP%202025/Norte%20Cafe/public/index.php/{$uri}",
+            'uri' => "/Projects2025/NorteCafe/public/index.php/{$uri}",
             'controller_class' => $controllerClass,
             'controller_method' => $controllerMethod,
             'middleware' => null,
@@ -49,7 +49,7 @@ class Router
 
     /**
      * Used for accessing a page; clicking <a> / clicking a link, traversing the URL
-    */
+     */
     public function get($uri, $controllerClass, $controllerMethod)
     {
         return $this->add('GET', $uri, $controllerClass, $controllerMethod);
@@ -57,7 +57,7 @@ class Router
 
     /**
      * Used for every submit of form; create, update, delete
-    */
+     */
     public function post($uri, $controllerClass, $controllerMethod)
     {
         return $this->add('POST', $uri, $controllerClass, $controllerMethod);

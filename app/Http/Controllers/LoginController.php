@@ -11,9 +11,13 @@ use App\Models\Cart;
 class LoginController extends Controller
 {
 
-    public function index() {}
+    public function index()
+    {
+    }
 
-    public function show() {}
+    public function show()
+    {
+    }
 
     /**
      * Loads the view for the
@@ -58,7 +62,7 @@ class LoginController extends Controller
                         'available' => true,
                     ]);
                 }
-                
+
                 $userModel->loadRoleView();
             }
 
@@ -95,7 +99,11 @@ class LoginController extends Controller
         return $this->redirect('index');
     }
 
-    public function update() {}
+    public function update()
+    {
+    }
 
-    public function delete() {}
+    public function delete()
+    {
+    }
 }
