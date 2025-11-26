@@ -26,7 +26,7 @@ class Admin_RiderController extends Controller
             "role" => "Rider"
         ])->get();
 
-        return $this->view('Admin/rider/index.view.php', [
+        return $this->view('admin/rider/index.view.php', [
             'title' => 'Riders Table',
             "riders" => $riders
         ]);
@@ -43,14 +43,14 @@ class Admin_RiderController extends Controller
         // User details
         $userObj = new User;
         $user = $userObj->findUserOr([
-            "user_id" =>  $rider_id,
+            "user_id" => $rider_id,
         ]);
 
         // Handled transactions
         $transactionObj = new Transaction;
         $handledTransactions = $transactionObj->getHandledTransactions($rider_id);
 
-        return $this->view('Admin/rider/show.view.php', [
+        return $this->view('admin/rider/show.view.php', [
             'title' => "Rider Show {$rider_id}",
             "user" => $user,
             "handledTransactions" => $handledTransactions,
@@ -62,24 +62,24 @@ class Admin_RiderController extends Controller
      * Used for loading the form to
      * input the Rider email and
      * send email too
-    */
-    public function create() 
+     */
+    public function create()
     {
 
         return $this->view('admin/rider/create.view.php', [
             'title' => 'Create Employee',
         ]);
     }
-    
+
 
     /**
      * Used for sending an email to
      * the Rider
-    */
-    public function store() 
+     */
+    public function store()
     {
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $data = [
                 "email" => $this->getInput('email')
@@ -89,14 +89,14 @@ class Admin_RiderController extends Controller
                 'email' => "email|unique:users,email,0",
             ]);
 
-            if($errors) {
+            if ($errors) {
                 return $this->redirect('rider-create-admin');
             }
 
             $mailerObj = new Mailer;
             $emailSent = $mailerObj->emailStaff($data['email'], 'rider');
-            
-            if($emailSent) {
+
+            if ($emailSent) {
                 Session::set('__flash', 'email_sent', 'Email sent successfully');
                 return $this->redirect('rider-create-admin');
             }
@@ -183,7 +183,7 @@ class Admin_RiderController extends Controller
 
     /**
      * Delete a specific rider
-    */
+     */
     public function delete()
     {
 

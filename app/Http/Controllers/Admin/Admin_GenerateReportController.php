@@ -9,9 +9,13 @@ use Core\FPDF\CustomFPDF;
 class Admin_GenerateReportController extends Controller
 {
 
-    public function index() {}
+    public function index()
+    {
+    }
 
-    public function show() {}
+    public function show()
+    {
+    }
 
     /**
      * Used for showing the form view for
@@ -20,7 +24,7 @@ class Admin_GenerateReportController extends Controller
     public function create()
     {
 
-        return $this->view('Admin/generate-report.view.php', [
+        return $this->view('admin/generate-report.view.php', [
             'title' => 'Generate Report',
         ]);
     }
@@ -94,9 +98,15 @@ class Admin_GenerateReportController extends Controller
         $pdf->generateReport($transactions, $data['starting_date'], $data['end_date'], $revenue);
     }
 
-    public function store() {}
+    public function store()
+    {
+    }
 
-    public function update() {}
+    public function update()
+    {
+    }
 
-    public function delete() {}
+    public function delete()
+    {
+    }
 }

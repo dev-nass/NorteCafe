@@ -12,7 +12,7 @@ class Admin_DiscountController extends Controller
     /**
      * Loads the table view for all of the 
      * records within Discount Table
-    */
+     */
     public function index()
     {
 
@@ -27,8 +27,8 @@ class Admin_DiscountController extends Controller
 
     /**
      * Used for a specific discount
-    */
-    public function show() 
+     */
+    public function show()
     {
 
         $discount_id = $this->getInput('id');
@@ -47,8 +47,8 @@ class Admin_DiscountController extends Controller
 
     /**
      * Loads the view for creating a new discount
-    */
-    public function create() 
+     */
+    public function create()
     {
 
         return $this->view('admin/discount/create.view.php', [
@@ -58,11 +58,11 @@ class Admin_DiscountController extends Controller
 
     /**
      * Handle the form submit of create discount form
-    */
-    public function store() 
+     */
+    public function store()
     {
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $data = [
                 'discount_name' => $this->getInput('discount_name'),
@@ -75,7 +75,7 @@ class Admin_DiscountController extends Controller
                 'discount_name' => 'required|unique:discounts,name,0'
             ]);
 
-            if($errors) {
+            if ($errors) {
                 return $this->redirect('discount-create-admin');
             }
 
@@ -87,7 +87,7 @@ class Admin_DiscountController extends Controller
                 'min_amount' => $data['discount_min_amount'],
             ]);
 
-            if($new_discount) {
+            if ($new_discount) {
                 Session::set('__flash', 'discount_created', 'Created successfully');
                 return $this->redirect('discount-table-admin');
             }
@@ -96,11 +96,11 @@ class Admin_DiscountController extends Controller
 
     /**
      * Update a specific discount record
-    */
-    public function update() 
+     */
+    public function update()
     {
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $data = [
                 'discount_id' => $this->getInput('discount_id'),
@@ -114,7 +114,7 @@ class Admin_DiscountController extends Controller
                 "discount_name" => "required|unique:discounts,name,{$data['discount_id']}"
             ]);
 
-            if($errors) {
+            if ($errors) {
                 return $this->redirect("discount-show-admin?id={$data['discount_id']}");
             }
 
@@ -126,7 +126,7 @@ class Admin_DiscountController extends Controller
                 'min_amount' => $data['discount_min_amount'],
             ]);
 
-            if($updated_discount) {
+            if ($updated_discount) {
                 Session::set('__flash', 'discount_updated', 'Discount Updated Successfully');
                 return $this->redirect('discount-table-admin');
             }
@@ -136,18 +136,18 @@ class Admin_DiscountController extends Controller
 
     /**
      * Delete a specific discount
-    */
-    public function delete() 
+     */
+    public function delete()
     {
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $discount_id = $this->getInput('discount_id');
 
             $discountObj = new Discount;
             $deleted_discount = $discountObj->delete($discount_id);
 
-            if($deleted_discount) {
+            if ($deleted_discount) {
                 Session::set('__flash', 'discount_deleted', 'deleted successfully');
                 return $this->redirect('discount-table-admin');
             }

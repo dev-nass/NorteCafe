@@ -18,7 +18,7 @@ class Admin_CustomerController extends Controller
      * Customer Records
      * 
      * Status: Active
-    */
+     */
     public function index()
     {
 
@@ -30,7 +30,7 @@ class Admin_CustomerController extends Controller
             "status" => 1,
         ])->get();
 
-        return $this->view('Admin/customer/index.view.php', [
+        return $this->view('admin/customer/index.view.php', [
             'title' => 'Customers Table',
             "customers" => $customers
         ]);
@@ -41,7 +41,7 @@ class Admin_CustomerController extends Controller
      * Customer Records
      * 
      * Status: Archived
-    */
+     */
     public function index_archived()
     {
 
@@ -53,7 +53,7 @@ class Admin_CustomerController extends Controller
             "status" => 0,
         ])->get();
 
-        return $this->view('Admin/customer/index-archived.view.php', [
+        return $this->view('admin/customer/index-archived.view.php', [
             'title' => 'Customers Archived Table',
             "customers" => $customers
         ]);
@@ -61,7 +61,7 @@ class Admin_CustomerController extends Controller
 
     /**
      * Used for showing specific user
-    */
+     */
     public function show()
     {
 
@@ -70,7 +70,7 @@ class Admin_CustomerController extends Controller
         // User details
         $userObj = new User;
         $user = $userObj->findUserOr([
-            "user_id" =>  $customer_id
+            "user_id" => $customer_id
         ]);
 
         $db = new Database;
@@ -78,14 +78,14 @@ class Admin_CustomerController extends Controller
 
         // Cart Count
         $cartObj = new Cart;
-        $cartCount = $cartObj->countWhere('user_id',  [
+        $cartCount = $cartObj->countWhere('user_id', [
             "user_id" => $customer_id,
             "order_placed" => 0,
         ]);
 
         // Transaction Count
         $transactionObj = new Transaction;
-        $transactionCount = $transactionObj->countWhere('user_id',  [
+        $transactionCount = $transactionObj->countWhere('user_id', [
             "user_id" => $customer_id
         ]);
 
@@ -94,7 +94,7 @@ class Admin_CustomerController extends Controller
         $previousTransactions = $transactionObj->findAllWhere(["user_id" => $customer_id], 'DESC');
 
 
-        return $this->view('Admin/customer/show.view.php', [
+        return $this->view('admin/customer/show.view.php', [
             'title' => "Customer Show {$customer_id}",
             "user" => $user,
             "cart_count" => $cartCount,
@@ -103,14 +103,22 @@ class Admin_CustomerController extends Controller
         ]);
     }
 
-    public function create() {}
+    public function create()
+    {
+    }
 
-    public function store() {}
+    public function store()
+    {
+    }
 
-    public function update() {}
+    public function update()
+    {
+    }
 
     /**
      * Archive the user
-    */
-    public function delete() {}
+     */
+    public function delete()
+    {
+    }
 }

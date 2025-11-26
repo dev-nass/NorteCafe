@@ -9,27 +9,31 @@ use App\Models\MenuSize;
 class Admin_MenuSizeController extends Controller
 {
 
-    public function index() {}
+    public function index()
+    {
+    }
 
-    public function show() {}
+    public function show()
+    {
+    }
 
     /**
      * Used for loading the view for upload
-    */
+     */
     public function create()
     {
-        return $this->view('Admin/size/create.view.php', [
+        return $this->view('admin/size/create.view.php', [
             'title' => 'Create Menu Item Size',
         ]);
     }
 
     /**
      * Used for handling the submit of menu size form
-    */
-    public function store() 
+     */
+    public function store()
     {
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $data = [
                 "menu_item_id" => $this->getInput("menu-item-id"),
@@ -44,7 +48,7 @@ class Admin_MenuSizeController extends Controller
                 "price" => number_format($data["size_price"], '2', '.', ''),
             ]);
 
-            if($new_menuSize) {
+            if ($new_menuSize) {
                 Session::set('__flash', 'menu_item_size_uploaded', 'menu item size uploaded successfully');
                 redirect("menu-show-admin?menu_item_id={$data['menu_item_id']}");
             }
@@ -52,7 +56,11 @@ class Admin_MenuSizeController extends Controller
         }
     }
 
-    public function update() {}
+    public function update()
+    {
+    }
 
-    public function delete() {}
+    public function delete()
+    {
+    }
 }

@@ -24,7 +24,7 @@ class Admin_MenuController extends Controller
         $menuItemsObj = new MenuItem;
         $menuItems = $menuItemsObj->activeMenuItems();
 
-        return $this->view('Admin/menu/index.view.php', [
+        return $this->view('admin/menu/index.view.php', [
             'title' => 'Menu Items Table',
             "menuItems" => $menuItems,
         ]);
@@ -42,7 +42,7 @@ class Admin_MenuController extends Controller
         $menuItemsObj = new MenuItem;
         $menuItems = $menuItemsObj->archivedMenuItems();
 
-        return $this->view('Admin/menu/index-archived.view.php', [
+        return $this->view('admin/menu/index-archived.view.php', [
             'title' => 'Menu Items Archive Table',
             "menuItems" => $menuItems,
         ]);
@@ -70,7 +70,7 @@ class Admin_MenuController extends Controller
         $addOnsObj = new AddOns;
         $addOns = $addOnsObj->findAll();
 
-        return $this->view('Admin/menu/show.view.php', [
+        return $this->view('admin/menu/show.view.php', [
             'title' => "Menu Item {$menu_item_id}",
             "menuItem" => $menuItem,
             "menuSizes" => $menuSizes,
@@ -84,7 +84,7 @@ class Admin_MenuController extends Controller
     public function create()
     {
 
-        return $this->view('Admin/menu/create.view.php', [
+        return $this->view('admin/menu/create.view.php', [
             'title' => 'Create Menu Item',
             "errors" => [],
         ]);
@@ -173,7 +173,7 @@ class Admin_MenuController extends Controller
 
             // validation
             $errors = $this->validate($data, [
-                "item_name" =>  "required|min:5|max:255|unique:menu_items,name,{$data['menu_item_id']}",
+                "item_name" => "required|min:5|max:255|unique:menu_items,name,{$data['menu_item_id']}",
                 "description" => "required|max:255",
             ]);
 

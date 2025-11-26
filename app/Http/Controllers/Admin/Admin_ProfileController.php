@@ -13,8 +13,8 @@ class Admin_ProfileController extends Controller
     /**
      * Used for loading the view 
      * of the Admin/Employee Profile
-    */
-    public function index() 
+     */
+    public function index()
     {
 
         $currentUser_id = Session::get('__currentUser', 'credentials')['user_id'];
@@ -24,23 +24,29 @@ class Admin_ProfileController extends Controller
             "user_id" => $currentUser_id
         ]);
 
-        return $this->view('Admin/profile.view.php', [
+        return $this->view('admin/profile.view.php', [
             'title' => "Profile | {$currentUser['role']}",
             "user" => $currentUser,
         ]);
     }
 
-    public function show() {}
+    public function show()
+    {
+    }
 
-    public function create() {}
-    
-    public function store() {}
+    public function create()
+    {
+    }
+
+    public function store()
+    {
+    }
 
     /**
      * Used for updating the current
      * Admin profile
-    */
-    public function update() 
+     */
+    public function update()
     {
 
         $db = new Database;
@@ -118,7 +124,9 @@ class Admin_ProfileController extends Controller
         }
 
     }
-    public function delete() {}
+    public function delete()
+    {
+    }
 
 
 }

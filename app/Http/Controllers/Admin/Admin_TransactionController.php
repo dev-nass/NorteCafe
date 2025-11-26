@@ -177,9 +177,13 @@ class Admin_TransactionController extends Controller
         ]);
     }
 
-    public function create() {}
+    public function create()
+    {
+    }
 
-    public function store() {}
+    public function store()
+    {
+    }
 
 
     /**

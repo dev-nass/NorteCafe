@@ -19,7 +19,7 @@ class Admin_AddOnsController extends Controller
         $addOnsObj = new AddOns;
         $addOns = $addOnsObj->findAll();
 
-        return $this->view('Admin/AddOns/index.view.php', [
+        return $this->view('admin/AddOns/index.view.php', [
             'title' => 'Add-Ons Table',
             'addOns' => $addOns,
         ]);
@@ -31,7 +31,7 @@ class Admin_AddOnsController extends Controller
         $addOnsObj = new AddOns;
         $addOns = $addOnsObj->archivedAddOns();
 
-        return $this->view('Admin/addOns/index-archived.view.php', [
+        return $this->view('admin/addOns/index-archived.view.php', [
             'title' => 'Add Ons Archive Table',
             "addOns" => $addOns,
         ]);
@@ -64,7 +64,7 @@ class Admin_AddOnsController extends Controller
     public function create()
     {
 
-        return $this->view('Admin/AddOns/create.view.php', [
+        return $this->view('admin/addOns/create.view.php', [
             'title' => 'Create Add-Ons',
             "errors" => [],
         ]);

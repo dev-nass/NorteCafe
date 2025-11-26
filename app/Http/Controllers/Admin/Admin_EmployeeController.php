@@ -25,7 +25,7 @@ class Admin_EmployeeController extends Controller
             "role" => "Employee"
         ])->get();
 
-        return $this->view('Admin/employee/index.view.php', [
+        return $this->view('admin/employee/index.view.php', [
             'title' => "Employees Table",
             "employees" => $employees
         ]);
@@ -42,10 +42,10 @@ class Admin_EmployeeController extends Controller
         // User details
         $userObj = new User;
         $user = $userObj->findUserOr([
-            "user_id" =>  $employee_id,
+            "user_id" => $employee_id,
         ]);
 
-        return $this->view('Admin/employee/show.view.php', [
+        return $this->view('admin/employee/show.view.php', [
             'title' => "Employee Show {$employee_id}",
             "user" => $user,
         ]);
@@ -55,8 +55,8 @@ class Admin_EmployeeController extends Controller
      * Used for loading the form to
      * input the Employee email and
      * send email too
-    */
-    public function create() 
+     */
+    public function create()
     {
 
         return $this->view('admin/employee/create.view.php', [
@@ -67,11 +67,11 @@ class Admin_EmployeeController extends Controller
     /**
      * Used for sending an email to
      * the Employee
-    */
-    public function store() 
+     */
+    public function store()
     {
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $data = [
                 "email" => $this->getInput('email')
@@ -81,14 +81,14 @@ class Admin_EmployeeController extends Controller
                 'email' => "email|unique:users,email,0",
             ]);
 
-            if($errors) {
+            if ($errors) {
                 return $this->redirect('employee-create-admin');
             }
 
             $mailerObj = new Mailer;
             $emailSent = $mailerObj->emailStaff($data['email'], 'employee');
 
-            if($emailSent) {
+            if ($emailSent) {
                 Session::set('__flash', 'email_sent', 'Email sent successfully');
                 return $this->redirect('employee-create-admin');
             }
@@ -175,7 +175,7 @@ class Admin_EmployeeController extends Controller
 
     /**
      * Delete a specific employee
-    */
+     */
     public function delete()
     {
 
